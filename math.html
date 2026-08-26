@@ -475,6 +475,25 @@
       color: var(--text-main);
     }
 
+    /* CSS Tambahan untuk Soal Isian */
+    .input-isian {
+      width: 100%;
+      padding: 16px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text-main);
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-isian:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-light);
+    }
+
     /* Navigasi Pengerjaan */
     .nav-actions {
       display: flex;
@@ -987,29 +1006,56 @@
       const questionEl = document.getElementById('question-text');
       questionEl.innerHTML = `<strong>${state.currentIndex + 1}.</strong> ${q.pertanyaan}`;
 
-      // Render Opsi Jawaban
+      // Render Opsi Jawaban atau Input Isian
       const optionsContainer = document.getElementById('options-container');
       optionsContainer.innerHTML = '';
 
-      const options = [
-        { key: 'A', text: q.opsi_a },
-        { key: 'B', text: q.opsi_b },
-        { key: 'C', text: q.opsi_c },
-        { key: 'D', text: q.opsi_d }
-      ];
+      // Deteksi tipe soal: jika opsi_b, opsi_c, dan opsi_d kosong, maka ini adalah soal isian.
+      const isIsian = (!q.opsi_b || q.opsi_b.toString().trim() === '') && 
+                      (!q.opsi_c || q.opsi_c.toString().trim() === '') && 
+                      (!q.opsi_d || q.opsi_d.toString().trim() === '');
 
-      const selectedAnswer = state.answers[q.id];
+      if (isIsian) {
+        const inputEl = document.createElement('input');
+        inputEl.type = 'text';
+        inputEl.className = 'input-isian';
+        
+        // Tetapkan teks petunjuk dari Opsi_A, atau gunakan teks bawaan jika kosong
+        const hintText = (q.opsi_a && q.opsi_a.toString().trim() !== '') ? q.opsi_a : 'Ketik jawaban di sini...';
+        inputEl.placeholder = hintText;
+        
+        inputEl.value = state.answers[q.id] || '';
+        
+        // Simpan jawaban pengguna
+        inputEl.addEventListener('input', (e) => {
+          state.answers[q.id] = e.target.value;
+          updatePaletteUI();
+        });
+        
+        optionsContainer.appendChild(inputEl);
+      } else {
+        const options = [
+          { key: 'A', text: q.opsi_a },
+          { key: 'B', text: q.opsi_b },
+          { key: 'C', text: q.opsi_c },
+          { key: 'D', text: q.opsi_d }
+        ];
 
-      options.forEach(opt => {
-        const optEl = document.createElement('div');
-        optEl.className = `option-item ${selectedAnswer === opt.key ? 'selected' : ''}`;
-        optEl.innerHTML = `
-          <span class="option-label">${opt.key}</span>
-          <span class="option-text">${opt.text}</span>
-        `;
-        optEl.addEventListener('click', () => selectAnswer(q.id, opt.key));
-        optionsContainer.appendChild(optEl);
-      });
+        const selectedAnswer = state.answers[q.id];
+
+        options.forEach(opt => {
+          if (!opt.text || opt.text.toString().trim() === '') return;
+          
+          const optEl = document.createElement('div');
+          optEl.className = `option-item ${selectedAnswer === opt.key ? 'selected' : ''}`;
+          optEl.innerHTML = `
+            <span class="option-label">${opt.key}</span>
+            <span class="option-text">${opt.text}</span>
+          `;
+          optEl.addEventListener('click', () => selectAnswer(q.id, opt.key));
+          optionsContainer.appendChild(optEl);
+        });
+      }
 
       // Kontrol Tombol Navigasi
       document.getElementById('btn-prev').disabled = state.currentIndex === 0;
@@ -1076,7 +1122,11 @@
         if (!btn) return;
 
         btn.classList.toggle('active', idx === state.currentIndex);
-        btn.classList.toggle('answered', Boolean(state.answers[q.id]));
+        
+        // Evaluasi validitas jawaban untuk mengaktifkan indikator warna
+        const answer = state.answers[q.id];
+        const isAnswered = answer !== undefined && answer.toString().trim() !== '';
+        btn.classList.toggle('answered', isAnswered);
       });
     }
 
@@ -1101,11 +1151,11 @@
 
     // Pengiriman Jawaban (Submit)
     async function submitQuiz() {
-      const answeredCount = Object.keys(state.answers).length;
+      const answeredCount = Object.keys(state.answers).filter(key => state.answers[key].toString().trim() !== '').length;
       const total = state.questions.length;
 
       if (answeredCount < total) {
-        const proceed = confirm(`Masih ada ${total - answeredCount} soal yang belum dijawab. Ara yakin ingin mengumpulkan sekarang?`);
+        const proceed = confirm(`Masih ada ${total - answeredCount} soal yang belum dijawab. Yakin ingin mengumpulkan sekarang?`);
         if (!proceed) return;
       }
 
