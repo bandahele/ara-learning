@@ -608,6 +608,55 @@
             color: #166534;
         }
 
+        /* ===== WARNING TOAST ===== */
+        .warning-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.45);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+        .warning-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== PROCTORING AUDIT BOX ===== */
+        .audit-info-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 1.5px solid rgba(99, 102, 241, 0.35);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            text-align: left;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .audit-info-title {
+            font-weight: 800;
+            color: var(--indigo-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
         .result-box {
             text-align: center;
             padding: 6px 0 0;
@@ -885,6 +934,12 @@
 
 <body oncontextmenu="return false;">
 
+    <!-- ===== TOAST PERINGATAN KELUAR APLIKASI ===== -->
+    <div id="warning-toast" class="warning-toast">
+        <span>⚠️</span>
+        <span>Keluar layar ujian dicatat sistem!</span>
+    </div>
+
     <canvas id="particle-canvas"></canvas>
     <canvas id="mascot-canvas"></canvas>
     <div id="confetti-container"></div>
@@ -1080,6 +1135,15 @@
                         </div>
                     </div>
 
+                    <!-- REKAP DURASI & CATATAN INTEGRITAS -->
+                    <div class="audit-info-box">
+                        <div class="audit-info-title">
+                            ⏱️ Info Pengerjaan & Integritas:
+                        </div>
+                        <div>⏱️ <strong>Durasi Pengerjaan:</strong> <span id="res-duration">-</span></div>
+                        <div>🛡️ <strong>Aktivitas Keluar Layar:</strong> <span id="res-out-info">-</span></div>
+                    </div>
+
                     <div class="wrong-list-box" id="wrong-container" style="display: none;">
                         <div style="font-weight: 800; color: #dc2626; margin-bottom: 4px;">⚠️ Evaluasi Nomor Salah:</div>
                         <div id="wrong-numbers" style="color: #475569; font-weight: 700;">-</div>
@@ -1109,7 +1173,7 @@
             "Manfaatkan waktu dengan bijak. Mulai dari soal terkerjakan! 🎯"
         ];
 
-        // GLOBAL APP STATE
+        // GLOBAL APP STATE (TERMASUK TRACKING DURASI & PELANGGARAN)
         const state = {
             packages: [],
             selectedPackage: null,
@@ -1119,7 +1183,11 @@
             answers: {},
             timerInterval: null,
             secondsElapsed: 0,
-            attemptNumber: 1
+            attemptNumber: 1,
+            // Variabel Tracking Keluar Layar
+            outOfAppCount: 0,
+            outOfAppDuration: 0,
+            lastHiddenTime: null
         };
 
         // ANTI COPY PROTECTION
@@ -1127,6 +1195,39 @@
             if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
             if (e.ctrlKey && ['c', 'v', 'x', 'a', 'u'].includes(e.key.toLowerCase())) {
                 e.preventDefault();
+            }
+        });
+
+        // ============================================================
+        //  DETEKSI KELUAR APLIKASI & WARNING
+        // ============================================================
+        function showWarningToast(msg) {
+            const toast = document.getElementById('warning-toast');
+            if (!toast) return;
+            toast.querySelector('span:last-child').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            const isQuizActive = document.getElementById('view-quiz').classList.contains('active');
+            if (isQuizActive && state.questions && state.questions.length > 0) {
+                if (document.hidden) {
+                    // Anak keluar / beralih aplikasi
+                    state.lastHiddenTime = Date.now();
+                    state.outOfAppCount++;
+                } else {
+                    // Anak kembali ke aplikasi
+                    if (state.lastHiddenTime) {
+                        const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
+                        state.outOfAppDuration += awaySec;
+                        state.lastHiddenTime = null;
+                        
+                        showWarningToast(`⚠️ Peringatan ke-${state.outOfAppCount}: Keluar layar dicatat sistem!`);
+                    }
+                }
             }
         });
 
@@ -1297,6 +1398,12 @@
                     state.questions = json.data;
                     state.currentIndex = 0;
                     state.answers = {};
+                    
+                    // Reset tracking status saat kuis baru dimulai
+                    state.outOfAppCount = 0;
+                    state.outOfAppDuration = 0;
+                    state.lastHiddenTime = null;
+                    
                     state.attemptNumber = getLocalAttempt(state.selectedPackage);
 
                     document.getElementById('label-package-title').textContent = state.selectedPackageTitle;
@@ -1455,6 +1562,14 @@
             }
 
             stopTimer();
+            
+            // Hitung sisa durasi background jika disubmit dalam keadaan layar tidak fokus
+            if (state.lastHiddenTime) {
+                const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
+                state.outOfAppDuration += awaySec;
+                state.lastHiddenTime = null;
+            }
+
             const btn = document.getElementById('btn-submit');
             btn.disabled = true;
             btn.textContent = '⏳ Menghitung Skor...';
@@ -1464,7 +1579,11 @@
                 student: CONFIG.STUDENT_NAME,
                 sheet: state.selectedPackage,
                 attempt: state.attemptNumber,
-                answers: state.answers
+                answers: state.answers,
+                // Mengirim Durasi & Pelanggaran Keluar Layar
+                durasi: state.secondsElapsed,
+                pelanggaran_kali: state.outOfAppCount,
+                pelanggaran_waktu: state.outOfAppDuration
             };
 
             try {
@@ -1482,10 +1601,12 @@
                 } else {
                     alert(json.message || 'Gagal memproses skor.');
                     btn.disabled = false;
+                    btn.textContent = '✨ Submit Final ✨';
                 }
             } catch (_) {
                 alert('Terjadi kendala jaringan saat pengiriman.');
                 btn.disabled = false;
+                btn.textContent = '✨ Submit Final ✨';
             }
         }
 
@@ -1496,6 +1617,19 @@
             document.getElementById('res-total').textContent = res.totalQuestions;
             document.getElementById('res-correct').textContent = res.correctCount;
             document.getElementById('res-incorrect').textContent = res.incorrectCount;
+
+            // Format waktu pengerjaan
+            const m = Math.floor(state.secondsElapsed / 60);
+            const s = state.secondsElapsed % 60;
+            document.getElementById('res-duration').textContent = `${m} menit ${s} detik`;
+
+            // Format info keluar layar
+            const outInfoEl = document.getElementById('res-out-info');
+            if (state.outOfAppCount > 0) {
+                outInfoEl.innerHTML = `<span style="color:#ef4444;">${state.outOfAppCount}x keluar (Total: ${state.outOfAppDuration} detik)</span>`;
+            } else {
+                outInfoEl.innerHTML = `<span style="color:#10b981;">Aman & Jujur (0x) 🌟</span>`;
+            }
 
             const msg = document.getElementById('res-message');
             if (res.score === 100) {
