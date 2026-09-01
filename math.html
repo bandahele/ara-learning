@@ -44,7 +44,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Proteksi Salin dan Seleksi Teks */
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-gradient);
@@ -66,7 +65,6 @@
       padding: 16px;
     }
 
-    /* Header Navigasi */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -122,7 +120,6 @@
       border: 1px solid rgba(155, 123, 247, 0.25);
     }
 
-    /* Kartu Konten Utama */
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -135,7 +132,6 @@
       flex-direction: column;
     }
 
-    /* Foto Profil Ara di Halaman Utama */
     .home-avatar-wrapper {
       position: relative;
       width: 92px;
@@ -157,7 +153,6 @@
       border: 2.5px solid #ffffff;
     }
 
-    /* Banner Motivasi */
     .motivation-card {
       background: linear-gradient(135deg, #fef0f6 0%, #f3edff 100%);
       border: 1.5px solid rgba(251, 161, 199, 0.45);
@@ -182,7 +177,6 @@
       line-height: 1.45;
     }
 
-    /* Halaman Home */
     .home-header {
       text-align: center;
       margin-bottom: 18px;
@@ -286,7 +280,6 @@
       border-radius: var(--radius-sm);
     }
 
-    /* Tombol Utama */
     .btn {
       width: 100%;
       padding: 15px;
@@ -342,7 +335,6 @@
       transform: none;
     }
 
-    /* Subjudul / Badge Paket Soal di Pengerjaan & Hasil */
     .quiz-package-header {
       display: flex;
       align-items: center;
@@ -350,7 +342,7 @@
       margin-bottom: 12px;
     }
 
-    .quiz-sheet-badge {
+    .quiz-sheet-badge, .result-sheet-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -365,20 +357,10 @@
     }
 
     .result-sheet-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-pink-light) 100%);
-      color: var(--primary);
-      border: 1px solid rgba(155, 123, 247, 0.25);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
       margin-bottom: 14px;
+      padding: 6px 16px;
     }
 
-    /* Halaman Pengerjaan */
     .quiz-progress-bar {
       width: 100%;
       height: 6px;
@@ -438,10 +420,6 @@
       border-color: rgba(155, 123, 247, 0.5);
     }
 
-    .option-item:active {
-      transform: scale(0.99);
-    }
-
     .option-item.selected {
       border-color: var(--primary);
       background-color: var(--primary-light);
@@ -475,7 +453,7 @@
       color: var(--text-main);
     }
 
-    /* CSS Tambahan untuk Soal Isian */
+    /* Input Soal Isian */
     .input-isian {
       width: 100%;
       padding: 16px;
@@ -494,7 +472,6 @@
       box-shadow: 0 0 0 4px var(--primary-light);
     }
 
-    /* Navigasi Pengerjaan */
     .nav-actions {
       display: flex;
       gap: 10px;
@@ -539,7 +516,55 @@
       color: var(--answered-text);
     }
 
-    /* Halaman Hasil */
+    /* Warning Toast Pindah Layar */
+    .warning-toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120px);
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.45);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      pointer-events: none;
+    }
+    .warning-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Audit Box di Hasil Ujian */
+    .audit-info-box {
+      background: var(--primary-light);
+      border: 1.5px solid rgba(155, 123, 247, 0.35);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      text-align: left;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .audit-info-title {
+      font-weight: 700;
+      color: var(--primary-hover);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
     .result-box {
       text-align: center;
       padding: 10px 0 0;
@@ -640,7 +665,6 @@
       gap: 6px;
     }
 
-    /* Pemuatan Data */
     .loader {
       display: flex;
       flex-direction: column;
@@ -679,8 +703,13 @@
 </head>
 <body oncontextmenu="return false;">
 
+  <!-- Warning Toast Pindah Layar -->
+  <div id="warning-toast" class="warning-toast">
+    <span>⚠️</span>
+    <span>Keluar layar ujian dicatat sistem!</span>
+  </div>
+
   <div class="container">
-    
     <header class="top-bar">
       <div class="user-tag">
         <div class="user-avatar">
@@ -696,31 +725,26 @@
 
     <section id="view-home" class="view-section active">
       <div class="card">
-        
         <div class="home-avatar-wrapper">
           <img class="home-avatar-img" src="https://drive.google.com/thumbnail?id=1pvwce264YffgaKtEbCvK73S4D2ZOyzXf&sz=w400" alt="Foto Ara" onerror="this.src='https://drive.google.com/thumbnail?id=1pvwce264YffgaKtEbCvK73S4D2ZOyzXf&sz=w400';">
         </div>
-
         <div class="home-header">
           <div class="home-badge">Latihan Harian</div>
           <h1 class="home-title">Matematika Seru</h1>
           <p class="home-subtitle">Pilih paket latihan untuk mengasah kemampuanmu</p>
         </div>
-
         <div class="motivation-card">
           <div class="motivation-icon">✨</div>
           <div class="motivation-text" id="daily-quote">
             "Semangat Ara! Setiap rumus yang kamu pelajari membuatmu semakin hebat!"
           </div>
         </div>
-
         <div id="package-container" class="package-list">
           <div class="loader">
             <div class="spinner"></div>
             <span>Memuat paket latihan...</span>
           </div>
         </div>
-
         <button id="btn-start" class="btn btn-primary" disabled>
           <span>Mulai Kerjakan</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -730,7 +754,6 @@
 
     <section id="view-quiz" class="view-section">
       <div class="card">
-        
         <div class="quiz-package-header">
           <div class="quiz-sheet-badge">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -738,54 +761,41 @@
           </div>
           <span id="label-attempt" style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Percobaan ke-1</span>
         </div>
-
         <div class="quiz-progress-bar">
           <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
         </div>
-
         <div class="quiz-meta">
           <span id="label-progress">Soal 1 dari 10</span>
         </div>
-
-        <div class="question-box" id="question-text">
-          </div>
-
-        <div class="options-list" id="options-container">
-          </div>
-
+        <div class="question-box" id="question-text"></div>
+        <div class="options-list" id="options-container"></div>
         <div class="nav-actions">
           <button id="btn-prev" class="btn btn-outline" style="width: 40%;">Kembali</button>
           <button id="btn-next" class="btn btn-secondary" style="width: 60%;">Berikutnya</button>
           <button id="btn-submit" class="btn btn-primary" style="display: none; width: 60%;">Selesai ✨</button>
         </div>
-
-        <div class="palette-grid" id="palette-container">
-          </div>
+        <div class="palette-grid" id="palette-container"></div>
       </div>
     </section>
 
     <section id="view-result" class="view-section">
       <div class="card">
         <div class="result-box">
-          
           <div>
             <div class="result-sheet-badge">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               <span id="res-package-title">Paket Soal</span>
             </div>
           </div>
-
           <div class="score-circle-wrapper">
             <div class="score-circle">
               <span class="score-value" id="res-score">0</span>
               <span class="score-label">Skor Akhir</span>
             </div>
           </div>
-
           <div class="result-message-box" id="res-message">
             Keren banget Ara! Terus tingkatkan kemampuan matematikamu!
           </div>
-
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-num" id="res-attempt" style="color: var(--primary);">-</div>
@@ -805,6 +815,15 @@
             </div>
           </div>
 
+          <!-- Audit Box Keluar Layar -->
+          <div class="audit-info-box">
+            <div class="audit-info-title">
+              ⏱️ Info Pengerjaan & Integritas:
+            </div>
+            <div>⏱️ <strong>Durasi:</strong> <span id="res-duration">-</span></div>
+            <div>🛡️ <strong>Aktivitas Luar Layar:</strong> <span id="res-out-info">-</span></div>
+          </div>
+
           <div class="wrong-list-box" id="wrong-container" style="display: none;">
             <div class="wrong-title">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
@@ -812,7 +831,6 @@
             </div>
             <div id="wrong-numbers" style="color: #4a5568; font-weight: 600;">-</div>
           </div>
-
           <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
             <button id="btn-retry" class="btn btn-primary">Ulangi Ujian Ini 🔄</button>
             <button id="btn-home" class="btn btn-outline">Kembali ke Beranda 🏠</button>
@@ -824,9 +842,6 @@
   </div>
 
   <script>
-    /**
-     * Konfigurasi API
-     */
     const CONFIG = {
       API_URL: 'https://script.google.com/macros/s/AKfycbyVx1uzpBdM982o9NugeSs6Q-dJRYDVSuzB0iti5RyPnpH7T1YM74T5NeYnRcGFLsuqrQ/exec',
       STUDENT_NAME: 'Ara'
@@ -840,7 +855,6 @@
       "Jangan takut salah ya, karena dari situlah Ara belajar jadi luar biasa! 🌟"
     ];
 
-    // Status Aplikasi
     const state = {
       packages: [],
       selectedPackage: null,
@@ -850,10 +864,13 @@
       answers: {},
       timerInterval: null,
       secondsElapsed: 0,
-      attemptNumber: 1
+      attemptNumber: 1,
+      // Variabel Tracking Durasi Pindah Layar
+      outOfAppCount: 0,
+      outOfAppDuration: 0,
+      lastHiddenTime: null
     };
 
-    // Proteksi Tombol Pintas & Salin Teks
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && ['c', 'v', 'x', 'a', 'u'].includes(e.key.toLowerCase())) {
         e.preventDefault();
@@ -863,7 +880,32 @@
       document.addEventListener(event, (e) => e.preventDefault());
     });
 
-    // Inisialisasi Aplikasi
+    // Deteksi Keluar Layar
+    function showWarningToast(msg) {
+      const toast = document.getElementById('warning-toast');
+      if (!toast) return;
+      toast.querySelector('span:last-child').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      const isQuizActive = document.getElementById('view-quiz').classList.contains('active');
+      if (isQuizActive && state.questions && state.questions.length > 0) {
+        if (document.hidden) {
+          state.lastHiddenTime = Date.now();
+          state.outOfAppCount++;
+        } else {
+          if (state.lastHiddenTime) {
+            const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
+            state.outOfAppDuration += awaySec;
+            state.lastHiddenTime = null;
+            showWarningToast(`⚠️ Peringatan ke-${state.outOfAppCount}: Keluar layar dicatat sistem!`);
+          }
+        }
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
       initViews();
       setRandomQuote();
@@ -897,7 +939,6 @@
       }
     }
 
-    // Mengambil daftar paket soal dari Apps Script dan mengunci pilihan
     async function loadPackages() {
       const container = document.getElementById('package-container');
       const startBtn = document.getElementById('btn-start');
@@ -949,7 +990,6 @@
       }
     }
 
-    // Memulai Ujian
     async function startQuiz() {
       if (!state.selectedPackage) return;
 
@@ -965,12 +1005,13 @@
           state.questions = json.data;
           state.currentIndex = 0;
           state.answers = {};
+          state.outOfAppCount = 0;
+          state.outOfAppDuration = 0;
+          state.lastHiddenTime = null;
           state.attemptNumber = getLocalAttempt(state.selectedPackage);
 
-          // Pasang nama judul sheet/paket di subjudul soal pengerjaan
           document.getElementById('label-package-title').textContent = state.selectedPackageTitle || 'Ujian Matematika';
 
-          // Reset status tombol submit ke kondisi aktif normal
           const submitBtn = document.getElementById('btn-submit');
           submitBtn.disabled = false;
           submitBtn.textContent = 'Selesai ✨';
@@ -990,7 +1031,6 @@
       }
     }
 
-    // Render Soal dan Opsi
     function renderQuestion() {
       const q = state.questions[state.currentIndex];
       const total = state.questions.length;
@@ -998,19 +1038,15 @@
       document.getElementById('label-attempt').textContent = `Percobaan ke-${state.attemptNumber}`;
       document.getElementById('label-progress').textContent = `Soal ${state.currentIndex + 1} dari ${total}`;
 
-      // Update bilah progres
       const progressPercent = ((state.currentIndex + 1) / total) * 100;
       document.getElementById('quiz-progress-fill').style.width = `${progressPercent}%`;
 
-      // Render Teks Soal
       const questionEl = document.getElementById('question-text');
       questionEl.innerHTML = `<strong>${state.currentIndex + 1}.</strong> ${q.pertanyaan}`;
 
-      // Render Opsi Jawaban atau Input Isian
       const optionsContainer = document.getElementById('options-container');
       optionsContainer.innerHTML = '';
 
-      // Deteksi tipe soal: jika opsi_b, opsi_c, dan opsi_d kosong, maka ini adalah soal isian.
       const isIsian = (!q.opsi_b || q.opsi_b.toString().trim() === '') && 
                       (!q.opsi_c || q.opsi_c.toString().trim() === '') && 
                       (!q.opsi_d || q.opsi_d.toString().trim() === '');
@@ -1019,14 +1055,10 @@
         const inputEl = document.createElement('input');
         inputEl.type = 'text';
         inputEl.className = 'input-isian';
-        
-        // Tetapkan teks petunjuk dari Opsi_A, atau gunakan teks bawaan jika kosong
         const hintText = (q.opsi_a && q.opsi_a.toString().trim() !== '') ? q.opsi_a : 'Ketik jawaban di sini...';
         inputEl.placeholder = hintText;
-        
         inputEl.value = state.answers[q.id] || '';
         
-        // Simpan jawaban pengguna
         inputEl.addEventListener('input', (e) => {
           state.answers[q.id] = e.target.value;
           updatePaletteUI();
@@ -1057,9 +1089,7 @@
         });
       }
 
-      // Kontrol Tombol Navigasi
       document.getElementById('btn-prev').disabled = state.currentIndex === 0;
-      
       const nextBtn = document.getElementById('btn-next');
       const submitBtn = document.getElementById('btn-submit');
 
@@ -1073,7 +1103,6 @@
 
       updatePaletteUI();
 
-      // Rendering LaTeX KaTeX
       if (window.renderMathInElement) {
         renderMathInElement(document.getElementById('view-quiz'), {
           delimiters: [
@@ -1098,7 +1127,6 @@
       }
     }
 
-    // Palet Nomor Soal
     function renderPalette() {
       const palette = document.getElementById('palette-container');
       palette.innerHTML = '';
@@ -1122,15 +1150,12 @@
         if (!btn) return;
 
         btn.classList.toggle('active', idx === state.currentIndex);
-        
-        // Evaluasi validitas jawaban untuk mengaktifkan indikator warna
         const answer = state.answers[q.id];
         const isAnswered = answer !== undefined && answer.toString().trim() !== '';
         btn.classList.toggle('answered', isAnswered);
       });
     }
 
-    // Pengatur Waktu / Timer
     function startTimer() {
       clearInterval(state.timerInterval);
       state.secondsElapsed = 0;
@@ -1149,7 +1174,6 @@
       clearInterval(state.timerInterval);
     }
 
-    // Pengiriman Jawaban (Submit)
     async function submitQuiz() {
       const answeredCount = Object.keys(state.answers).filter(key => state.answers[key].toString().trim() !== '').length;
       const total = state.questions.length;
@@ -1160,6 +1184,14 @@
       }
 
       stopTimer();
+
+      // Tambahkan sisa durasi terakhir apabila dikumpulkan dalam status hidden
+      if (state.lastHiddenTime) {
+        const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
+        state.outOfAppDuration += awaySec;
+        state.lastHiddenTime = null;
+      }
+
       const submitBtn = document.getElementById('btn-submit');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Menghitung Nilai...';
@@ -1169,7 +1201,10 @@
         student: CONFIG.STUDENT_NAME,
         sheet: state.selectedPackage,
         attempt: state.attemptNumber,
-        answers: state.answers
+        answers: state.answers,
+        durasi: state.secondsElapsed,
+        pelanggaran_kali: state.outOfAppCount,
+        pelanggaran_waktu: state.outOfAppDuration
       };
 
       try {
@@ -1195,18 +1230,26 @@
       }
     }
 
-    // Tampilkan Hasil Penilaian
     function showResults(res) {
-      // Pasang nama judul sheet/paket di halaman hasil
       document.getElementById('res-package-title').textContent = state.selectedPackageTitle || 'Ujian Matematika';
-
       document.getElementById('res-score').textContent = res.score;
       document.getElementById('res-attempt').textContent = res.attempt;
       document.getElementById('res-total').textContent = res.totalQuestions;
       document.getElementById('res-correct').textContent = res.correctCount;
       document.getElementById('res-incorrect').textContent = res.incorrectCount;
 
-      // Pesan evaluasi personal untuk Ara
+      // Hasil Durasi & Pelanggaran
+      const m = Math.floor(state.secondsElapsed / 60);
+      const s = state.secondsElapsed % 60;
+      document.getElementById('res-duration').textContent = `${m} menit ${s} detik`;
+
+      const outInfoEl = document.getElementById('res-out-info');
+      if (state.outOfAppCount > 0) {
+        outInfoEl.innerHTML = `<span style="color:#e53e3e;">${state.outOfAppCount}x keluar (Total: ${state.outOfAppDuration} detik)</span>`;
+      } else {
+        outInfoEl.innerHTML = `<span style="color:#27ae60;">Aman & Jujur (0x) 🌟</span>`;
+      }
+
       const msgBox = document.getElementById('res-message');
       if (res.score === 100) {
         msgBox.innerHTML = "🌟 <strong>Luar Biasa, Sempurna!</strong> Ara berhasil menjawab semua soal dengan tepat. Pertahankan prestasimu!";
@@ -1231,19 +1274,16 @@
       showSection('view-result');
     }
 
-    // Mengulang Ujian Paket yang Sama
     function retryQuiz() {
       startQuiz();
     }
 
-    // Kembali ke Beranda
     function goHome() {
       setRandomQuote();
       loadPackages();
       showSection('view-home');
     }
 
-    // Helper Local Storage untuk Percobaan
     function getLocalAttempt(sheetId) {
       const stored = localStorage.getItem(`attempt_${sheetId}`);
       return stored ? parseInt(stored, 10) : 1;
