@@ -335,6 +335,124 @@
       transform: none;
     }
 
+    /* Modal Kumpulan Rumus Terpusat (Popup) */
+    .formula-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(46, 38, 70, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .formula-modal-overlay.active {
+      display: flex;
+    }
+
+    .formula-modal-content {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 480px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      animation: modalFadeIn 0.2s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .formula-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .formula-search {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-main);
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      margin-bottom: 14px;
+      transition: all 0.2s;
+    }
+
+    .formula-search:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .formula-list-container {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 380px;
+      padding-right: 4px;
+    }
+
+    .formula-card-item {
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .formula-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .formula-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .formula-box {
+      background: #fcfbfe;
+      border: 1px dashed var(--card-border);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      overflow-x: auto;
+    }
+
+    .formula-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .formula-table th, .formula-table td {
+      border: 1px solid var(--card-border);
+      padding: 6px;
+      text-align: left;
+    }
+    .formula-table th {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
     .quiz-package-header {
       display: flex;
       align-items: center;
@@ -453,7 +571,6 @@
       color: var(--text-main);
     }
 
-    /* Input Soal Isian */
     .input-isian {
       width: 100%;
       padding: 16px;
@@ -516,7 +633,6 @@
       color: var(--answered-text);
     }
 
-    /* Warning Toast Pindah Layar */
     .warning-toast {
       position: fixed;
       top: 20px;
@@ -540,7 +656,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Audit Box di Hasil Ujian */
     .audit-info-box {
       background: var(--primary-light);
       border: 1.5px solid rgba(155, 123, 247, 0.35);
@@ -703,7 +818,6 @@
 </head>
 <body oncontextmenu="return false;">
 
-  <!-- Warning Toast Pindah Layar -->
   <div id="warning-toast" class="warning-toast">
     <span>⚠️</span>
     <span>Keluar layar ujian dicatat sistem!</span>
@@ -752,6 +866,7 @@
       </div>
     </section>
 
+    <!-- HALAMAN PENGERJAAN UJIAN -->
     <section id="view-quiz" class="view-section">
       <div class="card">
         <div class="quiz-package-header">
@@ -759,13 +874,17 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             <span id="label-package-title">Paket Soal</span>
           </div>
-          <span id="label-attempt" style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Percobaan ke-1</span>
+          <!-- Tombol untuk Membuka Popup Rumus Terpusat -->
+          <button id="btn-open-modal" class="btn btn-secondary" style="padding: 5px 12px; font-size: 12px; width: auto;">
+            📚 Rumus SMP
+          </button>
         </div>
         <div class="quiz-progress-bar">
           <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
         </div>
         <div class="quiz-meta">
           <span id="label-progress">Soal 1 dari 10</span>
+          <span id="label-attempt" style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Percobaan ke-1</span>
         </div>
         <div class="question-box" id="question-text"></div>
         <div class="options-list" id="options-container"></div>
@@ -815,7 +934,6 @@
             </div>
           </div>
 
-          <!-- Audit Box Keluar Layar -->
           <div class="audit-info-box">
             <div class="audit-info-title">
               ⏱️ Info Pengerjaan & Integritas:
@@ -841,6 +959,22 @@
 
   </div>
 
+  <!-- POPUP MODAL KUMPULAN RUMUS TERPUSAT (SATU MENU & SEARCH) -->
+  <div id="formula-modal" class="formula-modal-overlay">
+    <div class="formula-modal-content">
+      <div class="formula-header">
+        <h2 style="font-size: 15px; font-family: 'Quicksand', sans-serif; color: var(--text-main);">Rangkuman Super Lengkap SMP Kelas 7–9</h2>
+        <button id="btn-close-modal" class="btn btn-outline" style="padding: 4px 10px; font-size: 12px; width: auto;">✕ Tutup</button>
+      </div>
+
+      <input type="text" id="formula-search-input" class="formula-search" placeholder="Cari rumus, materi, atau trik cepat..." oninput="filterFormulas()">
+
+      <div id="formula-container" class="formula-list-container">
+        <!-- Diisi dinamis via Javascript -->
+      </div>
+    </div>
+  </div>
+
   <script>
     const CONFIG = {
       API_URL: 'https://script.google.com/macros/s/AKfycbyVx1uzpBdM982o9NugeSs6Q-dJRYDVSuzB0iti5RyPnpH7T1YM74T5NeYnRcGFLsuqrQ/exec',
@@ -855,6 +989,116 @@
       "Jangan takut salah ya, karena dari situlah Ara belajar jadi luar biasa! 🌟"
     ];
 
+    // BANK DATA SELURUH RUMUS SMP KELAS 7-9 TERGABUNG LENGKAP TANPA ADA YANG DIHILANGKAN
+    const ALL_FORMULAS = [
+      {
+        title: "1. Bilangan (Bulat, Pecahan, FPB, KPK, Eksponen, Notasi Ilmiah)",
+        desc: "Operasi bilangan, sifat-sifat, pecahan, bentuk akar, dan notasi ilmiah.",
+        content: `• <strong>Bilangan Bulat & Operasi:</strong> Sifat komutatif, asosiatif, distributif, identitas, invers. $|a| = \\text{nilai mutlak}$ (jarak dari 0). $a - b = a + (-b)$.<br><br>
+                  • <strong>Pecahan & Desimal:</strong><br>
+                  $\\frac{a}{b} \\pm \\frac{c}{d} = \\frac{ad \\pm bc}{bd}$<br>
+                  $\\frac{a}{b} \\times \\frac{c}{d} = \\frac{ac}{bd}$ | $\\frac{a}{b} : \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}$<br><br>
+                  • <strong>FPB & KPK:</strong> FPB (faktor prima pangkat terkecil), KPK (faktor prima pangkat terbesar). $\\text{FPB}(a,b) \\times \\text{KPK}(a,b) = a \\times b$.<br><br>
+                  • <strong>Bilangan Berpangkat & Akar:</strong><br>
+                  $a^m \\cdot a^n = a^{m+n}$ | $\\frac{a^m}{a^n} = a^{m-n}$ | $(a^m)^n = a^{mn}$<br>
+                  $(ab)^n = a^n b^n$ | $(\\frac{a}{b})^n = \\frac{a^n}{b^n}$ | $a^{-n} = \\frac{1}{a^n}$ | $a^0 = 1 \\ (a \\neq 0)$<br>
+                  $\\sqrt[n]{a^m} = a^{m/n}$ | $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ | $\\frac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\frac{a}{b}}$ | $\\sqrt{a^2} = |a|$<br><br>
+                  • <strong>Notasi Ilmiah:</strong> $a \\times 10^n \\ (1 \\leq a < 10)$.<br><br>
+                  <em>💡 Trik Super: Pangkat negatif langsung dibalik. Akar dalam akar $\\sqrt{\\sqrt{a}} = a^{1/4}$. Sederhanakan dulu sebelum hitung.</em>`
+      },
+      {
+        title: "2. Himpunan",
+        desc: "Operasi himpunan dan diagram Venn.",
+        content: `• $A \\cup B = \\text{gabungan}$ | $A \\cap B = \\text{irisan}$ | $A - B = A \\cap B^c$<br>
+                  • $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$<br>
+                  • $n(A \\cup B \\cup C) = n(A)+n(B)+n(C)-n(A\\cap B)-n(A\\cap C)-n(B\\cap C)+n(A\\cap B\\cap C)$<br><br>
+                  <em>💡 Trik: Selalu gunakan ilustrasi diagram Venn untuk soal cerita himpunan.</em>`
+      },
+      {
+        title: "3. Aljabar & Persamaan / Fungsi",
+        desc: "Identitas aljabar lengkap, SPLDV, persamaan kuadrat, dan fungsi.",
+        content: `• <strong>Identitas Aljabar:</strong><br>
+                  $(a+b)^2 = a^2 + 2ab + b^2$ | $(a-b)^2 = a^2 - 2ab + b^2$<br>
+                  $(a+b)(a-b) = a^2 - b^2$<br>
+                  $(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$ | $(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$<br>
+                  $a^3 + b^3 = (a+b)(a^2 - ab + b^2)$ | $a^3 - b^3 = (a-b)(a^2 + ab + b^2)$<br>
+                  $(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$<br><br>
+                  • <strong>PLSV & SPLDV:</strong> $ax + b = c \\implies x = \\frac{c-b}{a}$. Sistem Persamaan Linear Dua Variabel diselesaikan dengan eliminasi/substitusi.<br><br>
+                  • <strong>Persamaan Kuadrat ($ax^2 + bx + c = 0$):</strong><br>
+                  Diskriminan: $D = b^2 - 4ac$ | Rumus Akar: $x = \\frac{-b \\pm \\sqrt{D}}{2a}$<br>
+                  Jumlah akar: $x_1 + x_2 = -\\frac{b}{a}$ | Hasil kali: $x_1 x_2 = \\frac{c}{a}$ | Bentuk faktor: $a(x-x_1)(x-x_2)=0$<br><br>
+                  • <strong>Fungsi:</strong> $f(x) = ax + b$ (linear), $f(x) = ax^2 + bx + c$ (kuadrat). Domain, kodomain, range.<br><br>
+                  <em>💡 Trik: $D = 0$ artinya akar kembar. Pilih metode SPLDV yang koefisiennya paling kecil.</em>`
+      },
+      {
+        title: "4. Geometri Bangun Datar & Koordinat",
+        desc: "Sudut, segitiga, segiempat, lingkaran, kesebangunan, dan koordinat.",
+        content: `• <strong>Sudut & Segitiga:</strong> Berpelurus ($180^\\circ$), berpenyiku ($90^\\circ$). Jumlah sudut segitiga $180^\\circ$. Luas $L = \\frac{1}{2}at$ atau Rumus Heron $L = \\sqrt{s(s-a)(s-b)(s-c)}$. Pythagoras $a^2 + b^2 = c^2$.<br><br>
+                  • <strong>Triple Pythagoras Utama:</strong> 3-4-5, 5-12-13, 6-8-10, 7-24-25, 8-15-17, 9-12-15, 9-40-41, 11-60-61, 12-16-20, 12-35-37, 13-84-85, 15-20-25, 15-36-39, 16-30-34, 18-24-30, 20-21-29, 21-28-35, 24-32-40, 24-45-51, 25-60-65, 28-45-53, 33-56-65, 36-77-85, 39-80-89, 48-55-73.<br><br>
+                  • <strong>Tabel Segiempat:</strong><br>
+                  <table class="formula-table">
+                    <tr><th>Bangun</th><th>Luas</th><th>Keliling</th></tr>
+                    <tr><td>Persegi</td><td>$s^2$</td><td>$4s$</td></tr>
+                    <tr><td>Persegi Panjang</td><td>$pl$</td><td>$2(p+l)$</td></tr>
+                    <tr><td>Jajar Genjang</td><td>$at$</td><td>$2(a+b)$</td></tr>
+                    <tr><td>Trapesium</td><td>$\\frac{1}{2}(a+b)t$</td><td>Jumlah sisi</td></tr>
+                    <tr><td>Belah Ketupat / Layang</td><td>$\\frac{1}{2}d_1 d_2$</td><td>Keliling sisi</td></tr>
+                  </table><br>
+                  • <strong>Lingkaran:</strong> $K = 2\\pi r = \\pi d$ | $L = \\pi r^2$<br>
+                  Panjang busur = $\\frac{\\theta}{360^\\circ} \\times 2\\pi r$ | Luas juring = $\\frac{\\theta}{360^\\circ} \\times \\pi r^2$<br>
+                  Luas tembereng = luas juring $-$ luas segitiga.<br><br>
+                  • <strong>Koordinat Kartesius:</strong> Jarak $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$, Titik tengah $(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})$, Gradien $m = \\frac{y_2-y_1}{x_2-x_1}$.`
+      },
+      {
+        title: "5. Bangun Ruang (Sisi Datar & Lengkung)",
+        desc: "Volume dan luas permukaan kubus, balok, prisma, limas, tabung, kerucut, bola.",
+        content: `• <strong>Sisi Datar:</strong><br>
+                  - Kubus: $V = s^3$ | $LP = 6s^2$<br>
+                  - Balok: $V = plt$ | $LP = 2(pl+pt+lt)$<br>
+                  - Prisma: $V = \\text{luas alas} \\times t$ | $LP = 2(\\text{luas alas}) + (\\text{keliling alas} \\times t)$<br>
+                  - Limas: $V = \\frac{1}{3} \\times \\text{luas alas} \\times t$ | $LP = \\text{luas alas} + \\text{jumlah sisi tegak}$<br><br>
+                  • <strong>Sisi Lengkung:</strong><br>
+                  - Tabung: $V = \\pi r^2 t$ | $LP = 2\\pi r(r+t)$<br>
+                  - Kerucut: $V = \\frac{1}{3}\\pi r^2 t$ | $LP = \\pi r(r+s)$ di mana $s = \\sqrt{r^2+t^2}$<br>
+                  - Bola: $V = \\frac{4}{3}\\pi r^3$ | $LP = 4\\pi r^2$<br><br>
+                  <em>💡 Trik: Prisma/tabung = alas $\\times$ tinggi. Limas/kerucut = $\\frac{1}{3}$ alas $\\times$ tinggi.</em>`
+      },
+      {
+        title: "6. Aritmetika Sosial",
+        desc: "Untung, rugi, diskon, pajak, dan bunga tunggal.",
+        content: `• Untung = Jual $-$ Beli | Rugi = Beli $-$ Jual<br>
+                  • % Untung = $\\frac{\\text{untung}}{\\text{HB}} \\times 100\\%$<br>
+                  • Diskon = $\% \\times \\text{harga awal}$ | Harga akhir = awal $-$ diskon<br>
+                  • Pajak = $\% \\times \\text{harga}$<br>
+                  • Bunga tunggal = $\\frac{p \\times r \\times t}{100}$`
+      },
+      {
+        title: "7. Statistika & Peluang",
+        desc: "Pemusatan data, ukuran penyebaran, dan peluang kejadian.",
+        content: `• <strong>Statistika:</strong><br>
+                  - Mean: $\\bar{x} = \\frac{\\sum x_i}{n}$ atau $\\frac{\\sum f_i x_i}{\\sum f_i}$<br>
+                  - Median = Nilai tengah (setelah diurutkan)<br>
+                  - Modus = Nilai yang sering muncul<br>
+                  - Jangkauan = Max $-$ Min | Jangkauan interkuartil = $Q_3 - Q_1$<br><br>
+                  • <strong>Peluang:</strong> $P(A) = \\frac{n(A)}{n(S)}$ di mana $0 \\leq P(A) \\leq 1$.<br>
+                  - Komplemen: $P(A^c) = 1 - P(A)$<br>
+                  - Gabungan: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$`
+      },
+      {
+        title: "8. Barisan & Deret (Aritmetika & Geometri)",
+        desc: "Suku ke-$n$ dan jumlah suku $S_n$.",
+        content: `• <strong>Aritmetika:</strong> $U_n = a + (n-1)b$ | $S_n = \\frac{n}{2}(2a + (n-1)b) = \\frac{n}{2}(a + U_n)$<br>
+                  • <strong>Geometri:</strong> $U_n = a \\cdot r^{n-1}$ | $S_n = a \\frac{r^n - 1}{r - 1} \\ (r \\neq 1)$ atau $S_n = na \\ (r=1)$`
+      },
+      {
+        title: "9. Trigonometri Dasar",
+        desc: "Perbandingan siku-siku dan sudut istimewa.",
+        content: `$$\\sin \\theta = \\frac{\\text{depan}}{\\text{miring}}, \\quad \\cos \\theta = \\frac{\\text{samping}}{\\text{miring}}, \\quad \\tan \\theta = \\frac{\\text{depan}}{\\text{samping}}$$
+                  $$\\sin^2\\theta + \\cos^2\\theta = 1, \\quad \\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$
+                  • Segitiga Istimewa: $30^\\circ-60^\\circ-90^\\circ$ ($1 : \\sqrt{3} : 2$) dan $45^\\circ-45^\\circ-90^\\circ$ ($1 : 1 : \\sqrt{2}$).`
+      }
+    ];
+
     const state = {
       packages: [],
       selectedPackage: null,
@@ -865,7 +1109,6 @@
       timerInterval: null,
       secondsElapsed: 0,
       attemptNumber: 1,
-      // Variabel Tracking Durasi Pindah Layar
       outOfAppCount: 0,
       outOfAppDuration: 0,
       lastHiddenTime: null
@@ -880,7 +1123,6 @@
       document.addEventListener(event, (e) => e.preventDefault());
     });
 
-    // Deteksi Keluar Layar
     function showWarningToast(msg) {
       const toast = document.getElementById('warning-toast');
       if (!toast) return;
@@ -910,6 +1152,7 @@
       initViews();
       setRandomQuote();
       loadPackages();
+      renderAllFormulas();
     });
 
     function setRandomQuote() {
@@ -925,6 +1168,14 @@
       document.getElementById('btn-submit').addEventListener('click', submitQuiz);
       document.getElementById('btn-retry').addEventListener('click', retryQuiz);
       document.getElementById('btn-home').addEventListener('click', goHome);
+
+      // Inisialisasi Modal Popup Rumus
+      const modal = document.getElementById('formula-modal');
+      document.getElementById('btn-open-modal').addEventListener('click', () => modal.classList.add('active'));
+      document.getElementById('btn-close-modal').addEventListener('click', () => modal.classList.remove('active'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
     }
 
     function showSection(sectionId) {
@@ -938,6 +1189,49 @@
         timerBox.style.display = 'none';
       }
     }
+
+    // Fungsi Render Rumus Terpusat + Pencarian Instan
+    function renderAllFormulas(searchQuery = '') {
+      const container = document.getElementById('formula-container');
+      container.innerHTML = '';
+
+      let items = ALL_FORMULAS;
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase();
+        items = items.filter(item => item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.content.toLowerCase().includes(q));
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: var(--text-muted); padding: 20px;">Rumus tidak ditemukan.</p>';
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'formula-card-item';
+        card.innerHTML = `
+          <div class="formula-title">${item.title}</div>
+          <div class="formula-desc">${item.desc}</div>
+          <div class="formula-box">${item.content}</div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (window.renderMathInElement) {
+        renderMathInElement(container, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    window.filterFormulas = function() {
+      const query = document.getElementById('formula-search-input').value;
+      renderAllFormulas(query);
+    };
 
     async function loadPackages() {
       const container = document.getElementById('package-container');
@@ -1185,7 +1479,6 @@
 
       stopTimer();
 
-      // Tambahkan sisa durasi terakhir apabila dikumpulkan dalam status hidden
       if (state.lastHiddenTime) {
         const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
         state.outOfAppDuration += awaySec;
@@ -1238,7 +1531,6 @@
       document.getElementById('res-correct').textContent = res.correctCount;
       document.getElementById('res-incorrect').textContent = res.incorrectCount;
 
-      // Hasil Durasi & Pelanggaran
       const m = Math.floor(state.secondsElapsed / 60);
       const s = state.secondsElapsed % 60;
       document.getElementById('res-duration').textContent = `${m} menit ${s} detik`;
