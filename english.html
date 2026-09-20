@@ -469,6 +469,13 @@
             color: var(--text-main);
         }
 
+        .high-score-label {
+            font-size: 12.5px;
+            color: var(--purple-dark);
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
         .attempt-tag {
             font-size: 11.5px;
             font-weight: 700;
@@ -1742,7 +1749,7 @@
         }
 
         // ============================================================
-        //  PACKAGES
+        //  PACKAGES (DILENGKAPI SKOR TERTINGGI REKAP INGGRIS)
         // ============================================================
         async function loadPackages() {
             const container = document.getElementById('package-container');
@@ -1760,12 +1767,18 @@
                         const attempt = getLocalAttempt(pkg.sheetId);
                         const isSelected = state.selectedPackage ? state.selectedPackage === pkg.sheetId : idx === 0;
 
+                        // Tampilan skor tertinggi
+                        const highScore = pkg.highScore;
+                        const highScoreText = (highScore !== null && highScore !== undefined)
+                            ? `<span class="high-score-label">(skor tertinggi: ${highScore})</span>`
+                            : '';
+
                         const div = document.createElement('div');
                         div.className = `package-item ${isSelected ? 'selected' : ''}`;
                         div.innerHTML = `
                             <div class="package-info">
                                 <div class="package-icon">${isSelected ? '🌟' : '📚'}</div>
-                                <span class="package-name">${pkg.title}</span>
+                                <span class="package-name">${pkg.title} ${highScoreText}</span>
                             </div>
                             <span class="attempt-tag">✨ ${attempt}x</span>
                         `;
