@@ -1396,6 +1396,19 @@
 
                 <div class="options-list" id="options-container"></div>
 
+                <!-- TOMBOL TOGGLE PEMBAHASAN -->
+                <button id="btn-toggle-pembahasan" class="btn btn-outline" style="display: none; margin-bottom: 14px; background: #f0fdf4; border-color: #86efac; color: #166534;">
+                    💡 Lihat Pembahasan
+                </button>
+
+                <!-- KOTAK TEKS PEMBAHASAN -->
+                <div id="pembahasan-box" style="display: none; margin-bottom: 16px; padding: 14px; background: #f0fdf4; border: 1.5px dashed #4ade80; border-radius: var(--radius-md); text-align: left;">
+                    <div style="font-weight: 800; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                        💡 Pembahasan Soal:
+                    </div>
+                    <div id="pembahasan-text" style="font-size: 13.5px; color: #1e293b; line-height: 1.6; white-space: pre-line; font-weight: 600;"></div>
+                </div>
+
                 <div class="nav-actions">
                     <button id="btn-prev" class="btn btn-outline" style="flex: 0.6;">⬅️</button>
                     <button id="btn-next" class="btn btn-secondary" style="flex: 1;">Berikutnya ➡️</button>
@@ -1935,6 +1948,24 @@
                 container.appendChild(div);
             });
 
+            // --- LOGIKA TOGGLE PEMBAHASAN JIKA SKOR TERTINGGI >= 90 ---
+            const currentPkg = state.packages.find(p => p.sheetId === state.selectedPackage);
+            const highScore = currentPkg ? currentPkg.highScore : 0;
+
+            const btnPembahasan = document.getElementById('btn-toggle-pembahasan');
+            const boxPembahasan = document.getElementById('pembahasan-box');
+            const textPembahasan = document.getElementById('pembahasan-text');
+
+            boxPembahasan.style.display = 'none'; // Sembunyikan default saat berpindah nomor
+
+            if (highScore >= 90 && q.pembahasan && q.pembahasan.trim() !== '') {
+                btnPembahasan.style.display = 'inline-flex';
+                btnPembahasan.textContent = '💡 Lihat Pembahasan';
+                textPembahasan.textContent = q.pembahasan;
+            } else {
+                btnPembahasan.style.display = 'none';
+            }
+
             // Nav
             document.getElementById('btn-prev').disabled = state.currentIndex === 0;
             const nextBtn = document.getElementById('btn-next');
@@ -2101,11 +2132,11 @@
 
             const msg = document.getElementById('res-message');
             if (res.score === 100) {
-                msg.innerHTML = '🌟 <strong>Perfect, Ara!</strong> You\'re an English star! Absolutely brilliant! ⭐';
+                msg.innerHTML = '🌟 <strong>Perfect, Ara!</strong> You\'re an English star! Question explanations are now unlocked! ⭐';
             } else if (res.score >= 80) {
-                msg.innerHTML = '🎉 <strong>Amazing, Ara!</strong> You did wonderfully! Keep reaching higher! 💪';
+                msg.innerHTML = '🎉 <strong>Amazing, Ara!</strong> You did wonderfully! Reach a score of 90+ to unlock full explanations! 💪';
             } else if (res.score >= 60) {
-                msg.innerHTML = '🌸 <strong>Good effort!</strong> Review the tricky ones and you\'ll shine even brighter! 🌈';
+                msg.innerHTML = '🌸 <strong>Good effort!</strong> Review the tricky ones and try again to unlock explanations! 🌈';
             } else {
                 msg.innerHTML = '🌱 <strong>Keep going!</strong> Every mistake is a stepping stone. You\'ve got this, Ara! 💖';
             }
@@ -2146,6 +2177,19 @@
             document.getElementById('btn-submit').addEventListener('click', submitQuiz);
             document.getElementById('btn-retry').addEventListener('click', retryQuiz);
             document.getElementById('btn-home').addEventListener('click', goHome);
+
+            // Toggle Pembahasan Event Listener
+            document.getElementById('btn-toggle-pembahasan').addEventListener('click', () => {
+                const box = document.getElementById('pembahasan-box');
+                const btn = document.getElementById('btn-toggle-pembahasan');
+                if (box.style.display === 'none') {
+                    box.style.display = 'block';
+                    btn.textContent = '🙈 Sembunyikan Pembahasan';
+                } else {
+                    box.style.display = 'none';
+                    btn.textContent = '💡 Lihat Pembahasan';
+                }
+            });
 
             // Modal Dictionary Event Listeners
             const dictOverlay = document.getElementById('dict-overlay');
