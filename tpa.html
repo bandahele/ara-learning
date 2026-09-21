@@ -1094,6 +1094,19 @@
 
                 <div class="options-list" id="options-container"></div>
 
+                <!-- TOMBOL TOGGLE PEMBAHASAN -->
+                <button id="btn-toggle-pembahasan" class="btn btn-outline" style="display: none; margin-bottom: 14px; background: #e0f2fe; border-color: #38bdf8; color: #0369a1;">
+                    💡 Lihat Pembahasan
+                </button>
+
+                <!-- KOTAK TEKS PEMBAHASAN -->
+                <div id="pembahasan-box" style="display: none; margin-bottom: 16px; padding: 14px; background: #f0fdf4; border: 1.5px dashed #4ade80; border-radius: var(--radius-md); text-align: left;">
+                    <div style="font-weight: 800; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                        💡 Pembahasan Soal:
+                    </div>
+                    <div id="pembahasan-text" style="font-size: 13.5px; color: #1e293b; line-height: 1.6; white-space: pre-line; font-weight: 600;"></div>
+                </div>
+
                 <div style="display: flex; gap: 10px; margin-top: auto; padding-top: 12px;">
                     <button id="btn-prev" class="btn btn-outline" style="flex: 0.6;">⬅️ Prev</button>
                     <button id="btn-next" class="btn btn-secondary" style="flex: 1;">Next ➡️</button>
@@ -1222,11 +1235,9 @@
             const isQuizActive = document.getElementById('view-quiz').classList.contains('active');
             if (isQuizActive && state.questions && state.questions.length > 0) {
                 if (document.hidden) {
-                    // Anak keluar / beralih aplikasi
                     state.lastHiddenTime = Date.now();
                     state.outOfAppCount++;
                 } else {
-                    // Anak kembali ke aplikasi
                     if (state.lastHiddenTime) {
                         const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
                         state.outOfAppDuration += awaySec;
@@ -1331,7 +1342,7 @@
             localStorage.setItem(`attempt_tpa_${sheetId}`, cur + 1);
         }
 
-        // FETCHING PACKAGES (SHEET NAMES) FROM GOOGLE APPS SCRIPT (WITH HIGH SCORE DISPLAY)
+        // FETCHING PACKAGES (SHEET NAMES) FROM GOOGLE APPS SCRIPT
         async function loadPackages() {
             const container = document.getElementById('package-container');
             const startBtn = document.getElementById('btn-start');
@@ -1410,7 +1421,6 @@
                     state.currentIndex = 0;
                     state.answers = {};
                     
-                    // Reset tracking status saat kuis baru dimulai
                     state.outOfAppCount = 0;
                     state.outOfAppDuration = 0;
                     state.lastHiddenTime = null;
@@ -1470,7 +1480,7 @@
             // Pertanyaan
             document.getElementById('question-text').innerHTML = `<strong>${state.currentIndex + 1}.</strong> ${q.pertanyaan || q.soal}`;
 
-            // Opsi Jawaban (mendukung A, B, C, D, E)
+            // Opsi Jawaban (A-E)
             const container = document.getElementById('options-container');
             container.innerHTML = '';
 
@@ -1498,6 +1508,24 @@
                 });
                 container.appendChild(div);
             });
+
+            // --- LOGIKA TAMPILKAN PEMBAHASAN JIKA SKOR TERTINGGI >= 90 ---
+            const currentPkg = state.packages.find(p => (p.sheetId || p.title) === state.selectedPackage);
+            const highScore = currentPkg ? currentPkg.highScore : 0;
+            
+            const btnPembahasan = document.getElementById('btn-toggle-pembahasan');
+            const boxPembahasan = document.getElementById('pembahasan-box');
+            const textPembahasan = document.getElementById('pembahasan-text');
+
+            boxPembahasan.style.display = 'none'; // reset sembunyikan tiap pindah nomor
+
+            if (highScore >= 90 && q.pembahasan && q.pembahasan.trim() !== '') {
+                btnPembahasan.style.display = 'inline-flex';
+                btnPembahasan.textContent = '💡 Lihat Pembahasan';
+                textPembahasan.textContent = q.pembahasan;
+            } else {
+                btnPembahasan.style.display = 'none';
+            }
 
             // Navigasi
             document.getElementById('btn-prev').disabled = state.currentIndex === 0;
@@ -1574,7 +1602,6 @@
 
             stopTimer();
             
-            // Hitung sisa durasi background jika disubmit dalam keadaan layar tidak fokus
             if (state.lastHiddenTime) {
                 const awaySec = Math.floor((Date.now() - state.lastHiddenTime) / 1000);
                 state.outOfAppDuration += awaySec;
@@ -1591,7 +1618,6 @@
                 sheet: state.selectedPackage,
                 attempt: state.attemptNumber,
                 answers: state.answers,
-                // Mengirim Durasi & Pelanggaran Keluar Layar
                 durasi: state.secondsElapsed,
                 pelanggaran_kali: state.outOfAppCount,
                 pelanggaran_waktu: state.outOfAppDuration
@@ -1629,12 +1655,10 @@
             document.getElementById('res-correct').textContent = res.correctCount;
             document.getElementById('res-incorrect').textContent = res.incorrectCount;
 
-            // Format waktu pengerjaan
             const m = Math.floor(state.secondsElapsed / 60);
             const s = state.secondsElapsed % 60;
             document.getElementById('res-duration').textContent = `${m} menit ${s} detik`;
 
-            // Format info keluar layar
             const outInfoEl = document.getElementById('res-out-info');
             if (state.outOfAppCount > 0) {
                 outInfoEl.innerHTML = `<span style="color:#ef4444;">${state.outOfAppCount}x keluar (Total: ${state.outOfAppDuration} detik)</span>`;
@@ -1891,6 +1915,19 @@
             document.getElementById('btn-home').addEventListener('click', () => {
                 loadPackages();
                 showSection('view-home');
+            });
+
+            // Toggle Pembahasan Event Listener
+            document.getElementById('btn-toggle-pembahasan').addEventListener('click', () => {
+                const box = document.getElementById('pembahasan-box');
+                const btn = document.getElementById('btn-toggle-pembahasan');
+                if (box.style.display === 'none') {
+                    box.style.display = 'block';
+                    btn.textContent = '🙈 Sembunyikan Pembahasan';
+                } else {
+                    box.style.display = 'none';
+                    btn.textContent = '💡 Lihat Pembahasan';
+                }
             });
 
             // Tools modal listener
