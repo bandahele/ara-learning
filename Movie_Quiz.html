@@ -60,11 +60,11 @@
         </div>
     </section>
 
-    <!-- TAMPILAN LANDSCAPE (2 KOLOM: VIDEO & KONTROL) -->
-    <section id="player-section" class="hidden grid grid-cols-12 gap-3 h-full items-center">
+    <!-- TAMPILAN RESPANSIF ADAPTIF (PORTRAIT: ATAS-BAHAW | LANDSCAPE: KIRI-KANAN) -->
+    <section id="player-section" class="hidden grid grid-cols-1 landscape:grid-cols-12 gap-3 h-full items-center">
         
-        <!-- KOLOM KIRI: PEMUTAR VIDEO MAKSIMAL -->
-        <div class="col-span-8 flex flex-col gap-2">
+        <!-- PEMUTAR VIDEO (PORTRAIT: ATAS | LANDSCAPE: KIRI 8/12) -->
+        <div class="landscape:col-span-8 flex flex-col gap-2 w-full">
             <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center">
                 <!-- Video disuntikkan di sini -->
             </div>
@@ -76,8 +76,8 @@
             </div>
         </div>
 
-        <!-- KOLOM KANAN: KONTROL TERSTRUKTUR -->
-        <div class="col-span-4 flex flex-col justify-between gap-2 h-full bg-slate-950 p-3 rounded-xl border border-slate-800">
+        <!-- BILAH KONTROL (PORTRAIT: BAWAH | LANDSCAPE: KANAN 4/12) -->
+        <div class="landscape:col-span-4 flex flex-col justify-between gap-2.5 h-full bg-slate-950 p-3 rounded-xl border border-slate-800 w-full">
             
             <!-- HEADER SESI -->
             <div class="flex justify-between items-center pb-2 border-b border-slate-800">
@@ -95,20 +95,20 @@
 
             <!-- NAVIGASI PEMUTAR -->
             <div class="grid grid-cols-2 gap-2">
-                <button onclick="rewindVideo(5)" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">
+                <button onclick="rewindVideo(5)" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">
                     ⏪ -5s
                 </button>
-                <button onclick="togglePlay()" id="btn-play" class="py-2 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">
+                <button onclick="togglePlay()" id="btn-play" class="py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">
                     ▶️ Play
                 </button>
             </div>
 
             <!-- TOMBOL KAMUS & KEMBALI -->
             <div class="grid grid-cols-2 gap-2">
-                <button onclick="bukaModalKamus()" class="py-2 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
+                <button onclick="bukaModalKamus()" class="py-2.5 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
                     🌐 Terjemah
                 </button>
-                <button onclick="kembaliKeDaftar()" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">
+                <button onclick="kembaliKeDaftar()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">
                     ⬅️ Sesi
                 </button>
             </div>
@@ -209,7 +209,7 @@
                     <div>
                         <div class="font-extrabold text-xs text-slate-200">${sesi}</div>
                         <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">
-                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
+                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,6 @@
             playlistSesi = data;
             indexAktif = 0;
             
-            // Mengambil indeks film yang sudah dicatat di tab Hasil Google Sheets
             const arrayIndices = completedMoviesFromSheets[sesi] || [];
             filmSelesaiSet = new Set(arrayIndices);
 
@@ -413,7 +412,7 @@
                 })
             });
         } catch (e) {
-            console.log("Gagal mencatat progres film ke Google Sheets.");
+            console.log("Gagal mencatat progres film.");
         }
 
         if (filmSelesaiSet.size === playlistSesi.length) {
