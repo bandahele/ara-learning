@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎬 Movie Quiz Landscape</title>
+    <title>🎬 Movie Quiz Cinema</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +53,7 @@
         
         <div id="loading-sesi" class="text-center py-8 text-xs font-bold text-slate-400 flex flex-col items-center gap-2">
             <span class="animate-spin text-2xl text-purple-500">🌀</span>
-            <span>Memuat sesi dari Google Sheets...</span>
+            <span>Memuat status sesi dari Google Sheets...</span>
         </div>
         <div id="container-sesi-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 hidden">
             <!-- Sesi disuntikkan dinamis -->
@@ -157,6 +157,7 @@
 
     let daftarSesiTersedia = [];
     let completedSesiFromSheets = [];
+    let completedMoviesFromSheets = {};
     let sesiAktif = "";
     let playlistSesi = [];
     let indexAktif = 0;
@@ -184,6 +185,7 @@
             if (responseData && typeof responseData === 'object') {
                 if (Array.isArray(responseData.sessions)) daftarSesiTersedia = responseData.sessions;
                 if (Array.isArray(responseData.completedSessions)) completedSesiFromSheets = responseData.completedSessions;
+                if (responseData.completedMoviesBySession) completedMoviesFromSheets = responseData.completedMoviesBySession;
             }
         } catch (e) {
             console.log("Gagal memuat sesi.");
@@ -207,7 +209,7 @@
                     <div>
                         <div class="font-extrabold text-xs text-slate-200">${sesi}</div>
                         <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">
-                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
+                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
                         </div>
                     </div>
                 </div>
@@ -229,7 +231,10 @@
 
             playlistSesi = data;
             indexAktif = 0;
-            filmSelesaiSet.clear();
+            
+            // Mengambil indeks film yang sudah dicatat di tab Hasil Google Sheets
+            const arrayIndices = completedMoviesFromSheets[sesi] || [];
+            filmSelesaiSet = new Set(arrayIndices);
 
             document.getElementById('list-sesi-section').classList.add('hidden');
             document.getElementById('player-section').classList.remove('hidden');
@@ -265,6 +270,14 @@
         });
 
         document.getElementById('label-progres-total').innerText = `${filmSelesaiSet.size}/${playlistSesi.length} Film`;
+
+        if (filmSelesaiSet.size === playlistSesi.length && playlistSesi.length > 0) {
+            document.getElementById('btn-selesai').classList.add('hidden');
+            document.getElementById('btn-submit').classList.remove('hidden');
+        } else {
+            document.getElementById('btn-selesai').classList.remove('hidden');
+            document.getElementById('btn-submit').classList.add('hidden');
+        }
     }
 
     function gantiFilm(idx) {
@@ -379,10 +392,29 @@
         }
     }
 
-    function tandaiFilmSelesai() {
+    async function tandaiFilmSelesai() {
         if (!isVideoEnded) return;
+        
         filmSelesaiSet.add(indexAktif);
         renderDaftarIkonFilm();
+
+        const currentMovie = playlistSesi[indexAktif];
+        try {
+            await fetch(WEB_APP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ 
+                    namaSiswa: "Siswa", 
+                    sesi: sesiAktif, 
+                    totalFilm: playlistSesi.length,
+                    status: "Selesai Film",
+                    filmIndex: indexAktif,
+                    judulFilm: currentMovie ? currentMovie.judul : ""
+                })
+            });
+        } catch (e) {
+            console.log("Gagal mencatat progres film ke Google Sheets.");
+        }
 
         if (filmSelesaiSet.size === playlistSesi.length) {
             document.getElementById('btn-selesai').classList.add('hidden');
@@ -402,9 +434,15 @@
             await fetch(WEB_APP_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ namaSiswa: "Siswa", sesi: sesiAktif, totalFilm: playlistSesi.length })
+                body: JSON.stringify({ 
+                    namaSiswa: "Siswa", 
+                    sesi: sesiAktif, 
+                    totalFilm: playlistSesi.length,
+                    status: "Selesai Sesi"
+                })
             });
-            alert("Laporan berhasil dikirim!");
+            
+            alert("Laporan sesi berhasil dikirim!");
             kembaliKeDaftar();
         } catch (e) {
             alert("Gagal mengirim laporan.");
@@ -425,7 +463,6 @@
         modal.classList.remove('flex');
     }
 
-    // FUNGSI PENERJEMAH TERPADU (KATA & KALIMAT)
     async function prosesTerjemahkan() {
         const textInput = document.getElementById('input-kata').value.trim();
         const elHasil = document.getElementById('hasil-kamus');
@@ -436,12 +473,10 @@
         elHasil.innerHTML = `<span class="text-slate-400 animate-pulse">Sedang menerjemahkan...</span>`;
 
         try {
-            // Panggilan API Penerjemah Google Translate (Free Endpoint)
             const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=id&dt=t&q=${encodeURIComponent(textInput)}`;
             const res = await fetch(translateUrl);
             const data = await res.json();
             
-            // Menggabungkan potongan hasil terjemahan jika berbentuk kalimat
             let translatedText = '';
             if (data && data[0]) {
                 data[0].forEach(item => {
