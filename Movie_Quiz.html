@@ -62,7 +62,7 @@
             Movie Quiz
         </h1>
         <p class="text-[11px] font-bold text-textMuted mt-0.5">
-            Pilih film yang ingin Anda tonton terlebih dahulu! 🚀
+            Pilih dan tonton seluruh film pada sesi pilihan Anda! 🚀
         </p>
     </header>
 
@@ -70,7 +70,7 @@
     <section id="list-sesi-section" class="flex flex-col gap-3">
         <div id="loading-sesi" class="text-center py-10 text-xs font-bold text-textMuted flex flex-col items-center gap-2">
             <span class="animate-spin text-3xl text-brandPurple">🌀</span>
-            <span>Memuat daftar sesi dari Google Sheets...</span>
+            <span>Memeriksa status sesi dari Google Sheets...</span>
         </div>
         <div id="container-sesi-list" class="flex flex-col gap-2.5 hidden">
             <!-- Daftar Sesi disuntikkan secara dinamis -->
@@ -129,7 +129,7 @@
             <span>🔒 Nonton Hingga Selesai</span>
         </button>
 
-        <!-- TOMBOL SUBMIT LAPORAN (MUNCUL JIKA SEMUA FILM DI SESI SUDAH SELESAI) -->
+        <!-- TOMBOL SUBMIT LAPORAN -->
         <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black text-xs rounded-2xl shadow-lg active:scale-95 transition-all">
             Kirim Laporan Sesi 🎉
         </button>
@@ -148,10 +148,11 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyl7-224Bnau2pPp0FpJBOB2CNOKSr0r9XxQ_fjYwl2KwCDREiTGDys44062D0VFgTP/exec";
 
     let daftarSesiTersedia = ["Sesi 1", "Sesi 2", "Sesi 3"];
+    let completedSesiFromSheets = []; // Menyimpan list sesi yang sudah ada di tab Hasil
     let sesiAktif = "";
     let playlistSesi = [];
     let indexAktif = 0;
-    let filmSelesaiSet = new Set(); // Menyimpan indeks film yang selesai di sesi aktif
+    let filmSelesaiSet = new Set();
     
     let ytPlayerInstance = null;
     let isPlaying = false;
@@ -162,29 +163,26 @@
         muatDaftarSesi();
     });
 
-    function dapatkanSesiSelesai() {
-        const data = localStorage.getItem("movie_quiz_completed_sessions");
-        return data ? JSON.parse(data) : [];
-    }
-
-    function simpanSesiSelesai(sesi) {
-        const completed = dapatkanSesiSelesai();
-        if (!completed.includes(sesi)) {
-            completed.push(sesi);
-            localStorage.setItem("movie_quiz_completed_sessions", JSON.stringify(completed));
-        }
-    }
-
     async function muatDaftarSesi() {
         const loadingEl = document.getElementById('loading-sesi');
         const containerEl = document.getElementById('container-sesi-list');
-        const completedSesi = dapatkanSesiSelesai();
+        loadingEl.classList.remove('hidden');
+        containerEl.classList.add('hidden');
 
         try {
+            // Ambil daftar sesi dan status penyelesaian sekaligus dari Google Sheets
             const res = await fetch(`${WEB_APP_URL}?action=getSessions`);
-            const data = await res.json();
-            if (Array.isArray(data) && data.length > 0) {
-                daftarSesiTersedia = data;
+            const responseData = await res.json();
+
+            if (responseData && typeof responseData === 'object') {
+                if (Array.isArray(responseData.sessions)) {
+                    daftarSesiTersedia = responseData.sessions;
+                }
+                if (Array.isArray(responseData.completedSessions)) {
+                    completedSesiFromSheets = responseData.completedSessions;
+                }
+            } else if (Array.isArray(responseData)) {
+                daftarSesiTersedia = responseData;
             }
         } catch (e) {
             console.log("Menggunakan daftar sesi standar.");
@@ -195,7 +193,7 @@
         containerEl.classList.remove('hidden');
 
         daftarSesiTersedia.forEach((sesi, idx) => {
-            const isDone = completedSesi.includes(sesi);
+            const isDone = completedSesiFromSheets.includes(sesi);
             
             const card = document.createElement('div');
             card.className = `p-3.5 rounded-2xl bg-white/80 border ${isDone ? 'border-emerald-200 bg-emerald-50/40' : 'border-purple-100'} flex items-center justify-between shadow-sm hover:shadow-md active:scale-98 transition-all cursor-pointer`;
@@ -209,7 +207,7 @@
                     <div>
                         <div class="font-extrabold text-xs text-textMain">${sesi}</div>
                         <div class="text-[10px] font-bold ${isDone ? 'text-emerald-600' : 'text-textMuted'}">
-                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
+                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
                         </div>
                     </div>
                 </div>
@@ -307,7 +305,6 @@
         const container = document.getElementById('video-container');
         container.innerHTML = '';
         
-        // Jika film sudah pernah ditonton sampai selesai sebelumnya pada sesi ini
         if (filmSelesaiSet.has(idx)) {
             bukaTombolSelesai();
         } else {
@@ -452,7 +449,6 @@
         filmSelesaiSet.add(indexAktif);
         renderDaftarIkonFilm();
 
-        // Jika seluruh film di sesi telah ditonton
         if (filmSelesaiSet.size === playlistSesi.length) {
             document.getElementById('btn-selesai').classList.add('hidden');
             document.getElementById('btn-submit').classList.remove('hidden');
@@ -480,7 +476,6 @@
                 body: JSON.stringify(payload)
             });
             
-            simpanSesiSelesai(sesiAktif);
             alert("Laporan sesi berhasil dikirim!");
             kembaliKeDaftar();
         } catch (e) {
