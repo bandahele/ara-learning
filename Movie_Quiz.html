@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎬 Movie Quiz Wonderland</title>
+    <title>🎬 Movie Quiz Landscape</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,12 +17,11 @@
                     colors: {
                         brandPurple: '#7c3aed',
                         brandPink: '#ec4899',
-                        brandCyan: '#06b6d4',
                         textMain: '#1e1b4b',
                         textMuted: '#64748b'
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Quicksand', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
                     }
                 }
             }
@@ -33,115 +30,126 @@
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            background: radial-gradient(circle at top left, #fbcfe8, #e0e7ff, #f3e8ff);
+            background: #0f172a;
+            color: #f8fafc;
             min-height: 100vh;
             user-select: none;
             -webkit-user-select: none;
         }
-        .premium-card {
-            background: rgba(255, 255, 255, 0.88);
-            border: 1.5px solid rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px -15px rgba(124, 58, 237, 0.15);
-        }
         iframe, video { pointer-events: none; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-3 sm:p-5 font-sans text-textMain" oncontextmenu="return false;">
+<body class="flex items-center justify-center min-h-screen p-2 sm:p-4 font-sans" oncontextmenu="return false;">
 
-<div class="w-full max-w-md premium-card rounded-3xl p-5 sm:p-6 shadow-2xl relative z-10 flex flex-col gap-4">
+<!-- WADAH UTAMA -->
+<div class="w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-2xl relative flex flex-col gap-3">
 
-    <!-- HEADER -->
-    <header class="text-center">
-        <div class="inline-flex items-center gap-1.5 bg-white/90 border border-purple-100 px-3.5 py-1 rounded-full text-[11px] font-black text-brandPurple shadow-sm mb-1.5">
-            <span class="animate-pulse">✨</span>
-            <span>Movie Learning Cinema</span>
-            <span>🎬</span>
+    <!-- HALAMAN UTAMA: DAFTAR SESI -->
+    <section id="list-sesi-section" class="flex flex-col gap-3 p-4">
+        <header class="text-center">
+            <h1 class="text-xl font-black text-purple-400">🎬 Movie Quiz Cinema</h1>
+            <p class="text-xs font-bold text-slate-400">Pilih sesi untuk memulai pembelajaran!</p>
+        </header>
+        
+        <div id="loading-sesi" class="text-center py-8 text-xs font-bold text-slate-400 flex flex-col items-center gap-2">
+            <span class="animate-spin text-2xl text-purple-500">🌀</span>
+            <span>Memuat sesi dari Google Sheets...</span>
         </div>
-        <h1 class="text-2xl font-black bg-gradient-to-r from-violet-600 via-purple-600 to-pink-500 bg-clip-text text-transparent tracking-tight">
-            Movie Quiz
-        </h1>
-        <p class="text-[11px] font-bold text-textMuted mt-0.5">
-            Pilih dan tonton seluruh film pada sesi pilihan Anda! 🚀
-        </p>
-    </header>
-
-    <!-- HALAMAN UTAMA: DAFTAR SESI KUIS -->
-    <section id="list-sesi-section" class="flex flex-col gap-3">
-        <div id="loading-sesi" class="text-center py-10 text-xs font-bold text-textMuted flex flex-col items-center gap-2">
-            <span class="animate-spin text-3xl text-brandPurple">🌀</span>
-            <span>Memeriksa daftar sesi dari Google Sheets...</span>
-        </div>
-        <div id="container-sesi-list" class="flex flex-col gap-2.5 hidden">
-            <!-- Daftar Sesi disuntikkan secara dinamis -->
+        <div id="container-sesi-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 hidden">
+            <!-- Sesi disuntikkan dinamis -->
         </div>
     </section>
 
-    <!-- PEMUTAR VIDEO & DAFTAR IKON FILM -->
-    <section id="player-section" class="hidden flex-col gap-3.5">
+    <!-- TAMPILAN LANDSCAPE (2 KOLOM: VIDEO & KONTROL) -->
+    <section id="player-section" class="hidden grid grid-cols-12 gap-3 h-full items-center">
         
-        <!-- JUDUL SESI & PROGRES TOTAL -->
-        <div class="flex items-center justify-between gap-2 bg-white/70 p-2.5 rounded-2xl border border-white shadow-sm">
-            <div id="label-sesi-aktif" class="text-xs font-black text-brandPurple uppercase tracking-wider">
-                Sesi
+        <!-- KOLOM KIRI: PEMUTAR VIDEO MAKSIMAL -->
+        <div class="col-span-8 flex flex-col gap-2">
+            <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center">
+                <!-- Video disuntikkan di sini -->
             </div>
-            <div id="label-progres-total" class="text-[10px] font-black bg-purple-100 text-brandPurple px-2.5 py-1 rounded-xl">
-                0 / 0 Film Selesai
-            </div>
-        </div>
-
-        <!-- DAFTAR IKON FILM PER SESI -->
-        <div class="flex flex-col gap-1.5">
-            <span class="text-[11px] font-extrabold text-textMuted px-1">Pilih Film:</span>
-            <div id="container-film-list" class="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none">
-                <!-- Ikon film disuntikkan dinamis -->
+            
+            <!-- STATUS WAKTU & JUDUL -->
+            <div class="flex items-center justify-between text-[11px] font-extrabold px-1 text-slate-400">
+                <span id="judul-film-aktif" class="truncate max-w-[200px] text-slate-200">Judul Film</span>
+                <span id="label-waktu" class="text-purple-400">⏳ 00:00</span>
             </div>
         </div>
 
-        <!-- CONTAINER LAYAR VIDEO -->
-        <div id="video-container" class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/50 flex items-center justify-center">
-            <!-- Video/Iframe disuntikkan dinamis -->
+        <!-- KOLOM KANAN: KONTROL TERSTRUKTUR -->
+        <div class="col-span-4 flex flex-col justify-between gap-2 h-full bg-slate-950 p-3 rounded-xl border border-slate-800">
+            
+            <!-- HEADER SESI -->
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <span id="label-sesi-aktif" class="text-xs font-black text-purple-400">Sesi 1</span>
+                <span id="label-progres-total" class="text-[10px] font-bold bg-slate-800 text-slate-300 px-2 py-0.5 rounded">0/0 Film</span>
+            </div>
+
+            <!-- IKON LIST FILM -->
+            <div class="flex flex-col gap-1">
+                <span class="text-[10px] font-extrabold text-slate-500">DAFTAR FILM:</span>
+                <div id="container-film-list" class="flex flex-col gap-1.5 max-h-28 overflow-y-auto pr-1">
+                    <!-- Tombol pilihan film -->
+                </div>
+            </div>
+
+            <!-- NAVIGASI PEMUTAR -->
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="rewindVideo(5)" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">
+                    ⏪ -5s
+                </button>
+                <button onclick="togglePlay()" id="btn-play" class="py-2 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">
+                    ▶️ Play
+                </button>
+            </div>
+
+            <!-- TOMBOL KAMUS & KEMBALI -->
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="bukaModalKamus()" class="py-2 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
+                    🌐 Terjemah
+                </button>
+                <button onclick="kembaliKeDaftar()" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">
+                    ⬅️ Sesi
+                </button>
+            </div>
+
+            <!-- TOMBOL SELESAI & SUBMIT -->
+            <button id="btn-selesai" onclick="tandaiFilmSelesai()" disabled class="w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed">
+                🔒 Nonton Hingga Akhir
+            </button>
+            <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-black text-xs rounded-lg shadow-lg active:scale-95 transition-all">
+                Kirim Laporan Sesi 🎉
+            </button>
         </div>
 
-        <!-- STATUS NONTON & JUDUL FILM AKTIF -->
-        <div id="status-nonton-container" class="flex items-center justify-between text-[11px] font-extrabold px-1 text-textMuted">
-            <span id="judul-film-aktif" class="text-xs font-extrabold text-textMain truncate max-w-[180px]">
-                Judul Film
-            </span>
-            <span id="label-waktu">⏳ 00:00</span>
-        </div>
-
-        <!-- KONTROL PEMUTAR TERBATAS -->
-        <div class="grid grid-cols-3 gap-2">
-            <button onclick="rewindVideo(5)" class="py-2.5 bg-white/90 hover:bg-white text-textMain border border-purple-100 font-extrabold text-xs rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1">
-                ⏪ -5s
-            </button>
-            <button onclick="togglePlay()" id="btn-play" class="py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-extrabold text-xs rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-1">
-                ▶️ Play
-            </button>
-            <button onclick="toggleFullscreen()" class="py-2.5 bg-white/90 hover:bg-white text-textMain border border-purple-100 font-extrabold text-xs rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1">
-                📺 Full
-            </button>
-        </div>
-
-        <!-- TOMBOL SELESAI PER FILM -->
-        <button id="btn-selesai" onclick="tandaiFilmSelesai()" disabled class="w-full py-3.5 bg-gray-200 text-gray-400 font-black text-xs rounded-2xl shadow-none cursor-not-allowed transition-all flex items-center justify-center gap-1.5">
-            <span>🔒 Nonton Hingga Selesai</span>
-        </button>
-
-        <!-- TOMBOL SUBMIT LAPORAN -->
-        <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black text-xs rounded-2xl shadow-lg active:scale-95 transition-all">
-            Kirim Laporan Sesi 🎉
-        </button>
-
-        <button onclick="kembaliKeDaftar()" class="w-full py-2 bg-white/50 hover:bg-white/80 text-textMuted font-extrabold text-[11px] rounded-xl transition-all border border-white/60">
-            ⬅️ Kembali ke Daftar Sesi
-        </button>
     </section>
 
 </div>
 
-<!-- YOUTUBE API IFRAME SDK -->
+<!-- MODAL KAMUS & TRANSLATOR (POP-UP) -->
+<div id="modal-kamus" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-3">
+    <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-2xl">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <span class="text-xs font-black text-purple-400 flex items-center gap-1">
+                🌐 Kamus & Terjemahan (English ➔ Indonesia)
+            </span>
+            <button onclick="tutupModalKamus()" class="text-slate-400 hover:text-white font-bold text-sm">✖</button>
+        </div>
+        
+        <div class="flex flex-col gap-2">
+            <textarea id="input-kata" rows="2" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-bold text-slate-200 focus:outline-none focus:border-purple-500 resize-none" placeholder="Ketik kata atau kalimat bahasa Inggris di sini..."></textarea>
+            <button onclick="prosesTerjemahkan()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl active:scale-95 transition-all shadow-md">
+                Terjemahkan Ke Indonesia 🚀
+            </button>
+        </div>
+
+        <div id="hasil-kamus" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs flex-col gap-1.5 max-h-48 overflow-y-auto">
+            <!-- Hasil terjemahan disuntikkan di sini -->
+        </div>
+    </div>
+</div>
+
+<!-- YOUTUBE API SDK -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
@@ -174,49 +182,34 @@
             const responseData = await res.json();
 
             if (responseData && typeof responseData === 'object') {
-                if (Array.isArray(responseData.sessions)) {
-                    daftarSesiTersedia = responseData.sessions;
-                }
-                if (Array.isArray(responseData.completedSessions)) {
-                    completedSesiFromSheets = responseData.completedSessions;
-                }
-            } else if (Array.isArray(responseData)) {
-                daftarSesiTersedia = responseData;
+                if (Array.isArray(responseData.sessions)) daftarSesiTersedia = responseData.sessions;
+                if (Array.isArray(responseData.completedSessions)) completedSesiFromSheets = responseData.completedSessions;
             }
         } catch (e) {
-            console.log("Gagal memuat sesi dari Google Sheets.");
+            console.log("Gagal memuat sesi.");
         }
 
         loadingEl.classList.add('hidden');
         containerEl.innerHTML = '';
         containerEl.classList.remove('hidden');
 
-        if (daftarSesiTersedia.length === 0) {
-            containerEl.innerHTML = `<div class="text-center py-6 text-xs font-bold text-textMuted">Tidak ada sesi yang ditemukan di Google Sheets.</div>`;
-            return;
-        }
-
         daftarSesiTersedia.forEach((sesi, idx) => {
             const isDone = completedSesiFromSheets.includes(sesi);
-            
             const card = document.createElement('div');
-            card.className = `p-3.5 rounded-2xl bg-white/80 border ${isDone ? 'border-emerald-200 bg-emerald-50/40' : 'border-purple-100'} flex items-center justify-between shadow-sm hover:shadow-md active:scale-98 transition-all cursor-pointer`;
+            card.className = `p-3 rounded-xl bg-slate-950 border ${isDone ? 'border-emerald-500/50' : 'border-slate-800'} flex items-center justify-between shadow cursor-pointer hover:border-purple-500 transition-all`;
             card.onclick = () => pilihSesi(sesi);
 
             card.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl ${isDone ? 'bg-emerald-500 text-white' : 'bg-purple-100 text-brandPurple'} flex items-center justify-center font-black text-xs shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-lg ${isDone ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-purple-400'} flex items-center justify-center font-black text-xs">
                         ${isDone ? '✓' : (idx + 1)}
                     </div>
                     <div>
-                        <div class="font-extrabold text-xs text-textMain">${sesi}</div>
-                        <div class="text-[10px] font-bold ${isDone ? 'text-emerald-600' : 'text-textMuted'}">
-                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
+                        <div class="font-extrabold text-xs text-slate-200">${sesi}</div>
+                        <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">
+                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
                         </div>
                     </div>
-                </div>
-                <div class="text-[11px] font-black px-3 py-1.5 rounded-xl ${isDone ? 'bg-emerald-100 text-emerald-700' : 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-sm'}">
-                    ${isDone ? 'Putar Ulang' : 'Mulai ▶'}
                 </div>
             `;
             containerEl.appendChild(card);
@@ -225,21 +218,12 @@
 
     async function pilihSesi(sesi) {
         sesiAktif = sesi;
-        const containerEl = document.getElementById('container-sesi-list');
-        containerEl.innerHTML = `
-            <div class="text-center py-8 text-xs font-bold text-textMuted flex flex-col items-center gap-2">
-                <span class="animate-spin text-2xl text-brandPurple">🌀</span>
-                <span>Memuat video untuk ${sesi}...</span>
-            </div>
-        `;
-
         try {
             const res = await fetch(`${WEB_APP_URL}?sesi=${encodeURIComponent(sesi)}`);
             const data = await res.json();
 
-            if (data.status === "error" || !Array.isArray(data) || data.length === 0) {
-                alert(`Data film untuk "${sesi}" tidak ditemukan atau masih kosong.`);
-                muatDaftarSesi();
+            if (!Array.isArray(data) || data.length === 0) {
+                alert(`Data film untuk "${sesi}" tidak ditemukan.`);
                 return;
             }
 
@@ -249,14 +233,13 @@
 
             document.getElementById('list-sesi-section').classList.add('hidden');
             document.getElementById('player-section').classList.remove('hidden');
-            document.getElementById('player-section').classList.add('flex');
+            document.getElementById('player-section').classList.add('grid');
             document.getElementById('label-sesi-aktif').innerText = sesi;
             
             renderDaftarIkonFilm();
             muatFilm(0);
         } catch (e) {
-            alert("Gagal terhubung ke Google Sheets.");
-            muatDaftarSesi();
+            alert("Gagal terhubung ke server.");
         }
     }
 
@@ -270,28 +253,18 @@
 
             const btn = document.createElement('button');
             btn.onclick = () => gantiFilm(idx);
-            btn.className = `flex-shrink-0 px-3 py-2 rounded-xl text-left border flex flex-col gap-0.5 transition-all ${
-                isCurrent 
-                    ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white border-purple-600 shadow-md scale-105' 
-                    : isDone 
-                        ? 'bg-emerald-100/80 text-emerald-800 border-emerald-300' 
-                        : 'bg-white/80 text-textMain border-purple-100 hover:bg-white'
+            btn.className = `p-2 rounded-lg text-left border text-[11px] font-bold flex justify-between items-center transition-all ${
+                isCurrent ? 'bg-purple-600 text-white border-purple-500' : isDone ? 'bg-emerald-950/60 text-emerald-300 border-emerald-800' : 'bg-slate-900 text-slate-300 border-slate-800'
             }`;
 
             btn.innerHTML = `
-                <div class="flex items-center gap-1 text-[10px] font-black">
-                    <span>🎬 Film ${idx + 1}</span>
-                    <span class="ml-auto">${isDone ? '✅' : isCurrent ? '▶' : '🔒'}</span>
-                </div>
-                <div class="text-[11px] font-extrabold truncate max-w-[100px] ${isCurrent ? 'text-white' : 'text-textMain'}">
-                    ${item.judul || 'Film ' + (idx + 1)}
-                </div>
+                <span class="truncate max-w-[110px]">${idx + 1}. ${item.judul || 'Film'}</span>
+                <span>${isDone ? '✅' : isCurrent ? '▶' : '🔒'}</span>
             `;
-
             container.appendChild(btn);
         });
 
-        document.getElementById('label-progres-total').innerText = `${filmSelesaiSet.size} / ${playlistSesi.length} Film Selesai`;
+        document.getElementById('label-progres-total').innerText = `${filmSelesaiSet.size}/${playlistSesi.length} Film`;
     }
 
     function gantiFilm(idx) {
@@ -319,7 +292,6 @@
 
         if (url.includes('youtube.com') || url.includes('youtu.be')) {
             let videoId = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('/').pop().split('?')[0];
-            
             const ytDiv = document.createElement('div');
             ytDiv.id = 'yt-embed-player';
             ytDiv.className = 'w-full h-full pointer-events-none';
@@ -328,9 +300,7 @@
             ytPlayerInstance = new YT.Player('yt-embed-player', {
                 videoId: videoId,
                 playerVars: { 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1 },
-                events: {
-                    'onStateChange': onYouTubeStateChange
-                }
+                events: { 'onStateChange': onYouTubeStateChange }
             });
         } else {
             ytPlayerInstance = null;
@@ -338,9 +308,7 @@
             vPlayer.id = 'direct-player';
             vPlayer.className = 'w-full h-full object-contain pointer-events-none';
             vPlayer.src = url;
-            vPlayer.onended = function() {
-                bukaTombolSelesai();
-            };
+            vPlayer.onended = function() { bukaTombolSelesai(); };
             container.appendChild(vPlayer);
         }
 
@@ -348,15 +316,11 @@
     }
 
     function onYouTubeStateChange(event) {
-        if (event.data === YT.PlayerState.ENDED) {
-            bukaTombolSelesai();
-        }
+        if (event.data === YT.PlayerState.ENDED) bukaTombolSelesai();
     }
 
     function pantauProgresWaktu() {
-        let currentTime = 0;
-        let duration = 0;
-
+        let currentTime = 0, duration = 0;
         if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
             currentTime = ytPlayerInstance.getCurrentTime() || 0;
             duration = ytPlayerInstance.getDuration() || 0;
@@ -371,10 +335,7 @@
         if (duration > 0) {
             const formatTime = (s) => new Date(s * 1000).toISOString().substr(14, 5);
             document.getElementById('label-waktu').innerText = `⏳ ${formatTime(currentTime)} / ${formatTime(duration)}`;
-            
-            if (duration - currentTime <= 2 && !isVideoEnded) {
-                bukaTombolSelesai();
-            }
+            if (duration - currentTime <= 2 && !isVideoEnded) bukaTombolSelesai();
         }
     }
 
@@ -382,39 +343,28 @@
         isVideoEnded = true;
         const btnSelesai = document.getElementById('btn-selesai');
         btnSelesai.disabled = false;
-        btnSelesai.className = "w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer";
-        btnSelesai.innerHTML = "<span>Selesai Nonton Film Ini ✅</span>";
+        btnSelesai.className = "w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-lg active:scale-95 transition-all cursor-pointer";
+        btnSelesai.innerHTML = "Selesai Nonton Film Ini ✅";
     }
 
     function kunciTombolSelesai() {
         isVideoEnded = false;
         const btnSelesai = document.getElementById('btn-selesai');
         btnSelesai.disabled = true;
-        btnSelesai.className = "w-full py-3.5 bg-gray-200 text-gray-400 font-black text-xs rounded-2xl shadow-none cursor-not-allowed transition-all flex items-center justify-center gap-1.5";
-        btnSelesai.innerHTML = "<span>🔒 Nonton Hingga Selesai</span>";
+        btnSelesai.className = "w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed";
+        btnSelesai.innerHTML = "🔒 Nonton Hingga Akhir";
     }
 
     function togglePlay() {
         const btnPlay = document.getElementById('btn-play');
-
         if (ytPlayerInstance && ytPlayerInstance.playVideo) {
-            if (isPlaying) {
-                ytPlayerInstance.pauseVideo();
-                btnPlay.innerText = "▶️ Play";
-            } else {
-                ytPlayerInstance.playVideo();
-                btnPlay.innerText = "⏸️ Pause";
-            }
+            if (isPlaying) { ytPlayerInstance.pauseVideo(); btnPlay.innerText = "▶️ Play"; }
+            else { ytPlayerInstance.playVideo(); btnPlay.innerText = "⏸️ Pause"; }
         } else {
             const directPlayer = document.getElementById('direct-player');
             if (directPlayer) {
-                if (isPlaying) {
-                    directPlayer.pause();
-                    btnPlay.innerText = "▶️ Play";
-                } else {
-                    directPlayer.play();
-                    btnPlay.innerText = "⏸️ Pause";
-                }
+                if (isPlaying) { directPlayer.pause(); btnPlay.innerText = "▶️ Play"; }
+                else { directPlayer.play(); btnPlay.innerText = "⏸️ Pause"; }
             }
         }
         isPlaying = !isPlaying;
@@ -422,52 +372,22 @@
 
     function rewindVideo(seconds) {
         if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
-            const curr = ytPlayerInstance.getCurrentTime();
-            ytPlayerInstance.seekTo(Math.max(0, curr - seconds), true);
+            ytPlayerInstance.seekTo(Math.max(0, ytPlayerInstance.getCurrentTime() - seconds), true);
         } else {
             const directPlayer = document.getElementById('direct-player');
-            if (directPlayer) {
-                directPlayer.currentTime = Math.max(0, directPlayer.currentTime - seconds);
-            }
+            if (directPlayer) directPlayer.currentTime = Math.max(0, directPlayer.currentTime - seconds);
         }
     }
 
-    function toggleFullscreen() {
-    const container = document.getElementById('video-container');
-    const iframe = document.getElementById('yt-embed-player');
-    const directPlayer = document.getElementById('direct-player');
-    
-    // Pilih elemen yang akan dijadikan Fullscreen (elemen wadah atau elemen player langsung)
-    const targetEl = container || iframe || directPlayer;
-
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        if (targetEl.requestFullscreen) {
-            targetEl.requestFullscreen().catch(err => {
-                console.log("Fullscreen request failed:", err);
-            });
-        } else if (targetEl.webkitRequestFullscreen) { // Kompatibilitas Android WebKit / Safari
-            targetEl.webkitRequestFullscreen();
-        } else if (targetEl.msRequestFullscreen) {
-            targetEl.msRequestFullscreen();
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-    }
-}
     function tandaiFilmSelesai() {
         if (!isVideoEnded) return;
-
         filmSelesaiSet.add(indexAktif);
         renderDaftarIkonFilm();
 
         if (filmSelesaiSet.size === playlistSesi.length) {
             document.getElementById('btn-selesai').classList.add('hidden');
             document.getElementById('btn-submit').classList.remove('hidden');
-            alert("Seluruh film di sesi ini telah berhasil ditonton! Klik 'Kirim Laporan Sesi'.");
+            alert("Seluruh film di sesi ini selesai! Klik Kirim Laporan Sesi.");
         } else {
             alert(`Film ${indexAktif + 1} selesai! Silakan pilih film berikutnya.`);
         }
@@ -475,42 +395,84 @@
 
     async function submitHasil() {
         const btnSubmit = document.getElementById('btn-submit');
-        btnSubmit.innerText = "Mengirim Laporan...";
+        btnSubmit.innerText = "Mengirim...";
         btnSubmit.disabled = true;
-
-        const payload = {
-            namaSiswa: "Siswa",
-            sesi: sesiAktif,
-            totalFilm: playlistSesi.length
-        };
 
         try {
             await fetch(WEB_APP_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify({ namaSiswa: "Siswa", sesi: sesiAktif, totalFilm: playlistSesi.length })
             });
-            
-            alert("Laporan sesi berhasil dikirim!");
+            alert("Laporan berhasil dikirim!");
             kembaliKeDaftar();
         } catch (e) {
-            alert("Gagal mengirim laporan ke sistem.");
+            alert("Gagal mengirim laporan.");
             btnSubmit.innerText = "Kirim Laporan Sesi 🎉";
             btnSubmit.disabled = false;
         }
     }
 
-    function resetTimer() {
-        if (checkProgressTimer) {
-            clearInterval(checkProgressTimer);
-            checkProgressTimer = null;
+    function bukaModalKamus() {
+        const modal = document.getElementById('modal-kamus');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function tutupModalKamus() {
+        const modal = document.getElementById('modal-kamus');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // FUNGSI PENERJEMAH TERPADU (KATA & KALIMAT)
+    async function prosesTerjemahkan() {
+        const textInput = document.getElementById('input-kata').value.trim();
+        const elHasil = document.getElementById('hasil-kamus');
+        if (!textInput) return;
+
+        elHasil.classList.remove('hidden');
+        elHasil.classList.add('flex');
+        elHasil.innerHTML = `<span class="text-slate-400 animate-pulse">Sedang menerjemahkan...</span>`;
+
+        try {
+            // Panggilan API Penerjemah Google Translate (Free Endpoint)
+            const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=id&dt=t&q=${encodeURIComponent(textInput)}`;
+            const res = await fetch(translateUrl);
+            const data = await res.json();
+            
+            // Menggabungkan potongan hasil terjemahan jika berbentuk kalimat
+            let translatedText = '';
+            if (data && data[0]) {
+                data[0].forEach(item => {
+                    if (item[0]) translatedText += item[0];
+                });
+            }
+
+            if (translatedText) {
+                elHasil.innerHTML = `
+                    <div class="font-extrabold text-[11px] text-slate-400 uppercase">Bahasa Inggris:</div>
+                    <div class="text-xs font-bold text-purple-300 italic">"${textInput}"</div>
+                    <div class="border-t border-slate-800 my-1"></div>
+                    <div class="font-extrabold text-[11px] text-emerald-400 uppercase">Arti Bahasa Indonesia:</div>
+                    <div class="text-xs font-extrabold text-emerald-200 leading-relaxed">${translatedText}</div>
+                `;
+            } else {
+                throw new Error();
+            }
+        } catch (e) {
+            elHasil.innerHTML = `<span class="text-rose-400 font-bold">Gagal menerjemahkan. Pastikan terhubung ke internet.</span>`;
         }
+    }
+
+    function resetTimer() {
+        if (checkProgressTimer) { clearInterval(checkProgressTimer); checkProgressTimer = null; }
     }
 
     function kembaliKeDaftar() {
         resetTimer();
         document.getElementById('player-section').classList.add('hidden');
-        document.getElementById('player-section').classList.remove('flex');
+        document.getElementById('player-section').classList.remove('grid');
         document.getElementById('list-sesi-section').classList.remove('hidden');
         document.getElementById('btn-submit').classList.add('hidden');
         document.getElementById('video-container').innerHTML = '';
