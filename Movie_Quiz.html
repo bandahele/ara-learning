@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎬 Movie Quiz Cinema 21</title>
+    <title>🎬 Movie Quiz Cinema</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,6 @@
             user-select: none;
             -webkit-user-select: none;
         }
-        iframe, video { pointer-events: none; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-2 sm:p-4 font-sans" oncontextmenu="return false;">
@@ -47,7 +46,7 @@
     <!-- HALAMAN UTAMA: DAFTAR SESI -->
     <section id="list-sesi-section" class="flex flex-col gap-3 p-4">
         <header class="text-center">
-            <h1 class="text-xl font-black text-purple-400">🎬 Movie Quiz Cinema</h1>
+            <h1 class="text-xl font-black text-purple-400">🎬 Movie Quiz Cinema 21</h1>
             <p class="text-xs font-bold text-slate-400">Pilih sesi untuk memulai pembelajaran!</p>
         </header>
         
@@ -60,10 +59,10 @@
         </div>
     </section>
 
-    <!-- TAMPILAN RESPANSIF ADAPTIF (PORTRAIT: ATAS-BAHAW | LANDSCAPE: KIRI-KANAN) -->
+    <!-- TAMPILAN RESPANSIF ADAPTIF -->
     <section id="player-section" class="hidden grid grid-cols-1 landscape:grid-cols-12 gap-3 h-full items-center">
         
-        <!-- PEMUTAR VIDEO (PORTRAIT: ATAS | LANDSCAPE: KIRI 8/12) -->
+        <!-- PEMUTAR VIDEO -->
         <div class="landscape:col-span-8 flex flex-col gap-2 w-full">
             <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center">
                 <!-- Video disuntikkan di sini -->
@@ -76,7 +75,7 @@
             </div>
         </div>
 
-        <!-- BILAH KONTROL (PORTRAIT: BAWAH | LANDSCAPE: KANAN 4/12) -->
+        <!-- BILAH KONTROL -->
         <div class="landscape:col-span-4 flex flex-col justify-between gap-2.5 h-full bg-slate-950 p-3 rounded-xl border border-slate-800 w-full">
             
             <!-- HEADER SESI -->
@@ -126,7 +125,7 @@
 
 </div>
 
-<!-- MODAL KAMUS & TRANSLATOR (POP-UP) -->
+<!-- MODAL KAMUS & TRANSLATOR -->
 <div id="modal-kamus" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-3">
     <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
@@ -288,6 +287,9 @@
 
     function muatFilm(idx) {
         resetTimer();
+        isPlaying = false;
+        document.getElementById('btn-play').innerText = "▶️ Play";
+
         const item = playlistSesi[idx];
         document.getElementById('judul-film-aktif').innerText = item.judul || `Film #${item.noFilm}`;
         
@@ -306,21 +308,25 @@
             let videoId = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('/').pop().split('?')[0];
             const ytDiv = document.createElement('div');
             ytDiv.id = 'yt-embed-player';
-            ytDiv.className = 'w-full h-full pointer-events-none';
+            ytDiv.className = 'w-full h-full';
             container.appendChild(ytDiv);
 
             ytPlayerInstance = new YT.Player('yt-embed-player', {
                 videoId: videoId,
-                playerVars: { 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1 },
-                events: { 'onStateChange': onYouTubeStateChange }
+                playerVars: { 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1, 'playsinline': 1 },
+                events: { 
+                    'onStateChange': onYouTubeStateChange 
+                }
             });
         } else {
             ytPlayerInstance = null;
             const vPlayer = document.createElement('video');
             vPlayer.id = 'direct-player';
-            vPlayer.className = 'w-full h-full object-contain pointer-events-none';
+            vPlayer.className = 'w-full h-full object-contain';
             vPlayer.src = url;
-            vPlayer.onended = function() { bukaTombolSelesai(); };
+            vPlayer.onplay = () => { isPlaying = true; document.getElementById('btn-play').innerText = "⏸️ Pause"; };
+            vPlayer.onpause = () => { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; };
+            vPlayer.onended = function() { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; bukaTombolSelesai(); };
             container.appendChild(vPlayer);
         }
 
@@ -328,10 +334,23 @@
     }
 
     function onYouTubeStateChange(event) {
-        if (event.data === YT.PlayerState.ENDED) bukaTombolSelesai();
+        const btnPlay = document.getElementById('btn-play');
+        if (event.data === YT.PlayerState.PLAYING) {
+            isPlaying = true;
+            btnPlay.innerText = "⏸️ Pause";
+        } else if (event.data === YT.PlayerState.PAUSED) {
+            isPlaying = false;
+            btnPlay.innerText = "▶️ Play";
+        } else if (event.data === YT.PlayerState.ENDED) {
+            isPlaying = false;
+            btnPlay.innerText = "▶️ Play";
+            bukaTombolSelesai();
+        }
     }
 
     function pantauProgresWaktu() {
+        if (isVideoEnded) return;
+
         let currentTime = 0, duration = 0;
         if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
             currentTime = ytPlayerInstance.getCurrentTime() || 0;
@@ -347,7 +366,9 @@
         if (duration > 0) {
             const formatTime = (s) => new Date(s * 1000).toISOString().substr(14, 5);
             document.getElementById('label-waktu').innerText = `⏳ ${formatTime(currentTime)} / ${formatTime(duration)}`;
-            if (duration - currentTime <= 2 && !isVideoEnded) bukaTombolSelesai();
+            if (duration - currentTime <= 1.5) {
+                bukaTombolSelesai();
+            }
         }
     }
 
@@ -368,18 +389,22 @@
     }
 
     function togglePlay() {
-        const btnPlay = document.getElementById('btn-play');
         if (ytPlayerInstance && ytPlayerInstance.playVideo) {
-            if (isPlaying) { ytPlayerInstance.pauseVideo(); btnPlay.innerText = "▶️ Play"; }
-            else { ytPlayerInstance.playVideo(); btnPlay.innerText = "⏸️ Pause"; }
+            if (isPlaying) { 
+                ytPlayerInstance.pauseVideo(); 
+            } else { 
+                ytPlayerInstance.playVideo(); 
+            }
         } else {
             const directPlayer = document.getElementById('direct-player');
             if (directPlayer) {
-                if (isPlaying) { directPlayer.pause(); btnPlay.innerText = "▶️ Play"; }
-                else { directPlayer.play(); btnPlay.innerText = "⏸️ Pause"; }
+                if (isPlaying) { 
+                    directPlayer.pause(); 
+                } else { 
+                    directPlayer.play(); 
+                }
             }
         }
-        isPlaying = !isPlaying;
     }
 
     function rewindVideo(seconds) {
