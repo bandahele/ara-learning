@@ -70,7 +70,7 @@
     <section id="list-sesi-section" class="flex flex-col gap-3">
         <div id="loading-sesi" class="text-center py-10 text-xs font-bold text-textMuted flex flex-col items-center gap-2">
             <span class="animate-spin text-3xl text-brandPurple">🌀</span>
-            <span>Memeriksa status sesi dari Google Sheets...</span>
+            <span>Memeriksa daftar sesi dari Google Sheets...</span>
         </div>
         <div id="container-sesi-list" class="flex flex-col gap-2.5 hidden">
             <!-- Daftar Sesi disuntikkan secara dinamis -->
@@ -83,14 +83,14 @@
         <!-- JUDUL SESI & PROGRES TOTAL -->
         <div class="flex items-center justify-between gap-2 bg-white/70 p-2.5 rounded-2xl border border-white shadow-sm">
             <div id="label-sesi-aktif" class="text-xs font-black text-brandPurple uppercase tracking-wider">
-                Sesi 1
+                Sesi
             </div>
             <div id="label-progres-total" class="text-[10px] font-black bg-purple-100 text-brandPurple px-2.5 py-1 rounded-xl">
                 0 / 0 Film Selesai
             </div>
         </div>
 
-        <!-- DAFTAR IKON / KARTU FILM PER SESI -->
+        <!-- DAFTAR IKON FILM PER SESI -->
         <div class="flex flex-col gap-1.5">
             <span class="text-[11px] font-extrabold text-textMuted px-1">Pilih Film:</span>
             <div id="container-film-list" class="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none">
@@ -147,8 +147,8 @@
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyl7-224Bnau2pPp0FpJBOB2CNOKSr0r9XxQ_fjYwl2KwCDREiTGDys44062D0VFgTP/exec";
 
-    let daftarSesiTersedia = ["Sesi 1", "Sesi 2", "Sesi 3"];
-    let completedSesiFromSheets = []; // Menyimpan list sesi yang sudah ada di tab Hasil
+    let daftarSesiTersedia = [];
+    let completedSesiFromSheets = [];
     let sesiAktif = "";
     let playlistSesi = [];
     let indexAktif = 0;
@@ -170,7 +170,6 @@
         containerEl.classList.add('hidden');
 
         try {
-            // Ambil daftar sesi dan status penyelesaian sekaligus dari Google Sheets
             const res = await fetch(`${WEB_APP_URL}?action=getSessions`);
             const responseData = await res.json();
 
@@ -185,12 +184,17 @@
                 daftarSesiTersedia = responseData;
             }
         } catch (e) {
-            console.log("Menggunakan daftar sesi standar.");
+            console.log("Gagal memuat sesi dari Google Sheets.");
         }
 
         loadingEl.classList.add('hidden');
         containerEl.innerHTML = '';
         containerEl.classList.remove('hidden');
+
+        if (daftarSesiTersedia.length === 0) {
+            containerEl.innerHTML = `<div class="text-center py-6 text-xs font-bold text-textMuted">Tidak ada sesi yang ditemukan di Google Sheets.</div>`;
+            return;
+        }
 
         daftarSesiTersedia.forEach((sesi, idx) => {
             const isDone = completedSesiFromSheets.includes(sesi);
@@ -207,7 +211,7 @@
                     <div>
                         <div class="font-extrabold text-xs text-textMain">${sesi}</div>
                         <div class="text-[10px] font-bold ${isDone ? 'text-emerald-600' : 'text-textMuted'}">
-                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
+                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
                         </div>
                     </div>
                 </div>
