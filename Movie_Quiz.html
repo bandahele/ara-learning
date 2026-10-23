@@ -313,7 +313,16 @@
 
             ytPlayerInstance = new YT.Player('yt-embed-player', {
                 videoId: videoId,
-                playerVars: { 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1, 'playsinline': 1 },
+                playerVars: { 
+                    'controls': 0, 
+                    'rel': 0, 
+                    'disablekb': 1, 
+                    'modestbranding': 1, 
+                    'playsinline': 1,
+                    'cc_load_policy': 0,
+                    'cc_lang_pref': 'none',
+                    'iv_load_policy': 3
+                },
                 events: { 
                     'onStateChange': onYouTubeStateChange 
                 }
