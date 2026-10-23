@@ -433,20 +433,31 @@
     }
 
     function toggleFullscreen() {
-        const container = document.getElementById('video-container');
-        if (!document.fullscreenElement) {
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
-            }
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
+    const container = document.getElementById('video-container');
+    const iframe = document.getElementById('yt-embed-player');
+    const directPlayer = document.getElementById('direct-player');
+    
+    // Pilih elemen yang akan dijadikan Fullscreen (elemen wadah atau elemen player langsung)
+    const targetEl = container || iframe || directPlayer;
+
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (targetEl.requestFullscreen) {
+            targetEl.requestFullscreen().catch(err => {
+                console.log("Fullscreen request failed:", err);
+            });
+        } else if (targetEl.webkitRequestFullscreen) { // Kompatibilitas Android WebKit / Safari
+            targetEl.webkitRequestFullscreen();
+        } else if (targetEl.msRequestFullscreen) {
+            targetEl.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
         }
     }
-
+}
     function tandaiFilmSelesai() {
         if (!isVideoEnded) return;
 
