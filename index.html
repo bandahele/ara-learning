@@ -1,0 +1,397 @@
+<!-- Chosen Palette: Soft Pastel Dream (Rose Pink, Lavender Purple, Sky Cyan, & Warm Amber Gold) -->
+<!-- Application Structure Plan: Dashboard portal interaktif satu halaman (SPA) khusus untuk Ara. Terdiri di GitHub Pages. -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>✨ Ara's Learning Kingdom Dashboard ✨</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: '#ff8ab3',
+                        pastelPurple: '#b388ff',
+                        pastelCyan: '#4dd0e1',
+                        pastelGold: '#ffb74d',
+                        pastelBgStart: '#fce4ec',
+                        pastelBgMid: '#f3e5f5',
+                        pastelBgEnd: '#e8ddff',
+                        textMain: '#3d2a5c',
+                        textMuted: '#7a6a8f'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'Quicksand', 'sans-serif'],
+                        title: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* [PERBAIKAN] Mengubah tanda - menjadi * agar reset CSS berfungsi normal */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 45%, #e8ddff 100%);
+            min-height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
+        }
+
+        /* Canvas Latar Belakang Partikel */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Styling Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(179, 136, 255, 0.18);
+        }
+
+        /* Animasi Melayang Avatar */
+        @keyframes floatAvatar {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1.5deg); }
+        }
+
+        .avatar-float {
+            animation: floatAvatar 4s ease-in-out infinite;
+        }
+
+        /* Aura Ring Pelangi */
+        @keyframes rotateGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .rainbow-ring {
+            background: linear-gradient(135deg, #ff8ab3, #b388ff, #4dd0e1, #ffb74d);
+            padding: 6px;
+            box-shadow: 0 12px 32px rgba(255, 138, 179, 0.35), 0 0 24px rgba(179, 136, 255, 0.3);
+            animation: rotateGlow 6s linear infinite;
+        }
+
+        /* Animasi Mahkota */
+        @keyframes crownBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-8px) rotate(12deg) scale(1.12); }
+        }
+
+        .crown-animate {
+            animation: crownBounce 2.8s ease-in-out infinite;
+        }
+
+        /* Animasi Bintang Sparkle */
+        @keyframes sparklePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.35); opacity: 1; }
+        }
+
+        .sparkle-animate {
+            animation: sparklePulse 2s ease-in-out infinite;
+        }
+
+        /* Garis Aksen Samping Kartu */
+        .card-english-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 7px; height: 100%;
+            background: linear-gradient(to bottom, #ff8ab3, #b388ff);
+        }
+
+        .card-math-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 7px; height: 100%;
+            background: linear-gradient(to bottom, #4dd0e1, #6366f1);
+        }
+
+        .card-tpa-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 7px; height: 100%;
+            background: linear-gradient(to bottom, #ffb74d, #f43f5e);
+        }
+
+        /* Efek Tombol Bintang Berkilau */
+        .star-badge-glow {
+            box-shadow: 0 0 15px rgba(255, 183, 77, 0.5);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen px-4 py-8 font-sans text-textMain relative" oncontextmenu="return false;">
+
+<!-- Canvas Partikel Animasi Latar Belakang -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Kontener Utama Aplikasi Dashboard -->
+<div class="w-full max-w-md flex flex-col gap-5 relative z-10">
+
+    <!-- ===== HERO SECTION (FOTO ARA & GREETING) ===== -->
+    <header class="flex flex-col items-center text-center">
+
+        <!-- Profil Avatar Utama Ara -->
+        <div class="relative w-36 h-36 md:w-40 md:h-40 mb-3 avatar-float">
+
+            <!-- Lingkaran Aura Pelangi -->
+            <div class="rainbow-ring w-full h-full rounded-full">
+                <img class="w-full h-full rounded-full object-cover border-4 border-white bg-white"
+                     src="https://drive.google.com/thumbnail?id=1pvwce264YffgaKtEbCvK73S4D2ZOyzXf&sz=w200"
+                     alt="Ara"
+                     onerror="this.src='https://drive.google.com/thumbnail?id=1pvwce264YffgaKtEbCvK73S4D2ZOyzXf&sz=w200';" />
+            </div>
+
+            <!-- Mahkota Melayang di Atas Foto -->
+            <div class="absolute -top-4 -right-1 text-3xl md:text-4xl crown-animate filter drop-shadow-md">
+                👑
+            </div>
+
+            <!-- Ornamen Sparkle Kiri Bawah -->
+            <div class="absolute bottom-1 -left-2 text-2xl md:text-3xl sparkle-animate filter drop-shadow-sm">
+                ✨
+            </div>
+
+            <!-- Ornamen Hati Kanan Bawah -->
+            <div class="absolute bottom-2 -right-1 text-xl md:text-2xl sparkle-animate filter drop-shadow-sm" style="animation-delay: 1s;">
+                💖
+            </div>
+        </div>
+
+        <!-- Greeting Badge -->
+        <div class="inline-flex items-center gap-1.5 bg-white/80 border border-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-extrabold text-pastelPurple shadow-sm mb-2">
+            <span>🌸</span>
+            <span>Ara's Learning Kingdom</span>
+            <span>✨</span>
+        </div>
+
+        <!-- Judul Salam Utama -->
+        <h1 class="font-title text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 bg-clip-text text-transparent leading-tight tracking-tight">
+            Halo, Ara Cantik! ✨
+        </h1>
+        <p class="text-xs md:text-sm font-bold text-textMuted mt-1">
+            Mau pintar apa hari ini? Pilih modul di bawah ya! 🚀
+        </p>
+
+    </header>
+
+    <!-- ===== DASHBOARD STATS / MOTIVATION CARD ===== -->
+    <section class="glass-card rounded-2xl p-4 flex items-center justify-between border border-white/90 shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center text-2xl shadow-inner">
+                ⭐
+            </div>
+            <div>
+                <div class="text-[11px] font-extrabold uppercase tracking-wider text-amber-600">Semangat Belajar</div>
+                <div class="text-sm font-extrabold text-textMain" id="streak-text">3 Modul Siap Dieksplorasi!</div>
+            </div>
+        </div>
+        <button onclick="addStarReward()" class="star-badge-glow bg-gradient-to-r from-amber-400 to-orange-400 text-white px-3 py-1.5 rounded-xl font-extrabold text-xs shadow-md active:scale-95 transition-transform flex items-center gap-1">
+            <span>Klik Bintang</span>
+            <span id="star-count">✨ 5</span>
+        </button>
+    </section>
+
+    <!-- ===== DAFTAR MODUL KUIS & LATIHAN ===== -->
+    <main class="flex flex-col gap-3.5">
+
+        <!-- MODUL 1: BAHASA INGGRIS -->
+        <a href="https://bandahele.github.io/ara-learning/english.html" class="glass-card card-english-border rounded-3xl p-4 flex items-center text-decoration-none relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-100 to-purple-100 border border-pink-200/60 flex items-center justify-center text-3xl mr-3.5 shrink-0 shadow-sm group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform">
+                🦄
+            </div>
+            <div class="flex-1">
+                <span class="inline-block text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-lg bg-pink-100/80 text-pink-600 mb-1">
+                    English Wonderland
+                </span>
+                <h2 class="text-base md:text-lg font-extrabold text-textMain leading-snug">
+                    Bahasa Inggris
+                </h2>
+                <p class="text-xs font-bold text-textMuted mt-0.5">
+                    Literasi, Kosakata & Reading
+                </p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-pastelPurple font-black text-sm shadow-sm group-hover:bg-gradient-to-r group-hover:from-pastelPurple group-hover:to-pastelPink group-hover:text-white group-hover:translate-x-1 transition-all">
+                ➔
+            </div>
+        </a>
+
+        <!-- MODUL 2: MATEMATIKA -->
+        <a href="https://bandahele.github.io/ara-learning/math.html" class="glass-card card-math-border rounded-3xl p-4 flex items-center text-decoration-none relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-indigo-100 border border-cyan-200/60 flex items-center justify-center text-3xl mr-3.5 shrink-0 shadow-sm group-hover:scale-110 group-hover:rotate-[6deg] transition-transform">
+                🧩
+            </div>
+            <div class="flex-1">
+                <span class="inline-block text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-lg bg-cyan-100/80 text-teal-700 mb-1">
+                    Math Magic
+                </span>
+                <h2 class="text-base md:text-lg font-extrabold text-textMain leading-snug">
+                    Matematika
+                </h2>
+                <p class="text-xs font-bold text-textMuted mt-0.5">
+                    Numerasi, Logika & Berhitung
+                </p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-pastelPurple font-black text-sm shadow-sm group-hover:bg-gradient-to-r group-hover:from-pastelCyan group-hover:to-indigo-400 group-hover:text-white group-hover:translate-x-1 transition-all">
+                ➔
+            </div>
+        </a>
+
+        <!-- MODUL 3: TES POTENSI AKADEMIK (TPA) -->
+        <a href="https://bandahele.github.io/ara-learning/tpa.html" class="glass-card card-tpa-border rounded-3xl p-4 flex items-center text-decoration-none relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-100 to-rose-100 border border-amber-200/60 flex items-center justify-center text-3xl mr-3.5 shrink-0 shadow-sm group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform">
+                🧠
+            </div>
+            <div class="flex-1">
+                <span class="inline-block text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-lg bg-amber-100/80 text-amber-700 mb-1">
+                    Brain Booster
+                </span>
+                <h2 class="text-base md:text-lg font-extrabold text-textMain leading-snug">
+                    Tes Potensi Akademik
+                </h2>
+                <p class="text-xs font-bold text-textMuted mt-0.5">
+                    Penalaran, Pola & Logika Gambar
+                </p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-pastelPurple font-black text-sm shadow-sm group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-rose-400 group-hover:text-white group-hover:translate-x-1 transition-all">
+                ➔
+            </div>
+        </a>
+
+    </main>
+
+    <!-- ===== FOOTER PROTEKSI & INFORMASI ===== -->
+    <footer class="text-center bg-white/50 backdrop-blur-md border border-white/80 py-3 px-4 rounded-2xl text-xs font-bold text-textMuted flex items-center justify-center gap-2 shadow-sm mt-1">
+        <span>🛡️</span>
+        <span>Aplikasi Terproteksi • Tangkapan Layar Dinonaktifkan</span>
+    </footer>
+
+</div>
+
+<!-- ===== JS ANIMASI PARTIKEL LATAR BELAKANG & INTERAKSI ===== -->
+<script>
+    // System Reward Bintang Sederhana
+    let starCount = 5;
+    function addStarReward() {
+        starCount++;
+        document.getElementById('star-count').innerText = `✨ ${starCount}`;
+
+        // Efek Suasana Ucapan
+        const messages = [
+            "Hebat banget Ara! 🌟",
+            "Pintar & Rajin! 💖",
+            "Terus Semangat Ya! 🚀",
+            "Ara Anak Hebat! 👑"
+        ];
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById('streak-text').innerText = randomMsg;
+    }
+
+    // Animasi Canvas Partikel Melayang
+    (function initPastelParticles() {
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        const particles = [];
+        const emojis = ['🌸', '✨', '⭐', '💖', '☁️', '🌈', '🦄', '🎀', '🎈', '👑', '🧩', '🧠'];
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h - h;
+                this.size = 14 + Math.random() * 18;
+                this.speed = 0.3 + Math.random() * 0.5;
+                this.opacity = 0.15 + Math.random() * 0.35;
+                this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                this.swing = Math.random() * 0.7;
+                this.swingSpeed = 0.005 + Math.random() * 0.01;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.phase) * this.swing;
+                this.phase += this.swingSpeed;
+                this.rotation += this.rotationSpeed;
+                if (this.y > h + 40) {
+                    this.reset();
+                    this.y = -30;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.font = `${this.size}px serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.emoji, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        const count = Math.min(26, Math.floor((w * h) / 18000));
+        for (let i = 0; i < count; i++) {
+            const p = new Particle();
+            p.y = Math.random() * h;
+            particles.push(p);
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+
+    // Mencegah shortcut tombol keyboard tertentu
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && ['c', 'v', 'x', 'a', 'u'].includes(e.key.toLowerCase())) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+</body>
+</html>
