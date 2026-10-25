@@ -29,7 +29,7 @@ button,input{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 .app{width:min(100%,1080px);margin:auto;min-height:100dvh;padding:0 18px 106px}
 .topbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
@@ -123,22 +123,35 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
 .cancel{background:var(--surface2);color:var(--primary)}.confirm{background:var(--primary);color:white}
 .page-footer{text-align:center;font-size:9px;color:var(--muted);padding:24px 0 0}
 
-/* Tambahan style untuk list sub-materi interaktif & keren */
-.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 16px; scrollbar-width: none; }
+/* STYLING BARU UNTUK HALAMAN MATERI YANG ELEGAN & MODERN */
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 14px; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--text); padding: 9px 16px; border-radius: 14px; font-size: 11px; font-weight: 800; white-space: nowrap; transition: .15s; flex-shrink: 0; }
 .chip.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 4px 15px rgba(106,92,231,.3); }
 
-.submateri-list { display: grid; gap: 10px; }
-.submateri-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; cursor: pointer; transition: transform .15s, box-shadow .15s; text-align: left; width: 100%; color: var(--text); }
-.submateri-item:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--primary); }
-.submateri-info h4 { font-size: 13px; font-weight: 900; margin: 0 0 3px; }
-.submateri-info span { font-size: 9px; color: var(--muted); font-weight: 800; }
-.back-button { border: 1px solid var(--line); background: var(--surface2); color: var(--text); padding: 9px 15px; border-radius: 12px; font-size: 11px; font-weight: 900; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; cursor: pointer; transition: background .15s; }
-.back-button:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-.content-box{background:var(--surface2);border-radius:14px;padding:14px;font-size:11px;line-height:1.6;margin-top:14px;color:var(--text)}
+/* Kotak Search Bar yang Elegan */
+.search-box { position: relative; margin-bottom: 16px; }
+.search-input { width: 100%; background: var(--surface); border: 1px solid var(--line); padding: 12px 16px 12px 42px; border-radius: 16px; color: var(--text); font-size: 12px; font-weight: 700; transition: border-color .2s, box-shadow .2s; }
+.search-input:focus { border-color: var(--primary); box-shadow: var(--shadow); outline: none; }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--muted); }
 
-@media(min-width:700px){
+/* Tampilan Kartu Grid Sub-Materi yang Modern & Keren */
+.submateri-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.submateri-card-item { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; display: flex; flex-direction: column; justify-content: space-between; text-align: left; color: var(--text); position: relative; overflow: hidden; }
+.submateri-card-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--primary); }
+.submateri-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.submateri-badge { background: var(--surface2); color: var(--primary); font-size: 8px; font-weight: 900; padding: 4px 8px; border-radius: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.submateri-icon-box { width: 38px; height: 38px; border-radius: 12px; background: var(--surface2); display: grid; place-items: center; font-size: 18px; }
+.submateri-card-item h4 { font-size: 12px; font-weight: 900; margin: 0 0 6px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.submateri-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 10px; font-weight: 800; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+
+/* Tombol Kembali & Kotak Detail Materi */
+.back-button { border: 1px solid var(--line); background: var(--surface2); color: var(--text); padding: 9px 16px; border-radius: 14px; font-size: 11px; font-weight: 900; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px; cursor: pointer; transition: background .15s, color .15s; }
+.back-button:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.content-box { background: var(--surface2); border-radius: 16px; padding: 16px; font-size: 11px; line-height: 1.7; margin-top: 14px; color: var(--text); border: 1px solid var(--line); }
+
+@media(min-width: 700px){
+ .submateri-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
  .app{padding-left:28px;padding-right:28px;padding-bottom:35px}
  .topbar{height:82px}
  .bottom-nav{bottom:16px;border-radius:20px;border-bottom:1px solid var(--line);padding-bottom:8px}
@@ -147,13 +160,8 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
  .tile-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
  .game-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
-@media(max-width:390px){
- .app{padding-left:12px;padding-right:12px}
- .brand-title{font-size:15px}.brand-sub{font-size:8px}
- .icon-button,.profile-dot{width:36px;height:36px}
- .hero{padding:19px}.hero h2{font-size:19px}.hero-emoji{font-size:46px}
- .stat{padding:10px 8px;gap:7px}.stat-icon{width:31px;height:31px;font-size:16px}.stat strong{font-size:16px}.stat small{font-size:8px}
- .tile{padding:12px}.tile-emoji{width:39px;height:39px;font-size:21px}
+@media(max-width: 390px){
+ .submateri-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -191,7 +199,6 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
       <div><h2>Progres Pembelajaran 📈</h2><p>Analisis rinci status pengerjaan dan skor latihan soal.</p></div>
     </div>
 
-    <!-- Ringkasan Statistik Performa Baru -->
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px;">
       <div class="stat" style="background: var(--surface2); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px;">
         <div class="stat-icon purple" style="font-size: 20px;">📊</div>
@@ -211,8 +218,6 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
 
     <div class="card" style="box-shadow: var(--shadow);">
       <div class="progress-list" style="gap: 18px;">
-        
-        <!-- Bahasa Inggris -->
         <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -234,7 +239,6 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
           </div>
         </div>
 
-        <!-- Matematika -->
         <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -256,7 +260,6 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
           </div>
         </div>
 
-        <!-- Tes Potensi Akademik -->
         <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -277,9 +280,7 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
             ⏳ Menunggu sinkronisasi data...
           </div>
         </div>
-
       </div>
-
       <div class="note" style="margin-top: 14px;">💡 <b>Tips:</b> Klik menu latihan di bawah untuk menyelesaikan soal yang belum dikerjakan dan tingkatkan skor terbaikmu!</div>
     </div>
 
@@ -299,40 +300,43 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
     </div>
   </section>
   
-  <!-- MENU 2: MATERI (Kini Interaktif Per Sub-Materi) -->
+  <!-- MENU 2: MATERI (DESAIN KARTU MODERN + SEARCH BAR) -->
   <section class="page" id="page-materi" data-page="materi">
     <div class="welcome">
       <div>
         <div class="kicker">LEARN SOMETHING NEW 📚</div>
         <h1>Ruang Materi</h1>
-        <p class="lead">Pilih kategori mapel, lalu klik sub-materi untuk mulai belajar.</p>
+        <p class="lead">Pilih kategori mapel atau cari topik yang ingin kamu pelajari hari ini.</p>
       </div>
       <div class="mascot">📖</div>
     </div>
 
     <!-- Pilihan Kategori Sheet (Mapel) -->
-    <div class="section-head"><div><h2>Pilih Kategori Mapel</h2></div></div>
     <div class="chips" id="sheetChips">
       <button class="chip active" type="button">Memuat kategori...</button>
     </div>
 
-    <!-- Tampilan 1: Daftar Sub-Materi -->
+    <!-- Kotak Pencarian Materi -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="materiSearchInput" class="search-input" placeholder="Cari judul sub-materi di sini...">
+    </div>
+
+    <!-- Tampilan 1: Daftar Kartu Sub-Materi -->
     <div id="listView">
       <div class="section-head"><div id="listCategoryTitle"><h2>Daftar Sub-Materi</h2></div></div>
-      <div id="submateriListContainer" class="submateri-list">
-        <div class="note">⏳ Sedang memuat daftar materi...</div>
+      <div id="submateriListContainer" class="submateri-grid">
+        <div class="note" style="grid-column: span 2;">⏳ Sedang memuat daftar materi...</div>
       </div>
     </div>
 
-    <!-- Tampilan 2: Detail Sub-Materi (Awalnya Disembunyikan) -->
+    <!-- Tampilan 2: Detail Sub-Materi (Elegan & Rapi) -->
     <div id="detailView" style="display: none;">
       <button class="back-button" type="button" id="backToListBtn">← Kembali ke Daftar Materi</button>
-      <div class="card" id="detailCardContainer" style="padding: 20px;">
-        <!-- Konten detail sub-materi dimuat di sini -->
+      <div class="card" id="detailCardContainer" style="padding: 24px;">
+        <!-- Konten detail dimuat di sini -->
       </div>
     </div>
-
-    <div class="note" style="margin-top: 20px;">💡 Klik salah satu judul sub-materi di atas untuk membuka penjelasan lengkap beserta contoh soalnya.</div>
   </section>
 
   <!-- MENU 3: SOAL -->
@@ -515,10 +519,11 @@ async function loadDetailedQuizAnalytics() {
 }
 
 /* =========================================================
-   PENGHUBUNG API MATERI PER SUB-MATERI (INTERAKTIF)
+   PENGHUBUNG API MATERI DENGAN KARTU MODERN & SEARCH BAR
    ========================================================= */
 const MATERI_API_URL = "https://script.google.com/macros/s/AKfycbwpxM7UaihG-S0Xf4QHq7QYv618hcJ5E0S1t9WLMXI4Xz6z1hCSNwGZTQZkEF3aSdQ/exec";
-let cachedMateriData = {};
+let currentMateriList = [];
+let currentActiveSheet = "";
 
 async function loadMateriCategories() {
   const chipsContainer = $("#sheetChips");
@@ -537,6 +542,7 @@ async function loadMateriCategories() {
         btn.addEventListener("click", () => {
           $$(".chip", chipsContainer).forEach(c => c.classList.remove("active"));
           btn.classList.add("active");
+          $("#materiSearchInput").value = ""; // Reset search saat ganti mapel
           showListView();
           fetchAndShowSubmateriList(cat.sheetId, cat.title);
         });
@@ -555,50 +561,66 @@ async function loadMateriCategories() {
 }
 
 async function fetchAndShowSubmateriList(sheetName, categoryTitle) {
+  currentActiveSheet = sheetName;
   const container = $("#submateriListContainer");
   $("#listCategoryTitle").innerHTML = `<h2>Daftar Materi: ${categoryTitle}</h2>`;
-  container.innerHTML = `<div class="note">⏳ Sedang memuat sub-materi...</div>`;
+  container.innerHTML = `<div class="note" style="grid-column: span 2;">⏳ Sedang memuat sub-materi...</div>`;
 
   try {
-    let items = cachedMateriData[sheetName];
-    if (!items) {
-      const res = await fetch(`${MATERI_API_URL}?action=content&sheet=${encodeURIComponent(sheetName)}`);
-      const json = await res.json();
-      if(json.status === "success" && Array.isArray(json.data)) {
-        items = json.data;
-        cachedMateriData[sheetName] = items;
-      } else {
-        container.innerHTML = `<div class="note">Belum ada rincian materi di kategori ini.</div>`;
-        return;
-      }
+    const res = await fetch(`${MATERI_API_URL}?action=content&sheet=${encodeURIComponent(sheetName)}`);
+    const json = await res.json();
+    if(json.status === "success" && Array.isArray(json.data)) {
+      currentMateriList = json.data;
+      renderMateriCards(currentMateriList);
+    } else {
+      container.innerHTML = `<div class="note" style="grid-column: span 2;">Belum ada rincian materi di kategori ini.</div>`;
     }
-
-    if(items.length === 0) {
-      container.innerHTML = `<div class="note">Belum ada sub-materi yang tersedia.</div>`;
-      return;
-    }
-
-    container.innerHTML = "";
-    items.forEach((item, index) => {
-      const btn = document.createElement("button");
-      btn.className = "submateri-item";
-      btn.type = "button";
-      btn.innerHTML = `
-        <div class="submateri-info">
-          <h4>${index + 1}. ${item.sub_materi}</h4>
-          <span>Tingkat: ${item.tingkat || 'Umum'}</span>
-        </div>
-        <span style="font-size:16px; color:var(--primary);">→</span>
-      `;
-      btn.addEventListener("click", () => showDetailView(item));
-      container.appendChild(btn);
-    });
-
   } catch (err) {
     console.error(err);
-    container.innerHTML = `<div class="note" style="color:var(--pink);">⚠️ Gagal memuat daftar sub-materi.</div>`;
+    container.innerHTML = `<div class="note" style="color:var(--pink); grid-column: span 2;">⚠️ Gagal memuat daftar sub-materi.</div>`;
   }
 }
+
+// Render Kartu Grid Modern
+function renderMateriCards(items) {
+  const container = $("#submateriListContainer");
+  if(items.length === 0) {
+    container.innerHTML = `<div class="note" style="grid-column: span 2;">Tidak ada sub-materi yang ditemukan.</div>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  items.forEach((item, index) => {
+    const card = document.createElement("button");
+    card.className = "submateri-card-item";
+    card.type = "button";
+    card.innerHTML = `
+      <div>
+        <div class="submateri-card-top">
+          <div class="submateri-icon-box">📖</div>
+          <span class="submateri-badge">${item.tingkat || 'Umum'}</span>
+        </div>
+        <h4>${index + 1}. ${item.sub_materi}</h4>
+      </div>
+      <div class="submateri-card-footer">
+        <span>Baca Materi</span>
+        <span style="font-size:14px; color:var(--primary);">→</span>
+      </div>
+    `;
+    card.addEventListener("click", () => showDetailView(item));
+    container.appendChild(card);
+  });
+}
+
+// Fungsi Live Search / Pencarian Materi
+$("#materiSearchInput").addEventListener("input", (e) => {
+  const keyword = e.target.value.toLowerCase().trim();
+  const filtered = currentMateriList.filter(item => 
+    item.sub_materi.toLowerCase().includes(keyword) || 
+    (item.penjelasan && item.penjelasan.toLowerCase().includes(keyword))
+  );
+  renderMateriCards(filtered);
+});
 
 function showListView() {
   $("#listView").style.display = "block";
@@ -611,25 +633,25 @@ function showDetailView(item) {
 
   const detailContainer = $("#detailCardContainer");
   detailContainer.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-      <h2 style="font-size:18px; margin:0; font-weight:900; color:var(--primary);">${item.sub_materi}</h2>
-      <span style="background:var(--surface2); color:var(--primary); font-size:10px; padding:5px 10px; border-radius:9px; font-weight:800;">${item.tingkat || 'Umum'}</span>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">
+      <h2 style="font-size:19px; margin:0; font-weight:900; color:var(--primary);">${item.sub_materi}</h2>
+      <span style="background:var(--surface2); color:var(--primary); font-size:10px; padding:5px 12px; border-radius:10px; font-weight:800;">${item.tingkat || 'Umum'}</span>
     </div>
 
-    <div style="font-size:12px; line-height:1.7; color:var(--text); margin-top:10px; white-space:pre-line;">
+    <div style="font-size:12px; line-height:1.8; color:var(--text); margin-top:12px; white-space:pre-line;">
       ${item.penjelasan || 'Tidak ada penjelasan.'}
     </div>
 
     ${item.contoh_soal ? `
       <div class="content-box">
-        <strong style="display:block; margin-bottom:6px; color:var(--primary);">💡 Contoh Soal:</strong>
+        <strong style="display:block; margin-bottom:6px; color:var(--primary); font-size:12px;">💡 Contoh Soal:</strong>
         <div style="white-space:pre-line;">${item.contoh_soal}</div>
       </div>
     ` : ''}
 
     ${item.pembahasan_contoh ? `
       <div class="content-box" style="background:var(--surface); border:1px dashed var(--line);">
-        <strong style="display:block; margin-bottom:6px; color:var(--green);">✅ Pembahasan:</strong>
+        <strong style="display:block; margin-bottom:6px; color:var(--green); font-size:12px;">✅ Pembahasan:</strong>
         <div style="white-space:pre-line;">${item.pembahasan_contoh}</div>
       </div>
     ` : ''}
