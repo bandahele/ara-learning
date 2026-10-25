@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#6657e8">
+<meta name="theme-color" content="#11121b">
 <title>Ara Learning — Belajar & Bermain</title>
 <meta name="description" content="Dashboard belajar anak dengan materi, latihan soal, permainan edukasi, progres, dan musik.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@ button,input{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+button:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 .app{width:min(100%,1080px);margin:auto;min-height:100dvh;padding:0 18px 106px}
 .topbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
@@ -122,6 +122,22 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
 .modal-actions{display:flex;gap:8px;margin-top:15px}.modal-actions button{flex:1;border:0;border-radius:12px;padding:11px;font-size:11px;font-weight:900}
 .cancel{background:var(--surface2);color:var(--primary)}.confirm{background:var(--primary);color:white}
 .page-footer{text-align:center;font-size:9px;color:var(--muted);padding:24px 0 0}
+
+/* Tambahan style untuk list sub-materi interaktif & keren */
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 16px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--text); padding: 9px 16px; border-radius: 14px; font-size: 11px; font-weight: 800; white-space: nowrap; transition: .15s; flex-shrink: 0; }
+.chip.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 4px 15px rgba(106,92,231,.3); }
+
+.submateri-list { display: grid; gap: 10px; }
+.submateri-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; cursor: pointer; transition: transform .15s, box-shadow .15s; text-align: left; width: 100%; color: var(--text); }
+.submateri-item:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--primary); }
+.submateri-info h4 { font-size: 13px; font-weight: 900; margin: 0 0 3px; }
+.submateri-info span { font-size: 9px; color: var(--muted); font-weight: 800; }
+.back-button { border: 1px solid var(--line); background: var(--surface2); color: var(--text); padding: 9px 15px; border-radius: 12px; font-size: 11px; font-weight: 900; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; cursor: pointer; transition: background .15s; }
+.back-button:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.content-box{background:var(--surface2);border-radius:14px;padding:14px;font-size:11px;line-height:1.6;margin-top:14px;color:var(--text)}
+
 @media(min-width:700px){
  .app{padding-left:28px;padding-right:28px;padding-bottom:35px}
  .topbar{height:82px}
@@ -139,24 +155,9 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
  .stat{padding:10px 8px;gap:7px}.stat-icon{width:31px;height:31px;font-size:16px}.stat strong{font-size:16px}.stat small{font-size:8px}
  .tile{padding:12px}.tile-emoji{width:39px;height:39px;font-size:21px}
 }
-@media(orientation:landscape) and (max-height:560px){
- .app{max-width:1200px;padding-bottom:30px}
- .topbar{height:58px}
- .welcome{margin:4px 0 12px}
- .mascot{font-size:40px}
- .hero{padding:16px 22px}
- .hero h2{font-size:19px}
- .hero-emoji{font-size:42px}
- .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
- .bottom-nav{width:min(100%,760px);bottom:7px;border-radius:18px;padding:5px 10px}
- .nav-item{flex-direction:row;gap:7px;padding:9px}
- .nav-item .nav-emoji{font-size:17px}
- .two-col{grid-template-columns:1fr 1fr}
-}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body>
+<body class="dark">
 <div class="app">
   <header class="topbar">
     <a class="brand" href="#" aria-label="Ara Learning, beranda" data-go="utama">
@@ -164,7 +165,7 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
       <span><span class="brand-title">Ara Learning</span><span class="brand-sub" style="display:block">LEARN · PLAY · GROW</span></span>
     </a>
     <div class="top-actions">
-      <button class="icon-button" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" title="Mode terang/gelap">🌙</button>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" title="Mode terang/gelap">☀️</button>
       <div class="profile-dot" aria-label="Profil anak">🌸</div>
     </div>
   </header>
@@ -186,14 +187,100 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
       <div class="stat"><div class="stat-icon green">🎯</div><div><strong id="quizzesDone">0</strong><small>Latihan selesai</small></div></div>
     </div>
 
-    <div class="section-head"><div><h2>Progres Pembelajaran 📈</h2><p>Persentase akan mengikuti data yang nanti dihubungkan.</p></div></div>
-    <div class="card">
-      <div class="progress-list">
-        <div class="progress-row"><div class="subject-icon pink">🇬🇧</div><div><div class="subject-name">Bahasa Inggris</div><div class="subject-desc">Vocabulary · Reading</div><div class="bar"><span style="width:0%;background:var(--pink)"></span></div></div><span class="percent">0%</span></div>
-        <div class="progress-row"><div class="subject-icon blue">🧮</div><div><div class="subject-name">Matematika</div><div class="subject-desc">Angka · Logika</div><div class="bar"><span style="width:0%;background:var(--cyan)"></span></div></div><span class="percent">0%</span></div>
-        <div class="progress-row"><div class="subject-icon yellow">🧠</div><div><div class="subject-name">Tes Potensi Akademik</div><div class="subject-desc">Pola · Penalaran</div><div class="bar"><span style="width:0%;background:var(--yellow)"></span></div></div><span class="percent">0%</span></div>
+    <div class="section-head">
+      <div><h2>Progres Pembelajaran 📈</h2><p>Analisis rinci status pengerjaan dan skor latihan soal.</p></div>
+    </div>
+
+    <!-- Ringkasan Statistik Performa Baru -->
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px;">
+      <div class="stat" style="background: var(--surface2); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px;">
+        <div class="stat-icon purple" style="font-size: 20px;">📊</div>
+        <div>
+          <strong id="avgScoreDisplay" style="font-size: 17px;">0</strong>
+          <small>Rata-Rata Skor Sementara</small>
+        </div>
       </div>
-      <div class="note">ℹ️ Progres saat ini adalah tampilan awal. Data nilai otomatis akan aktif setelah file soal terhubung dengan sistem pencatatan.</div>
+      <div class="stat" style="background: var(--surface2); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px;">
+        <div class="stat-icon green" style="font-size: 20px;">🎯</div>
+        <div>
+          <strong id="totalProgressDisplay">0 / 0</strong>
+          <small>Total Paket Dikerjakan</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="box-shadow: var(--shadow);">
+      <div class="progress-list" style="gap: 18px;">
+        
+        <!-- Bahasa Inggris -->
+        <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="subject-icon pink" style="width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;">🇬🇧</div>
+              <div>
+                <div class="subject-name" style="font-size: 12px; font-weight: 900;">Bahasa Inggris</div>
+                <div class="subject-desc" id="meta-english" style="font-size: 9px; color: var(--muted); margin-top: 1px;">Memuat data paket...</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span class="percent" id="pct-english" style="font-size: 13px; font-weight: 900; color: var(--primary);">0%</span>
+            </div>
+          </div>
+          <div class="bar" style="height: 8px; background: var(--line); border-radius: 20px; overflow: hidden; margin-bottom: 8px;">
+            <span id="bar-english" style="display: block; height: 100%; width: 0%; background: var(--pink); border-radius: 20px; transition: width 0.4s ease;"></span>
+          </div>
+          <div id="detail-english" style="font-size: 10px; color: var(--muted); background: var(--surface); padding: 8px 10px; border-radius: 10px; border: 1px dashed var(--line);">
+            ⏳ Menunggu sinkronisasi data...
+          </div>
+        </div>
+
+        <!-- Matematika -->
+        <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="subject-icon blue" style="width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;">🧮</div>
+              <div>
+                <div class="subject-name" style="font-size: 12px; font-weight: 900;">Matematika</div>
+                <div class="subject-desc" id="meta-math" style="font-size: 9px; color: var(--muted); margin-top: 1px;">Memuat data paket...</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span class="percent" id="pct-math" style="font-size: 13px; font-weight: 900; color: var(--primary);">0%</span>
+            </div>
+          </div>
+          <div class="bar" style="height: 8px; background: var(--line); border-radius: 20px; overflow: hidden; margin-bottom: 8px;">
+            <span id="bar-math" style="display: block; height: 100%; width: 0%; background: var(--cyan); border-radius: 20px; transition: width 0.4s ease;"></span>
+          </div>
+          <div id="detail-math" style="font-size: 10px; color: var(--muted); background: var(--surface); padding: 8px 10px; border-radius: 10px; border: 1px dashed var(--line);">
+            ⏳ Menunggu sinkronisasi data...
+          </div>
+        </div>
+
+        <!-- Tes Potensi Akademik -->
+        <div class="subject-card-item" style="padding: 12px; border-radius: 16px; background: var(--surface2); border: 1px solid var(--line);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="subject-icon yellow" style="width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;">🧠</div>
+              <div>
+                <div class="subject-name" style="font-size: 12px; font-weight: 900;">Tes Potensi Akademik</div>
+                <div class="subject-desc" id="meta-tpa" style="font-size: 9px; color: var(--muted); margin-top: 1px;">Memuat data paket...</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span class="percent" id="pct-tpa" style="font-size: 13px; font-weight: 900; color: var(--primary);">0%</span>
+            </div>
+          </div>
+          <div class="bar" style="height: 8px; background: var(--line); border-radius: 20px; overflow: hidden; margin-bottom: 8px;">
+            <span id="bar-tpa" style="display: block; height: 100%; width: 0%; background: var(--yellow); border-radius: 20px; transition: width 0.4s ease;"></span>
+          </div>
+          <div id="detail-tpa" style="font-size: 10px; color: var(--muted); background: var(--surface); padding: 8px 10px; border-radius: 10px; border: 1px dashed var(--line);">
+            ⏳ Menunggu sinkronisasi data...
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note" style="margin-top: 14px;">💡 <b>Tips:</b> Klik menu latihan di bawah untuk menyelesaikan soal yang belum dikerjakan dan tingkatkan skor terbaikmu!</div>
     </div>
 
     <div class="section-head"><div><h2>Rencana Hari Ini 🗓️</h2><p>Target kecil, semangat besar!</p></div><button class="small-link" type="button" data-modal="rencana">Atur target</button></div>
@@ -211,20 +298,41 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
       <div class="music-note">Pilih file audio yang tersimpan di perangkat. Musik tidak disediakan otomatis oleh halaman ini.</div>
     </div>
   </section>
-
-  <!-- MENU 2: MATERI -->
+  
+  <!-- MENU 2: MATERI (Kini Interaktif Per Sub-Materi) -->
   <section class="page" id="page-materi" data-page="materi">
-    <div class="welcome"><div><div class="kicker">LEARN SOMETHING NEW 📚</div><h1>Ruang Materi</h1><p class="lead">Pilih pelajaran favoritmu. Tautan materi tambahan bisa dipasang kapan saja.</p></div><div class="mascot">📖</div></div>
-    <div class="section-head"><div><h2>Mata Pelajaran</h2><p>Belajar dengan cara yang menyenangkan.</p></div></div>
-    <div class="tile-grid">
-      <a class="tile" href="https://bandahele.github.io/ara-learning/english.html"><div class="tile-top"><div class="tile-emoji pink">🇬🇧</div><span class="tile-arrow">↗</span></div><h3>Bahasa Inggris</h3><p>Kosakata, membaca, dan memahami kalimat.</p><span class="tag">Buka pembelajaran</span></a>
-      <a class="tile" href="https://bandahele.github.io/ara-learning/math.html"><div class="tile-top"><div class="tile-emoji blue">🧮</div><span class="tile-arrow">↗</span></div><h3>Matematika</h3><p>Angka, hitungan, pola, dan logika.</p><span class="tag">Buka pembelajaran</span></a>
-      <a class="tile" href="https://bandahele.github.io/ara-learning/tpa.html"><div class="tile-top"><div class="tile-emoji yellow">🧠</div><span class="tile-arrow">↗</span></div><h3>Tes Potensi Akademik</h3><p>Latihan penalaran, pola, dan konsentrasi.</p><span class="tag">Buka pembelajaran</span></a>
-      <button class="tile" type="button" data-link="ipa"><div class="tile-top"><div class="tile-emoji green">🔬</div><span class="tile-arrow">＋</span></div><h3>IPA & Sains</h3><p>Hewan, tumbuhan, tubuh, dan alam.</p><span class="tag">Tautan menyusul</span></button>
-      <button class="tile" type="button" data-link="indonesia"><div class="tile-top"><div class="tile-emoji orange">✍️</div><span class="tile-arrow">＋</span></div><h3>Bahasa Indonesia</h3><p>Membaca, menulis, cerita, dan kosakata.</p><span class="tag">Tautan menyusul</span></button>
-      <button class="tile" type="button" data-link="umum"><div class="tile-top"><div class="tile-emoji purple">🌍</div><span class="tile-arrow">＋</span></div><h3>Pengetahuan Umum</h3><p>Budaya, lingkungan, dan dunia sekitar.</p><span class="tag">Tautan menyusul</span></button>
+    <div class="welcome">
+      <div>
+        <div class="kicker">LEARN SOMETHING NEW 📚</div>
+        <h1>Ruang Materi</h1>
+        <p class="lead">Pilih kategori mapel, lalu klik sub-materi untuk mulai belajar.</p>
+      </div>
+      <div class="mascot">📖</div>
     </div>
-    <div class="note">💡 Untuk menambahkan materi baru, isi URL-nya pada bagian <b>APP_LINKS</b> di kode JavaScript paling bawah.</div>
+
+    <!-- Pilihan Kategori Sheet (Mapel) -->
+    <div class="section-head"><div><h2>Pilih Kategori Mapel</h2></div></div>
+    <div class="chips" id="sheetChips">
+      <button class="chip active" type="button">Memuat kategori...</button>
+    </div>
+
+    <!-- Tampilan 1: Daftar Sub-Materi -->
+    <div id="listView">
+      <div class="section-head"><div id="listCategoryTitle"><h2>Daftar Sub-Materi</h2></div></div>
+      <div id="submateriListContainer" class="submateri-list">
+        <div class="note">⏳ Sedang memuat daftar materi...</div>
+      </div>
+    </div>
+
+    <!-- Tampilan 2: Detail Sub-Materi (Awalnya Disembunyikan) -->
+    <div id="detailView" style="display: none;">
+      <button class="back-button" type="button" id="backToListBtn">← Kembali ke Daftar Materi</button>
+      <div class="card" id="detailCardContainer" style="padding: 20px;">
+        <!-- Konten detail sub-materi dimuat di sini -->
+      </div>
+    </div>
+
+    <div class="note" style="margin-top: 20px;">💡 Klik salah satu judul sub-materi di atas untuk membuka penjelasan lengkap beserta contoh soalnya.</div>
   </section>
 
   <!-- MENU 3: SOAL -->
@@ -263,7 +371,7 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
   <button class="nav-item active" type="button" data-switch="utama"><span class="nav-emoji">⌂</span><span>Menu Utama</span></button>
   <button class="nav-item" type="button" data-switch="materi"><span class="nav-emoji">📚</span><span>Materi</span></button>
   <button class="nav-item" type="button" data-switch="soal"><span class="nav-emoji">✏️</span><span>Soal</span></button>
-  <button class="nav-item" type="button" data-switch="games"><span class="nav-emoji">🎮</span><span>Games</span></button>
+  <button class="nav-item" type="button" onclick="location.href='games.html'"><span class="nav-emoji">🎮</span><span>Games</span></button>
 </nav>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -272,29 +380,16 @@ body.dark .music-card{background:linear-gradient(135deg,#352d25,#382333);border-
 </div>
 
 <script>
-/* =========================================================
-   PUSAT PENGATURAN LINK
-   Isi URL untuk materi/game tambahan saat sudah tersedia.
-   Tiga URL soal lama dipertahankan di kartu Materi dan Soal.
-   ========================================================= */
 const APP_LINKS = {
-  // Materi tambahan
-  ipa: "",
-  indonesia: "",
-  umum: "",
-  // Game tambahan
-  susunkata: "",
-  tebakgambar: "",
-  puzzle: "",
-  englishgame: "",
-  // Halaman tambahan jika nanti dibuat
-  laporan: ""
+  ipa: "", indonesia: "", umum: "",
+  susunkata: "", tebakgambar: "", puzzle: "", englishgame: "", laporan: ""
 };
 
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const modalBg = $("#modalBg");
 let currentAction = null;
+
 function showToast(text){
   const t=$("#toast");t.textContent=text;t.classList.add("show");
   clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),2500);
@@ -338,79 +433,294 @@ $$("[data-modal]").forEach(el=>el.addEventListener("click",()=>{
   openModal(...data);
 }));
 
-// Mode gelap disimpan pada perangkat.
-const themeToggle=$("#themeToggle");
-function setTheme(dark){
-  document.body.classList.toggle("dark",dark);
-  themeToggle.textContent=dark?"☀️":"🌙";
-  themeToggle.setAttribute("aria-label",dark?"Aktifkan mode terang":"Aktifkan mode gelap");
-  document.querySelector('meta[name="theme-color"]').content=dark?"#11121b":"#6657e8";
-  try{localStorage.setItem("ara-learning-theme",dark?"dark":"light")}catch(e){}
+/* =========================================================
+   PENGHUBUNG API & RENDER ANALISIS RINCI LATIHAN SOAL
+   ========================================================= */
+const QUIZ_ENDPOINTS = {
+  english: {
+    name: "Bahasa Inggris",
+    url: "https://script.google.com/macros/s/AKfycbzjP56ObVxo62m-7LleAnHoTKSX5q4BY49a3SIMjTh6CsiGIw8NflbygrOiQ04s-zoC/exec?action=list"
+  },
+  math: {
+    name: "Matematika",
+    url: "https://script.google.com/macros/s/AKfycbyVx1uzpBdM982o9NugeSs6Q-dJRYDVSuzB0iti5RyPnpH7T1YM74T5NeYnRcGFLsuqrQ/exec?action=list"
+  },
+  tpa: {
+    name: "Tes Potensi Akademik",
+    url: "https://script.google.com/macros/s/AKfycbxav08HVgJ-qHT57kh2dYqV9GWsJspddX3QP3ChD2ApnaNnySLhmvI0Kyjqqgwx4MUCsw/exec?action=list"
+  }
+};
+
+async function loadDetailedQuizAnalytics() {
+  let grandTotalPackages = 0;
+  let grandTotalCompleted = 0;
+  let allScoresList = [];
+
+  for (const [subjectKey, config] of Object.entries(QUIZ_ENDPOINTS)) {
+    const barEl = $(`#bar-${subjectKey}`);
+    const pctEl = $(`#pct-${subjectKey}`);
+    const metaEl = $(`#meta-${subjectKey}`);
+    const detailEl = $(`#detail-${subjectKey}`);
+
+    try {
+      const response = await fetch(config.url);
+      const resJson = await response.json();
+
+      if (resJson.status === "success" && Array.isArray(resJson.data)) {
+        const packages = resJson.data;
+        const totalPkg = packages.length;
+        grandTotalPackages += totalPkg;
+
+        const completedPackages = packages.filter(p => p.highScore !== null);
+        const uncompletedPackages = packages.filter(p => p.highScore === null);
+        grandTotalCompleted += completedPackages.length;
+
+        completedPackages.forEach(p => allScoresList.push(p.highScore));
+
+        const subjectPercent = totalPkg > 0 ? Math.round((completedPackages.length / totalPkg) * 100) : 0;
+        
+        metaEl.textContent = `${completedPackages.length} dari ${totalPkg} paket selesai`;
+        pctEl.textContent = `${subjectPercent}%`;
+        barEl.style.width = `${subjectPercent}%`;
+
+        let detailHtml = "";
+        if (totalPkg === 0) {
+          detailHtml = `<span>⚠️ Belum ada paket soal.</span>`;
+        } else if (uncompletedPackages.length === 0) {
+          detailHtml = `<span style="color: var(--green); font-weight: 800;">🎉 Sempurna! Semua paket selesai.</span>`;
+        } else {
+          const uncompletedNames = uncompletedPackages.map(p => `<b style="color: var(--text);">${p.title}</b>`).join(", ");
+          detailHtml = `<span><b>Belum dikerjakan:</b> ${uncompletedNames}</span>`;
+        }
+        detailEl.innerHTML = detailHtml;
+      }
+    } catch (err) {
+      console.warn(`Gagal memuat analisis untuk ${subjectKey}:`, err);
+    }
+  }
+
+  let averageScore = 0;
+  if (allScoresList.length > 0) {
+    const sumScores = allScoresList.reduce((a, b) => a + b, 0);
+    averageScore = Math.round(sumScores / allScoresList.length);
+  }
+
+  $("#avgScoreDisplay").textContent = allScoresList.length > 0 ? averageScore : "-";
+  $("#totalProgressDisplay").textContent = `${grandTotalCompleted} / ${grandTotalPackages}`;
+  $("#quizzesDone").textContent = grandTotalCompleted;
+  $("#lessonsDone").textContent = grandTotalCompleted;
+  if(grandTotalCompleted > 0) {
+    $("#stars").textContent = String(5 + (grandTotalCompleted * 2));
+  }
 }
-let savedTheme="light";try{savedTheme=localStorage.getItem("ara-learning-theme")||"light"}catch(e){}
-setTheme(savedTheme==="dark");
-themeToggle.addEventListener("click",()=>setTheme(!document.body.classList.contains("dark")));
 
-// Pemutar musik lokal: pengguna memilih audio sendiri.
-const audio=$("#studyAudio"),fileInput=$("#musicFile");
-$("#chooseMusic").addEventListener("click",()=>fileInput.click());
-fileInput.addEventListener("change",()=>{
-  const f=fileInput.files && fileInput.files[0];if(!f)return;
-  if(audio.dataset.objectUrl)URL.revokeObjectURL(audio.dataset.objectUrl);
-  const url=URL.createObjectURL(f);audio.src=url;audio.dataset.objectUrl=url;
-  $("#musicFilename").textContent=f.name;$("#playMusic").textContent="▶";$("#musicTime").textContent="00:00";
-});
-$("#playMusic").addEventListener("click",async()=>{
-  if(!audio.src){showToast("Pilih file musik terlebih dahulu.");return}
-  if(audio.paused){try{await audio.play();$("#playMusic").textContent="Ⅱ"}catch(e){showToast("File musik tidak dapat diputar.")}}
-  else{audio.pause();$("#playMusic").textContent="▶"}
-});
-audio.addEventListener("ended",()=>$("#playMusic").textContent="▶");
-audio.addEventListener("timeupdate",()=>{
-  if(audio.duration){$("#musicSeek").value=(audio.currentTime/audio.duration)*100;$("#musicTime").textContent=formatTime(audio.currentTime)}
-});
-$("#musicSeek").addEventListener("input",()=>{
-  if(audio.duration)audio.currentTime=(Number($("#musicSeek").value)/100)*audio.duration;
-});
-function formatTime(s){if(!Number.isFinite(s))return"00:00";return String(Math.floor(s/60)).padStart(2,"0")+":"+String(Math.floor(s%60)).padStart(2,"0")}
+/* =========================================================
+   PENGHUBUNG API MATERI PER SUB-MATERI (INTERAKTIF)
+   ========================================================= */
+const MATERI_API_URL = "https://script.google.com/macros/s/AKfycbwpxM7UaihG-S0Xf4QHq7QYv618hcJ5E0S1t9WLMXI4Xz6z1hCSNwGZTQZkEF3aSdQ/exec";
+let cachedMateriData = {};
 
-// Game mini 1: berhitung ceria.
+async function loadMateriCategories() {
+  const chipsContainer = $("#sheetChips");
+  try {
+    const res = await fetch(`${MATERI_API_URL}?action=list`);
+    const json = await res.json();
+
+    if(json.status === "success" && Array.isArray(json.data) && json.data.length > 0) {
+      chipsContainer.innerHTML = "";
+      json.data.forEach((cat, index) => {
+        const btn = document.createElement("button");
+        btn.className = `chip ${index === 0 ? 'active' : ''}`;
+        btn.textContent = cat.title;
+        btn.type = "button";
+        
+        btn.addEventListener("click", () => {
+          $$(".chip", chipsContainer).forEach(c => c.classList.remove("active"));
+          btn.classList.add("active");
+          showListView();
+          fetchAndShowSubmateriList(cat.sheetId, cat.title);
+        });
+        
+        chipsContainer.appendChild(btn);
+      });
+
+      fetchAndShowSubmateriList(json.data[0].sheetId, json.data[0].title);
+    } else {
+      chipsContainer.innerHTML = `<span style="font-size:11px;color:var(--muted)">Tidak ada kategori materi.</span>`;
+    }
+  } catch (err) {
+    console.error(err);
+    chipsContainer.innerHTML = `<span style="font-size:11px;color:var(--pink)">Gagal memuat kategori.</span>`;
+  }
+}
+
+async function fetchAndShowSubmateriList(sheetName, categoryTitle) {
+  const container = $("#submateriListContainer");
+  $("#listCategoryTitle").innerHTML = `<h2>Daftar Materi: ${categoryTitle}</h2>`;
+  container.innerHTML = `<div class="note">⏳ Sedang memuat sub-materi...</div>`;
+
+  try {
+    let items = cachedMateriData[sheetName];
+    if (!items) {
+      const res = await fetch(`${MATERI_API_URL}?action=content&sheet=${encodeURIComponent(sheetName)}`);
+      const json = await res.json();
+      if(json.status === "success" && Array.isArray(json.data)) {
+        items = json.data;
+        cachedMateriData[sheetName] = items;
+      } else {
+        container.innerHTML = `<div class="note">Belum ada rincian materi di kategori ini.</div>`;
+        return;
+      }
+    }
+
+    if(items.length === 0) {
+      container.innerHTML = `<div class="note">Belum ada sub-materi yang tersedia.</div>`;
+      return;
+    }
+
+    container.innerHTML = "";
+    items.forEach((item, index) => {
+      const btn = document.createElement("button");
+      btn.className = "submateri-item";
+      btn.type = "button";
+      btn.innerHTML = `
+        <div class="submateri-info">
+          <h4>${index + 1}. ${item.sub_materi}</h4>
+          <span>Tingkat: ${item.tingkat || 'Umum'}</span>
+        </div>
+        <span style="font-size:16px; color:var(--primary);">→</span>
+      `;
+      btn.addEventListener("click", () => showDetailView(item));
+      container.appendChild(btn);
+    });
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<div class="note" style="color:var(--pink);">⚠️ Gagal memuat daftar sub-materi.</div>`;
+  }
+}
+
+function showListView() {
+  $("#listView").style.display = "block";
+  $("#detailView").style.display = "none";
+}
+
+function showDetailView(item) {
+  $("#listView").style.display = "none";
+  $("#detailView").style.display = "block";
+
+  const detailContainer = $("#detailCardContainer");
+  detailContainer.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+      <h2 style="font-size:18px; margin:0; font-weight:900; color:var(--primary);">${item.sub_materi}</h2>
+      <span style="background:var(--surface2); color:var(--primary); font-size:10px; padding:5px 10px; border-radius:9px; font-weight:800;">${item.tingkat || 'Umum'}</span>
+    </div>
+
+    <div style="font-size:12px; line-height:1.7; color:var(--text); margin-top:10px; white-space:pre-line;">
+      ${item.penjelasan || 'Tidak ada penjelasan.'}
+    </div>
+
+    ${item.contoh_soal ? `
+      <div class="content-box">
+        <strong style="display:block; margin-bottom:6px; color:var(--primary);">💡 Contoh Soal:</strong>
+        <div style="white-space:pre-line;">${item.contoh_soal}</div>
+      </div>
+    ` : ''}
+
+    ${item.pembahasan_contoh ? `
+      <div class="content-box" style="background:var(--surface); border:1px dashed var(--line);">
+        <strong style="display:block; margin-bottom:6px; color:var(--green);">✅ Pembahasan:</strong>
+        <div style="white-space:pre-line;">${item.pembahasan_contoh}</div>
+      </div>
+    ` : ''}
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+$("#backToListBtn").addEventListener("click", showListView);
+
+// Inisialisasi Default Mode Gelap
+const themeToggle = $("#themeToggle");
+function setTheme(dark){
+  document.body.classList.toggle("dark", dark);
+  themeToggle.textContent = dark ? "☀️" : "🌙";
+  themeToggle.setAttribute("aria-label", dark ? "Aktifkan mode terang" : "Aktifkan mode gelap");
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#11121b" : "#6657e8";
+  try{ localStorage.setItem("ara-learning-theme", dark ? "dark" : "light"); }catch(e){}
+}
+
+let savedTheme = "dark";
+try{ savedTheme = localStorage.getItem("ara-learning-theme") || "dark"; }catch(e){}
+setTheme(savedTheme === "dark");
+
+themeToggle.addEventListener("click", () => setTheme(!document.body.classList.contains("dark")));
+
+// Pemutar Musik & Game Mini
+const audio = $("#studyAudio"), fileInput = $("#musicFile");
+$("#chooseMusic").addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", () => {
+  const f = fileInput.files && fileInput.files[0]; if(!f) return;
+  if(audio.dataset.objectUrl) URL.revokeObjectURL(audio.dataset.objectUrl);
+  const url = URL.createObjectURL(f); audio.src = url; audio.dataset.objectUrl = url;
+  $("#musicFilename").textContent = f.name; $("#playMusic").textContent = "▶"; $("#musicTime").textContent = "00:00";
+});
+$("#playMusic").addEventListener("click", async () => {
+  if(!audio.src){ showToast("Pilih file musik terlebih dahulu."); return; }
+  if(audio.paused){ try{ await audio.play(); $("#playMusic").textContent = "Ⅱ"; }catch(e){ showToast("File musik tidak dapat diputar."); } }
+  else{ audio.pause(); $("#playMusic").textContent = "▶"; }
+});
+audio.addEventListener("ended", () => $("#playMusic").textContent = "▶");
+audio.addEventListener("timeupdate", () => {
+  if(audio.duration){ $("#musicSeek").value = (audio.currentTime/audio.duration)*100; $("#musicTime").textContent = formatTime(audio.currentTime); }
+});
+$("#musicSeek").addEventListener("input", () => {
+  if(audio.duration) audio.currentTime = (Number($("#musicSeek").value)/100)*audio.duration;
+});
+function formatTime(s){ if(!Number.isFinite(s)) return "00:00"; return String(Math.floor(s/60)).padStart(2,"0")+":"+String(Math.floor(s%60)).padStart(2,"0"); }
+
 function startMathGame(){
-  let a=Math.floor(Math.random()*9)+1,b=Math.floor(Math.random()*9)+1,answer=a+b;
-  const options=[answer,answer+1,Math.max(1,answer-1)].sort(()=>Math.random()-.5);
-  const html=`<div style="margin-top:14px;padding:14px;background:var(--surface2);border-radius:15px"><div style="font-size:25px;font-weight:900;text-align:center;margin-bottom:12px">${a} + ${b} = ?</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${options.map(n=>`<button type="button" class="math-option" data-answer="${n}" style="border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);color:var(--text);font-weight:900">${n}</button>`).join("")}</div><p id="gameFeedback" style="text-align:center;margin:10px 0 0;font-size:11px;color:var(--muted)">Pilih jawaban yang benar!</p></div>`;
-  openModal("🍎","Berhitung Ceria","Jawab soal matematika sederhana ini.",null,html);
-  $$(".math-option",$("#gameArea")).forEach(btn=>btn.addEventListener("click",()=>{
-    const feedback=$("#gameFeedback");
-    if(Number(btn.dataset.answer)===answer){feedback.textContent="Hebat! Jawabanmu benar 🎉";feedback.style.color="var(--green)";btn.style.borderColor="var(--green)";$("#stars").textContent=String(Number($("#stars").textContent)+1);$("#modalAction").textContent="Main lagi";currentAction=()=>startMathGame()}
-    else{feedback.textContent="Belum tepat, coba hitung lagi ya 😊";feedback.style.color="var(--pink)"}
+  let a = Math.floor(Math.random()*9)+1, b = Math.floor(Math.random()*9)+1, answer = a+b;
+  const options = [answer, answer+1, Math.max(1, answer-1)].sort(() => Math.random()-.5);
+  const html = `<div style="margin-top:14px;padding:14px;background:var(--surface2);border-radius:15px"><div style="font-size:25px;font-weight:900;text-align:center;margin-bottom:12px">${a} + ${b} = ?</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${options.map(n=>`<button type="button" class="math-option" data-answer="${n}" style="border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);color:var(--text);font-weight:900">${n}</button>`).join("")}</div><p id="gameFeedback" style="text-align:center;margin:10px 0 0;font-size:11px;color:var(--muted)">Pilih jawaban yang benar!</p></div>`;
+  openModal("🍎", "Berhitung Ceria", "Jawab soal matematika sederhana ini.", null, html);
+  $$(".math-option", $("#gameArea")).forEach(btn => btn.addEventListener("click", () => {
+    const feedback = $("#gameFeedback");
+    if(Number(btn.dataset.answer) === answer){ feedback.textContent = "Hebat! Jawabanmu benar 🎉"; feedback.style.color = "var(--green)"; btn.style.borderColor = "var(--green)"; $("#stars").textContent = String(Number($("#stars").textContent)+1); $("#modalAction").textContent = "Main lagi"; currentAction = () => startMathGame(); }
+    else{ feedback.textContent = "Belum tepat, coba hitung lagi ya 😊"; feedback.style.color = "var(--pink)"; }
   }));
 }
 
-// Game mini 2: kartu memori dengan pasangan emoji.
 function startMemoryGame(){
-  const symbols=["🐱","🍎","🚀","🌈"];
-  const deck=[...symbols,...symbols].sort(()=>Math.random()-.5);
-  const html=`<div id="memoryBoard" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px">${deck.map((s,i)=>`<button type="button" data-index="${i}" data-symbol="${s}" style="aspect-ratio:1;border:1px solid var(--line);border-radius:13px;background:var(--surface2);font-size:22px;color:var(--text)">?</button>`).join("")}</div><p id="memoryFeedback" style="font-size:11px;text-align:center;color:var(--muted);margin:12px 0 0">Temukan semua pasangan yang sama!</p>`;
-  openModal("🃏","Kartu Memori","Buka dua kartu dan cari pasangan emoji yang sama.",null,html);
-  let first=null,lock=false,matched=0;
-  $$("#memoryBoard button").forEach(btn=>btn.addEventListener("click",()=>{
-    if(lock||btn.dataset.matched==="1"||btn===first)return;
-    btn.textContent=btn.dataset.symbol;btn.style.background="var(--surface)";
-    if(!first){first=btn;return}
-    if(first.dataset.symbol===btn.dataset.symbol){
-      first.dataset.matched="1";btn.dataset.matched="1";first.style.borderColor="var(--green)";btn.style.borderColor="var(--green)";first=null;matched+=2;
-      $("#memoryFeedback").textContent=matched===8?"Sempurna! Semua pasangan ditemukan 🎉":"Benar! Cari pasangan berikutnya.";
-      if(matched===8){$("#stars").textContent=String(Number($("#stars").textContent)+2);$("#modalAction").textContent="Main lagi";currentAction=()=>startMemoryGame()}
+  const symbols = ["🐱", "🍎", "🚀", "🌈"];
+  const deck = [...symbols, ...symbols].sort(() => Math.random()-.5);
+  const html = `<div id="memoryBoard" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px">${deck.map((s,i)=>`<button type="button" data-index="${i}" data-symbol="${s}" style="aspect-ratio:1;border:1px solid var(--line);border-radius:13px;background:var(--surface2);font-size:22px;color:var(--text)">?</button>`).join("")}</div><p id="memoryFeedback" style="font-size:11px;text-align:center;color:var(--muted);margin:12px 0 0">Temukan semua pasangan yang sama!</p>`;
+  openModal("🃏", "Kartu Memori", "Buka dua kartu dan cari pasangan emoji yang sama.", null, html);
+  let first = null, lock = false, matched = 0;
+  $$("#memoryBoard button").forEach(btn => btn.addEventListener("click", () => {
+    if(lock || btn.dataset.matched === "1" || btn === first) return;
+    btn.textContent = btn.dataset.symbol; btn.style.background = "var(--surface)";
+    if(!first){ first = btn; return; }
+    if(first.dataset.symbol === btn.dataset.symbol){
+      first.dataset.matched = "1"; btn.dataset.matched = "1"; first.style.borderColor = "var(--green)"; btn.style.borderColor = "var(--green)"; first = null; matched += 2;
+      $("#memoryFeedback").textContent = matched === 8 ? "Sempurna! Semua pasangan ditemukan 🎉" : "Benar! Cari pasangan berikutnya.";
+      if(matched === 8){ $("#stars").textContent = String(Number($("#stars").textContent)+2); $("#modalAction").textContent = "Main lagi"; currentAction = () => startMemoryGame(); }
     }else{
-      lock=true;const prev=first;first=null;setTimeout(()=>{if(!modalBg.classList.contains("open"))return;prev.textContent="?";btn.textContent="?";prev.style.background="var(--surface2)";btn.style.background="var(--surface2)";lock=false},650)
+      lock = true; const prev = first; first = null;
+      setTimeout(() => { if(!modalBg.classList.contains("open")) return; prev.textContent = "?"; btn.textContent = "?"; prev.style.background = "var(--surface2)"; btn.style.background = "var(--surface2)"; lock = false; }, 650);
     }
   }));
 }
-$$("[data-game]").forEach(btn=>btn.addEventListener("click",()=>{
-  if(btn.dataset.game==="math")startMathGame();
-  if(btn.dataset.game==="memory")startMemoryGame();
+
+$$("[data-game]").forEach(btn => btn.addEventListener("click", () => {
+  if(btn.dataset.game === "math") startMathGame();
+  if(btn.dataset.game === "memory") startMemoryGame();
 }));
+
+// Panggil fungsi saat halaman siap
+document.addEventListener("DOMContentLoaded", () => {
+  loadDetailedQuizAnalytics();
+  loadMateriCategories();
+});
 </script>
 </body>
 </html>
