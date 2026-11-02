@@ -1,550 +1,1140 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎬 Movie Quiz Cinema</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandPurple: '#7c3aed',
-                        brandPink: '#ec4899',
-                        textMain: '#1e1b4b',
-                        textMuted: '#64748b'
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body {
-            background: #0f172a;
-            color: #f8fafc;
-            min-height: 100vh;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#05070f">
+<title>🎬 Movie Quiz Cinema</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --line: rgba(148,163,184,.14);
+    --line-strong: rgba(148,163,184,.28);
+    --txt: #e8eefc;
+    --txt-dim: #8b9ab8;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --emerald: #10b981;
+    --radius: 18px;
+}
+*,*::before,*::after{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ height:100%; }
+body{
+    margin:0; min-height:100dvh;
+    font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color:var(--txt);
+    background:
+        radial-gradient(1100px 620px at 6% -12%, rgba(124,58,237,.32), transparent 62%),
+        radial-gradient(900px 600px at 108% 2%,  rgba(236,72,153,.22), transparent 60%),
+        radial-gradient(900px 520px at 50% 118%, rgba(16,185,129,.14), transparent 66%),
+        #05070f;
+    background-attachment: fixed;
+    user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+    overflow-x: hidden;
+}
+.hidden{ display:none !important; }
+
+.app{
+    width:100%; max-width:1120px; margin:0 auto;
+    padding:14px; min-height:100dvh;
+    display:flex; flex-direction:column; gap:14px;
+}
+#list-sesi-section{ margin:auto; width:100%; max-width:760px; }
+#player-section{ margin:auto; width:100%; }
+
+.hero{ text-align:center; padding:6px 0 2px; }
+.hero-badge{
+    width:66px; height:66px; margin:0 auto 12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; border-radius:22px;
+    background:linear-gradient(145deg, rgba(139,92,246,.38), rgba(236,72,153,.22));
+    border:1px solid rgba(196,181,253,.35);
+    box-shadow:0 20px 44px -20px rgba(139,92,246,.9), inset 0 1px 0 rgba(255,255,255,.16);
+    animation: floaty 4s ease-in-out infinite;
+}
+@keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.hero h1{
+    margin:0 0 6px;
+    font-size:clamp(22px, 5.6vw, 34px); font-weight:900; letter-spacing:-.02em;
+    background:linear-gradient(100deg,#c4b5fd 0%, #f0abfc 45%, #67e8f9 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 8px 26px rgba(139,92,246,.35));
+}
+.hero p{ margin:0; font-size:12px; font-weight:700; color:var(--txt-dim); }
+
+.loading-box{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    padding:38px 0; font-size:12px; font-weight:800; color:var(--txt-dim);
+}
+.spinner{
+    width:20px; height:20px; border-radius:50%;
+    border:3px solid rgba(139,92,246,.25);
+    border-top-color:var(--purple);
+    animation:spin .8s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+.sesi-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(152px, 1fr));
+    gap:10px; margin-top:20px;
+}
+.sesi-card{
+    position:relative; display:flex; align-items:center; gap:11px;
+    padding:13px; border-radius:16px;
+    background:linear-gradient(160deg, rgba(30,41,59,.82), rgba(13,20,38,.94));
+    border:1px solid var(--line);
+    cursor:pointer; overflow:hidden;
+    transition:transform .2s cubic-bezier(.4,0,.2,1), border-color .2s, box-shadow .2s;
+    touch-action:manipulation;
+}
+.sesi-card::before{
+    content:""; position:absolute; inset:-40% -60% auto auto;
+    width:120px; height:120px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,92,246,.35), transparent 70%);
+    opacity:0; transition:opacity .25s;
+}
+.sesi-card:hover{ transform:translateY(-3px); border-color:rgba(139,92,246,.6); box-shadow:0 18px 34px -20px rgba(139,92,246,.95); }
+.sesi-card:hover::before{ opacity:1; }
+.sesi-card:active{ transform:scale(.975); }
+.sesi-card.done{
+    border-color:rgba(16,185,129,.45);
+    background:linear-gradient(160deg, rgba(6,78,59,.55), rgba(13,20,38,.94));
+}
+.sesi-num{
+    flex:0 0 auto; width:32px; height:32px; border-radius:11px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:900;
+    background:linear-gradient(145deg,#312e81,#4c1d95);
+    color:#c7d2fe; box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+.sesi-card.done .sesi-num{
+    background:linear-gradient(145deg,#059669,#34d399); color:#fff;
+}
+.sesi-info{ min-width:0; }
+.sesi-name{ font-size:12px; font-weight:900; color:#e2e8f0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sesi-sub{ font-size:9.5px; font-weight:800; margin-top:2px; color:var(--txt-dim); }
+.sesi-card.done .sesi-sub{ color:#34d399; }
+
+.player-layout{ display:grid; grid-template-columns:1fr; gap:12px; width:100%; }
+@media (min-width:900px), ((orientation:landscape) and (min-width:600px)){
+    .player-layout{ grid-template-columns: minmax(0,1fr) 340px; align-items:center; gap:16px; }
+}
+
+.video-col{ display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; width:100%; }
+.video-wrap{
+    position:relative; width:100%; aspect-ratio:16 / 9;
+    background:#000; border-radius:16px; overflow:hidden;
+    border:1px solid var(--line-strong);
+    box-shadow:0 30px 70px -34px rgba(0,0,0,.95), inset 0 0 0 1px rgba(255,255,255,.03);
+    touch-action:manipulation;
+}
+#video-container{ position:absolute; inset:0; z-index:1; background:#000; }
+#video-container iframe, #video-container video{
+    position:absolute; inset:0; width:100%; height:100%; border:0; display:block; background:#000;
+}
+#video-container video{ object-fit:contain; }
+
+.video-shield{ position:absolute; inset:0; z-index:2; background:transparent; cursor:default; }
+
+.video-overlay{
+    position:absolute; top:0; left:0; right:0; z-index:3;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px 12px;
+    background:linear-gradient(180deg, rgba(0,0,0,.78), rgba(0,0,0,0));
+    pointer-events:none; font-size:11px; font-weight:900;
+}
+.video-title{ color:#f1f5f9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 2px 8px rgba(0,0,0,.9); }
+.video-time{
+    flex:0 0 auto; padding:3px 9px; border-radius:99px;
+    background:rgba(15,23,42,.78); border:1px solid rgba(148,163,184,.3);
+    color:#c4b5fd; font-variant-numeric:tabular-nums; backdrop-filter:blur(6px);
+}
+.video-progress{
+    position:absolute; left:0; right:0; bottom:0; z-index:3; height:4px;
+    background:rgba(255,255,255,.14); pointer-events:none;
+}
+#bar-progress{
+    height:100%; width:0%;
+    background:linear-gradient(90deg,#8b5cf6,#ec4899);
+    border-radius:0 99px 99px 0; transition:width .35s linear;
+}
+.video-empty{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800; color:#64748b; background:#000;
+}
+
+@media (orientation:landscape) and (max-height:620px){
+    .app{ padding:8px; }
+    .video-wrap{ height: calc(100dvh - 16px); width: auto; max-width: 100%; }
+    .film-list{ max-height:86px; }
+}
+
+.controls{
+    display:flex; flex-direction:column; gap:10px; padding:13px;
+    border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(19,27,49,.94), rgba(9,14,28,.97));
+    border:1px solid var(--line);
+    box-shadow:0 30px 70px -36px #000, inset 0 1px 0 rgba(255,255,255,.045);
+    width:100%;
+}
+@media (orientation:landscape) and (max-height:620px){
+    .controls{ max-height: calc(100dvh - 16px); overflow-y:auto; }
+}
+.controls-head{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding-bottom:9px; border-bottom:1px solid var(--line);
+}
+.chip{ font-size:10.5px; font-weight:900; padding:5px 11px; border-radius:99px; white-space:nowrap; }
+.chip-sesi{ color:#c4b5fd; background:rgba(76,29,149,.55); border:1px solid rgba(139,92,246,.45); }
+.chip-count{ color:#cbd5e1; background:rgba(51,65,85,.55); border:1px solid var(--line-strong); }
+
+.film-block-title{
+    font-size:9.5px; font-weight:900; letter-spacing:.12em;
+    color:#64748b; text-transform:uppercase; margin-bottom:6px;
+}
+.film-list{
+    display:flex; flex-direction:column; gap:6px;
+    max-height:170px; overflow-y:auto; padding-right:4px;
+    scrollbar-width:thin; scrollbar-color:#334155 transparent;
+}
+.film-list::-webkit-scrollbar{ width:5px; }
+.film-list::-webkit-scrollbar-thumb{ background:#334155; border-radius:99px; }
+.film-item{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    width:100%; text-align:left; padding:9px 11px; border-radius:11px;
+    font-family:inherit; font-size:11px; font-weight:800; color:#cbd5e1;
+    background:rgba(15,23,42,.85); border:1px solid var(--line);
+    cursor:pointer; transition:transform .15s, background .15s, border-color .15s, color .15s;
+    touch-action:manipulation;
+}
+.film-item:active{ transform:scale(.975); }
+.film-name{ flex:1 1 auto; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.film-mark{ flex:0 0 auto; font-size:11px; }
+.film-item.active{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    border-color:transparent; color:#fff;
+    box-shadow:0 12px 24px -14px rgba(124,58,237,1);
+}
+.film-item.done{
+    background:rgba(6,78,59,.5); border-color:rgba(16,185,129,.45); color:#6ee7b7;
+}
+
+.control-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+
+.btn{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    width:100%; padding:11px 10px;
+    border:1px solid transparent; border-radius:12px;
+    font-family:inherit; font-size:11.5px; font-weight:900; color:#e8eefc;
+    cursor:pointer; transition:transform .15s, filter .15s, background .15s, box-shadow .15s;
+    touch-action:manipulation;
+}
+.btn:active{ transform:scale(.965); }
+.btn:disabled{ cursor:not-allowed; }
+.btn-ghost{
+    background:rgba(51,65,85,.55);
+    border-color:rgba(100,116,139,.28);
+    color:#cbd5e1;
+}
+.btn-ghost:hover:not(:disabled){ background:rgba(71,85,105,.75); }
+.btn-primary{
+    background:linear-gradient(135deg,#7c3aed,#a855f7); color:#fff;
+    box-shadow:0 14px 26px -14px rgba(124,58,237,1);
+}
+.btn-primary:hover:not(:disabled){ filter:brightness(1.1); }
+.btn-indigo{
+    background:rgba(49,46,129,.6); border-color:rgba(99,102,241,.4); color:#c7d2fe;
+}
+.btn-indigo:hover:not(:disabled){ background:rgba(67,56,202,.7); }
+
+/* Tombol CC */
+.btn-cc{
+    background:rgba(51,65,85,.55);
+    border-color:rgba(100,116,139,.28);
+    color:#94a3b8;
+}
+.btn-cc:hover:not(:disabled){ background:rgba(71,85,105,.75); }
+.btn-cc.on{
+    background:linear-gradient(135deg,#0891b2,#06b6d4);
+    border-color:transparent; color:#fff;
+    box-shadow:0 12px 24px -14px rgba(8,145,178,.9);
+}
+
+.btn-success{
+    background:linear-gradient(135deg,#059669,#34d399); color:#fff;
+    box-shadow:0 14px 26px -14px rgba(16,185,129,1);
+    animation:pulseGlow 1.8s ease-in-out infinite;
+}
+@keyframes pulseGlow{
+    0%,100%{ box-shadow:0 14px 26px -14px rgba(16,185,129,.9); }
+    50%{ box-shadow:0 14px 34px -10px rgba(16,185,129,1); }
+}
+.btn-done{
+    background:rgba(6,78,59,.5); border-color:rgba(16,185,129,.45);
+    color:#6ee7b7; cursor:default;
+}
+.btn-locked{
+    background:rgba(30,41,59,.7); color:#64748b; cursor:not-allowed;
+}
+.btn-pink{
+    background:linear-gradient(135deg,#db2777,#f472b6); color:#fff;
+    box-shadow:0 16px 30px -14px rgba(219,39,119,1);
+}
+.btn-pink:hover:not(:disabled){ filter:brightness(1.1); }
+
+#toast-container{
+    position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+    z-index:300; display:flex; flex-direction:column; gap:8px;
+    width:min(92vw, 430px); pointer-events:none;
+}
+.toast{
+    padding:11px 15px; border-radius:13px;
+    font-size:11.5px; font-weight:800; line-height:1.45;
+    background:rgba(15,23,42,.96); border:1px solid var(--line-strong);
+    box-shadow:0 22px 46px -20px #000; backdrop-filter:blur(10px);
+    animation:toastIn .28s cubic-bezier(.2,.9,.3,1.2);
+}
+.toast.success{ border-color:rgba(16,185,129,.6); color:#6ee7b7; }
+.toast.error{ border-color:rgba(244,63,94,.6); color:#fda4af; }
+.toast.info{ border-color:rgba(139,92,246,.6); color:#c4b5fd; }
+@keyframes toastIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
+
+.modal{
+    position:fixed; inset:0; z-index:200; display:none;
+    align-items:center; justify-content:center; padding:14px;
+    background:rgba(3,6,15,.82); backdrop-filter:blur(8px);
+}
+.modal.open{ display:flex; }
+.modal-card{
+    width:100%; max-width:450px; display:flex; flex-direction:column; gap:11px;
+    padding:16px; border-radius:20px;
+    background:linear-gradient(180deg,#141d35,#0a1020);
+    border:1px solid var(--line-strong);
+    box-shadow:0 46px 90px -34px #000;
+    animation:modalIn .24s ease;
+}
+@keyframes modalIn{ from{opacity:0; transform:scale(.96) translateY(10px);} to{opacity:1; transform:none;} }
+.modal-head{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding-bottom:10px; border-bottom:1px solid var(--line);
+    font-size:11.5px; font-weight:900; color:#c4b5fd;
+}
+.modal-close{
+    width:28px; height:28px; flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    border:0; border-radius:9px;
+    background:rgba(51,65,85,.6); color:#cbd5e1;
+    font-size:13px; font-weight:900; cursor:pointer;
+    transition:background .15s;
+}
+.modal-close:hover{ background:rgba(71,85,105,.85); }
+#input-kata{
+    width:100%; padding:11px 12px; border-radius:13px;
+    font-family:inherit; font-size:12px; font-weight:700; color:#e2e8f0;
+    background:rgba(2,6,16,.85); border:1px solid var(--line-strong);
+    resize:none; outline:none; transition:border-color .15s, box-shadow .15s;
+}
+#input-kata::placeholder{ color:#526078; }
+#input-kata:focus{ border-color:rgba(139,92,246,.75); box-shadow:0 0 0 3px rgba(139,92,246,.18); }
+.hasil-kamus{
+    display:flex; flex-direction:column; gap:7px;
+    padding:12px; border-radius:13px;
+    background:rgba(2,6,16,.85); border:1px solid var(--line);
+    max-height:190px; overflow-y:auto; font-size:12px;
+    animation:toastIn .22s ease;
+}
+.hasil-label{ font-size:9.5px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.hasil-en{ color:#c4b5fd; font-style:italic; font-weight:800; }
+.hasil-id{ color:#a7f3d0; font-weight:900; line-height:1.55; }
+.hasil-sep{ height:1px; background:var(--line); }
+</style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-2 sm:p-4 font-sans" oncontextmenu="return false;">
 
-<!-- WADAH UTAMA -->
-<div class="w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-2xl relative flex flex-col gap-3">
+<body oncontextmenu="return false;">
 
-    <!-- HALAMAN UTAMA: DAFTAR SESI -->
-    <section id="list-sesi-section" class="flex flex-col gap-3 p-4">
-        <header class="text-center">
-            <h1 class="text-xl font-black text-purple-400">🎬 Movie Quiz Cinema 21</h1>
-            <p class="text-xs font-bold text-slate-400">Pilih sesi! Lebih Bagus HP posisi Tidur untuk kulitas gambar yang lebih bagus</p>
-        </header>
-        
-        <div id="loading-sesi" class="text-center py-8 text-xs font-bold text-slate-400 flex flex-col items-center gap-2">
-            <span class="animate-spin text-2xl text-purple-500">🌀</span>
-            <span>Memuat status sesi dari Google Sheets...</span>
+<div class="app">
+
+    <section id="list-sesi-section">
+        <div class="hero">
+            <div class="hero-badge">🎬</div>
+            <h1>Movie Quiz Cinema</h1>
+            <p>Pilih sesi untuk memulai pembelajaran</p>
         </div>
-        <div id="container-sesi-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 hidden">
-            <!-- Sesi disuntikkan dinamis -->
+        <div id="loading-sesi" class="loading-box">
+            <div class="spinner"></div>
+            <span>Memuat daftar sesi…</span>
         </div>
+        <div id="container-sesi-list" class="sesi-grid hidden"></div>
     </section>
 
-    <!-- TAMPILAN RESPANSIF ADAPTIF -->
-    <section id="player-section" class="hidden grid grid-cols-1 landscape:grid-cols-12 gap-3 h-full items-center">
-        
-        <!-- PEMUTAR VIDEO -->
-        <div class="landscape:col-span-8 flex flex-col gap-2 w-full">
-            <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center">
-                <!-- Video disuntikkan di sini -->
-            </div>
-            
-            <!-- STATUS WAKTU & JUDUL -->
-            <div class="flex items-center justify-between text-[11px] font-extrabold px-1 text-slate-400">
-                <span id="judul-film-aktif" class="truncate max-w-[200px] text-slate-200">Judul Film</span>
-                <span id="label-waktu" class="text-purple-400">⏳ 00:00</span>
-            </div>
-        </div>
+    <section id="player-section" class="hidden">
+        <div class="player-layout">
 
-        <!-- BILAH KONTROL -->
-        <div class="landscape:col-span-4 flex flex-col justify-between gap-2.5 h-full bg-slate-950 p-3 rounded-xl border border-slate-800 w-full">
-            
-            <!-- HEADER SESI -->
-            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
-                <span id="label-sesi-aktif" class="text-xs font-black text-purple-400">Sesi 1</span>
-                <span id="label-progres-total" class="text-[10px] font-bold bg-slate-800 text-slate-300 px-2 py-0.5 rounded">0/0 Film</span>
-            </div>
-
-            <!-- IKON LIST FILM -->
-            <div class="flex flex-col gap-1">
-                <span class="text-[10px] font-extrabold text-slate-500">DAFTAR FILM:</span>
-                <div id="container-film-list" class="flex flex-col gap-1.5 max-h-28 overflow-y-auto pr-1">
-                    <!-- Tombol pilihan film -->
+            <div class="video-col">
+                <div class="video-wrap">
+                    <div id="video-container"></div>
+                    <div class="video-shield"></div>
+                    <div class="video-overlay">
+                        <span id="judul-film-aktif" class="video-title">Judul Film</span>
+                        <span id="label-waktu" class="video-time">00:00 / 00:00</span>
+                    </div>
+                    <div class="video-progress"><div id="bar-progress"></div></div>
                 </div>
             </div>
 
-            <!-- NAVIGASI PEMUTAR -->
-            <div class="grid grid-cols-2 gap-2">
-                <button onclick="rewindVideo(5)" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">
-                    ⏪ -5s
-                </button>
-                <button onclick="togglePlay()" id="btn-play" class="py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">
-                    ▶️ Play
-                </button>
-            </div>
+            <aside class="controls">
+                <div class="controls-head">
+                    <span id="label-sesi-aktif" class="chip chip-sesi">Sesi 1</span>
+                    <span id="label-progres-total" class="chip chip-count">0/0 Film</span>
+                </div>
 
-            <!-- TOMBOL KAMUS & KEMBALI -->
-            <div class="grid grid-cols-2 gap-2">
-                <button onclick="bukaModalKamus()" class="py-2.5 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
-                    🌐 Terjemah
-                </button>
-                <button onclick="kembaliKeDaftar()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">
-                    ⬅️ Sesi
-                </button>
-            </div>
+                <div>
+                    <div class="film-block-title">Daftar Film</div>
+                    <div id="container-film-list" class="film-list"></div>
+                </div>
 
-            <!-- TOMBOL SELESAI & SUBMIT -->
-            <button id="btn-selesai" onclick="tandaiFilmSelesai()" disabled class="w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed">
-                🔒 Nonton Hingga Akhir
-            </button>
-            <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-black text-xs rounded-lg shadow-lg active:scale-95 transition-all">
-                Kirim Laporan Sesi 🎉
-            </button>
+                <div class="control-grid">
+                    <button type="button" class="btn btn-ghost" onclick="rewindVideo(5)">⏪ Mundur 5s</button>
+                    <button type="button" class="btn btn-primary" id="btn-play" onclick="togglePlay()">▶️ Play</button>
+                </div>
+
+                <div class="control-grid">
+                    <button type="button" class="btn btn-cc" id="btn-cc" onclick="toggleCaptions()">CC: OFF</button>
+                    <button type="button" class="btn btn-indigo" onclick="bukaModalKamus()">🌐 Terjemah</button>
+                </div>
+
+                <button type="button" class="btn btn-ghost" onclick="kembaliKeDaftar()">⬅️ Kembali ke Sesi</button>
+
+                <button type="button" id="btn-selesai" class="btn btn-locked" disabled
+                        onclick="tandaiFilmSelesai(false)">🔒 Nonton Hingga Akhir</button>
+
+                <button type="button" id="btn-submit" class="btn btn-pink hidden"
+                        onclick="submitHasil()">🎉 Kirim Laporan Sesi</button>
+            </aside>
+
         </div>
-
     </section>
 
 </div>
 
-<!-- MODAL KAMUS & TRANSLATOR -->
-<div id="modal-kamus" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-3">
-    <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-2xl">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-            <span class="text-xs font-black text-purple-400 flex items-center gap-1">
-                🌐 Kamus  (English ➔ Indonesia)
-            </span>
-            <button onclick="tutupModalKamus()" class="text-slate-400 hover:text-white font-bold text-sm">✖</button>
-        </div>
-        
-        <div class="flex flex-col gap-2">
-            <textarea id="input-kata" rows="2" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-bold text-slate-200 focus:outline-none focus:border-purple-500 resize-none" placeholder="Ketik kata atau kalimat bahasa Inggris di sini..."></textarea>
-            <button onclick="prosesTerjemahkan()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl active:scale-95 transition-all shadow-md">
-                Terjemahkan Ke Indonesia 🚀
-            </button>
-        </div>
+<div id="toast-container"></div>
 
-        <div id="hasil-kamus" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs flex-col gap-1.5 max-h-48 overflow-y-auto">
-            <!-- Hasil terjemahan disuntikkan di sini -->
+<div id="modal-kamus" class="modal">
+    <div class="modal-card">
+        <div class="modal-head">
+            <span>🌐 Kamus &amp; Terjemahan (EN ➔ ID)</span>
+            <button type="button" class="modal-close" onclick="tutupModalKamus()">✕</button>
         </div>
+        <textarea id="input-kata" rows="3"
+                  placeholder="Ketik kata atau kalimat bahasa Inggris di sini…"></textarea>
+        <button type="button" class="btn btn-primary" onclick="prosesTerjemahkan()">
+            Terjemahkan ke Indonesia 🚀
+        </button>
+        <div id="hasil-kamus" class="hasil-kamus hidden"></div>
     </div>
 </div>
 
-<!-- YOUTUBE API SDK -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyl7-224Bnau2pPp0FpJBOB2CNOKSr0r9XxQ_fjYwl2KwCDREiTGDys44062D0VFgTP/exec";
+/* ============================================================
+   KONFIGURASI
+============================================================ */
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyl7-224Bnau2pPp0FpJBOB2CNOKSr0r9XxQ_fjYwl2KwCDREiTGDys44062D0VFgTP/exec";
 
-    let daftarSesiTersedia = [];
-    let completedSesiFromSheets = [];
-    let completedMoviesFromSheets = {};
-    let sesiAktif = "";
-    let playlistSesi = [];
-    let indexAktif = 0;
-    let filmSelesaiSet = new Set();
-    
-    let ytPlayerInstance = null;
-    let isPlaying = false;
-    let checkProgressTimer = null;
-    let isVideoEnded = false;
+/* ============================================================
+   STATE
+============================================================ */
+let daftarSesiTersedia      = [];
+let completedSesiFromSheets = [];
+let completedMoviesFromSheets = {};
 
-    document.addEventListener("DOMContentLoaded", () => {
-        muatDaftarSesi();
+let sesiAktif    = "";
+let playlistSesi = [];
+let indexAktif   = 0;
+let filmSelesaiSet = new Set();
+
+let ytPlayerInstance  = null;
+let isPlaying         = false;
+let isVideoEnded      = false;
+let checkProgressTimer = null;
+let captionEnforceTick = 0;
+
+/* ==== CC state ==== */
+let captionsEnabled = false;   // default OFF
+
+let ytApiReady = false;
+let ytQueue    = [];
+
+/* ============================================================
+   YOUTUBE API LOADER
+============================================================ */
+window.onYouTubeIframeAPIReady = function () {
+    ytApiReady = true;
+    flushYtQueue();
+};
+function flushYtQueue() {
+    while (ytQueue.length) {
+        const fn = ytQueue.shift();
+        try { fn(); } catch (e) { console.warn(e); }
+    }
+}
+function siapkanYT(cb) {
+    if (ytApiReady && window.YT && window.YT.Player) cb();
+    else ytQueue.push(cb);
+}
+(function pollYT(tries) {
+    tries = tries || 0;
+    if (ytApiReady) return;
+    if (window.YT && window.YT.Player) { ytApiReady = true; flushYtQueue(); return; }
+    if (tries < 80) setTimeout(() => pollYT(tries + 1), 250);
+})();
+
+/* ============================================================
+   UTIL
+============================================================ */
+function toast(msg, type) {
+    const box = document.getElementById('toast-container');
+    const el = document.createElement('div');
+    el.className = 'toast ' + (type || 'info');
+    el.textContent = msg;
+    box.appendChild(el);
+    setTimeout(() => {
+        el.style.transition = 'opacity .3s, transform .3s';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        setTimeout(() => el.remove(), 320);
+    }, 3200);
+}
+function escapeHtml(str) {
+    return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function formatTime(sec) {
+    sec = Math.max(0, Math.floor(Number(sec) || 0));
+    return String(Math.floor(sec / 60)).padStart(2, '0') + ':' +
+           String(sec % 60).padStart(2, '0');
+}
+function extractYouTubeId(url) {
+    if (!url) return null;
+    const m = String(url).match(
+        /(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/|live\/))([A-Za-z0-9_-]{11})/
+    );
+    if (m) return m[1];
+    if (/^[A-Za-z0-9_-]{11}$/.test(String(url).trim())) return String(url).trim();
+    return null;
+}
+
+/* ============================================================
+   DAFTAR SESI
+============================================================ */
+async function muatDaftarSesi() {
+    const loadingEl   = document.getElementById('loading-sesi');
+    const containerEl = document.getElementById('container-sesi-list');
+
+    loadingEl.classList.remove('hidden');
+    containerEl.classList.add('hidden');
+    containerEl.innerHTML = '';
+
+    try {
+        const res  = await fetch(WEB_APP_URL + '?action=getSessions');
+        const data = await res.json();
+        if (data && typeof data === 'object') {
+            if (Array.isArray(data.sessions))                 daftarSesiTersedia = data.sessions;
+            if (Array.isArray(data.completedSessions))        completedSesiFromSheets = data.completedSessions;
+            if (data.completedMoviesBySession && typeof data.completedMoviesBySession === 'object') {
+                completedMoviesFromSheets = data.completedMoviesBySession;
+            }
+        }
+    } catch (e) {
+        console.warn('Gagal memuat sesi:', e);
+        toast('⚠️ Gagal memuat daftar sesi dari server.', 'error');
+    }
+
+    loadingEl.classList.add('hidden');
+    containerEl.classList.remove('hidden');
+
+    if (!daftarSesiTersedia.length) {
+        containerEl.innerHTML =
+            '<div style="grid-column:1/-1;text-align:center;font-size:12px;font-weight:800;color:#64748b;padding:24px 0;">' +
+            'Belum ada sesi tersedia.</div>';
+        return;
+    }
+
+    daftarSesiTersedia.forEach((sesi, idx) => {
+        const isDone = completedSesiFromSheets.indexOf(sesi) !== -1;
+        const doneArr = Array.isArray(completedMoviesFromSheets[sesi])
+            ? completedMoviesFromSheets[sesi] : [];
+
+        const card = document.createElement('div');
+        card.className = 'sesi-card' + (isDone ? ' done' : '');
+        card.onclick = () => pilihSesi(sesi);
+        card.innerHTML =
+            '<div class="sesi-num">' + (isDone ? '✓' : (idx + 1)) + '</div>' +
+            '<div class="sesi-info">' +
+                '<div class="sesi-name">' + escapeHtml(sesi) + '</div>' +
+                '<div class="sesi-sub">' +
+                    (isDone ? 'Selesai ✅' :
+                     (doneArr.length ? doneArr.length + ' film selesai' : 'Siap diputar 🎬')) +
+                '</div>' +
+            '</div>';
+        containerEl.appendChild(card);
+    });
+}
+
+/* ============================================================
+   PILIH SESI
+============================================================ */
+async function pilihSesi(sesi) {
+    sesiAktif = sesi;
+    try {
+        const res  = await fetch(WEB_APP_URL + '?sesi=' + encodeURIComponent(sesi));
+        const data = await res.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+            toast('Data film untuk "' + sesi + '" tidak ditemukan.', 'error');
+            return;
+        }
+
+        playlistSesi = data;
+        indexAktif   = 0;
+
+        const arr = Array.isArray(completedMoviesFromSheets[sesi])
+            ? completedMoviesFromSheets[sesi] : [];
+        filmSelesaiSet = new Set(
+            arr.map(n => Number(n)).filter(n => Number.isInteger(n) && n >= 0)
+        );
+
+        document.getElementById('list-sesi-section').classList.add('hidden');
+        document.getElementById('player-section').classList.remove('hidden');
+        document.getElementById('label-sesi-aktif').textContent = sesi;
+
+        renderDaftarIkonFilm();
+        muatFilm(0);
+        window.scrollTo(0, 0);
+    } catch (e) {
+        console.warn(e);
+        toast('❌ Gagal terhubung ke server.', 'error');
+    }
+}
+
+/* ============================================================
+   DAFTAR FILM
+============================================================ */
+function renderDaftarIkonFilm() {
+    const container = document.getElementById('container-film-list');
+    container.innerHTML = '';
+
+    playlistSesi.forEach((item, idx) => {
+        const isCurrent = idx === indexAktif;
+        const isDone    = filmSelesaiSet.has(idx);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'film-item' +
+            (isCurrent ? ' active' : '') +
+            (!isCurrent && isDone ? ' done' : '');
+        btn.onclick = () => gantiFilm(idx);
+        btn.innerHTML =
+            '<span class="film-name">' + (idx + 1) + '. ' +
+                escapeHtml(item.judul || 'Film') + '</span>' +
+            '<span class="film-mark">' +
+                (isDone ? '✅' : (isCurrent ? '▶' : '🔒')) +
+            '</span>';
+        container.appendChild(btn);
     });
 
-    async function muatDaftarSesi() {
-        const loadingEl = document.getElementById('loading-sesi');
-        const containerEl = document.getElementById('container-sesi-list');
-        loadingEl.classList.remove('hidden');
-        containerEl.classList.add('hidden');
+    document.getElementById('label-progres-total').textContent =
+        filmSelesaiSet.size + '/' + playlistSesi.length + ' Film';
 
-        try {
-            const res = await fetch(`${WEB_APP_URL}?action=getSessions`);
-            const responseData = await res.json();
+    cekSemuaSelesai();
+}
 
-            if (responseData && typeof responseData === 'object') {
-                if (Array.isArray(responseData.sessions)) daftarSesiTersedia = responseData.sessions;
-                if (Array.isArray(responseData.completedSessions)) completedSesiFromSheets = responseData.completedSessions;
-                if (responseData.completedMoviesBySession) completedMoviesFromSheets = responseData.completedMoviesBySession;
-            }
-        } catch (e) {
-            console.log("Gagal memuat sesi.");
-        }
+function gantiFilm(idx) {
+    if (idx === indexAktif) return;
+    indexAktif = idx;
+    renderDaftarIkonFilm();
+    muatFilm(idx);
+}
 
-        loadingEl.classList.add('hidden');
-        containerEl.innerHTML = '';
-        containerEl.classList.remove('hidden');
-
-        daftarSesiTersedia.forEach((sesi, idx) => {
-            const isDone = completedSesiFromSheets.includes(sesi);
-            const card = document.createElement('div');
-            card.className = `p-3 rounded-xl bg-slate-950 border ${isDone ? 'border-emerald-500/50' : 'border-slate-800'} flex items-center justify-between shadow cursor-pointer hover:border-purple-500 transition-all`;
-            card.onclick = () => pilihSesi(sesi);
-
-            card.innerHTML = `
-                <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 rounded-lg ${isDone ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-purple-400'} flex items-center justify-center font-black text-xs">
-                        ${isDone ? '✓' : (idx + 1)}
-                    </div>
-                    <div>
-                        <div class="font-extrabold text-xs text-slate-200">${sesi}</div>
-                        <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">
-                            ${isDone ? 'Selesai Ditonton ✅' : 'Siap Diputar 🎬'}
-                        </div>
-                    </div>
-                </div>
-            `;
-            containerEl.appendChild(card);
-        });
+/* ============================================================
+   MUAT FILM
+============================================================ */
+function hancurkanPlayer() {
+    if (ytPlayerInstance && typeof ytPlayerInstance.destroy === 'function') {
+        try { ytPlayerInstance.destroy(); } catch (e) {}
     }
+    ytPlayerInstance = null;
+    const v = document.getElementById('direct-player');
+    if (v) { try { v.pause(); v.removeAttribute('src'); v.load(); } catch (e) {} }
+}
 
-    async function pilihSesi(sesi) {
-        sesiAktif = sesi;
-        try {
-            const res = await fetch(`${WEB_APP_URL}?sesi=${encodeURIComponent(sesi)}`);
-            const data = await res.json();
+function muatFilm(idx) {
+    resetTimer();
+    hancurkanPlayer();
 
-            if (!Array.isArray(data) || data.length === 0) {
-                alert(`Data film untuk "${sesi}" tidak ditemukan.`);
-                return;
-            }
+    isPlaying    = false;
+    isVideoEnded = false;
+    captionEnforceTick = 0;
+    updatePlayButton();
 
-            playlistSesi = data;
-            indexAktif = 0;
-            
-            const arrayIndices = completedMoviesFromSheets[sesi] || [];
-            filmSelesaiSet = new Set(arrayIndices);
+    document.getElementById('bar-progress').style.width = '0%';
+    document.getElementById('label-waktu').textContent = '00:00 / 00:00';
 
-            document.getElementById('list-sesi-section').classList.add('hidden');
-            document.getElementById('player-section').classList.remove('hidden');
-            document.getElementById('player-section').classList.add('grid');
-            document.getElementById('label-sesi-aktif').innerText = sesi;
-            
-            renderDaftarIkonFilm();
-            muatFilm(0);
-        } catch (e) {
-            alert("Gagal terhubung ke server.");
-        }
-    }
+    const item = playlistSesi[idx] || {};
+    document.getElementById('judul-film-aktif').textContent =
+        item.judul || ('Film #' + (item.noFilm || (idx + 1)));
 
-    function renderDaftarIkonFilm() {
-        const container = document.getElementById('container-film-list');
-        container.innerHTML = '';
+    const container = document.getElementById('video-container');
+    container.innerHTML = '';
 
-        playlistSesi.forEach((item, idx) => {
-            const isCurrent = idx === indexAktif;
-            const isDone = filmSelesaiSet.has(idx);
+    if (filmSelesaiSet.has(idx)) setTombolSelesai('done');
+    else                        setTombolSelesai('locked');
 
-            const btn = document.createElement('button');
-            btn.onclick = () => gantiFilm(idx);
-            btn.className = `p-2 rounded-lg text-left border text-[11px] font-bold flex justify-between items-center transition-all ${
-                isCurrent ? 'bg-purple-600 text-white border-purple-500' : isDone ? 'bg-emerald-950/60 text-emerald-300 border-emerald-800' : 'bg-slate-900 text-slate-300 border-slate-800'
-            }`;
+    const url  = String(item.url || '').trim();
+    const ytId = extractYouTubeId(url);
 
-            btn.innerHTML = `
-                <span class="truncate max-w-[110px]">${idx + 1}. ${item.judul || 'Film'}</span>
-                <span>${isDone ? '✅' : isCurrent ? '▶' : '🔒'}</span>
-            `;
-            container.appendChild(btn);
-        });
+    if (ytId) {
+        /* ---------- YOUTUBE ---------- */
+        const holder = document.createElement('div');
+        holder.id = 'yt-embed-player';
+        container.appendChild(holder);
 
-        document.getElementById('label-progres-total').innerText = `${filmSelesaiSet.size}/${playlistSesi.length} Film`;
-
-        if (filmSelesaiSet.size === playlistSesi.length && playlistSesi.length > 0) {
-            document.getElementById('btn-selesai').classList.add('hidden');
-            document.getElementById('btn-submit').classList.remove('hidden');
-        } else {
-            document.getElementById('btn-selesai').classList.remove('hidden');
-            document.getElementById('btn-submit').classList.add('hidden');
-        }
-    }
-
-    function gantiFilm(idx) {
-        if (indexAktif === idx) return;
-        indexAktif = idx;
-        renderDaftarIkonFilm();
-        muatFilm(idx);
-    }
-
-    function muatFilm(idx) {
-        resetTimer();
-        isPlaying = false;
-        document.getElementById('btn-play').innerText = "▶️ Play";
-
-        const item = playlistSesi[idx];
-        document.getElementById('judul-film-aktif').innerText = item.judul || `Film #${item.noFilm}`;
-        
-        const container = document.getElementById('video-container');
-        container.innerHTML = '';
-        
-        if (filmSelesaiSet.has(idx)) {
-            bukaTombolSelesai();
-        } else {
-            kunciTombolSelesai();
-        }
-
-        const url = item.url || '';
-
-        if (url.includes('youtube.com') || url.includes('youtu.be')) {
-            let videoId = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('/').pop().split('?')[0];
-            const ytDiv = document.createElement('div');
-            ytDiv.id = 'yt-embed-player';
-            ytDiv.className = 'w-full h-full';
-            container.appendChild(ytDiv);
-
+        siapkanYT(() => {
+            if (indexAktif !== idx) return;
             ytPlayerInstance = new YT.Player('yt-embed-player', {
-                videoId: videoId,
-                playerVars: { 
-                    'controls': 0, 
-                    'rel': 0, 
-                    'disablekb': 1, 
-                    'modestbranding': 1, 
-                    'playsinline': 1,
-                    'cc_load_policy': 0,
-                    'iv_load_policy': 3
+                videoId: ytId,
+                playerVars: {
+                    controls: 0,
+                    disablekb: 1,
+                    fs: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                    showinfo: 0,
+                    iv_load_policy: 3,
+                    cc_load_policy: 0,       /* default off (tapi user setting bisa override) */
+                    cc_lang_pref: '',
+                    autohide: 1,
+                    playsinline: 1,
+                    origin: location.origin
                 },
-                events: { 
-                    'onStateChange': onYouTubeStateChange 
+                events: {
+                    onReady:       onYTReady,
+                    onStateChange: onYTStateChange,
+                    onError:       onYTError
                 }
             });
-        } else {
-            ytPlayerInstance = null;
-            const vPlayer = document.createElement('video');
-            vPlayer.id = 'direct-player';
-            vPlayer.className = 'w-full h-full object-contain';
-            vPlayer.src = url;
-            vPlayer.onplay = () => { isPlaying = true; document.getElementById('btn-play').innerText = "⏸️ Pause"; };
-            vPlayer.onpause = () => { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; };
-            vPlayer.onended = function() { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; bukaTombolSelesai(); };
-            container.appendChild(vPlayer);
-        }
+        });
+    } else if (url) {
+        /* ---------- DIRECT VIDEO ---------- */
+        const v = document.createElement('video');
+        v.id = 'direct-player';
+        v.src = url;
+        v.preload = 'metadata';
+        v.playsInline = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('disablepictureinpicture', '');
+        v.setAttribute('controlslist', 'nodownload noplaybackrate nofullscreen noremoteplayback');
+        v.disablePictureInPicture = true;
 
-        checkProgressTimer = setInterval(pantauProgresWaktu, 500);
+        v.addEventListener('play', () => { isPlaying = true; updatePlayButton(); });
+        v.addEventListener('pause', () => { isPlaying = false; updatePlayButton(); });
+        v.addEventListener('ended', selesaikanVideo);
+        v.addEventListener('ratechange', () => {
+            if (Math.abs((v.playbackRate || 1) - 1) > 0.01) v.playbackRate = 1;
+        });
+        v.addEventListener('loadedmetadata', () => {
+            document.getElementById('label-waktu').textContent =
+                '00:00 / ' + formatTime(v.duration);
+            /* sembunyikan caption default */
+            applyCaptionStateToHTML5();
+        });
+        /* Track baru dimuat -> paksa sesuai state */
+        v.textTracks.addEventListener?.('addtrack', () => applyCaptionStateToHTML5());
+
+        container.appendChild(v);
+    } else {
+        container.innerHTML = '<div class="video-empty">URL video tidak tersedia</div>';
     }
 
-    function onYouTubeStateChange(event) {
-        const btnPlay = document.getElementById('btn-play');
-        if (event.data === YT.PlayerState.PLAYING) {
-            isPlaying = true;
-            btnPlay.innerText = "⏸️ Pause";
-        } else if (event.data === YT.PlayerState.PAUSED) {
-            isPlaying = false;
-            btnPlay.innerText = "▶️ Play";
-        } else if (event.data === YT.PlayerState.ENDED) {
-            isPlaying = false;
-            btnPlay.innerText = "▶️ Play";
-            bukaTombolSelesai();
-        }
-    }
+    updateCCButton();
+    checkProgressTimer = setInterval(pantauProgres, 400);
+}
 
-    function pantauProgresWaktu() {
-        if (isVideoEnded) return;
+/* ============================================================
+   CAPTION CONTROL  ⭐
+============================================================ */
+function updateCCButton() {
+    const btn = document.getElementById('btn-cc');
+    if (!btn) return;
+    btn.classList.toggle('on', captionsEnabled);
+    btn.textContent = captionsEnabled ? 'CC: ON' : 'CC: OFF';
+}
 
-        let currentTime = 0, duration = 0;
-        if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
-            currentTime = ytPlayerInstance.getCurrentTime() || 0;
-            duration = ytPlayerInstance.getDuration() || 0;
-        } else {
-            const directPlayer = document.getElementById('direct-player');
-            if (directPlayer) {
-                currentTime = directPlayer.currentTime || 0;
-                duration = directPlayer.duration || 0;
-            }
-        }
-
-        if (duration > 0) {
-            const formatTime = (s) => new Date(s * 1000).toISOString().substr(14, 5);
-            document.getElementById('label-waktu').innerText = `⏳ ${formatTime(currentTime)} / ${formatTime(duration)}`;
-            if (duration - currentTime <= 1.5) {
-                bukaTombolSelesai();
-            }
-        }
-    }
-
-    function bukaTombolSelesai() {
-        isVideoEnded = true;
-        const btnSelesai = document.getElementById('btn-selesai');
-        btnSelesai.disabled = false;
-        btnSelesai.className = "w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-lg active:scale-95 transition-all cursor-pointer";
-        btnSelesai.innerHTML = "Selesai Nonton Film Ini ✅";
-    }
-
-    function kunciTombolSelesai() {
-        isVideoEnded = false;
-        const btnSelesai = document.getElementById('btn-selesai');
-        btnSelesai.disabled = true;
-        btnSelesai.className = "w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed";
-        btnSelesai.innerHTML = "🔒 Nonton Hingga Akhir";
-    }
-
-    function togglePlay() {
-        if (ytPlayerInstance && ytPlayerInstance.playVideo) {
-            if (isPlaying) { 
-                ytPlayerInstance.pauseVideo(); 
-            } else { 
-                ytPlayerInstance.playVideo(); 
-            }
-        } else {
-            const directPlayer = document.getElementById('direct-player');
-            if (directPlayer) {
-                if (isPlaying) { 
-                    directPlayer.pause(); 
-                } else { 
-                    directPlayer.play(); 
-                }
-            }
-        }
-    }
-
-    function rewindVideo(seconds) {
-        if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
-            ytPlayerInstance.seekTo(Math.max(0, ytPlayerInstance.getCurrentTime() - seconds), true);
-        } else {
-            const directPlayer = document.getElementById('direct-player');
-            if (directPlayer) directPlayer.currentTime = Math.max(0, directPlayer.currentTime - seconds);
-        }
-    }
-
-    async function tandaiFilmSelesai() {
-        if (!isVideoEnded) return;
-        
-        filmSelesaiSet.add(indexAktif);
-        renderDaftarIkonFilm();
-
-        const currentMovie = playlistSesi[indexAktif];
+/**
+ * Terapkan state caption ke player yang sedang aktif.
+ * Dipanggil saat toggle, saat player ready, dan enforcement periodik.
+ */
+function applyCaptionState() {
+    /* --- YouTube --- */
+    if (ytPlayerInstance && typeof ytPlayerInstance.getPlayerState === 'function') {
         try {
-            await fetch(WEB_APP_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ 
-                    namaSiswa: "Siswa", 
-                    sesi: sesiAktif, 
-                    totalFilm: playlistSesi.length,
-                    status: "Selesai Film",
-                    filmIndex: indexAktif,
-                    judulFilm: currentMovie ? currentMovie.judul : ""
-                })
-            });
-        } catch (e) {
-            console.log("Gagal mencatat progres film.");
-        }
-
-        if (filmSelesaiSet.size === playlistSesi.length) {
-            document.getElementById('btn-selesai').classList.add('hidden');
-            document.getElementById('btn-submit').classList.remove('hidden');
-            alert("Seluruh film di sesi ini selesai! Klik Kirim Laporan Sesi.");
-        } else {
-            alert(`Film ${indexAktif + 1} selesai! Silakan pilih film berikutnya.`);
-        }
-    }
-
-    async function submitHasil() {
-        const btnSubmit = document.getElementById('btn-submit');
-        btnSubmit.innerText = "Mengirim...";
-        btnSubmit.disabled = true;
-
-        try {
-            await fetch(WEB_APP_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ 
-                    namaSiswa: "Siswa", 
-                    sesi: sesiAktif, 
-                    totalFilm: playlistSesi.length,
-                    status: "Selesai Sesi"
-                })
-            });
-            
-            alert("Laporan sesi berhasil dikirim!");
-            kembaliKeDaftar();
-        } catch (e) {
-            alert("Gagal mengirim laporan.");
-            btnSubmit.innerText = "Kirim Laporan Sesi 🎉";
-            btnSubmit.disabled = false;
-        }
-    }
-
-    function bukaModalKamus() {
-        const modal = document.getElementById('modal-kamus');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-
-    function tutupModalKamus() {
-        const modal = document.getElementById('modal-kamus');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    async function prosesTerjemahkan() {
-        const textInput = document.getElementById('input-kata').value.trim();
-        const elHasil = document.getElementById('hasil-kamus');
-        if (!textInput) return;
-
-        elHasil.classList.remove('hidden');
-        elHasil.classList.add('flex');
-        elHasil.innerHTML = `<span class="text-slate-400 animate-pulse">Sedang menerjemahkan...</span>`;
-
-        try {
-            const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=id&dt=t&q=${encodeURIComponent(textInput)}`;
-            const res = await fetch(translateUrl);
-            const data = await res.json();
-            
-            let translatedText = '';
-            if (data && data[0]) {
-                data[0].forEach(item => {
-                    if (item[0]) translatedText += item[0];
-                });
-            }
-
-            if (translatedText) {
-                elHasil.innerHTML = `
-                    <div class="font-extrabold text-[11px] text-slate-400 uppercase">Bahasa Inggris:</div>
-                    <div class="text-xs font-bold text-purple-300 italic">"${textInput}"</div>
-                    <div class="border-t border-slate-800 my-1"></div>
-                    <div class="font-extrabold text-[11px] text-emerald-400 uppercase">Arti Bahasa Indonesia:</div>
-                    <div class="text-xs font-extrabold text-emerald-200 leading-relaxed">${translatedText}</div>
-                `;
+            if (captionsEnabled) {
+                ytPlayerInstance.loadModule('captions');
+                setTimeout(() => {
+                    try {
+                        const list = ytPlayerInstance.getOption('captions', 'tracklist') || [];
+                        let lang = 'en';
+                        if (list.length && !list.some(t => t.languageCode === 'en')) {
+                            lang = list[0].languageCode;
+                        }
+                        ytPlayerInstance.setOption('captions', 'track', { languageCode: lang });
+                    } catch (e) {}
+                }, 180);
             } else {
-                throw new Error();
+                /* Paksa matikan caption */
+                ytPlayerInstance.unloadModule('captions');
+                ytPlayerInstance.setOption('captions', 'track', {});
             }
-        } catch (e) {
-            elHasil.innerHTML = `<span class="text-rose-400 font-bold">Gagal menerjemahkan. Pastikan terhubung ke internet.</span>`;
+        } catch (e) {}
+    }
+
+    /* --- HTML5 video --- */
+    applyCaptionStateToHTML5();
+}
+
+function applyCaptionStateToHTML5() {
+    const v = document.getElementById('direct-player');
+    if (!v || !v.textTracks) return;
+    const tracks = v.textTracks;
+    for (let i = 0; i < tracks.length; i++) {
+        const mode = captionsEnabled ? 'showing' : 'disabled';
+        if (tracks[i].mode !== mode) tracks[i].mode = mode;
+    }
+}
+
+/** Tombol CC di panel */
+function toggleCaptions() {
+    captionsEnabled = !captionsEnabled;
+    updateCCButton();
+    applyCaptionState();
+    toast(
+        captionsEnabled ? '💬 Caption diaktifkan' : '🚫 Caption dimatikan',
+        captionsEnabled ? 'info' : 'success'
+    );
+}
+
+/** Enforce berkala supaya YouTube tidak menyalakan ulang CC. */
+function enforceCaptionOff() {
+    if (captionsEnabled) return;
+    if (!ytPlayerInstance) return;
+    try {
+        ytPlayerInstance.unloadModule('captions');
+        ytPlayerInstance.setOption('captions', 'track', {});
+    } catch (e) {}
+    applyCaptionStateToHTML5();
+}
+
+/* ============================================================
+   YOUTUBE CALLBACK
+============================================================ */
+function onYTReady(event) {
+    /* paksa matikan caption sesuai state */
+    applyCaptionState();
+    try { event.target.setPlaybackRate(1); } catch (e) {}
+}
+
+function onYTStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        updatePlayButton();
+        try { event.target.setPlaybackRate(1); } catch (e) {}
+        /* Re-enforce caption state saat mulai play */
+        applyCaptionState();
+    } else if (event.data === YT.PlayerState.PAUSED) {
+        isPlaying = false;
+        updatePlayButton();
+    } else if (event.data === YT.PlayerState.ENDED) {
+        selesaikanVideo();
+    }
+}
+
+function onYTError() {
+    toast('⚠️ Video YouTube tidak dapat diputar. Cek tautan film.', 'error');
+}
+
+/* ============================================================
+   PEMANTAU PROGRES
+============================================================ */
+function pantauProgres() {
+    if (isVideoEnded) return;
+
+    /* --- enforcement caption tiap ~1.2 detik --- */
+    captionEnforceTick++;
+    if (captionEnforceTick % 3 === 0) enforceCaptionOff();
+
+    let cur = 0, dur = 0;
+
+    if (ytPlayerInstance && typeof ytPlayerInstance.getCurrentTime === 'function') {
+        cur = ytPlayerInstance.getCurrentTime() || 0;
+        dur = ytPlayerInstance.getDuration()    || 0;
+        if (typeof ytPlayerInstance.getPlaybackRate === 'function') {
+            const rate = ytPlayerInstance.getPlaybackRate();
+            if (rate && Math.abs(rate - 1) > 0.01) {
+                try { ytPlayerInstance.setPlaybackRate(1); } catch (e) {}
+            }
+        }
+    } else {
+        const v = document.getElementById('direct-player');
+        if (v) {
+            cur = v.currentTime || 0;
+            dur = v.duration    || 0;
+            if (Math.abs((v.playbackRate || 1) - 1) > 0.01) v.playbackRate = 1;
         }
     }
 
-    function resetTimer() {
-        if (checkProgressTimer) { clearInterval(checkProgressTimer); checkProgressTimer = null; }
-    }
+    if (!isFinite(dur) || dur <= 0) return;
 
-    function kembaliKeDaftar() {
-        resetTimer();
-        document.getElementById('player-section').classList.add('hidden');
-        document.getElementById('player-section').classList.remove('grid');
-        document.getElementById('list-sesi-section').classList.remove('hidden');
-        document.getElementById('btn-submit').classList.add('hidden');
-        document.getElementById('video-container').innerHTML = '';
-        muatDaftarSesi();
+    document.getElementById('label-waktu').textContent =
+        formatTime(cur) + ' / ' + formatTime(dur);
+    document.getElementById('bar-progress').style.width =
+        Math.min(100, (cur / dur) * 100) + '%';
+
+    if (dur - cur <= 0.9) selesaikanVideo();
+}
+
+/* ============================================================
+   SELESAI / KIRIM
+============================================================ */
+function selesaikanVideo() {
+    if (isVideoEnded) return;
+    isVideoEnded = true;
+    isPlaying    = false;
+    updatePlayButton();
+    document.getElementById('bar-progress').style.width = '100%';
+
+    if (!filmSelesaiSet.has(indexAktif)) {
+        tandaiFilmSelesai(true);
+    } else {
+        setTombolSelesai('done');
     }
+}
+
+async function tandaiFilmSelesai(otomatis) {
+    if (!isVideoEnded) return;
+    const idx = indexAktif;
+    if (filmSelesaiSet.has(idx)) return;
+
+    filmSelesaiSet.add(idx);
+    renderDaftarIkonFilm();
+    setTombolSelesai('done');
+
+    const movie = playlistSesi[idx] || {};
+    const ok = await kirimKeServer({
+        namaSiswa: "Siswa",
+        sesi: sesiAktif,
+        totalFilm: playlistSesi.length,
+        status: "Selesai Film",
+        filmIndex: idx,
+        judulFilm: movie.judul || ""
+    });
+
+    if (ok) {
+        toast('✅ "' + (movie.judul || 'Film ' + (idx + 1)) + '" selesai & terkirim', 'success');
+    } else {
+        filmSelesaiSet.delete(idx);
+        renderDaftarIkonFilm();
+        setTombolSelesai('ready');
+        toast('⚠️ Film selesai, tetapi status gagal terkirim. Klik tombol hijau untuk mengulang.', 'error');
+    }
+}
+
+async function submitHasil() {
+    const btn = document.getElementById('btn-submit');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Mengirim laporan…';
+
+    const ok = await kirimKeServer({
+        namaSiswa: "Siswa",
+        sesi: sesiAktif,
+        totalFilm: playlistSesi.length,
+        status: "Selesai Sesi"
+    });
+
+    if (ok) {
+        toast('🎉 Laporan sesi berhasil dikirim!', 'success');
+        setTimeout(kembaliKeDaftar, 800);
+    } else {
+        toast('❌ Gagal mengirim laporan. Coba lagi.', 'error');
+        btn.disabled = false;
+        btn.innerHTML = original;
+    }
+}
+
+async function kirimKeServer(payload) {
+    try {
+        const res = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+        });
+        return res.ok || res.type === 'opaque';
+    } catch (e) {
+        console.warn('Kirim gagal:', e);
+        return false;
+    }
+}
+
+function cekSemuaSelesai() {
+    const all = playlistSesi.length > 0 && filmSelesaiSet.size >= playlistSesi.length;
+    document.getElementById('btn-selesai').classList.toggle('hidden', all);
+    document.getElementById('btn-submit').classList.toggle('hidden', !all);
+    if (all) toast('🎉 Semua film selesai! Silakan kirim laporan sesi.', 'info');
+}
+
+/* ============================================================
+   KONTROL PLAYER
+============================================================ */
+function setTombolSelesai(mode) {
+    const btn = document.getElementById('btn-selesai');
+    if (mode === 'locked') {
+        btn.disabled = true;
+        btn.className = 'btn btn-locked';
+        btn.innerHTML = '🔒 Nonton Hingga Akhir';
+    } else if (mode === 'ready') {
+        btn.disabled = false;
+        btn.className = 'btn btn-success';
+        btn.innerHTML = '✅ Selesai Nonton Film Ini';
+    } else {
+        btn.disabled = true;
+        btn.className = 'btn btn-done';
+        btn.innerHTML = '✅ Film Selesai &amp; Terkirim';
+    }
+}
+
+function updatePlayButton() {
+    const btn = document.getElementById('btn-play');
+    if (btn) btn.innerHTML = isPlaying ? '⏸️ Pause' : '▶️ Play';
+}
+
+function togglePlay() {
+    if (isVideoEnded) {
+        isVideoEnded = false;
+        const bar = document.getElementById('bar-progress');
+        if (bar) bar.style.width = '0%';
+    }
+    if (ytPlayerInstance && typeof ytPlayerInstance.playVideo === 'function') {
+        if (isPlaying) ytPlayerInstance.pauseVideo();
+        else           ytPlayerInstance.playVideo();
+    } else {
+        const v = document.getElementById('direct-player');
+        if (!v) return;
+        if (isPlaying) v.pause();
+        else v.play().catch(() => {});
+    }
+}
+
+function rewindVideo(seconds) {
+    if (ytPlayerInstance && typeof ytPlayerInstance.getCurrentTime === 'function') {
+        const t = Math.max(0, (ytPlayerInstance.getCurrentTime() || 0) - seconds);
+        ytPlayerInstance.seekTo(t, true);
+    } else {
+        const v = document.getElementById('direct-player');
+        if (v) v.currentTime = Math.max(0, (v.currentTime || 0) - seconds);
+    }
+}
+
+function resetTimer() {
+    if (checkProgressTimer) {
+        clearInterval(checkProgressTimer);
+        checkProgressTimer = null;
+    }
+}
+
+function kembaliKeDaftar() {
+    resetTimer();
+    hancurkanPlayer();
+    document.getElementById('video-container').innerHTML = '';
+    document.getElementById('player-section').classList.add('hidden');
+    document.getElementById('list-sesi-section').classList.remove('hidden');
+    document.getElementById('btn-submit').classList.add('hidden');
+    isPlaying    = false;
+    isVideoEnded = false;
+    muatDaftarSesi();
+}
+
+/* ============================================================
+   KAMUS / TERJEMAHAN
+============================================================ */
+function bukaModalKamus() { document.getElementById('modal-kamus').classList.add('open'); }
+function tutupModalKamus() { document.getElementById('modal-kamus').classList.remove('open'); }
+
+async function prosesTerjemahkan() {
+    const input   = document.getElementById('input-kata');
+    const elHasil = document.getElementById('hasil-kamus');
+    const text    = input.value.trim();
+    if (!text) { toast('Ketik kata atau kalimat dulu ya.', 'info'); return; }
+
+    elHasil.classList.remove('hidden');
+    elHasil.innerHTML = '<span style="color:#64748b;font-weight:800;">⏳ Sedang menerjemahkan…</span>';
+
+    try {
+        const url = 'https://translate.googleapis.com/translate_a/single' +
+                    '?client=gtx&sl=en&tl=id&dt=t&q=' + encodeURIComponent(text);
+        const res  = await fetch(url);
+        const data = await res.json();
+
+        let hasil = '';
+        if (data && data[0]) data[0].forEach(part => { if (part && part[0]) hasil += part[0]; });
+        if (!hasil) throw new Error('kosong');
+
+        elHasil.innerHTML =
+            '<div class="hasil-label" style="color:#64748b;">Bahasa Inggris</div>' +
+            '<div class="hasil-en">"' + escapeHtml(text) + '"</div>' +
+            '<div class="hasil-sep"></div>' +
+            '<div class="hasil-label" style="color:#34d399;">Arti Bahasa Indonesia</div>' +
+            '<div class="hasil-id">' + escapeHtml(hasil) + '</div>';
+    } catch (e) {
+        elHasil.innerHTML = '<span style="color:#fb7185;font-weight:800;">' +
+            'Gagal menerjemahkan. Pastikan terhubung internet.</span>';
+    }
+}
+
+/* ============================================================
+   INIT + KEYBOARD LOCK
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('input-kata');
+    if (input) {
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                prosesTerjemahkan();
+            }
+        });
+    }
+    muatDaftarSesi();
+});
+
+document.addEventListener('keydown', e => {
+    const keys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', ' ', 'Home', 'End',
+                  'PageUp', 'PageDown', 'k', 'j', 'l', 'K', 'J', 'L', '>', '<', ',', '.', 'c', 'C'];
+    const playerAktif = !document.getElementById('player-section').classList.contains('hidden');
+    const diTextarea  = e.target && e.target.tagName === 'TEXTAREA';
+    if (playerAktif && !diTextarea && keys.indexOf(e.key) !== -1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('dblclick', e => {
+    if (e.target.closest('.video-wrap')) e.preventDefault();
+}, { passive: false });
 </script>
 
 </body>
