@@ -91,14 +91,7 @@ body{
     transition:transform .2s cubic-bezier(.4,0,.2,1), border-color .2s, box-shadow .2s;
     touch-action:manipulation;
 }
-.sesi-card::before{
-    content:""; position:absolute; inset:-40% -60% auto auto;
-    width:120px; height:120px; border-radius:50%;
-    background:radial-gradient(circle, rgba(139,92,246,.35), transparent 70%);
-    opacity:0; transition:opacity .25s;
-}
 .sesi-card:hover{ transform:translateY(-3px); border-color:rgba(139,92,246,.6); box-shadow:0 18px 34px -20px rgba(139,92,246,.95); }
-.sesi-card:hover::before{ opacity:1; }
 .sesi-card:active{ transform:scale(.975); }
 .sesi-card.done{
     border-color:rgba(16,185,129,.45);
@@ -138,7 +131,6 @@ body{
 }
 #video-container video{ object-fit:contain; }
 
-/* Tombol tap-to-play */
 .video-shield{
     position:absolute; inset:0; z-index:2;
     background:transparent; cursor:pointer;
@@ -483,10 +475,10 @@ let pendingPlay       = false;
 let isPlaying         = false;
 let isVideoEnded      = false;
 let checkProgressTimer = null;
-let captionEnforceTick = 0;
 
 /* CC state */
 let captionsEnabled = false;
+let lastCaptionApplyTs = 0;   // debounce untuk hindari spam ke player
 
 let ytApiReady = false;
 let ytQueue    = [];
@@ -715,7 +707,7 @@ function muatFilm(idx) {
     isPlaying    = false;
     isVideoEnded = false;
     pendingPlay  = false;
-    captionEnforceTick = 0;
+    lastCaptionApplyTs = 0;
     updatePlayButton();
 
     document.getElementById('bar-progress').style.width = '0%';
@@ -824,7 +816,7 @@ function muatFilm(idx) {
 }
 
 /* ============================================================
-   TAP VIDEO = PLAY/PAUSE (user gesture native)
+   TAP VIDEO = PLAY/PAUSE
 ============================================================ */
 function onVideoTap() {
     if (!ytPlayerInstance && !document.getElementById('direct-player')) return;
@@ -832,7 +824,11 @@ function onVideoTap() {
 }
 
 /* ============================================================
-   CAPTION CONTROL
+   CAPTION CONTROL  ⭐  — hanya dipanggil di 3 titik:
+     1. onYTReady (sekali)
+     2. toggleCaptions (user)
+     3. muatFilm (sekali saat ganti film via onYTReady)
+   TIDAK dipanggil dari pantauProgres / onYTStateChange.
 ============================================================ */
 function updateCCButton() {
     const btn = document.getElementById('btn-cc');
@@ -842,6 +838,11 @@ function updateCCButton() {
 }
 
 function applyCaptionState() {
+    /* Debounce: kalau baru saja di-apply <1 detik lalu, skip */
+    const now = Date.now();
+    if (now - lastCaptionApplyTs < 1000) return;
+    lastCaptionApplyTs = now;
+
     /* YouTube */
     if (ytPlayerInstance && ytPlayerReady) {
         try {
@@ -879,20 +880,12 @@ function applyCaptionStateToHTML5() {
 function toggleCaptions() {
     captionsEnabled = !captionsEnabled;
     updateCCButton();
+    lastCaptionApplyTs = 0;   /* paksa apply — user menekan tombol */
     applyCaptionState();
     toast(
         captionsEnabled ? '💬 Caption diaktifkan' : '🚫 Caption dimatikan',
         captionsEnabled ? 'info' : 'success'
     );
-}
-
-/* Enforce CC hanya kalau player sedang PLAYING, dan jarang saja */
-function enforceCaptionOff() {
-    if (captionsEnabled) return;
-    if (!ytPlayerInstance || !ytPlayerReady) return;
-    try { ytPlayerInstance.unloadModule('captions'); } catch (e) {}
-    try { ytPlayerInstance.setOption('captions', 'track', {}); } catch (e) {}
-    applyCaptionStateToHTML5();
 }
 
 /* ============================================================
@@ -902,7 +895,7 @@ function onYTReady(event) {
     ytPlayerReady = true;
     setPlayButtonLoading(false);
 
-    /* Tunda sedikit untuk menghindari error internal di WebView */
+    /* Apply CC sekali saja (debounce di dalam memastikan tidak spam) */
     setTimeout(() => {
         try { applyCaptionState(); } catch (e) {}
         try { event.target.setPlaybackRate(1); } catch (e) {}
@@ -921,10 +914,8 @@ function onYTStateChange(event) {
         isPlaying = true;
         updatePlayButton();
         shield.classList.remove('show-hint');
+        /* Hanya paksa rate 1 — TIDAK menyentuh caption lagi */
         try { event.target.setPlaybackRate(1); } catch (e) {}
-        if (!captionsEnabled) {
-            setTimeout(() => { try { enforceCaptionOff(); } catch (e) {} }, 500);
-        }
     } else if (event.data === YT.PlayerState.PAUSED) {
         isPlaying = false;
         updatePlayButton();
@@ -932,6 +923,7 @@ function onYTStateChange(event) {
     } else if (event.data === YT.PlayerState.ENDED) {
         selesaikanVideo();
     }
+    /* ❌ TIDAK ADA enforceCaptionOff di sini — itu penyebab play→pause→play */
 }
 
 function onYTError(event) {
@@ -973,15 +965,10 @@ function startPlayback() {
 
 /* ============================================================
    PEMANTAU PROGRES
+   ✅ TIDAK menyentuh caption sama sekali. Hanya baca waktu.
 ============================================================ */
 function pantauProgres() {
     if (isVideoEnded) return;
-
-    /* CC enforce hanya kalau PLAYING, jarang saja (tiap ~4 detik) */
-    if (isPlaying) {
-        captionEnforceTick++;
-        if (captionEnforceTick % 10 === 0) enforceCaptionOff();
-    }
 
     let cur = 0, dur = 0;
 
