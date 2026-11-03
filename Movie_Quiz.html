@@ -138,7 +138,25 @@ body{
 }
 #video-container video{ object-fit:contain; }
 
-.video-shield{ position:absolute; inset:0; z-index:2; background:transparent; cursor:default; }
+/* Tombol tap-to-play */
+.video-shield{
+    position:absolute; inset:0; z-index:2;
+    background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+}
+.video-shield .play-hint{
+    width:64px; height:64px; border-radius:50%;
+    background:rgba(15,23,42,.72);
+    border:2px solid rgba(139,92,246,.6);
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px; color:#fff;
+    opacity:0; transform:scale(.85);
+    transition:opacity .2s, transform .2s;
+    pointer-events:none;
+    backdrop-filter:blur(4px);
+    box-shadow:0 12px 30px -8px rgba(139,92,246,.6);
+}
+.video-shield.show-hint .play-hint{ opacity:1; transform:scale(1); }
 
 .video-overlay{
     position:absolute; top:0; left:0; right:0; z-index:3;
@@ -165,6 +183,7 @@ body{
 .video-empty{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
     font-size:12px; font-weight:800; color:#64748b; background:#000;
+    text-align:center; padding:20px;
 }
 
 @media (orientation:landscape) and (max-height:620px){
@@ -246,12 +265,11 @@ body{
     box-shadow:0 14px 26px -14px rgba(124,58,237,1);
 }
 .btn-primary:hover:not(:disabled){ filter:brightness(1.1); }
+.btn-primary:disabled{ opacity:.65; }
 .btn-indigo{
     background:rgba(49,46,129,.6); border-color:rgba(99,102,241,.4); color:#c7d2fe;
 }
 .btn-indigo:hover:not(:disabled){ background:rgba(67,56,202,.7); }
-
-/* Tombol CC */
 .btn-cc{
     background:rgba(51,65,85,.55);
     border-color:rgba(100,116,139,.28);
@@ -263,7 +281,6 @@ body{
     border-color:transparent; color:#fff;
     box-shadow:0 12px 24px -14px rgba(8,145,178,.9);
 }
-
 .btn-success{
     background:linear-gradient(135deg,#059669,#34d399); color:#fff;
     box-shadow:0 14px 26px -14px rgba(16,185,129,1);
@@ -377,7 +394,9 @@ body{
             <div class="video-col">
                 <div class="video-wrap">
                     <div id="video-container"></div>
-                    <div class="video-shield"></div>
+                    <div class="video-shield" id="video-shield" onclick="onVideoTap()">
+                        <div class="play-hint" id="play-hint">▶</div>
+                    </div>
                     <div class="video-overlay">
                         <span id="judul-film-aktif" class="video-title">Judul Film</span>
                         <span id="label-waktu" class="video-time">00:00 / 00:00</span>
@@ -459,13 +478,15 @@ let indexAktif   = 0;
 let filmSelesaiSet = new Set();
 
 let ytPlayerInstance  = null;
+let ytPlayerReady     = false;
+let pendingPlay       = false;
 let isPlaying         = false;
 let isVideoEnded      = false;
 let checkProgressTimer = null;
 let captionEnforceTick = 0;
 
-/* ==== CC state ==== */
-let captionsEnabled = false;   // default OFF
+/* CC state */
+let captionsEnabled = false;
 
 let ytApiReady = false;
 let ytQueue    = [];
@@ -670,8 +691,21 @@ function hancurkanPlayer() {
         try { ytPlayerInstance.destroy(); } catch (e) {}
     }
     ytPlayerInstance = null;
+    ytPlayerReady    = false;
     const v = document.getElementById('direct-player');
     if (v) { try { v.pause(); v.removeAttribute('src'); v.load(); } catch (e) {} }
+}
+
+function setPlayButtonLoading(loading) {
+    const btn = document.getElementById('btn-play');
+    if (!btn) return;
+    if (loading) {
+        btn.disabled = true;
+        btn.innerHTML = '⏳ Memuat…';
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = isPlaying ? '⏸️ Pause' : '▶️ Play';
+    }
 }
 
 function muatFilm(idx) {
@@ -680,6 +714,7 @@ function muatFilm(idx) {
 
     isPlaying    = false;
     isVideoEnded = false;
+    pendingPlay  = false;
     captionEnforceTick = 0;
     updatePlayButton();
 
@@ -698,16 +733,27 @@ function muatFilm(idx) {
 
     const url  = String(item.url || '').trim();
     const ytId = extractYouTubeId(url);
+    const shield = document.getElementById('video-shield');
 
     if (ytId) {
         /* ---------- YOUTUBE ---------- */
+        setPlayButtonLoading(true);
+        shield.style.pointerEvents = 'auto';
+        shield.classList.add('show-hint');
+
         const holder = document.createElement('div');
         holder.id = 'yt-embed-player';
+        holder.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
         container.appendChild(holder);
 
         siapkanYT(() => {
             if (indexAktif !== idx) return;
+            const h = document.getElementById('yt-embed-player');
+            if (!h) return;
+
             ytPlayerInstance = new YT.Player('yt-embed-player', {
+                width: '100%',
+                height: '100%',
                 videoId: ytId,
                 playerVars: {
                     controls: 0,
@@ -717,11 +763,11 @@ function muatFilm(idx) {
                     rel: 0,
                     showinfo: 0,
                     iv_load_policy: 3,
-                    cc_load_policy: 0,       /* default off (tapi user setting bisa override) */
+                    cc_load_policy: 0,
                     cc_lang_pref: '',
                     autohide: 1,
-                    playsinline: 1,
-                    origin: location.origin
+                    playsinline: 1
+                    /* ⚠️ JANGAN kirim origin → bikin gagal di WebView APK */
                 },
                 events: {
                     onReady:       onYTReady,
@@ -731,19 +777,30 @@ function muatFilm(idx) {
             });
         });
     } else if (url) {
-        /* ---------- DIRECT VIDEO ---------- */
+        /* ---------- HTML5 DIRECT ---------- */
+        setPlayButtonLoading(false);
+        shield.style.pointerEvents = 'auto';
+        shield.classList.add('show-hint');
+
         const v = document.createElement('video');
         v.id = 'direct-player';
         v.src = url;
         v.preload = 'metadata';
         v.playsInline = true;
         v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
         v.setAttribute('disablepictureinpicture', '');
         v.setAttribute('controlslist', 'nodownload noplaybackrate nofullscreen noremoteplayback');
         v.disablePictureInPicture = true;
 
-        v.addEventListener('play', () => { isPlaying = true; updatePlayButton(); });
-        v.addEventListener('pause', () => { isPlaying = false; updatePlayButton(); });
+        v.addEventListener('play', () => {
+            isPlaying = true; updatePlayButton();
+            shield.classList.remove('show-hint');
+        });
+        v.addEventListener('pause', () => {
+            isPlaying = false; updatePlayButton();
+            if (!isVideoEnded) shield.classList.add('show-hint');
+        });
         v.addEventListener('ended', selesaikanVideo);
         v.addEventListener('ratechange', () => {
             if (Math.abs((v.playbackRate || 1) - 1) > 0.01) v.playbackRate = 1;
@@ -751,15 +808,15 @@ function muatFilm(idx) {
         v.addEventListener('loadedmetadata', () => {
             document.getElementById('label-waktu').textContent =
                 '00:00 / ' + formatTime(v.duration);
-            /* sembunyikan caption default */
             applyCaptionStateToHTML5();
         });
-        /* Track baru dimuat -> paksa sesuai state */
         v.textTracks.addEventListener?.('addtrack', () => applyCaptionStateToHTML5());
 
         container.appendChild(v);
     } else {
         container.innerHTML = '<div class="video-empty">URL video tidak tersedia</div>';
+        setPlayButtonLoading(false);
+        shield.style.pointerEvents = 'none';
     }
 
     updateCCButton();
@@ -767,7 +824,15 @@ function muatFilm(idx) {
 }
 
 /* ============================================================
-   CAPTION CONTROL  ⭐
+   TAP VIDEO = PLAY/PAUSE (user gesture native)
+============================================================ */
+function onVideoTap() {
+    if (!ytPlayerInstance && !document.getElementById('direct-player')) return;
+    togglePlay();
+}
+
+/* ============================================================
+   CAPTION CONTROL
 ============================================================ */
 function updateCCButton() {
     const btn = document.getElementById('btn-cc');
@@ -776,16 +841,12 @@ function updateCCButton() {
     btn.textContent = captionsEnabled ? 'CC: ON' : 'CC: OFF';
 }
 
-/**
- * Terapkan state caption ke player yang sedang aktif.
- * Dipanggil saat toggle, saat player ready, dan enforcement periodik.
- */
 function applyCaptionState() {
-    /* --- YouTube --- */
-    if (ytPlayerInstance && typeof ytPlayerInstance.getPlayerState === 'function') {
+    /* YouTube */
+    if (ytPlayerInstance && ytPlayerReady) {
         try {
             if (captionsEnabled) {
-                ytPlayerInstance.loadModule('captions');
+                try { ytPlayerInstance.loadModule('captions'); } catch (e) {}
                 setTimeout(() => {
                     try {
                         const list = ytPlayerInstance.getOption('captions', 'tracklist') || [];
@@ -795,16 +856,13 @@ function applyCaptionState() {
                         }
                         ytPlayerInstance.setOption('captions', 'track', { languageCode: lang });
                     } catch (e) {}
-                }, 180);
+                }, 250);
             } else {
-                /* Paksa matikan caption */
-                ytPlayerInstance.unloadModule('captions');
-                ytPlayerInstance.setOption('captions', 'track', {});
+                try { ytPlayerInstance.unloadModule('captions'); } catch (e) {}
+                try { ytPlayerInstance.setOption('captions', 'track', {}); } catch (e) {}
             }
         } catch (e) {}
     }
-
-    /* --- HTML5 video --- */
     applyCaptionStateToHTML5();
 }
 
@@ -818,7 +876,6 @@ function applyCaptionStateToHTML5() {
     }
 }
 
-/** Tombol CC di panel */
 function toggleCaptions() {
     captionsEnabled = !captionsEnabled;
     updateCCButton();
@@ -829,14 +886,12 @@ function toggleCaptions() {
     );
 }
 
-/** Enforce berkala supaya YouTube tidak menyalakan ulang CC. */
+/* Enforce CC hanya kalau player sedang PLAYING, dan jarang saja */
 function enforceCaptionOff() {
     if (captionsEnabled) return;
-    if (!ytPlayerInstance) return;
-    try {
-        ytPlayerInstance.unloadModule('captions');
-        ytPlayerInstance.setOption('captions', 'track', {});
-    } catch (e) {}
+    if (!ytPlayerInstance || !ytPlayerReady) return;
+    try { ytPlayerInstance.unloadModule('captions'); } catch (e) {}
+    try { ytPlayerInstance.setOption('captions', 'track', {}); } catch (e) {}
     applyCaptionStateToHTML5();
 }
 
@@ -844,28 +899,76 @@ function enforceCaptionOff() {
    YOUTUBE CALLBACK
 ============================================================ */
 function onYTReady(event) {
-    /* paksa matikan caption sesuai state */
-    applyCaptionState();
-    try { event.target.setPlaybackRate(1); } catch (e) {}
+    ytPlayerReady = true;
+    setPlayButtonLoading(false);
+
+    /* Tunda sedikit untuk menghindari error internal di WebView */
+    setTimeout(() => {
+        try { applyCaptionState(); } catch (e) {}
+        try { event.target.setPlaybackRate(1); } catch (e) {}
+    }, 300);
+
+    /* Kalau user sudah klik Play sebelum ready → putar sekarang */
+    if (pendingPlay) {
+        pendingPlay = false;
+        startPlayback();
+    }
 }
 
 function onYTStateChange(event) {
+    const shield = document.getElementById('video-shield');
     if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
         updatePlayButton();
+        shield.classList.remove('show-hint');
         try { event.target.setPlaybackRate(1); } catch (e) {}
-        /* Re-enforce caption state saat mulai play */
-        applyCaptionState();
+        if (!captionsEnabled) {
+            setTimeout(() => { try { enforceCaptionOff(); } catch (e) {} }, 500);
+        }
     } else if (event.data === YT.PlayerState.PAUSED) {
         isPlaying = false;
         updatePlayButton();
+        if (!isVideoEnded) shield.classList.add('show-hint');
     } else if (event.data === YT.PlayerState.ENDED) {
         selesaikanVideo();
     }
 }
 
-function onYTError() {
-    toast('⚠️ Video YouTube tidak dapat diputar. Cek tautan film.', 'error');
+function onYTError(event) {
+    const code = event && event.data;
+    const map = {
+        2:   'ID video YouTube tidak valid.',
+        5:   'Video tidak bisa diputar di player HTML5.',
+        100: 'Video tidak ditemukan / sudah dihapus.',
+        101: 'Pemilik video tidak mengizinkan embed.',
+        150: 'Pemilik video tidak mengizinkan embed.'
+    };
+    const msg = map[code] || ('Error YouTube (kode ' + code + ').');
+    console.warn('YouTube error:', code);
+    setPlayButtonLoading(false);
+    toast('⚠️ ' + msg, 'error');
+}
+
+/* ============================================================
+   START PLAYBACK (fallback mute→play→unmute untuk iOS)
+============================================================ */
+function startPlayback() {
+    if (!ytPlayerInstance || typeof ytPlayerInstance.playVideo !== 'function') return;
+
+    try { ytPlayerInstance.playVideo(); } catch (e) {}
+
+    setTimeout(() => {
+        if (!ytPlayerInstance) return;
+        let state = -1;
+        try { state = ytPlayerInstance.getPlayerState(); } catch (e) {}
+        if (state === 1 || state === 3) return; /* PLAYING / BUFFERING */
+
+        try {
+            ytPlayerInstance.mute();
+            ytPlayerInstance.playVideo();
+            setTimeout(() => { try { ytPlayerInstance.unMute(); } catch (e) {} }, 700);
+        } catch (e) {}
+    }, 400);
 }
 
 /* ============================================================
@@ -874,21 +977,25 @@ function onYTError() {
 function pantauProgres() {
     if (isVideoEnded) return;
 
-    /* --- enforcement caption tiap ~1.2 detik --- */
-    captionEnforceTick++;
-    if (captionEnforceTick % 3 === 0) enforceCaptionOff();
+    /* CC enforce hanya kalau PLAYING, jarang saja (tiap ~4 detik) */
+    if (isPlaying) {
+        captionEnforceTick++;
+        if (captionEnforceTick % 10 === 0) enforceCaptionOff();
+    }
 
     let cur = 0, dur = 0;
 
-    if (ytPlayerInstance && typeof ytPlayerInstance.getCurrentTime === 'function') {
-        cur = ytPlayerInstance.getCurrentTime() || 0;
-        dur = ytPlayerInstance.getDuration()    || 0;
-        if (typeof ytPlayerInstance.getPlaybackRate === 'function') {
-            const rate = ytPlayerInstance.getPlaybackRate();
-            if (rate && Math.abs(rate - 1) > 0.01) {
-                try { ytPlayerInstance.setPlaybackRate(1); } catch (e) {}
+    if (ytPlayerInstance && ytPlayerReady) {
+        try {
+            cur = ytPlayerInstance.getCurrentTime() || 0;
+            dur = ytPlayerInstance.getDuration()    || 0;
+            if (typeof ytPlayerInstance.getPlaybackRate === 'function') {
+                const rate = ytPlayerInstance.getPlaybackRate();
+                if (rate && Math.abs(rate - 1) > 0.01) {
+                    try { ytPlayerInstance.setPlaybackRate(1); } catch (e) {}
+                }
             }
-        }
+        } catch (e) {}
     } else {
         const v = document.getElementById('direct-player');
         if (v) {
@@ -917,6 +1024,7 @@ function selesaikanVideo() {
     isPlaying    = false;
     updatePlayButton();
     document.getElementById('bar-progress').style.width = '100%';
+    document.getElementById('video-shield').classList.add('show-hint');
 
     if (!filmSelesaiSet.has(indexAktif)) {
         tandaiFilmSelesai(true);
@@ -1020,7 +1128,8 @@ function setTombolSelesai(mode) {
 
 function updatePlayButton() {
     const btn = document.getElementById('btn-play');
-    if (btn) btn.innerHTML = isPlaying ? '⏸️ Pause' : '▶️ Play';
+    if (!btn || btn.disabled) return;
+    btn.innerHTML = isPlaying ? '⏸️ Pause' : '▶️ Play';
 }
 
 function togglePlay() {
@@ -1029,21 +1138,46 @@ function togglePlay() {
         const bar = document.getElementById('bar-progress');
         if (bar) bar.style.width = '0%';
     }
-    if (ytPlayerInstance && typeof ytPlayerInstance.playVideo === 'function') {
-        if (isPlaying) ytPlayerInstance.pauseVideo();
-        else           ytPlayerInstance.playVideo();
+
+    /* ==== YOUTUBE ==== */
+    if (ytPlayerInstance) {
+        if (!ytPlayerReady) {
+            pendingPlay = true;
+            setPlayButtonLoading(true);
+            toast('⏳ Player masih memuat, sebentar lagi…', 'info');
+            return;
+        }
+        if (isPlaying) {
+            try { ytPlayerInstance.pauseVideo(); } catch (e) {}
+        } else {
+            startPlayback();
+        }
+        return;
+    }
+
+    /* ==== HTML5 DIRECT ==== */
+    const v = document.getElementById('direct-player');
+    if (!v) return;
+
+    if (isPlaying) {
+        v.pause();
     } else {
-        const v = document.getElementById('direct-player');
-        if (!v) return;
-        if (isPlaying) v.pause();
-        else v.play().catch(() => {});
+        const p = v.play();
+        if (p && typeof p.catch === 'function') {
+            p.catch(err => {
+                console.warn('Play gagal:', err);
+                toast('⚠️ Tidak bisa memutar video. Coba tekan lagi.', 'error');
+            });
+        }
     }
 }
 
 function rewindVideo(seconds) {
-    if (ytPlayerInstance && typeof ytPlayerInstance.getCurrentTime === 'function') {
-        const t = Math.max(0, (ytPlayerInstance.getCurrentTime() || 0) - seconds);
-        ytPlayerInstance.seekTo(t, true);
+    if (ytPlayerInstance && ytPlayerReady) {
+        try {
+            const t = Math.max(0, (ytPlayerInstance.getCurrentTime() || 0) - seconds);
+            ytPlayerInstance.seekTo(t, true);
+        } catch (e) {}
     } else {
         const v = document.getElementById('direct-player');
         if (v) v.currentTime = Math.max(0, (v.currentTime || 0) - seconds);
@@ -1066,6 +1200,7 @@ function kembaliKeDaftar() {
     document.getElementById('btn-submit').classList.add('hidden');
     isPlaying    = false;
     isVideoEnded = false;
+    pendingPlay  = false;
     muatDaftarSesi();
 }
 
