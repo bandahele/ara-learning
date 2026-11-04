@@ -36,32 +36,18 @@
             user-select: none;
             -webkit-user-select: none;
             overflow-x: hidden;
+            touch-action: manipulation; /* cegah double-tap zoom tanpa blokir klik */
         }
 
-        /* ==== CEGAH DOUBLE-TAP ZOOM / SEEK PADA VIDEO ==== */
-        #video-container {
-            touch-action: manipulation;
-        }
+        /* Video container: izinkan interaksi normal ke iframe */
         #video-container iframe,
         #video-container video {
-            pointer-events: auto;
             touch-action: manipulation;
         }
-        /* Overlay untuk memblokir double-click seek & zoom pada area video */
-        .video-blocker {
-            position: absolute;
-            inset: 0;
-            z-index: 5;
-            background: transparent;
-        }
-        /* Izinkan klik tombol play overlay di tengah jika perlu, tapi defaultnya blokir interaksi ganda */
-        
-        /* ==== LAYOUT RESPONSIF TANPA RELOAD ==== */
-        #player-section {
-            transition: all 0.3s ease;
-        }
 
-        /* Portrait (default) */
+        /* ==== LAYOUT RESPONSIF TANPA RELOAD ==== */
+        #player-section { transition: all 0.3s ease; width: 100%; }
+
         #player-section .player-grid {
             display: flex;
             flex-direction: column;
@@ -69,16 +55,12 @@
             width: 100%;
         }
 
-        /* Landscape: video kiri, kontrol kanan */
         @media (orientation: landscape) and (min-height: 320px) {
             #player-section .player-grid {
                 flex-direction: row;
                 align-items: stretch;
             }
-            #player-section .video-col {
-                flex: 2 1 0%;
-                min-width: 0;
-            }
+            #player-section .video-col { flex: 2 1 0%; min-width: 0; }
             #player-section .control-col {
                 flex: 1 1 0%;
                 min-width: 260px;
@@ -86,29 +68,15 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-            }
-            #player-section .video-col .aspect-video {
-                max-height: 78vh;
-            }
-            #player-section .control-col {
                 max-height: 78vh;
                 overflow-y: auto;
             }
+            #player-section .video-col .aspect-video { max-height: 78vh; }
         }
 
-        /* Portrait ponsel: kontrol di bawah */
         @media (orientation: portrait) {
-            #player-section .player-grid {
-                flex-direction: column;
-            }
-            #player-section .control-col {
-                width: 100%;
-            }
-        }
-
-        /* Wrapper utama tetap proporsional */
-        #player-section {
-            width: 100%;
+            #player-section .player-grid { flex-direction: column; }
+            #player-section .control-col { width: 100%; }
         }
     </style>
 </head>
@@ -128,9 +96,7 @@
             <span class="animate-spin text-2xl text-purple-500">🌀</span>
             <span>Memuat status sesi dari Google Sheets...</span>
         </div>
-        <div id="container-sesi-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 hidden">
-            <!-- Sesi disuntikkan dinamis -->
-        </div>
+        <div id="container-sesi-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 hidden"></div>
     </section>
 
     <!-- TAMPILAN RESPANSIF ADAPTIF -->
@@ -138,11 +104,8 @@
         <div class="player-grid">
             <!-- KOLOM VIDEO -->
             <div class="video-col flex flex-col gap-2 w-full">
-                <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center">
-                    <!-- Video disuntikkan di sini -->
-                </div>
+                <div id="video-container" class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center"></div>
                 
-                <!-- STATUS WAKTU & JUDUL -->
                 <div class="flex items-center justify-between text-[11px] font-extrabold px-1 text-slate-400">
                     <span id="judul-film-aktif" class="truncate max-w-[200px] text-slate-200">Judul Film</span>
                     <span id="label-waktu" class="text-purple-400">⏳ 00:00</span>
@@ -151,81 +114,52 @@
 
             <!-- KOLOM KONTROL -->
             <div class="control-col flex flex-col justify-between gap-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800 w-full">
-                
-                <!-- HEADER SESI -->
                 <div class="flex justify-between items-center pb-2 border-b border-slate-800">
                     <span id="label-sesi-aktif" class="text-xs font-black text-purple-400">Sesi 1</span>
                     <span id="label-progres-total" class="text-[10px] font-bold bg-slate-800 text-slate-300 px-2 py-0.5 rounded">0/0 Film</span>
                 </div>
 
-                <!-- IKON LIST FILM -->
                 <div class="flex flex-col gap-1">
                     <span class="text-[10px] font-extrabold text-slate-500">DAFTAR FILM:</span>
-                    <div id="container-film-list" class="flex flex-col gap-1.5 max-h-28 overflow-y-auto pr-1">
-                        <!-- Tombol pilihan film -->
-                    </div>
+                    <div id="container-film-list" class="flex flex-col gap-1.5 max-h-28 overflow-y-auto pr-1"></div>
                 </div>
 
-                <!-- NAVIGASI PEMUTAR -->
                 <div class="grid grid-cols-2 gap-2">
-                    <button onclick="rewindVideo(5)" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">
-                        ⏪ -5s
-                    </button>
-                    <button onclick="togglePlay()" id="btn-play" class="py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">
-                        ▶️ Play
-                    </button>
+                    <button onclick="rewindVideo(5)" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs rounded-lg active:scale-95 transition-all">⏪ -5s</button>
+                    <button onclick="togglePlay()" id="btn-play" class="py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs rounded-lg active:scale-95 transition-all">▶️ Play</button>
                 </div>
 
-                <!-- TOMBOL CC / SUBTITLE -->
                 <div class="grid grid-cols-2 gap-2">
                     <button onclick="toggleCC()" id="btn-cc" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
                         <span id="cc-icon">💬</span> <span id="cc-label">CC: OFF</span>
                     </button>
-                    <button onclick="bukaModalKamus()" class="py-2.5 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">
-                        🌐 Terjemah
-                    </button>
+                    <button onclick="bukaModalKamus()" class="py-2.5 bg-indigo-900/60 hover:bg-indigo-800/80 text-indigo-300 border border-indigo-700/50 font-extrabold text-xs rounded-lg active:scale-95 transition-all flex items-center justify-center gap-1">🌐 Terjemah</button>
                 </div>
 
-                <!-- TOMBOL KEMBALI -->
                 <div class="grid grid-cols-1 gap-2">
-                    <button onclick="kembaliKeDaftar()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">
-                        ⬅️ Kembali ke Daftar Sesi
-                    </button>
+                    <button onclick="kembaliKeDaftar()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold text-xs rounded-lg transition-all">⬅️ Kembali ke Daftar Sesi</button>
                 </div>
 
-                <!-- TOMBOL SELESAI & SUBMIT -->
-                <button id="btn-selesai" onclick="tandaiFilmSelesai()" disabled class="w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed">
-                    🔒 Nonton Hingga Akhir
-                </button>
-                <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-black text-xs rounded-lg shadow-lg active:scale-95 transition-all">
-                    Kirim Laporan Sesi 🎉
-                </button>
+                <button id="btn-selesai" onclick="tandaiFilmSelesai()" disabled class="w-full py-2.5 bg-slate-800 text-slate-600 font-black text-xs rounded-lg cursor-not-allowed">🔒 Nonton Hingga Akhir</button>
+                <button id="btn-submit" onclick="submitHasil()" class="hidden w-full py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-black text-xs rounded-lg shadow-lg active:scale-95 transition-all">Kirim Laporan Sesi 🎉</button>
             </div>
         </div>
     </section>
 
 </div>
 
-<!-- MODAL KAMUS & TRANSLATOR -->
+<!-- MODAL KAMUS -->
 <div id="modal-kamus" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-3">
     <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-            <span class="text-xs font-black text-purple-400 flex items-center gap-1">
-                🌐 Kamus & Terjemahan (English ➔ Indonesia)
-            </span>
+            <span class="text-xs font-black text-purple-400 flex items-center gap-1">🌐 Kamus & Terjemahan (English ➔ Indonesia)</span>
             <button onclick="tutupModalKamus()" class="text-slate-400 hover:text-white font-bold text-sm">✖</button>
         </div>
-        
         <div class="flex flex-col gap-2">
             <textarea id="input-kata" rows="2" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-bold text-slate-200 focus:outline-none focus:border-purple-500 resize-none" placeholder="Ketik kata atau kalimat bahasa Inggris di sini..."></textarea>
-            <button onclick="prosesTerjemahkan()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl active:scale-95 transition-all shadow-md">
-                Terjemahkan Ke Indonesia 🚀
-            </button>
+            <button onclick="prosesTerjemahkan()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl active:scale-95 transition-all shadow-md">Terjemahkan Ke Indonesia 🚀</button>
         </div>
-
-        <div id="hasil-kamus" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs flex-col gap-1.5 max-h-48 overflow-y-auto">
-            <!-- Hasil terjemahan disuntikkan di sini -->
-        </div>
+        <div id="hasil-kamus" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs flex-col gap-1.5 max-h-48 overflow-y-auto"></div>
     </div>
 </div>
 
@@ -282,7 +216,6 @@
             const card = document.createElement('div');
             card.className = `p-3 rounded-xl bg-slate-950 border ${isDone ? 'border-emerald-500/50' : 'border-slate-800'} flex items-center justify-between shadow cursor-pointer hover:border-purple-500 transition-all`;
             card.onclick = () => pilihSesi(sesi);
-
             card.innerHTML = `
                 <div class="flex items-center gap-2.5">
                     <div class="w-7 h-7 rounded-lg ${isDone ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-purple-400'} flex items-center justify-center font-black text-xs">
@@ -290,12 +223,9 @@
                     </div>
                     <div>
                         <div class="font-extrabold text-xs text-slate-200">${sesi}</div>
-                        <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">
-                            ${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}
-                        </div>
+                        <div class="text-[9px] font-bold ${isDone ? 'text-emerald-400' : 'text-slate-500'}">${isDone ? 'Selesai Dikembangkan ✅' : 'Siap Diputar 🎬'}</div>
                     </div>
-                </div>
-            `;
+                </div>`;
             containerEl.appendChild(card);
         });
     }
@@ -335,17 +265,14 @@
         playlistSesi.forEach((item, idx) => {
             const isCurrent = idx === indexAktif;
             const isDone = filmSelesaiSet.has(idx);
-
             const btn = document.createElement('button');
             btn.onclick = () => gantiFilm(idx);
             btn.className = `p-2 rounded-lg text-left border text-[11px] font-bold flex justify-between items-center transition-all ${
                 isCurrent ? 'bg-purple-600 text-white border-purple-500' : isDone ? 'bg-emerald-950/60 text-emerald-300 border-emerald-800' : 'bg-slate-900 text-slate-300 border-slate-800'
             }`;
-
             btn.innerHTML = `
                 <span class="truncate max-w-[110px]">${idx + 1}. ${item.judul || 'Film'}</span>
-                <span>${isDone ? '✅' : isCurrent ? '▶' : '🔒'}</span>
-            `;
+                <span>${isDone ? '✅' : isCurrent ? '▶' : '🔒'}</span>`;
             container.appendChild(btn);
         });
 
@@ -397,11 +324,6 @@
             ytDiv.className = 'w-full h-full';
             container.appendChild(ytDiv);
 
-            // Blocker overlay untuk mencegah double-tap zoom/seek
-            const blocker = document.createElement('div');
-            blocker.className = 'video-blocker';
-            container.appendChild(blocker);
-
             ytPlayerInstance = new YT.Player('yt-embed-player', {
                 videoId: videoId,
                 playerVars: { 
@@ -410,9 +332,9 @@
                     'disablekb': 1, 
                     'modestbranding': 1, 
                     'playsinline': 1,
-                    'cc_load_policy': 0,  // CC off default
-                    'iv_load_policy': 3,  // Hide annotations
-                    'fs': 0                // Disable fullscreen via double-tap
+                    'cc_load_policy': 0,
+                    'iv_load_policy': 3,
+                    'fs': 0
                 },
                 events: { 
                     'onReady': onYouTubeReady,
@@ -426,17 +348,11 @@
             vPlayer.className = 'w-full h-full object-contain';
             vPlayer.src = url;
             vPlayer.setAttribute('controlsList', 'nodownload');
-            // Disable playback rate via UI
             vPlayer.playbackRate = 1.0;
             vPlayer.onplay = () => { isPlaying = true; document.getElementById('btn-play').innerText = "⏸️ Pause"; };
             vPlayer.onpause = () => { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; };
             vPlayer.onended = function() { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; bukaTombolSelesai(); };
             container.appendChild(vPlayer);
-
-            // Blocker double-click pada video
-            const blocker = document.createElement('div');
-            blocker.className = 'video-blocker';
-            container.appendChild(blocker);
         }
 
         checkProgressTimer = setInterval(pantauProgresWaktu, 500);
@@ -444,7 +360,6 @@
 
     function onYouTubeReady(event) {
         videoReady = true;
-        // Pastikan CC off di awal
         try {
             ytPlayerInstance.unloadModule('captions');
             ytPlayerInstance.unloadModule('cc');
@@ -458,7 +373,6 @@
         if (event.data === YT.PlayerState.PLAYING) {
             isPlaying = true;
             btnPlay.innerText = "⏸️ Pause";
-            // Terapkan ulang state CC jika ON
             if (isCCOn) applyCCState(true);
         } else if (event.data === YT.PlayerState.PAUSED) {
             isPlaying = false;
@@ -470,7 +384,6 @@
         }
     }
 
-    // ==== FITUR CC (SUBTITLE YOUTUBE) ====
     function updateCCButton() {
         const icon = document.getElementById('cc-icon');
         const label = document.getElementById('cc-label');
@@ -492,12 +405,10 @@
             if (enable) {
                 ytPlayerInstance.loadModule('captions');
                 ytPlayerInstance.loadModule('cc');
-                // Set default language ke english atau yang tersedia
                 setTimeout(() => {
                     try {
                         const langs = ytPlayerInstance.getOption('captions', 'tracklist') || [];
                         if (langs.length > 0) {
-                            // Pilih English jika ada, kalau tidak pilih yang pertama
                             let chosen = langs.find(l => (l.languageCode || '').toLowerCase().startsWith('en')) || langs[0];
                             if (chosen && chosen.languageCode) {
                                 ytPlayerInstance.setOption('captions', 'track', chosen);
@@ -516,7 +427,6 @@
 
     function toggleCC() {
         if (!ytPlayerInstance || !videoReady) {
-            // Jika video direct (mp4), CC tidak tersedia
             alert("Subtitle (CC) hanya tersedia untuk video YouTube.");
             return;
         }
@@ -525,7 +435,6 @@
         updateCCButton();
     }
 
-    // ==== PROGRES & KONTROL ====
     function pantauProgresWaktu() {
         if (isVideoEnded) return;
 
@@ -716,28 +625,6 @@
         videoReady = false;
         muatDaftarSesi();
     }
-
-    // ==== CEGAH DOUBLE-TAP ZOOM / SEEK PADA VIDEO CONTAINER ====
-    // Cegah double-click pada container video (mencegah seek/zoom browser)
-    document.addEventListener('DOMContentLoaded', () => {
-        const vc = document.getElementById('video-container');
-        if (vc) {
-            vc.addEventListener('dblclick', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            });
-            // Cegah double-tap pada mobile (touch)
-            let lastTouchEnd = 0;
-            vc.addEventListener('touchend', (e) => {
-                const now = Date.now();
-                if (now - lastTouchEnd <= 350) {
-                    e.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, { passive: false });
-        }
-    });
 </script>
 
 </body>
