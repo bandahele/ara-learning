@@ -36,7 +36,6 @@
             user-select: none;
             -webkit-user-select: none;
         }
-        /* Cegah double-tap zoom / skip di dalam video container */
         #video-container, #video-container * {
             touch-action: manipulation;
             -webkit-user-select: none;
@@ -185,53 +184,122 @@
     let isVideoEnded = false;
     
     // ==== TIMER REAL (WAKTU NONTON AKTUAL) ====
-    let waktuTontonDetik = 0;        // akumulasi waktu user benar-benar menonton
-    let lastTickTimestamp = 0;       // untuk hitung delta antar tick
+    let waktuTontonDetik = 0;
+    let lastTickTimestamp = 0;
     let timerRealInterval = null;
     
     // ==== CC STATE ====
     let ccAktif = false;
 
+    // ==== STATE PERSISTENCE ====
+    const STATE_KEY = "movieQuizCinemaState_v1";
+    let isRestoring = false;   // flag agar tidak double call
+
+    // ============ STATE SAVE / LOAD / CLEAR ============
+    function simpanState() {
+        if (isRestoring) return;   // jangan overwrite saat restore
+        try {
+            let posisiVideoDetik = 0;
+            if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
+                try { posisiVideoDetik = ytPlayerInstance.getCurrentTime() || 0; } catch(e){}
+            } else {
+                const dp = document.getElementById('direct-player');
+                if (dp) posisiVideoDetik = dp.currentTime || 0;
+            }
+            const state = {
+                sesiAktif: sesiAktif,
+                indexAktif: indexAktif,
+                filmSelesaiArr: Array.from(filmSelesaiSet),
+                playlistSnapshot: playlistSesi,
+                ccAktif: ccAktif,
+                waktuTontonDetik: waktuTontonDetik,
+                posisiVideoDetik: posisiVideoDetik,
+                mode: "player",
+                timestamp: Date.now()
+            };
+            localStorage.setItem(STATE_KEY, JSON.stringify(state));
+        } catch(e) { console.log("Gagal simpan state:", e); }
+    }
+
+    function hapusState() {
+        try { localStorage.removeItem(STATE_KEY); } catch(e) {}
+    }
+
+    function muatStateTersimpan() {
+        try {
+            const raw = localStorage.getItem(STATE_KEY);
+            if (!raw) return null;
+            const state = JSON.parse(raw);
+            if (state && state.mode === "player" && state.sesiAktif && Array.isArray(state.playlistSnapshot) && state.playlistSnapshot.length > 0) {
+                return state;
+            }
+            return null;
+        } catch(e) { return null; }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-        muatDaftarSesi();
         pasangProteksiGlobal();
+        
+        const state = muatStateTersimpan();
+        if (state) {
+            restorePlayerState(state);
+        } else {
+            muatDaftarSesi();
+        }
     });
 
-    // ============ PROTEKSI GLOBAL (anti percepat / double tap) ============
+    function restorePlayerState(state) {
+        isRestoring = true;
+        sesiAktif = state.sesiAktif;
+        indexAktif = state.indexAktif;
+        playlistSesi = state.playlistSnapshot;
+        filmSelesaiSet = new Set(state.filmSelesaiArr || []);
+        ccAktif = !!state.ccAktif;
+        waktuTontonDetik = state.waktuTontonDetik || 0;
+
+        document.getElementById('list-sesi-section').classList.add('hidden');
+        document.getElementById('player-section').classList.remove('hidden');
+        document.getElementById('player-section').classList.add('grid');
+        document.getElementById('label-sesi-aktif').innerText = sesiAktif;
+
+        renderDaftarIkonFilm();
+        
+        // Muat film lalu restore posisi video + label timer setelah siap
+        muatFilm(indexAktif, state.posisiVideoDetik || 0);
+        
+        setTimeout(() => {
+            document.getElementById('label-timer-real').innerText = formatDurasi(waktuTontonDetik);
+            isRestoring = false;
+        }, 800);
+    }
+
+    // ============ PROTEKSI GLOBAL ============
     function pasangProteksiGlobal() {
-        // Blokir context menu di seluruh dokumen
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // Blokir keyboard shortcut umum untuk mempercepat / skip
         document.addEventListener('keydown', e => {
             const k = e.key.toLowerCase();
-            // Blokir arrow, J/K/L (YT seek), <, > (speed), angka (YT speed)
             if (['arrowright','arrowleft','arrowup','arrowdown','j','k','l',',','.','<','>','+','-'].includes(k)) {
                 if (e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'INPUT') {
                     e.preventDefault();
                 }
             }
-            // Blokir Ctrl/Cmd + arrow (seek)
             if ((e.ctrlKey || e.metaKey) && ['arrowright','arrowleft'].includes(k)) {
                 e.preventDefault();
             }
         }, { capture: true });
     }
 
-    // Pasang proteksi pada elemen video container setelah dibuat
     function pasangProteksiVideo() {
         const container = document.getElementById('video-container');
         if (!container) return;
-        // Blokir double-tap (skip 10s pada YT & native video)
         container.addEventListener('dblclick', e => { e.preventDefault(); e.stopPropagation(); }, true);
-        // Blokir touch double-tap
         let lastTouchEnd = 0;
         container.addEventListener('touchend', e => {
             const now = Date.now();
             if (now - lastTouchEnd <= 300) { e.preventDefault(); }
             lastTouchEnd = now;
         }, { passive: false, capture: true });
-        // Pastikan touch-action
         container.style.touchAction = 'manipulation';
     }
 
@@ -239,11 +307,11 @@
     function mulaiTimerReal() {
         hentikanTimerReal();
         lastTickTimestamp = Date.now();
+        let tickCount = 0;
         timerRealInterval = setInterval(() => {
-            // Hanya menghitung kalau video sedang PLAYING
             let playing = false;
             if (ytPlayerInstance && ytPlayerInstance.getPlayerState) {
-                playing = ytPlayerInstance.getPlayerState() === YT.PlayerState.PLAYING;
+                try { playing = ytPlayerInstance.getPlayerState() === YT.PlayerState.PLAYING; } catch(e){}
             } else {
                 const dp = document.getElementById('direct-player');
                 if (dp) playing = !dp.paused && !dp.ended;
@@ -257,6 +325,12 @@
             }
             lastTickTimestamp = now;
             document.getElementById('label-timer-real').innerText = formatDurasi(waktuTontonDetik);
+            
+            // Auto-save state tiap 10 detik
+            tickCount++;
+            if (tickCount % 10 === 0 && !isRestoring) {
+                simpanState();
+            }
         }, 1000);
     }
 
@@ -341,7 +415,8 @@
             document.getElementById('label-sesi-aktif').innerText = sesi;
             
             renderDaftarIkonFilm();
-            muatFilm(0);
+            muatFilm(0, 0);
+            simpanState();
         } catch (e) {
             alert("Gagal terhubung ke server.");
         }
@@ -383,15 +458,22 @@
         if (indexAktif === idx) return;
         indexAktif = idx;
         renderDaftarIkonFilm();
-        muatFilm(idx);
+        muatFilm(idx, 0);
+        simpanState();
     }
 
-    function muatFilm(idx) {
+    // ============ LOAD FILM (dengan parameter startAt) ============
+    function muatFilm(idx, startAt = 0) {
         resetTimer();
         resetTimerReal();
         isPlaying = false;
-        ccAktif = false;
+        ccAktif = ccAktif;   // tetap sesuai state
         perbaruiLabelCC();
+        
+        // Reset instance & label agar tidak nyangkut durasi lama
+        ytPlayerInstance = null;
+        document.getElementById('label-waktu').innerText = "⏳ 00:00";
+
         document.getElementById('btn-play').innerText = "▶️ Play";
 
         const item = playlistSesi[idx];
@@ -424,11 +506,12 @@
                     'modestbranding': 1, 
                     'playsinline': 1,
                     'cc_load_policy': 0,
-                    'iv_load_policy': 3
+                    'iv_load_policy': 3,
+                    'start': Math.floor(startAt)
                 },
                 events: { 
                     'onStateChange': onYouTubeStateChange,
-                    'onReady': onYouTubeReady
+                    'onReady': (e) => onYouTubeReady(e, startAt)
                 }
             });
         } else {
@@ -438,29 +521,57 @@
             vPlayer.className = 'w-full h-full object-contain';
             vPlayer.src = url;
             vPlayer.playsInline = true;
-            vPlayer.controls = false;   // Sembunyikan kontrol native agar tidak bisa percepat
+            vPlayer.controls = false;
             vPlayer.disablePictureInPicture = true;
-            // Blokir percepat native
             vPlayer.addEventListener('ratechange', () => {
                 if (vPlayer.playbackRate !== 1) vPlayer.playbackRate = 1;
             });
             vPlayer.onplay = () => { isPlaying = true; document.getElementById('btn-play').innerText = "⏸️ Pause"; };
             vPlayer.onpause = () => { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; };
             vPlayer.onended = function() { isPlaying = false; document.getElementById('btn-play').innerText = "▶️ Play"; bukaTombolSelesai(); };
+            
+            // Mulai timer SETELAH metadata siap
+            vPlayer.onloadedmetadata = () => {
+                if (startAt > 2 && startAt < vPlayer.duration) {
+                    try { vPlayer.currentTime = startAt; } catch(e){}
+                }
+                if (vPlayer.duration > 0) {
+                    document.getElementById('label-waktu').innerText = `⏳ 00:00 / ${formatDurasi(vPlayer.duration)}`;
+                }
+                resetTimer();
+                checkProgressTimer = setInterval(pantauProgresWaktu, 500);
+            };
+            
             container.appendChild(vPlayer);
         }
 
-        // Pasang proteksi & mulai timer
         setTimeout(pasangProteksiVideo, 100);
         mulaiTimerReal();
-        checkProgressTimer = setInterval(pantauProgresWaktu, 500);
     }
 
-    function onYouTubeReady(event) {
-        // Paksa kecepatan 1x (hindari percepat)
+    // ============ YOUTUBE READY (dengan startAt) ============
+    function onYouTubeReady(event, startAt = 0) {
         try { event.target.setPlaybackRate(1); } catch(e){}
-        // Sembunyikan caption default (kita kontrol via tombol CC)
         try { event.target.unloadModule('captions'); event.target.loadModule('captions'); } catch(e){}
+        
+        // Seek ke posisi terakhir jika ada
+        if (startAt > 2) {
+            try { event.target.seekTo(startAt, true); } catch(e){}
+        }
+        
+        // Tunggu duration tersedia baru start timer
+        resetTimer();
+        let cekDuration = setInterval(() => {
+            try {
+                const dur = event.target.getDuration();
+                if (dur > 0) {
+                    clearInterval(cekDuration);
+                    document.getElementById('label-waktu').innerText = `⏳ 00:00 / ${formatDurasi(dur)}`;
+                    checkProgressTimer = setInterval(pantauProgresWaktu, 500);
+                }
+            } catch(e) { clearInterval(cekDuration); }
+        }, 200);
+        setTimeout(() => clearInterval(cekDuration), 10000);
     }
 
     function onYouTubeStateChange(event) {
@@ -468,7 +579,6 @@
         if (event.data === YT.PlayerState.PLAYING) {
             isPlaying = true;
             btnPlay.innerText = "⏸️ Pause";
-            // Paksa kecepatan normal
             try { ytPlayerInstance.setPlaybackRate(1); } catch(e){}
         } else if (event.data === YT.PlayerState.PAUSED) {
             isPlaying = false;
@@ -480,13 +590,16 @@
         }
     }
 
+    // ============ PANTAU PROGRES ============
     function pantauProgresWaktu() {
         if (isVideoEnded) return;
 
         let currentTime = 0, duration = 0;
         if (ytPlayerInstance && ytPlayerInstance.getCurrentTime) {
-            currentTime = ytPlayerInstance.getCurrentTime() || 0;
-            duration = ytPlayerInstance.getDuration() || 0;
+            try {
+                currentTime = ytPlayerInstance.getCurrentTime() || 0;
+                duration = ytPlayerInstance.getDuration() || 0;
+            } catch(e){}
         } else {
             const directPlayer = document.getElementById('direct-player');
             if (directPlayer) {
@@ -501,6 +614,8 @@
             if (duration - currentTime <= 1.5) {
                 bukaTombolSelesai();
             }
+        } else {
+            document.getElementById('label-waktu').innerText = `⏳ 00:00 / 00:00`;
         }
     }
 
@@ -548,12 +663,12 @@
         }
     }
 
-    // ============ TOGGLE CC (CAPTION) ============
+    // ============ TOGGLE CC ============
     function toggleCC() {
         ccAktif = !ccAktif;
         perbaruiLabelCC();
+        simpanState();
 
-        // YouTube
         if (ytPlayerInstance && ytPlayerInstance.getOptions) {
             try {
                 if (ccAktif) {
@@ -566,7 +681,6 @@
             } catch(e) { console.log('CC YT error:', e); }
         }
 
-        // Video native
         const dp = document.getElementById('direct-player');
         if (dp) {
             const tracks = dp.textTracks;
@@ -602,9 +716,10 @@
         
         filmSelesaiSet.add(indexAktif);
         renderDaftarIkonFilm();
+        simpanState();
 
         const currentMovie = playlistSesi[indexAktif];
-        const waktuTontonFinal = waktuTontonDetik;   // ambil snapshot
+        const waktuTontonFinal = waktuTontonDetik;
         try {
             await fetch(WEB_APP_URL, {
                 method: 'POST',
@@ -616,8 +731,8 @@
                     status: "Selesai Film",
                     filmIndex: indexAktif,
                     judulFilm: currentMovie ? currentMovie.judul : "",
-                    durasiDetik: waktuTontonFinal,                    // <-- WAKTU NONTON AKTUAL
-                    durasiFormat: formatDurasi(waktuTontonFinal)      // <-- FORMAT mm:ss / hh:mm:ss
+                    durasiDetik: waktuTontonFinal,
+                    durasiFormat: formatDurasi(waktuTontonFinal)
                 })
             });
         } catch (e) {
@@ -651,6 +766,7 @@
             });
             
             alert("Laporan sesi berhasil dikirim!");
+            hapusState();
             kembaliKeDaftar();
         } catch (e) {
             alert("Gagal mengirim laporan.");
@@ -717,6 +833,7 @@
     function kembaliKeDaftar() {
         resetTimer();
         hentikanTimerReal();
+        hapusState();
         document.getElementById('player-section').classList.add('hidden');
         document.getElementById('player-section').classList.remove('grid');
         document.getElementById('list-sesi-section').classList.remove('hidden');
@@ -724,6 +841,13 @@
         document.getElementById('video-container').innerHTML = '';
         muatDaftarSesi();
     }
+
+    // Simpan state saat user meninggalkan halaman / refresh
+    window.addEventListener('beforeunload', () => {
+        if (!isRestoring && sesiAktif && playlistSesi.length > 0) {
+            simpanState();
+        }
+    });
 </script>
 
 </body>
