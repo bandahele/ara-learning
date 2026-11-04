@@ -166,6 +166,7 @@
     let isPlaying = false;
     let checkProgressTimer = null;
     let isVideoEnded = false;
+    let durasiFilmDetik = 0;   // <-- Variabel baru untuk menyimpan durasi film
 
     document.addEventListener("DOMContentLoaded", () => {
         muatDaftarSesi();
@@ -288,6 +289,7 @@
     function muatFilm(idx) {
         resetTimer();
         isPlaying = false;
+        durasiFilmDetik = 0;   // <-- Reset durasi saat ganti film
         document.getElementById('btn-play').innerText = "▶️ Play";
 
         const item = playlistSesi[idx];
@@ -364,6 +366,7 @@
         }
 
         if (duration > 0) {
+            durasiFilmDetik = Math.round(duration);   // <-- Simpan durasi ke variabel global
             const formatTime = (s) => new Date(s * 1000).toISOString().substr(14, 5);
             document.getElementById('label-waktu').innerText = `⏳ ${formatTime(currentTime)} / ${formatTime(duration)}`;
             if (duration - currentTime <= 1.5) {
@@ -416,6 +419,18 @@
         }
     }
 
+    // Helper format durasi mm:ss atau hh:mm:ss
+    function formatDurasi(totalDetik) {
+        if (!totalDetik || totalDetik <= 0) return "00:00";
+        const jam = Math.floor(totalDetik / 3600);
+        const menit = Math.floor((totalDetik % 3600) / 60);
+        const detik = totalDetik % 60;
+        const pad = (n) => String(n).padStart(2, '0');
+        return jam > 0
+            ? `${pad(jam)}:${pad(menit)}:${pad(detik)}`
+            : `${pad(menit)}:${pad(detik)}`;
+    }
+
     async function tandaiFilmSelesai() {
         if (!isVideoEnded) return;
         
@@ -433,7 +448,9 @@
                     totalFilm: playlistSesi.length,
                     status: "Selesai Film",
                     filmIndex: indexAktif,
-                    judulFilm: currentMovie ? currentMovie.judul : ""
+                    judulFilm: currentMovie ? currentMovie.judul : "",
+                    durasiDetik: durasiFilmDetik,                                  // <-- Kirim durasi detik
+                    durasiFormat: formatDurasi(durasiFilmDetik)                    // <-- Kirim durasi format
                 })
             });
         } catch (e) {
