@@ -1,0 +1,998 @@
+{
+  "packageId": "BI_SMP_P2",
+  "name": "Bahasa Indonesia SMP Paket 2",
+  "subject": "Bahasa Indonesia",
+  "level": "SMP",
+  "durationMinutes": 90,
+  "questionCount": 30,
+  "status": "AKTIF",
+  "description": "Soal Simulasi TKA Bahasa Indonesia SMP Paket 2 Pusmendik Kemendikdasmen",
+  "questions": [
+    {
+      "questionId": "BI_SMP_P2_001",
+      "number": 1,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p></p><p><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/45700_7261225332b3f7912e689d51d2c0fd20.jpg\"></p><p><em>Gambar: Robot RUN</em></p><p></p><p>Robot pengantar makanan kini menjadi pemandangan menarik di berbagai restoran dan hotel di dunia. Di restoran Dona Alicia, Kuba, robot pelayan mulai digunakan sejak awal 2025 dan berhasil menarik perhatian banyak pengunjung. Di Tiongkok, hotel-hotel di Beijing juga memanfaatkan robot bernama RUN saat Olimpiade Musim Dingin 2022 untuk mengantar makanan tanpa kontak langsung. Sementara itu, di Amerika Serikat, robot menjadi solusi andalan saat musim dingin karena bisa bekerja meskipun jalanan bersalju. Kota Dubai pun tak ketinggalan, dengan menghadirkan robot pengantar di kawasan Sustainable City sejak 2024.</p><p>Penggunaan robot ini dinilai lebih efisien, higienis, dan praktis. Selain menghemat waktu, robot juga membantu mengurangi interaksi langsung antara petugas dan pelanggan, yang sangat penting selama masa pandemi. Robot-robot ini bekerja dengan sistem navigasi otonom, yaitu kemampuan gerak mandiri tanpa dikendalikan manusia. Mereka dilengkapi sensor LiDAR, yaitu sistem pemindaian laser atau pendeteksi rintangan sekitar. Seluruh pergerakan robot diawasi oleh <em>Fleet Management System</em>, yaitu sistem pemantau dari jarak jauh. Makanan yang dibawa robot disimpan dalam kompartemen aman sehingga tetap bersih dan terjaga sampai pelanggan membukanya.</p><p>Gagasan tentang robot sudah muncul sejak abad ke-20. Salah satu tokoh penting dalam pengembangan robot modern adalah Joseph Engelberger, insinyur asal Amerika yang menciptakan robot industri pertama, Unimate, pada tahun 1961.</p><p>Proses pembuatan robot umumnya dimulai dari tahap perancangan desain, lalu dilanjutkan dengan perakitan komponen mekanik dan elektronik. Setelah itu, dipasang sistem sensor dan pemrograman agar robot dapat berpikir dan bergerak. Terakhir, robot diuji coba untuk memastikan semua fungsinya berjalan dengan baik dan aman digunakan.</p><p></p><p><strong>Glosarium:</strong></p><ul><li>Kompartemen : wadah atau bagian terpisah untuk menyimpan benda.</li></ul><p>Sumber:</p><ol><li>https://www.kompas.id/artikel/heboh-robot-pelayan-restoran-pertama-di-kuba</li><li>https://food.detik.com/info-kuliner/d-7660919/bule-ini-girang-lihat-robot-antar-makanan-di-hotel-china</li><li>https://radarsampit.jawapos.com/featured/2345605645/robot-pengantar-makanan-mulai-populer-di-as-jadi-andalan-saat-musim-dingin</li><li>https://kumparan.com/kumparanfood/robot-pengantar-makanan-tersedia-di-hotel-beijing-selama-olimpiade-musim-dingin-1xR1I7m1m1L/full</li><li>https://voi.id/berita/410805/dubai-sustainable-city-luncurkan-program-robot-pengantar-waktu-tunggunya-kurang-dari-30-menit</li><li>www.robotrunner.com/en/indoor-delivery-service-robot.html</li></ol></div>",
+      "questionHtml": "<p>Apa yang dimaksud dengan istilah<em> </em>sensor LiDAR pada teknologi robot pengantar makanan?</p><p>Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu...</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Sistem pemindaian laser."
+        },
+        {
+          "id": "B",
+          "html": "Pemantau dari jarak jauh."
+        },
+        {
+          "id": "C",
+          "html": "Pendeteksi rintangan sekitar."
+        },
+        {
+          "id": "D",
+          "html": "Kemampuan gerak mandiri."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_002",
+      "number": 2,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"> </p>\n\n<p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48298_7261225332b3f7912e689d51d2c0fd20.jpg\" style=\"width: 413px; height: 344px;\"><br><em>Gambar: Robot RUN</em></p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"text-align: justify;\">Robot pengantar makanan kini menjadi pemandangan menarik di berbagai restoran dan hotel di dunia. Di restoran Dona Alicia, Kuba, robot pelayan mulai digunakan sejak awal 2025 dan berhasil menarik perhatian banyak pengunjung. Di Tiongkok, hotel-hotel di Beijing juga memanfaatkan robot bernama RUN saat Olimpiade Musim Dingin 2022 untuk mengantar makanan tanpa kontak langsung. Sementara itu, di Amerika Serikat, robot menjadi solusi andalan saat musim dingin karena bisa bekerja meskipun jalanan bersalju. Kota Dubai pun tak ketinggalan, dengan menghadirkan robot pengantar di kawasan Sustainable City sejak 2024.</p>\n\n<p style=\"text-align: justify;\">Penggunaan robot ini dinilai lebih efisien, higienis, dan praktis. Selain menghemat waktu, robot juga membantu mengurangi interaksi langsung antara petugas dan pelanggan, yang sangat penting selama masa pandemi. Robot-robot ini bekerja dengan sistem navigasi otonom, yaitu kemampuan gerak mandiri tanpa dikendalikan manusia. Mereka dilengkapi sensor LiDAR, yaitu sistem pemindaian laser atau pendeteksi rintangan sekitar. Seluruh pergerakan robot diawasi oleh <em>Fleet Management System</em>, yaitu sistem pemantau dari jarak jauh. Makanan yang dibawa robot disimpan dalam kompartemen aman sehingga tetap bersih dan terjaga sampai pelanggan membukanya.</p>\n\n<p style=\"text-align: justify;\">Gagasan tentang robot sudah muncul sejak abad ke-20. Salah satu tokoh penting dalam pengembangan robot modern adalah Joseph Engelberger, insinyur asal Amerika yang menciptakan robot industri pertama, Unimate, pada tahun 1961.</p>\n\n<p style=\"text-align: justify;\">Proses pembuatan robot umumnya dimulai dari tahap perancangan desain, lalu dilanjutkan dengan perakitan komponen mekanik dan elektronik. Setelah itu, dipasang sistem sensor dan pemrograman agar robot dapat berpikir dan bergerak. Terakhir, robot diuji coba untuk memastikan semua fungsinya berjalan dengan baik dan aman digunakan.</p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"text-align: justify;\"><strong>Glosarium:</strong></p>\n\n<ul><li style=\"text-align: justify;\">Kompartemen : wadah atau bagian terpisah untuk menyimpan benda.</li>\n</ul><p style=\"text-align: justify;\">Sumber:</p>\n\n<ol><li style=\"text-align: justify;\">https://www.kompas.id/artikel/heboh-robot-pelayan-restoran-pertama-di-kuba</li>\n\t<li style=\"text-align: justify;\">https://food.detik.com/info-kuliner/d-7660919/bule-ini-girang-lihat-robot-antar-makanan-di-hotel-china</li>\n\t<li style=\"text-align: justify;\">https://radarsampit.jawapos.com/featured/2345605645/robot-pengantar-makanan-mulai-populer-di-as-jadi-andalan-saat-musim-dingin</li>\n\t<li style=\"text-align: justify;\">https://kumparan.com/kumparanfood/robot-pengantar-makanan-tersedia-di-hotel-beijing-selama-olimpiade-musim-dingin-1xR1I7m1m1L/full</li>\n\t<li style=\"text-align: justify;\">https://voi.id/berita/410805/dubai-sustainable-city-luncurkan-program-robot-pengantar-waktu-tunggunya-kurang-dari-30-menit</li>\n\t<li style=\"text-align: justify;\">www.robotrunner.com/en/indoor-delivery-service-robot.html</li>\n</ol></div>",
+      "questionHtml": "<p>Bagaimana urutan yang menggambarkan cara pembuatan robot pengantar makanan?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48298_82e490734c519a7a317a0ebc8e4d8fd4.jpg\" style=\"width: 400px; height: 193px;\">"
+        },
+        {
+          "id": "B",
+          "html": "<img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48298_e1eceeb769eed085d7828c3d10f56142.jpg\" style=\"width: 400px; height: 192px;\">"
+        },
+        {
+          "id": "C",
+          "html": "<img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48298_84a7b956b9b1e74c992ce9a1d1e5d705.jpg\" style=\"width: 400px; height: 195px;\">"
+        },
+        {
+          "id": "D",
+          "html": "<img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48298_7243881d3d322d9071fa117dd10d6871.jpg\" style=\"width: 400px; height: 193px;\">"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_003",
+      "number": 3,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"> </p>\n\n<p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94907_7261225332b3f7912e689d51d2c0fd20.jpg\" style=\"width: 413px; height: 344px;\"><br><em>Gambar: Robot RUN</em></p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"text-align: justify;\">Robot pengantar makanan kini menjadi pemandangan menarik di berbagai restoran dan hotel di dunia. Di restoran Dona Alicia, Kuba, robot pelayan mulai digunakan sejak awal 2025 dan berhasil menarik perhatian banyak pengunjung. Di Tiongkok, hotel-hotel di Beijing juga memanfaatkan robot bernama RUN saat Olimpiade Musim Dingin 2022 untuk mengantar makanan tanpa kontak langsung. Sementara itu, di Amerika Serikat, robot menjadi solusi andalan saat musim dingin karena bisa bekerja meskipun jalanan bersalju. Kota Dubai pun tak ketinggalan, dengan menghadirkan robot pengantar di kawasan Sustainable City sejak 2024.</p>\n\n<p style=\"text-align: justify;\">Penggunaan robot ini dinilai lebih efisien, higienis, dan praktis. Selain menghemat waktu, robot juga membantu mengurangi interaksi langsung antara petugas dan pelanggan, yang sangat penting selama masa pandemi. Robot-robot ini bekerja dengan sistem navigasi otonom, yaitu kemampuan gerak mandiri tanpa dikendalikan manusia. Mereka dilengkapi sensor LiDAR, yaitu sistem pemindaian laser atau pendeteksi rintangan sekitar. Seluruh pergerakan robot diawasi oleh <em>Fleet Management System</em>, yaitu sistem pemantau dari jarak jauh. Makanan yang dibawa robot disimpan dalam kompartemen aman sehingga tetap bersih dan terjaga sampai pelanggan membukanya.</p>\n\n<p style=\"text-align: justify;\">Gagasan tentang robot sudah muncul sejak abad ke-20. Salah satu tokoh penting dalam pengembangan robot modern adalah Joseph Engelberger, insinyur asal Amerika yang menciptakan robot industri pertama, Unimate, pada tahun 1961.</p>\n\n<p style=\"text-align: justify;\">Proses pembuatan robot umumnya dimulai dari tahap perancangan desain, lalu dilanjutkan dengan perakitan komponen mekanik dan elektronik. Setelah itu, dipasang sistem sensor dan pemrograman agar robot dapat berpikir dan bergerak. Terakhir, robot diuji coba untuk memastikan semua fungsinya berjalan dengan baik dan aman digunakan.</p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"text-align: justify;\"><strong>Glosarium:</strong></p>\n\n<ul><li style=\"text-align: justify;\">Kompartemen : wadah atau bagian terpisah untuk menyimpan benda.</li>\n</ul><p style=\"text-align: justify;\">Sumber:</p>\n\n<ol><li style=\"text-align: justify;\">https://www.kompas.id/artikel/heboh-robot-pelayan-restoran-pertama-di-kuba</li>\n\t<li style=\"text-align: justify;\">https://food.detik.com/info-kuliner/d-7660919/bule-ini-girang-lihat-robot-antar-makanan-di-hotel-china</li>\n\t<li style=\"text-align: justify;\">https://radarsampit.jawapos.com/featured/2345605645/robot-pengantar-makanan-mulai-populer-di-as-jadi-andalan-saat-musim-dingin</li>\n\t<li style=\"text-align: justify;\">https://kumparan.com/kumparanfood/robot-pengantar-makanan-tersedia-di-hotel-beijing-selama-olimpiade-musim-dingin-1xR1I7m1m1L/full</li>\n\t<li style=\"text-align: justify;\">https://voi.id/berita/410805/dubai-sustainable-city-luncurkan-program-robot-pengantar-waktu-tunggunya-kurang-dari-30-menit</li>\n\t<li style=\"text-align: justify;\">www.robotrunner.com/en/indoor-delivery-service-robot.html</li>\n</ol></div>",
+      "questionHtml": "<p>Nadin dan Ami membaca berita mengenai robot pengantar makanan. Mereka sepakat bahwa berita itu informatif dan mudah dipahami.<br>\nMengapa teks itu dapat dipahami Nadin dan Ami?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Tepat</strong> atau <strong>Tidak tepat</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Tidak tepat"
+        },
+        {
+          "id": "B",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_3_1\" type=\"radio\" value=\"2\" name=\"jawaban_3\"><label for=\"arsip_3_1\"></label></div>"
+        },
+        {
+          "id": "C",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_3_3\" type=\"radio\" value=\"2\" name=\"jawaban_3\"><label for=\"arsip_3_3\"></label></div>"
+        },
+        {
+          "id": "D",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_3_5\" type=\"radio\" value=\"2\" name=\"jawaban_3\"><label for=\"arsip_3_5\"></label></div>"
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_004",
+      "number": 4,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: justify;\">SCOBY (<em>Symbiotic Culture of Bacteria and Yeast</em>) adalah kultur mikroba yang digunakan dalam pembuatan minuman kombucha. Kombucha bermanfaat untuk menguatkan sistem imunitas dan sumber prebiotik yang tinggi.</p>\n\n<p style=\"text-align: justify;\">Alat dan bahan:<br>\n1. Panci<br>\n2. Toples kaca<br>\n3. Kain kasa<br>\n4. Karet gelang<br>\n5. Teh hitam atau teh hijau sebanyak 2 sendok makan<br>\n6. Gula pasir sebanyak 1/4 cangkir<br>\n7. Air mendidih sebanyak 4 cangkir<br>\n8. Minuman kombucha siap pakai sebanyak 1/2 cangkir (berfungsi membuat fermentasi teh menjadi minuman yang menyegarkan).</p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"margin-left: 8px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/38378_7f1ff2a0cb52d6806769a3088ab83d0f.jpg\" style=\"width: 724px; height: 1024px;\"></p>\n\n<p>Keterangan:<br>\nStarter kombucha adala<span style=\"background-color:#ffffff;\">h</span><span style=\"color:#ffffff;\"><span style=\"background-color:#ffffff;\"> </span><mark data-processed=\"true\" jscontroller=\"DfH0l\" jsuid=\"ZZAch_a\"><span style=\"background-color:#ffffff;\">kultur campuran bakteri dan ragi dengan cairan kombucha yang sudah matang/tua</span></mark></span><br><br>\nSumber:</p>\n\n<p>https://kumparan.com/seputar-hobi/cara-membuat-scoby-kombucha-yang-mudah-dan-tepat-20U6EHsuNX9/full</p>\n\n<p>https://picklesnhoney-com.translate.goog/how-to-make-kombucha-growing-a-scoby/?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p>\n\n<p>https://www-foodnetwork-com.translate.goog/how-to/packages/food-network-essentials/how-to-make-a-scoby?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p></div>",
+      "questionHtml": "<p style=\"text-align:start\">Apa saja khasiat kombucha bagi tubuh berdasarkan isi teks tersebut?</p>\n\n<p style=\"text-align:start\"><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Menguatkan sistem imunitas."
+        },
+        {
+          "id": "B",
+          "html": "Sumber prebiotik yang tinggi."
+        },
+        {
+          "id": "C",
+          "html": "Membantu proses fermentasi."
+        },
+        {
+          "id": "D",
+          "html": "Memungkinkan udara untuk  mengalir."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_005",
+      "number": 5,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: justify;\">SCOBY (<em>Symbiotic Culture of Bacteria and Yeast</em>) adalah kultur mikroba yang digunakan dalam pembuatan minuman kombucha. Kombucha bermanfaat untuk menguatkan sistem imunitas dan sumber prebiotik yang tinggi.</p>\n\n<p style=\"text-align: justify;\">Alat dan bahan:<br>\n1. Panci<br>\n2. Toples kaca<br>\n3. Kain kasa<br>\n4. Karet gelang<br>\n5. Teh hitam atau teh hijau sebanyak 2 sendok makan<br>\n6. Gula pasir sebanyak 1/4 cangkir<br>\n7. Air mendidih sebanyak 4 cangkir<br>\n8. Minuman kombucha siap pakai sebanyak 1/2 cangkir (berfungsi membuat fermentasi teh menjadi minuman yang menyegarkan).</p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"margin-left: 8px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/07753_7f1ff2a0cb52d6806769a3088ab83d0f.jpg\" style=\"width: 724px; height: 1024px;\"></p>\n\n<p>Keterangan:<br>\nStarter kombucha adala<span style=\"background-color:#ffffff;\">h</span><span style=\"color:#ffffff;\"><span style=\"background-color:#ffffff;\"> </span><mark data-processed=\"true\" jscontroller=\"DfH0l\" jsuid=\"ZZAch_a\"><span style=\"background-color:#ffffff;\">kultur campuran bakteri dan ragi dengan cairan kombucha yang sudah matang/tua</span></mark></span><br><br>\nSumber:</p>\n\n<p>https://kumparan.com/seputar-hobi/cara-membuat-scoby-kombucha-yang-mudah-dan-tepat-20U6EHsuNX9/full</p>\n\n<p>https://picklesnhoney-com.translate.goog/how-to-make-kombucha-growing-a-scoby/?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p>\n\n<p>https://www-foodnetwork-com.translate.goog/how-to/packages/food-network-essentials/how-to-make-a-scoby?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p></div>",
+      "questionHtml": "<p style=\"text-align:start\">Dalam proses pembuatan SCOBY, mengapa toples ditutup menggunakan kain kasa?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Supaya sirkulasi udara tetap terjaga."
+        },
+        {
+          "id": "B",
+          "html": "Demi menjaga toples tetap bersuhu hangat."
+        },
+        {
+          "id": "C",
+          "html": "Agar toples bisa ditutup dengan rapat."
+        },
+        {
+          "id": "D",
+          "html": "Untuk mempertahankan tekstur kenyal."
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_006",
+      "number": 6,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: justify;\">SCOBY (<em>Symbiotic Culture of Bacteria and Yeast</em>) adalah kultur mikroba yang digunakan dalam pembuatan minuman kombucha. Kombucha bermanfaat untuk menguatkan sistem imunitas dan sumber prebiotik yang tinggi.</p>\n\n<p style=\"text-align: justify;\">Alat dan bahan:<br>\n1. Panci<br>\n2. Toples kaca<br>\n3. Kain kasa<br>\n4. Karet gelang<br>\n5. Teh hitam atau teh hijau sebanyak 2 sendok makan<br>\n6. Gula pasir sebanyak 1/4 cangkir<br>\n7. Air mendidih sebanyak 4 cangkir<br>\n8. Minuman kombucha siap pakai sebanyak 1/2 cangkir (berfungsi membuat fermentasi teh menjadi minuman yang menyegarkan).</p>\n\n<p style=\"text-align: justify;\"> </p>\n\n<p style=\"margin-left: 8px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/48524_7f1ff2a0cb52d6806769a3088ab83d0f.jpg\" style=\"width: 724px; height: 1024px;\"></p>\n\n<p>Keterangan:<br>\nStarter kombucha adala<span style=\"background-color:#ffffff;\">h</span><span style=\"color:#ffffff;\"><span style=\"background-color:#ffffff;\"> </span><mark data-processed=\"true\" jscontroller=\"DfH0l\" jsuid=\"ZZAch_a\"><span style=\"background-color:#ffffff;\">kultur campuran bakteri dan ragi dengan cairan kombucha yang sudah matang/tua</span></mark></span><br><br>\nSumber:</p>\n\n<p>https://kumparan.com/seputar-hobi/cara-membuat-scoby-kombucha-yang-mudah-dan-tepat-20U6EHsuNX9/full</p>\n\n<p>https://picklesnhoney-com.translate.goog/how-to-make-kombucha-growing-a-scoby/?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p>\n\n<p>https://www-foodnetwork-com.translate.goog/how-to/packages/food-network-essentials/how-to-make-a-scoby?_x_tr_sl=en&amp;_x_tr_tl=id&amp;_x_tr_hl=id&amp;_x_tr_pto=tc</p></div>",
+      "questionHtml": "<p style=\"text-align:justify\">Apa yang akan terjadi jika toples tidak disimpan di tempat yang hangat saat melakukan percobaan pembuatan SCOBY?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "SCOBY tetap terbentuk dengan baik karena cahaya tidak akan memengaruhi fermentasi."
+        },
+        {
+          "id": "B",
+          "html": "SCOBY gagal terbentuk karena keberadaan cahaya menghambat pertumbuhan mikroorganisme."
+        },
+        {
+          "id": "C",
+          "html": "SCOBY terbentuk lebih cepat karena matahari dapat membantu mempercepat proses fermentasi."
+        },
+        {
+          "id": "D",
+          "html": "SCOBY akan mengandung lebih banyak gula karena proses fermentasi tidak pernah berlangsung."
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_007",
+      "number": 7,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/59395_1693adde05c7c7fee29ab069c57b8339.jpg\" style=\"width: 792px; height: 1024px;\"></p>\n\n<p> </p>\n\n<p style=\"text-align: justify;\"><span style=\"font-size:14px;\"><strong>Sumber Informasi:</strong><br>\nRahmawati, L., Hadiyanto, H., &amp; Fudholi, A. (2021). Evaluasi biodegradabilitas plastik berbahan dasar campuran pati dan polietilen menggunakan metode enzimatik, konsorsia mikroba, dan pengomposan. <em>Jurnal Teknologi Lingkungan</em>, 22(3), 145–156.<br>\nTim Abdi Guru. (2021). Ilmu Pengetahuan Alam untuk SMP/MTs Kelas VII. Jakarta: Penerbit Erlangga.</span></p></div>",
+      "questionHtml": "<p>Mengapa penulis menyampaikan informasi tentang uji biodegradasi plastik konvensional dan bioplastik?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-size:14px;\">Memaparkan cara membuat bioplastik dari bahan-bahan alami.  </span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-size:14px;\">Menganalisis efek larutan cuka terhadap laju biodegradasi bioplastik.  </span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-size:14px;\">Menyajikan langkah-langkah merendam plastik ke dalam larutan air dan cuka.  </span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-size:14px;\">Membandingkan tingkat pelarutan plastik konvensional dan bioplastik pada air.  </span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_008",
+      "number": 8,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/44423_1693adde05c7c7fee29ab069c57b8339.jpg\" style=\"width: 792px; height: 1024px;\"></p>\n\n<p> </p>\n\n<p style=\"text-align: justify;\"><span style=\"font-size:14px;\"><strong>Sumber Informasi:</strong><br>\nRahmawati, L., Hadiyanto, H., &amp; Fudholi, A. (2021). Evaluasi biodegradabilitas plastik berbahan dasar campuran pati dan polietilen menggunakan metode enzimatik, konsorsia mikroba, dan pengomposan. <em>Jurnal Teknologi Lingkungan</em>, 22(3), 145–156.<br>\nTim Abdi Guru. (2021). Ilmu Pengetahuan Alam untuk SMP/MTs Kelas VII. Jakarta: Penerbit Erlangga.</span></p></div>",
+      "questionHtml": "<p style=\"margin-bottom: 11px; text-align: justify;\"><span style=\"font-family: Arial,Helvetica,sans-serif;\"><span style=\"font-size: 14px;\"><span style=\"line-height: 107%;\">Mengapa bioplastik dinyatakan lebih ramah lingkungan pada uji biodegradasi tersebut?</span></span></span></p>\n<p style=\"text-align: justify;\"><span style=\"color: #2980b9;\"><span style=\"font-family: Arial, Helvetica, sans-serif;\"><span style=\"font-size: 14px;\">Klik pada pilihan <strong>Benar </strong>atau <strong>Salah</strong> untuk setiap pernyataan berdasarkan isi teks!</span></span></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Massa bioplastik mengalami penurunan lebih cepat saat direndam larutan cuka.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Bahan bioplastik mudah terurai, terutama saat berada dalam keadaan asam.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Material <em>polyethylene </em>dalam bioplastik mempercepat proses penguraian.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_009",
+      "number": 9,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/66162_1693adde05c7c7fee29ab069c57b8339.jpg\" style=\"width: 792px; height: 1024px;\"></p>\n\n<p> </p>\n\n<p style=\"text-align: justify;\"><span style=\"font-size:14px;\"><strong>Sumber Informasi:</strong><br>\nRahmawati, L., Hadiyanto, H., &amp; Fudholi, A. (2021). Evaluasi biodegradabilitas plastik berbahan dasar campuran pati dan polietilen menggunakan metode enzimatik, konsorsia mikroba, dan pengomposan. <em>Jurnal Teknologi Lingkungan</em>, 22(3), 145–156.<br>\nTim Abdi Guru. (2021). Ilmu Pengetahuan Alam untuk SMP/MTs Kelas VII. Jakarta: Penerbit Erlangga.</span></p></div>",
+      "questionHtml": "<p style=\"text-align: justify;\">Setelah membaca teks prosedur uji biodegradasi, Nake, Elvina, dan Ratna berpendapat sebagai berikut.</p>\n<p style=\"text-align: justify;\">Nake : \"Menurutku petunjuk kegiatan dalam teks mudah dimengerti. Penulis menggunakan kalimat perintah yang sederhana.\"<br> Elvina: \"Betul, Nake. Apalagi tampilan teks juga sangat menarik. Aku sangat suka dengan pilihan warna infografiknya.\"<br> Ratna: “Menurutku, setiap pernyataan dalam teks juga jelas, termasuk rincian waktu penelitian, misalnya ‘setelah 7 hari’.”</p>\n<p style=\"text-align: justify;\">Pendapat siapakah yang lebih sesuai untuk menilai penggunaan bahasa dalam teks prosedur tersebut?</p>\n<p style=\"text-align: justify;\"><span style=\"color: #2980b9;\">Klik pada pilihan <strong>Sesua</strong>i atau <strong>Tidak Sesuai</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Sesuai",
+          "Tidak Sesuai"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Elvina karena alasan yang diungkapkan mencerminkan tingkat estetika bahasa.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Nake karena pernyataan yang disampaikan merujuk pada efektivitas bahasa teks.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Ratna karena argumen yang disampaikan merujuk pada keunggulan kalimat rincian.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Tidak Sesuai",
+          "R2": "Sesuai",
+          "R3": "Sesuai"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_010",
+      "number": 10,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/17450_1d091b5a60ffd22c1d1a9c46891369a8.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Saat membeli kaos kaki, kalian akan memilih yang kualitasnya bagus, harganya mahal, dan hanya dapat satu pasang? Atau yang kualitasnya biasa saja, harga terjangkau, dan dapatnya lima pasang kaos kaki? Ayo, kalian akan pilih kualitas atau kuantitas?</p>\n\n<p>Saat kalian membeli kaos kaki seperti ini, sebenarnya kalian sedang menerapkan konsumsi dan produksi yang bertanggung jawab, lho. Pada dasarnya, patokan barang itu, ada harga ada rupa. Jadi, semakin bagus kualitas sebuah barang, maka biasanya semakin mahal juga harga barangnya. Namun, akan awet dan tahan lama saat dipakai. Akhirnya, kalian juga akan menghemat pengeluaran membeli kaos kaki. Uangnya bisa dipakai untuk keperluan lainnya.</p>\n\n<p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/17450_63d3ccaf1f34129de8dfb6c7b84232de.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Coba bandingkan dengan membeli kaos kaki yang harganya murah, dapatnya banyak, tapi kualitasnya kurang bagus. Akhirnya baru dipakai sebentar, kaos kaki sudah sobek. Lima pasang kaos kaki itu, akan cepat ganti semua. Kaos kaki ini malah akan dibuang dan menjadi sampah. Pastinya akan berpengaruh juga pada lingkungan, kesehatan, dan Bumi kita.</p>\n\n<p>Jadi, sebaiknya kalian membeli barang berkualitas jumlah sedikit dan bisa dipakai lama. Belilah barang yang benar-benar kalian butuhkan agar terus bisa dipakai lama. Jangan beli barang yang hanya sekadar ingin beli. Biasanya malah akan cepat bosan. Akhirnya, tidak terpakai dan menumpuk di rumah. Sayang sekali, kan?</p>\n\n<p style=\"margin-bottom:11px\"><br>\nSumber Referensi :<br>\nhttps://mytravelingroads.com/teaching-kids-about-responsible-consumption-production/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Bagaimana manfaat ekonomi dari tips memilih barang tersebut?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Lebih awet sehingga jangka waktu pemakaiannya lebih lama."
+        },
+        {
+          "id": "B",
+          "html": "Mencegah banyaknya barang yang terbuang di tempat sampah."
+        },
+        {
+          "id": "C",
+          "html": "Menghemat pengeluaran karena tidak perlu terus membeli."
+        },
+        {
+          "id": "D",
+          "html": "Membuat kepercayaan diri meningkat saat menggunakannya."
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_011",
+      "number": 11,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/95788_1d091b5a60ffd22c1d1a9c46891369a8.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Saat membeli kaos kaki, kalian akan memilih yang kualitasnya bagus, harganya mahal, dan hanya dapat satu pasang? Atau yang kualitasnya biasa saja, harga terjangkau, dan dapatnya lima pasang kaos kaki? Ayo, kalian akan pilih kualitas atau kuantitas?</p>\n\n<p>Saat kalian membeli kaos kaki seperti ini, sebenarnya kalian sedang menerapkan konsumsi dan produksi yang bertanggung jawab, lho. Pada dasarnya, patokan barang itu, ada harga ada rupa. Jadi, semakin bagus kualitas sebuah barang, maka biasanya semakin mahal juga harga barangnya. Namun, akan awet dan tahan lama saat dipakai. Akhirnya, kalian juga akan menghemat pengeluaran membeli kaos kaki. Uangnya bisa dipakai untuk keperluan lainnya.</p>\n\n<p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/95788_63d3ccaf1f34129de8dfb6c7b84232de.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Coba bandingkan dengan membeli kaos kaki yang harganya murah, dapatnya banyak, tapi kualitasnya kurang bagus. Akhirnya baru dipakai sebentar, kaos kaki sudah sobek. Lima pasang kaos kaki itu, akan cepat ganti semua. Kaos kaki ini malah akan dibuang dan menjadi sampah. Pastinya akan berpengaruh juga pada lingkungan, kesehatan, dan Bumi kita.</p>\n\n<p>Jadi, sebaiknya kalian membeli barang berkualitas jumlah sedikit dan bisa dipakai lama. Belilah barang yang benar-benar kalian butuhkan agar terus bisa dipakai lama. Jangan beli barang yang hanya sekadar ingin beli. Biasanya malah akan cepat bosan. Akhirnya, tidak terpakai dan menumpuk di rumah. Sayang sekali, kan?</p>\n\n<p style=\"margin-bottom:11px\"><br>\nSumber Referensi :<br>\nhttps://mytravelingroads.com/teaching-kids-about-responsible-consumption-production/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Bagaimana perbedaan kedua anak pada ilustrasi tersebut saat membeli kaos kaki?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Anak laki-laki membeli kaos kaki lebih banyak."
+        },
+        {
+          "id": "B",
+          "html": "Anak perempuan memilih kaos kaki lebih mahal."
+        },
+        {
+          "id": "C",
+          "html": "Anak laki-laki pengeluaran kaos kakinya lebih hemat."
+        },
+        {
+          "id": "D",
+          "html": "Anak perempuan memilih kaos kaki kualitas terbaik."
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_012",
+      "number": 12,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/05219_1d091b5a60ffd22c1d1a9c46891369a8.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Saat membeli kaos kaki, kalian akan memilih yang kualitasnya bagus, harganya mahal, dan hanya dapat satu pasang? Atau yang kualitasnya biasa saja, harga terjangkau, dan dapatnya lima pasang kaos kaki? Ayo, kalian akan pilih kualitas atau kuantitas?</p>\n\n<p>Saat kalian membeli kaos kaki seperti ini, sebenarnya kalian sedang menerapkan konsumsi dan produksi yang bertanggung jawab, lho. Pada dasarnya, patokan barang itu, ada harga ada rupa. Jadi, semakin bagus kualitas sebuah barang, maka biasanya semakin mahal juga harga barangnya. Namun, akan awet dan tahan lama saat dipakai. Akhirnya, kalian juga akan menghemat pengeluaran membeli kaos kaki. Uangnya bisa dipakai untuk keperluan lainnya.</p>\n\n<p style=\"margin-bottom: 11px; text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/05219_63d3ccaf1f34129de8dfb6c7b84232de.jpg\" style=\"width: 500px; height: 355px;\"></p>\n\n<p>Coba bandingkan dengan membeli kaos kaki yang harganya murah, dapatnya banyak, tapi kualitasnya kurang bagus. Akhirnya baru dipakai sebentar, kaos kaki sudah sobek. Lima pasang kaos kaki itu, akan cepat ganti semua. Kaos kaki ini malah akan dibuang dan menjadi sampah. Pastinya akan berpengaruh juga pada lingkungan, kesehatan, dan Bumi kita.</p>\n\n<p>Jadi, sebaiknya kalian membeli barang berkualitas jumlah sedikit dan bisa dipakai lama. Belilah barang yang benar-benar kalian butuhkan agar terus bisa dipakai lama. Jangan beli barang yang hanya sekadar ingin beli. Biasanya malah akan cepat bosan. Akhirnya, tidak terpakai dan menumpuk di rumah. Sayang sekali, kan?</p>\n\n<p style=\"margin-bottom:11px\"><br>\nSumber Referensi :<br>\nhttps://mytravelingroads.com/teaching-kids-about-responsible-consumption-production/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Mengapa ekspresi dua anak yang terdapat pada gambar kedua berbeda dari gambar pertama?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Benar</strong> atau <strong>Salah</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Anak perempuan menyadari dirinya masih mempunyai banyak kaos kaki yang masih bagus.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Anak laki-laki merasa senang karena bisa menabung uangnya untuk membeli keperluan lain.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Anak laki-laki tetap merasa puas, meskipun mempunyai sedikit kaos kaki dengan kualitas biasa.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_013",
+      "number": 13,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/72873_e41dbbd9d6e3888ff1d0991f8b93ae46.jpg\" style=\"width: 1024px; height: 724px;\"></p>\n\n<p><strong>Sumber bacaan :</strong></p>\n\n<p>Situs Kementerian Kelautan dan Perikanan RI. https://kkp.go.id</p>\n\n<p>https://lautsehat.id/ekonomi-hijau/lautsehat/kawasan-konservasi-laut-di-indonesia/<br><br>\nhttps://jdih.maritim.go.id/cfind/source/files/permen-kp/permen-kp-nomor-31-tahun-2020.pdf</p></div>",
+      "questionHtml": "<p>Apa tujuan utama teks brosur tersebut?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Memberi tahu pembaca tentang keindahan laut yang dimiliki Indonesia."
+        },
+        {
+          "id": "B",
+          "html": "Memberikan informasi pengelolaan laut yang dilakukan oleh pemerintah."
+        },
+        {
+          "id": "C",
+          "html": "Menyebutkan nama-nama taman nasional dan suaka laut di Indonesia."
+        },
+        {
+          "id": "D",
+          "html": "Mendorong pembaca berperan dalam pelestarian kawasan konservasi."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_014",
+      "number": 14,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/64178_e41dbbd9d6e3888ff1d0991f8b93ae46.jpg\" style=\"width: 1024px; height: 724px;\"></p>\n\n<p><strong>Sumber bacaan :</strong></p>\n\n<p>Situs Kementerian Kelautan dan Perikanan RI. https://kkp.go.id</p>\n\n<p>https://lautsehat.id/ekonomi-hijau/lautsehat/kawasan-konservasi-laut-di-indonesia/<br><br>\nhttps://jdih.maritim.go.id/cfind/source/files/permen-kp/permen-kp-nomor-31-tahun-2020.pdf</p></div>",
+      "questionHtml": "<p>Mengapa perlindungan terhadap Kawasan Konservasi Maritim diperlukan?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Agar dapat digunakan sepenuhnya untuk situs arkeologi dan kemaritiman."
+        },
+        {
+          "id": "B",
+          "html": "Dengan tujuan menjaga keberlanjutan sumber daya ikan yang hampir punah."
+        },
+        {
+          "id": "C",
+          "html": "Supaya dapat mendukung kegiatan wisata berbasis alam dan budaya."
+        },
+        {
+          "id": "D",
+          "html": "Untuk melindungi kearifan lokal, adat, dan situs sejarah di wilayah pesisir."
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_015",
+      "number": 15,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/41271_e41dbbd9d6e3888ff1d0991f8b93ae46.jpg\" style=\"width: 1024px; height: 724px;\"></p>\n\n<p><strong>Sumber bacaan :</strong></p>\n\n<p>Situs Kementerian Kelautan dan Perikanan RI. https://kkp.go.id</p>\n\n<p>https://lautsehat.id/ekonomi-hijau/lautsehat/kawasan-konservasi-laut-di-indonesia/<br><br>\nhttps://jdih.maritim.go.id/cfind/source/files/permen-kp/permen-kp-nomor-31-tahun-2020.pdf</p></div>",
+      "questionHtml": "<p>Mengapa dalam brosur disertakan peta Indonesia?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Benar</strong> atau <strong>Salah</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Menegaskan bahwa kawasan yang dibahas berada di wilayah Indonesia.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Membantu memahami persebaran lokasi kawasan konservasi di satu daerah.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Menunjukkan letak kawasan konservasi laut yang diinformasikan dalam brosur.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_016",
+      "number": 16,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/47074_9ad6b891e90e8ac92af24cc5a35a0956.jpg\" style=\"width: 600px; height: 674px;\"></p>\n\n<p style=\"text-align: justify;\">Pagi itu, Damang, ketua adat, menegaskan bahwa siapa pun yang melanggar aturan Lilifuk akan didenda ternak, uang, dan beras. Ya, sebagai nelayan kami hanya boleh menangkap ikan pada bulan Juni dan Desember. Pelanggaran berarti hukuman dan rasa malu, seakan terputus dari darah Lilifuk dan Pulau Timor.<br>\nAku dan Seno sama-sama nelayan yang menanti<em> Saun Ta’et</em>, upacara menangkap ikan. Menjelang panen, ketua adat memimpin ritual di pantai dan menyerahkan upeti ikan kepada Tuan Lilifuk. Upacara itu sangat kami nantikan. Kami berdiri hormat menunggu laut dibuka, menjaga adat, warisan, dan hidup bersama alam Lilifuk yang sakral.</p>\n\n<p style=\"text-align: justify;\">Malam harinya, aku berjalan menyisir pantai bersama adikku, Ading. Udara malam selalu menenangkanku. Namun, di tengah lautan jauh di sana, aku melihat seseorang di atas perahu. Padahal upacara belum dilakukan, tapi sudah ada nelayan menangkap ikan. Aku berlari ke rumah ketua adat. Aku juga memanggil warga yang masih tidur untuk bergegas menangkap nelayan itu.</p>\n\n<p style=\"text-align: justify;\">Nelayan itu ditangkap, ternyata dia adalah Seno. Ia dibawa ke rumah ketua adat untuk diadili.</p>\n\n<p style=\"text-align: justify;\">“Kami menemukan bom di perahumu, apa yang hendak kamu lakukan?”</p>\n\n<p style=\"text-align: justify;\">“Aku ingin pergi dari pulau!” Seno berteriak, “Aku sudah tidak ingin hidup di sini. Aku akan mengambil ikan sebanyak-banyaknya untuk bekal hidup di luar pulau!”<br>\nSeno tahu, mengebom ikan akan merusak terumbu karang. Dia sengaja mengkhianati desa karena merasa iri dengan petinggi di Lilifuk.</p>\n\n<p style=\"text-align: justify;\">Setelah Seno ditangkap, aku tidak pernah bertemu lagi dengannya. Aku tidak tahu apa hukuman yang dijatuhkan untuknya. Aku pun tahu bahwa dia tidak akan sanggup membayar denda.<br>\nTapi jika tidak ada darah Lilifuk mengalir di tubuhnya, aku yakin dia sudah meninggalkan pulau.</p>\n\n<p>Sumber Bacaan:<br>\nhttps://www.ekuatorial.com/2021/07/tradisi-lilifuk-kearifan-suku-baineo-menjaga-ekosistem-terumbu-karang/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Apa yang terjadi kepada Seno setelah dia ditangkap?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Benar</strong> atau <strong>Salah</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Seno membayar denda sebagai sanksi dari ketua adat.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Seno tidak pernah lagi bertemu dengan tokoh Aku.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Seno mengambil ikan sebagai bekal pergi ke pulau lain.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_017",
+      "number": 17,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/93048_9ad6b891e90e8ac92af24cc5a35a0956.jpg\" style=\"width: 600px; height: 674px;\"></p>\n\n<p style=\"text-align: justify;\">Pagi itu, Damang, ketua adat, menegaskan bahwa siapa pun yang melanggar aturan Lilifuk akan didenda ternak, uang, dan beras. Ya, sebagai nelayan kami hanya boleh menangkap ikan pada bulan Juni dan Desember. Pelanggaran berarti hukuman dan rasa malu, seakan terputus dari darah Lilifuk dan Pulau Timor.<br>\nAku dan Seno sama-sama nelayan yang menanti<em> Saun Ta’et</em>, upacara menangkap ikan. Menjelang panen, ketua adat memimpin ritual di pantai dan menyerahkan upeti ikan kepada Tuan Lilifuk. Upacara itu sangat kami nantikan. Kami berdiri hormat menunggu laut dibuka, menjaga adat, warisan, dan hidup bersama alam Lilifuk yang sakral.</p>\n\n<p style=\"text-align: justify;\">Malam harinya, aku berjalan menyisir pantai bersama adikku, Ading. Udara malam selalu menenangkanku. Namun, di tengah lautan jauh di sana, aku melihat seseorang di atas perahu. Padahal upacara belum dilakukan, tapi sudah ada nelayan menangkap ikan. Aku berlari ke rumah ketua adat. Aku juga memanggil warga yang masih tidur untuk bergegas menangkap nelayan itu.</p>\n\n<p style=\"text-align: justify;\">Nelayan itu ditangkap, ternyata dia adalah Seno. Ia dibawa ke rumah ketua adat untuk diadili.</p>\n\n<p style=\"text-align: justify;\">“Kami menemukan bom di perahumu, apa yang hendak kamu lakukan?”</p>\n\n<p style=\"text-align: justify;\">“Aku ingin pergi dari pulau!” Seno berteriak, “Aku sudah tidak ingin hidup di sini. Aku akan mengambil ikan sebanyak-banyaknya untuk bekal hidup di luar pulau!”<br>\nSeno tahu, mengebom ikan akan merusak terumbu karang. Dia sengaja mengkhianati desa karena merasa iri dengan petinggi di Lilifuk.</p>\n\n<p style=\"text-align: justify;\">Setelah Seno ditangkap, aku tidak pernah bertemu lagi dengannya. Aku tidak tahu apa hukuman yang dijatuhkan untuknya. Aku pun tahu bahwa dia tidak akan sanggup membayar denda.<br>\nTapi jika tidak ada darah Lilifuk mengalir di tubuhnya, aku yakin dia sudah meninggalkan pulau.</p>\n\n<p>Sumber Bacaan:<br>\nhttps://www.ekuatorial.com/2021/07/tradisi-lilifuk-kearifan-suku-baineo-menjaga-ekosistem-terumbu-karang/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Apa yang akan terjadi kepada Seno apabila dia tetap patuh pada aturan adat?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Masih bisa mengikuti <em>Saun Ta’et</em> yang dirayakan esok harinya."
+        },
+        {
+          "id": "B",
+          "html": "Masih menjadi nelayan di Pulau Timor bersama tokoh Aku."
+        },
+        {
+          "id": "C",
+          "html": "Tetap menjadi warga pulau yang selalu menantikan <em>Saun Ta’et</em>."
+        },
+        {
+          "id": "D",
+          "html": "Dapat menangkap ikan kapan saja tanpa harus menunggu lama."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_018",
+      "number": 18,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/27792_9ad6b891e90e8ac92af24cc5a35a0956.jpg\" style=\"width: 600px; height: 674px;\"></p>\n\n<p style=\"text-align: justify;\">Pagi itu, Damang, ketua adat, menegaskan bahwa siapa pun yang melanggar aturan Lilifuk akan didenda ternak, uang, dan beras. Ya, sebagai nelayan kami hanya boleh menangkap ikan pada bulan Juni dan Desember. Pelanggaran berarti hukuman dan rasa malu, seakan terputus dari darah Lilifuk dan Pulau Timor.<br>\nAku dan Seno sama-sama nelayan yang menanti<em> Saun Ta’et</em>, upacara menangkap ikan. Menjelang panen, ketua adat memimpin ritual di pantai dan menyerahkan upeti ikan kepada Tuan Lilifuk. Upacara itu sangat kami nantikan. Kami berdiri hormat menunggu laut dibuka, menjaga adat, warisan, dan hidup bersama alam Lilifuk yang sakral.</p>\n\n<p style=\"text-align: justify;\">Malam harinya, aku berjalan menyisir pantai bersama adikku, Ading. Udara malam selalu menenangkanku. Namun, di tengah lautan jauh di sana, aku melihat seseorang di atas perahu. Padahal upacara belum dilakukan, tapi sudah ada nelayan menangkap ikan. Aku berlari ke rumah ketua adat. Aku juga memanggil warga yang masih tidur untuk bergegas menangkap nelayan itu.</p>\n\n<p style=\"text-align: justify;\">Nelayan itu ditangkap, ternyata dia adalah Seno. Ia dibawa ke rumah ketua adat untuk diadili.</p>\n\n<p style=\"text-align: justify;\">“Kami menemukan bom di perahumu, apa yang hendak kamu lakukan?”</p>\n\n<p style=\"text-align: justify;\">“Aku ingin pergi dari pulau!” Seno berteriak, “Aku sudah tidak ingin hidup di sini. Aku akan mengambil ikan sebanyak-banyaknya untuk bekal hidup di luar pulau!”<br>\nSeno tahu, mengebom ikan akan merusak terumbu karang. Dia sengaja mengkhianati desa karena merasa iri dengan petinggi di Lilifuk.</p>\n\n<p style=\"text-align: justify;\">Setelah Seno ditangkap, aku tidak pernah bertemu lagi dengannya. Aku tidak tahu apa hukuman yang dijatuhkan untuknya. Aku pun tahu bahwa dia tidak akan sanggup membayar denda.<br>\nTapi jika tidak ada darah Lilifuk mengalir di tubuhnya, aku yakin dia sudah meninggalkan pulau.</p>\n\n<p>Sumber Bacaan:<br>\nhttps://www.ekuatorial.com/2021/07/tradisi-lilifuk-kearifan-suku-baineo-menjaga-ekosistem-terumbu-karang/ (dengan penyesuaian)</p></div>",
+      "questionHtml": "<p>Apa yang dapat dipelajari dari peristiwa yang dialami Seno dalam cerita tersebut?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Kebebasan berpendapat diperlukan untuk menunjukkan jati diri."
+        },
+        {
+          "id": "B",
+          "html": "Keserakahan berdampak buruk terhadap alam dan persahabatan."
+        },
+        {
+          "id": "C",
+          "html": "Keterbukaan diperlukan dalam mempertahankan persahabatan."
+        },
+        {
+          "id": "D",
+          "html": "Kejujuran dapat membawa dampak negatif bagi lingkungan sekitar."
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_019",
+      "number": 19,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/33502_10811cad2e5824114117ac7b78b64798.jpg\" style=\"width: 400px; height: 400px;\"></p>\n\n<p>Namaku Lobi, si lebah hutan dari keluarga <em>Apis dorsata</em>. Koloniku tinggal di cabang pohon tinggi di tengah hutan. Di sarang tempat tinggalku ada 60 hingga 70 ribu lebah. Meski sangat ramai, hidup kami sangat rapi dan teratur.</p>\n\n<p>“Hei, Lobi. Kau ini lebah pekerja. Jangan bermalas-malasan terus”, seru Tawi, temanku sesama lebah pengumpul nektar.</p>\n\n<p>“Alangkah enaknya menjadi Kuina, ratu kita. Dia tidak harus repot bekerja. Tubuhnya besar sekali.” Aku selalu iri membayangkan ukuran tubuhnya yang hampir 3 kali berat tubuhku.</p>\n\n<p>“Apa-apaan kau ini, Lobi? Kuina itu pemimpin yang harus selalu kita patuhi dan ikuti ke manapun ia pergi.” Tawi berbicara seolah aku tak paham. “Ratu juga punya tugas besar. Untuk kelangsungan hidup koloni kita, ia bertelur sekitar 1500 hingga 2000 butir setiap harinya.”</p>\n\n<p>“Iya. Tapi tahukah kamu rahasia umur panjang Kuina?”</p>\n\n<p>“Tentu saja. Itu karena ratu selalu mengonsumsi royal jelly sepanjang hidupnya. Berbeda dengan kita yang hanya mengonsumsi royal jelly tiga hari saat menjadi larva. Itulah mengapa hidup ratu bisa mencapai 3-5 tahun. Sementara kita cuma sampai 40 hari.”</p>\n\n<p>Tawi terbang kesana kemari dengan sayapnya yang kecil tapi kuat. Tubuhnya ramping berwarna kecokelatan dengan ekor yang dilengkapi sengat lurus serta berduri. Sengat inilah yang kami gunakan untuk melindungi sarang dari para pengganggu.</p>\n\n<p>“Hai, kami punya kabar baik. Ada kebun bunga di dekat telaga sana.” Bee dan Polly, para lebah pencari mengabarkan lokasi sumber makanan terbaik.</p>\n\n<p>“Ayo, Lobi. Sekarang saatnya kita bekerja.”</p>\n\n<p>Kami beramai-ramai terbang dan hinggap di bunga-bunga yang sedang mekar, menghisap setiap tetes nektar menggunakan alat hisap, lalu menyimpannya ke dalam kantong madu yang ada di kaki. Nektar yang terkumpul kami simpan dalam sel madu yang terbuka sampai nektar menguap dan membentuk cairan madu yang kental dan matang.</p>\n\n<p>Kami bersemangat mondar-mandir dari sarang ke kebun bunga sampai 75.000 kali untuk menghasilkan madu terbaik. Sungguh sibuk kehidupan koloni kami ini.</p>\n\n<p>Cerita dikembangkan dari: https://rimbakita.com/lebah-madu/</p></div>",
+      "questionHtml": "<p>Apa yang selanjutnya akan dilakukan Lobi setelah memahami peran dan tugas lebah dalam koloni?</p>\n\n<p>Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Lobi akan membantu dan menggantikan tugas Kuina sebagai ratu lebah untuk menghasilkan banyak telur."
+        },
+        {
+          "id": "B",
+          "html": "Lobi akan terus melakukan pekerjaan mengumpulkan nektar bersama Tawi dan lebah pekerja lain."
+        },
+        {
+          "id": "C",
+          "html": "Lobi akan tetap bertugas mengisap nektar dari bunga-bunga dan memindahkannya ke sarang."
+        },
+        {
+          "id": "D",
+          "html": "Lobi akan hidup lama selama bertahun-tahun sebagai ratu dengan mengkonsumsi nektar dan <em>royal jelly</em>."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_020",
+      "number": 20,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/80330_10811cad2e5824114117ac7b78b64798.jpg\" style=\"width: 400px; height: 400px;\"></p>\n\n<p>Namaku Lobi, si lebah hutan dari keluarga <em>Apis dorsata</em>. Koloniku tinggal di cabang pohon tinggi di tengah hutan. Di sarang tempat tinggalku ada 60 hingga 70 ribu lebah. Meski sangat ramai, hidup kami sangat rapi dan teratur.</p>\n\n<p>“Hei, Lobi. Kau ini lebah pekerja. Jangan bermalas-malasan terus”, seru Tawi, temanku sesama lebah pengumpul nektar.</p>\n\n<p>“Alangkah enaknya menjadi Kuina, ratu kita. Dia tidak harus repot bekerja. Tubuhnya besar sekali.” Aku selalu iri membayangkan ukuran tubuhnya yang hampir 3 kali berat tubuhku.</p>\n\n<p>“Apa-apaan kau ini, Lobi? Kuina itu pemimpin yang harus selalu kita patuhi dan ikuti ke manapun ia pergi.” Tawi berbicara seolah aku tak paham. “Ratu juga punya tugas besar. Untuk kelangsungan hidup koloni kita, ia bertelur sekitar 1500 hingga 2000 butir setiap harinya.”</p>\n\n<p>“Iya. Tapi tahukah kamu rahasia umur panjang Kuina?”</p>\n\n<p>“Tentu saja. Itu karena ratu selalu mengonsumsi royal jelly sepanjang hidupnya. Berbeda dengan kita yang hanya mengonsumsi royal jelly tiga hari saat menjadi larva. Itulah mengapa hidup ratu bisa mencapai 3-5 tahun. Sementara kita cuma sampai 40 hari.”</p>\n\n<p>Tawi terbang kesana kemari dengan sayapnya yang kecil tapi kuat. Tubuhnya ramping berwarna kecokelatan dengan ekor yang dilengkapi sengat lurus serta berduri. Sengat inilah yang kami gunakan untuk melindungi sarang dari para pengganggu.</p>\n\n<p>“Hai, kami punya kabar baik. Ada kebun bunga di dekat telaga sana.” Bee dan Polly, para lebah pencari mengabarkan lokasi sumber makanan terbaik.</p>\n\n<p>“Ayo, Lobi. Sekarang saatnya kita bekerja.”</p>\n\n<p>Kami beramai-ramai terbang dan hinggap di bunga-bunga yang sedang mekar, menghisap setiap tetes nektar menggunakan alat hisap, lalu menyimpannya ke dalam kantong madu yang ada di kaki. Nektar yang terkumpul kami simpan dalam sel madu yang terbuka sampai nektar menguap dan membentuk cairan madu yang kental dan matang.</p>\n\n<p>Kami bersemangat mondar-mandir dari sarang ke kebun bunga sampai 75.000 kali untuk menghasilkan madu terbaik. Sungguh sibuk kehidupan koloni kami ini.</p>\n\n<p>Cerita dikembangkan dari: https://rimbakita.com/lebah-madu/</p></div>",
+      "questionHtml": "<p>Bagaimana perbedaan sifat tokoh yang terdapat dalam cerita tersebut?</p>\n\n<p>Klik pada pilihan Benar atau Salah untuk setiap pernyataan sifat tokoh yang sesuai!</p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p style=\"margin-bottom:11px\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\">Lebah Tawi merupakan sosok yang rajin, sedangkan Lebah Lobi malas bekerja.</span></span></span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p style=\"margin-bottom:11px\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\">Lebah Tawi punya tubuh yang gendut sedangkan Lobi punya tubuh yang ramping.</span></span></span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p style=\"margin-bottom:11px\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\">Lebah Tawi sosok yang bijaksana, sedangkan Lebah Lobi sosok yang suka cemburu.</span></span></span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_021",
+      "number": 21,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/45557_10811cad2e5824114117ac7b78b64798.jpg\" style=\"width: 400px; height: 400px;\"></p>\n\n<p>Namaku Lobi, si lebah hutan dari keluarga <em>Apis dorsata</em>. Koloniku tinggal di cabang pohon tinggi di tengah hutan. Di sarang tempat tinggalku ada 60 hingga 70 ribu lebah. Meski sangat ramai, hidup kami sangat rapi dan teratur.</p>\n\n<p>“Hei, Lobi. Kau ini lebah pekerja. Jangan bermalas-malasan terus”, seru Tawi, temanku sesama lebah pengumpul nektar.</p>\n\n<p>“Alangkah enaknya menjadi Kuina, ratu kita. Dia tidak harus repot bekerja. Tubuhnya besar sekali.” Aku selalu iri membayangkan ukuran tubuhnya yang hampir 3 kali berat tubuhku.</p>\n\n<p>“Apa-apaan kau ini, Lobi? Kuina itu pemimpin yang harus selalu kita patuhi dan ikuti ke manapun ia pergi.” Tawi berbicara seolah aku tak paham. “Ratu juga punya tugas besar. Untuk kelangsungan hidup koloni kita, ia bertelur sekitar 1500 hingga 2000 butir setiap harinya.”</p>\n\n<p>“Iya. Tapi tahukah kamu rahasia umur panjang Kuina?”</p>\n\n<p>“Tentu saja. Itu karena ratu selalu mengonsumsi royal jelly sepanjang hidupnya. Berbeda dengan kita yang hanya mengonsumsi royal jelly tiga hari saat menjadi larva. Itulah mengapa hidup ratu bisa mencapai 3-5 tahun. Sementara kita cuma sampai 40 hari.”</p>\n\n<p>Tawi terbang kesana kemari dengan sayapnya yang kecil tapi kuat. Tubuhnya ramping berwarna kecokelatan dengan ekor yang dilengkapi sengat lurus serta berduri. Sengat inilah yang kami gunakan untuk melindungi sarang dari para pengganggu.</p>\n\n<p>“Hai, kami punya kabar baik. Ada kebun bunga di dekat telaga sana.” Bee dan Polly, para lebah pencari mengabarkan lokasi sumber makanan terbaik.</p>\n\n<p>“Ayo, Lobi. Sekarang saatnya kita bekerja.”</p>\n\n<p>Kami beramai-ramai terbang dan hinggap di bunga-bunga yang sedang mekar, menghisap setiap tetes nektar menggunakan alat hisap, lalu menyimpannya ke dalam kantong madu yang ada di kaki. Nektar yang terkumpul kami simpan dalam sel madu yang terbuka sampai nektar menguap dan membentuk cairan madu yang kental dan matang.</p>\n\n<p>Kami bersemangat mondar-mandir dari sarang ke kebun bunga sampai 75.000 kali untuk menghasilkan madu terbaik. Sungguh sibuk kehidupan koloni kami ini.</p>\n\n<p>Cerita dikembangkan dari: https://rimbakita.com/lebah-madu/</p></div>",
+      "questionHtml": "<p>Setelah membaca teks tersebut, bagaimana tindakan yang tepat ketika kamu melihat sarang lebah madu?</p>\n\n<p>Klik pada pilihan Benar atau Salah untuk setiap pernyataan berdasarkan isi teks!</p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Ketika melihat seekor lebah yang paling besar di antara lebah lainnya, maka harus dibuang jauh-jauh agar tidak mengganggu lebah-lebah yang lebih kecil.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Harus berhati-hati saat dekat dengan sarang lebah, karena bisa diaggap sebagai ancaman yang mengganggu sehingga disengat oleh lebah-lebah tersebut.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Menanam tumbuhan berbunga di sekitar sarang lebah, supaya bisa menjadi sumber makanan dan tempat bagi lebah mengumpulkan nektar.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_022",
+      "number": 22,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/75563_b2ecedfd4b2e18784ead567a3a0b643b.jpg\" style=\"width: 690px; height: 963px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align:justify\"><span style=\"font-size:11pt\"><span style=\"line-height:normal\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Manakah kosakata yang menggambarkan suasana petang berdasarkan puisi tersebut?<br><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></span></span></span></span></span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Hamparan waktu.</span></span></span></span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Suara kalong.</span></span></span></span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Surya berlalu.</span></span></span></span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Suara bedug.</span></span></span></span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "C",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_023",
+      "number": 23,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/25233_b2ecedfd4b2e18784ead567a3a0b643b.jpg\" style=\"width: 690px; height: 963px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align:justify\"><span style=\"font-size:11pt\"><span style=\"line-height:normal\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Apa makna larik “Berloncatan di semak-semak rindu” pada puisi tersebut? </span></span></span></span></span><br><span style=\"color:#2980b9;\"><span style=\"font-size:11pt\"><span style=\"line-height:normal\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Klik pada pilihan <strong>Tepat</strong> atau<strong> Tidak Tepat </strong>untuk setiap pernyataan!</span></span></span></span></span></span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Tidak Tepat"
+        },
+        {
+          "id": "B",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_23_1\" type=\"radio\" value=\"2\" name=\"jawaban_23\"><label for=\"arsip_23_1\"></label></div>"
+        },
+        {
+          "id": "C",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_23_3\" type=\"radio\" value=\"2\" name=\"jawaban_23\"><label for=\"arsip_23_3\"></label></div>"
+        },
+        {
+          "id": "D",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_23_5\" type=\"radio\" value=\"2\" name=\"jawaban_23\"><label for=\"arsip_23_5\"></label></div>"
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_024",
+      "number": 24,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/32406_b2ecedfd4b2e18784ead567a3a0b643b.jpg\" style=\"width: 690px; height: 963px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align:justify\"><span style=\"font-size:11pt\"><span style=\"line-height:normal\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Apa pesan yang ingin disampaikan penulis melalui puisi tersebut? </span></span></span></span></span><br><span style=\"color:#2980b9;\"><span style=\"font-size:11pt\"><span style=\"line-height:normal\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Klik pada pilihan <strong>Benar</strong> atau <strong>Salah</strong> untuk setiap pernyataan!</span></span></span></span></span></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p style=\"text-align:justify\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"line-height:107%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Alam menyimpan kenangan yang senantiasa dapat dijadikan pelajaran. </span></span></span></span></span></span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"line-height:107%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Ketulusan dalam hidup meskipun tidak berjalan sesuai harapan di masa lalu.</span></span></span></span></span></span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p style=\"text-align:justify\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:12.0pt\"><span style=\"line-height:107%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Manusia dapat merenungi kehidupannya melalui suara dan gerakan di sekitarnya.</span></span></span></span></span></span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_025",
+      "number": 25,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img style=\"width: 480px; height: 429px;\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94020_8d2edb4afb15fd3fe934fa8793ce7ef8.jpg\" alt=\"\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Dahulu kala, ada seorang Nenek yang hidup di Pulau Kei Kecil. Nenek itu hidup sendiri. Setiap hari Nenek itu menanam apa saja di kebunnya. Selain bertani, masyarakat di kampung itu kadang ke laut untuk mencari ikan. Suatu ketika, para lelaki hendak ke laut. Seluruh wanita mempersiapkan bekal untuk suami dan anak mereka yang akan melaut. Tak terkecuali si Nenek. Ia juga turut mempersiapkan bekal meski tidak ada anggota keluarganya yang melaut.</p>\n<p style=\"text-align: justify;\">Selang beberapa waktu, para lelaki di kampung itu kembali. Membawa hasil tangkapan yang luar biasa banyaknya. Namun, yang paling menarik perhatian adalah hasil tangkapan berupa seekor penyu yang besar. Atas saran kepala kampung, penyu itu akan dipotong dan dibagikan kepada seluruh warga kampung. Tentunya dengan ukuran yang sama. Nenek juga mendapat bagian dari hasil tangkapan itu. Namun, potongan penyu yang diberikan kepada Nenek hanya sebagian kecil. Itu pun hanya tulang-belulang. Nenek menjadi daun kering dalam pesta pembagian hasil tangkapan itu.</p>\n<p style=\"text-align: justify;\">Nenek sakit hati dengan perlakuan warga. Dengan perasaan sedih, Nenek berjalan ke tepi pantai. Air matanya pun terjatuh. Tiba-tiba, kampung tersebut yang dulunya rata, berubah menjadi gundukan tanah yang tinggi. Anehnya, gundukan itu berbentuk mirip cangkang penyu. Nenek terkejut dan waktu pun berlalu. Nenek menanami gundukan tanah tersebut seperti yang dulu sering Ia lakukan. Hal yang tidak disangka pun terjadi. Muncul emas berkilauan di antara dedaunannya. Tadinya, Nenek ingin merahasiakan pohon emas ini. Namun, Nenek tidak tega. Ia membaginya ke seluruh warga kampung sama rata. Warga kampung menyadari kesalahannya dan meminta maaf pada Nenek karena sudah bersikap buruk.</p>\n<p>&nbsp;</p>\n<p>Sumber cerita dengan modifikasi:<br> https://repositori.kemendikdasmen.go.id/26046/1/Batu%20Penyu.pdf<br> Sumber ilustrasi:<br> Canva.com</p></div>",
+      "questionHtml": "<p>Bagaimana urutan kejadian yang dialami nenek hingga menemukan emas?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<img style=\"width: 580px;\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94020_082c32ccc9cee19a3a98958fb3cf7450.png\" alt=\"\">"
+        },
+        {
+          "id": "B",
+          "html": "<img style=\"width: 580px;\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94020_4926f374ce7ff1c4fe5095417133d741.png\" alt=\"\">"
+        },
+        {
+          "id": "C",
+          "html": "<img style=\"width: 580px;\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94020_44fb4ec9a2f39e5096ebba1927a7c507.png\" alt=\"\">"
+        },
+        {
+          "id": "D",
+          "html": "<img style=\"width: 580px;\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94020_388db0db5ab8dabeccb762ed14582529.png\" alt=\"\">"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_026",
+      "number": 26,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/40856_8d2edb4afb15fd3fe934fa8793ce7ef8.jpg\" style=\"width: 480px; height: 429px;\"></p>\n\n<p style=\"text-align: center;\"> </p>\n\n<p style=\"text-align: justify;\">Dahulu kala, ada seorang Nenek yang hidup di Pulau Kei Kecil. Nenek itu hidup sendiri. Setiap hari Nenek itu menanam apa saja di kebunnya. Selain bertani, masyarakat di kampung itu kadang ke laut untuk mencari ikan. Suatu ketika, para lelaki hendak ke laut. Seluruh wanita mempersiapkan bekal untuk suami dan anak mereka yang akan melaut. Tak terkecuali si Nenek. Ia juga turut mempersiapkan bekal meski tidak ada anggota keluarganya yang melaut.</p>\n\n<p style=\"text-align: justify;\">Selang beberapa waktu, para lelaki di kampung itu kembali. Membawa hasil tangkapan yang luar biasa banyaknya. Namun, yang paling menarik perhatian adalah hasil tangkapan berupa seekor penyu yang besar. Atas saran kepala kampung, penyu itu akan dipotong dan dibagikan kepada seluruh warga kampung. Tentunya dengan ukuran yang sama. Nenek juga mendapat bagian dari hasil tangkapan itu. Namun, potongan penyu yang diberikan kepada Nenek hanya sebagian kecil. Itu pun hanya tulang-belulang. Nenek menjadi daun kering dalam pesta pembagian hasil tangkapan itu.</p>\n\n<p style=\"text-align: justify;\">Nenek sakit hati dengan perlakuan warga. Dengan perasaan sedih, Nenek berjalan ke tepi pantai. Air matanya pun terjatuh. Tiba-tiba, kampung tersebut yang dulunya rata, berubah menjadi gundukan tanah yang tinggi. Anehnya, gundukan itu berbentuk mirip cangkang penyu. Nenek terkejut dan waktu pun berlalu. Nenek menanami gundukan tanah tersebut seperti yang dulu sering Ia lakukan. Hal yang tidak disangka pun terjadi. Muncul emas berkilauan di antara dedaunannya. Tadinya, Nenek ingin merahasiakan pohon emas ini. Namun, Nenek tidak tega. Ia membaginya ke seluruh warga kampung sama rata. Warga kampung menyadari kesalahannya dan meminta maaf pada Nenek karena sudah bersikap buruk.</p>\n\n<p> </p>\n\n<p>Sumber cerita dengan modifikasi:<br>\nhttps://repositori.kemendikdasmen.go.id/26046/1/Batu%20Penyu.pdf<br>\nSumber ilustrasi:<br>\nCanva.com</p></div>",
+      "questionHtml": "<p>Apa yang terjadi jika warga kampung berlaku adil kepada Nenek?<br><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Benar </strong>atau <strong>Salah </strong>untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Warga tidak akan mendapatkan emas berkilau.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Nenek tidak akan merasa sedih dan kecewa.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Nenek tidak akan melakukan aktivitas menanam.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_027",
+      "number": 27,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/60080_8d2edb4afb15fd3fe934fa8793ce7ef8.jpg\" style=\"width: 480px; height: 429px;\"></p>\n\n<p style=\"text-align: center;\"> </p>\n\n<p style=\"text-align: justify;\">Dahulu kala, ada seorang Nenek yang hidup di Pulau Kei Kecil. Nenek itu hidup sendiri. Setiap hari Nenek itu menanam apa saja di kebunnya. Selain bertani, masyarakat di kampung itu kadang ke laut untuk mencari ikan. Suatu ketika, para lelaki hendak ke laut. Seluruh wanita mempersiapkan bekal untuk suami dan anak mereka yang akan melaut. Tak terkecuali si Nenek. Ia juga turut mempersiapkan bekal meski tidak ada anggota keluarganya yang melaut.</p>\n\n<p style=\"text-align: justify;\">Selang beberapa waktu, para lelaki di kampung itu kembali. Membawa hasil tangkapan yang luar biasa banyaknya. Namun, yang paling menarik perhatian adalah hasil tangkapan berupa seekor penyu yang besar. Atas saran kepala kampung, penyu itu akan dipotong dan dibagikan kepada seluruh warga kampung. Tentunya dengan ukuran yang sama. Nenek juga mendapat bagian dari hasil tangkapan itu. Namun, potongan penyu yang diberikan kepada Nenek hanya sebagian kecil. Itu pun hanya tulang-belulang. Nenek menjadi daun kering dalam pesta pembagian hasil tangkapan itu.</p>\n\n<p style=\"text-align: justify;\">Nenek sakit hati dengan perlakuan warga. Dengan perasaan sedih, Nenek berjalan ke tepi pantai. Air matanya pun terjatuh. Tiba-tiba, kampung tersebut yang dulunya rata, berubah menjadi gundukan tanah yang tinggi. Anehnya, gundukan itu berbentuk mirip cangkang penyu. Nenek terkejut dan waktu pun berlalu. Nenek menanami gundukan tanah tersebut seperti yang dulu sering Ia lakukan. Hal yang tidak disangka pun terjadi. Muncul emas berkilauan di antara dedaunannya. Tadinya, Nenek ingin merahasiakan pohon emas ini. Namun, Nenek tidak tega. Ia membaginya ke seluruh warga kampung sama rata. Warga kampung menyadari kesalahannya dan meminta maaf pada Nenek karena sudah bersikap buruk.</p>\n\n<p> </p>\n\n<p>Sumber cerita dengan modifikasi:<br>\nhttps://repositori.kemendikdasmen.go.id/26046/1/Batu%20Penyu.pdf<br>\nSumber ilustrasi:<br>\nCanva.com</p></div>",
+      "questionHtml": "<p>Setelah membaca cerita, Dini berpendapat bahwa ia kagum pada keputusan nenek.<br>\nDini merasa bahwa nenek tetap membagi emas pada warga dengan adil. Fira dan Dafa pun setuju dengan pendapat Dini.</p>\n\n<p>Alasan apa yang memperkuat Fira dan Dafa setuju dengan pendapat Dini?<br><span style=\"color:#2980b9;\">Klik pada pilihan <strong>Benar </strong>atau <strong>Salah</strong> untuk setiap pernyataan berdasarkan isi teks!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Dini menyukai keputusan nenek yang memperlakukan warga seperti warga memperlakukan nenek.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Dini setuju dengan tindakan nenek saat merasa tidak enak hati bila merahasiakan pohon emas.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Dini merasa kagum sebab perilaku nenek terpuji dan layak dicontoh untuk orang lain.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_028",
+      "number": 28,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/24003_0204a999ea71e9b04eb35e572740656c.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Pada suatu pagi di akhir bulan Ramadan, Bu Dini pulang dari pasar membawa janur.<br>\n“Daun apa itu, Bunda?” tanya Zainal penasaran.<br>\n“Ini daun kelapa muda atau disebut janur,” jawab Bu Dini.<br>\nFitri datang dan bertanya, “Untuk apa janur itu, Bunda?”<br>\n“Kita akan membuat ketupat untuk Lebaran besok, Nak,” jelas Bu Dini.<br>\n“Hore! Besok kita udah Lebaran ya, Bunda?” tanya Zainal.<br>\n“Iya, sekarang ayo bantu Bunda membuat ketupat bersama!” pinta Bu Dini.<br>\nMereka bertiga pun akhirnya membuat ketupat bersama.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/24003_816f1442539bda3711148f34bf59bcf6.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Hari Lebaran yang dinantikan pun tiba.<br>\nPak Hasan, Bu Dini, Zainal, dan Fitri berkumpul di meja makan.<br>\n“Anak-anak, mari kita sarapan dulu sebelum berangkat sholat,” pinta Pak Hasan.<br>\n“Baik, Ayah,” jawab Zainal dan Fitri bersama-sama.<br>\nBu Dini menyiapkan ketupat dan opor ayam untuk dihidangkan.<br>\n“Sebelum kita makan, Bunda minta tolong Kak Zainal boleh?” tanya Bu Dini.<br>\n“Minta tolong apa, Bunda?”<br>\n“Tolong antarkan ketupat dan opor ayam ini ke rumah Bu Tuti, Pak Ridwan, dan Pak Christian.”<br>\n“Baik, Bunda. Tapi kenapa memberi Pak Cristian juga? Dia kan tidak merayakan Lebaran.”<br>\n“Nak, ketupat itu bukan hanya untuk kita yang beragama Islam saja,” jelas Pak Hasan.<br>\n“Jadi semua orang boleh makan ya, Ayah?” tanya Zainal.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/24003_fe5a92a51b736325d5f2b9029d258064.jpg\" style=\"width: 400px; height: 173px;\"><br>\nPak Hasan menjawab, “Tentu saja boleh.”<br>\nZainal pun pergi untuk mengantarkan ketupat dan opor ayam ke tetangganya.</p>\n\n<p><strong>Sumber: </strong><br>\nhttps://klasika.kompas.id/baca/dongeng-anak-ketupat-lebaran/ dengan adaptasi</p></div>",
+      "questionHtml": "<p>Apa yang dipahami Zainal setelah mendengar penjelasan Ayahnya tentang ketupat?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Tidak semua orang suka makan ketupat saat lebaran."
+        },
+        {
+          "id": "B",
+          "html": "Membuat ketupat saat Lebaran sangat sulit dilakukan."
+        },
+        {
+          "id": "C",
+          "html": "Ternyata ada tetangganya bukan beragama selain Islam."
+        },
+        {
+          "id": "D",
+          "html": "Ketupat lebaran boleh dimakan siapa saja, bukan hanya orang islam"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_029",
+      "number": 29,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70480_0204a999ea71e9b04eb35e572740656c.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Pada suatu pagi di akhir bulan Ramadan, Bu Dini pulang dari pasar membawa janur.<br>\n“Daun apa itu, Bunda?” tanya Zainal penasaran.<br>\n“Ini daun kelapa muda atau disebut janur,” jawab Bu Dini.<br>\nFitri datang dan bertanya, “Untuk apa janur itu, Bunda?”<br>\n“Kita akan membuat ketupat untuk Lebaran besok, Nak,” jelas Bu Dini.<br>\n“Hore! Besok kita udah Lebaran ya, Bunda?” tanya Zainal.<br>\n“Iya, sekarang ayo bantu Bunda membuat ketupat bersama!” pinta Bu Dini.<br>\nMereka bertiga pun akhirnya membuat ketupat bersama.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70480_816f1442539bda3711148f34bf59bcf6.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Hari Lebaran yang dinantikan pun tiba.<br>\nPak Hasan, Bu Dini, Zainal, dan Fitri berkumpul di meja makan.<br>\n“Anak-anak, mari kita sarapan dulu sebelum berangkat sholat,” pinta Pak Hasan.<br>\n“Baik, Ayah,” jawab Zainal dan Fitri bersama-sama.<br>\nBu Dini menyiapkan ketupat dan opor ayam untuk dihidangkan.<br>\n“Sebelum kita makan, Bunda minta tolong Kak Zainal boleh?” tanya Bu Dini.<br>\n“Minta tolong apa, Bunda?”<br>\n“Tolong antarkan ketupat dan opor ayam ini ke rumah Bu Tuti, Pak Ridwan, dan Pak Christian.”<br>\n“Baik, Bunda. Tapi kenapa memberi Pak Cristian juga? Dia kan tidak merayakan Lebaran.”<br>\n“Nak, ketupat itu bukan hanya untuk kita yang beragama Islam saja,” jelas Pak Hasan.<br>\n“Jadi semua orang boleh makan ya, Ayah?” tanya Zainal.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70480_fe5a92a51b736325d5f2b9029d258064.jpg\" style=\"width: 400px; height: 173px;\"><br>\nPak Hasan menjawab, “Tentu saja boleh.”<br>\nZainal pun pergi untuk mengantarkan ketupat dan opor ayam ke tetangganya.</p>\n\n<p><strong>Sumber: </strong><br>\nhttps://klasika.kompas.id/baca/dongeng-anak-ketupat-lebaran/ dengan adaptasi</p></div>",
+      "questionHtml": "<p>Mengapa Bu Dini membuat ketupat di hari terakhir bulan Ramadan?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Ketupat adalah makanan khas saat Lebaran."
+        },
+        {
+          "id": "B",
+          "html": "Sengaja disiapkan untuk menyambut Lebaran."
+        },
+        {
+          "id": "C",
+          "html": "Bu Dini harus membagikan ketupat saat Lebaran."
+        },
+        {
+          "id": "D",
+          "html": "Ketupat merupakan syarat untuk merayakan Lebaran."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P2_030",
+      "number": 30,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/06233_0204a999ea71e9b04eb35e572740656c.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Pada suatu pagi di akhir bulan Ramadan, Bu Dini pulang dari pasar membawa janur.<br>\n“Daun apa itu, Bunda?” tanya Zainal penasaran.<br>\n“Ini daun kelapa muda atau disebut janur,” jawab Bu Dini.<br>\nFitri datang dan bertanya, “Untuk apa janur itu, Bunda?”<br>\n“Kita akan membuat ketupat untuk Lebaran besok, Nak,” jelas Bu Dini.<br>\n“Hore! Besok kita udah Lebaran ya, Bunda?” tanya Zainal.<br>\n“Iya, sekarang ayo bantu Bunda membuat ketupat bersama!” pinta Bu Dini.<br>\nMereka bertiga pun akhirnya membuat ketupat bersama.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/06233_816f1442539bda3711148f34bf59bcf6.jpg\" style=\"width: 400px; height: 279px;\"></p>\n\n<p>Hari Lebaran yang dinantikan pun tiba.<br>\nPak Hasan, Bu Dini, Zainal, dan Fitri berkumpul di meja makan.<br>\n“Anak-anak, mari kita sarapan dulu sebelum berangkat sholat,” pinta Pak Hasan.<br>\n“Baik, Ayah,” jawab Zainal dan Fitri bersama-sama.<br>\nBu Dini menyiapkan ketupat dan opor ayam untuk dihidangkan.<br>\n“Sebelum kita makan, Bunda minta tolong Kak Zainal boleh?” tanya Bu Dini.<br>\n“Minta tolong apa, Bunda?”<br>\n“Tolong antarkan ketupat dan opor ayam ini ke rumah Bu Tuti, Pak Ridwan, dan Pak Christian.”<br>\n“Baik, Bunda. Tapi kenapa memberi Pak Cristian juga? Dia kan tidak merayakan Lebaran.”<br>\n“Nak, ketupat itu bukan hanya untuk kita yang beragama Islam saja,” jelas Pak Hasan.<br>\n“Jadi semua orang boleh makan ya, Ayah?” tanya Zainal.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/06233_fe5a92a51b736325d5f2b9029d258064.jpg\" style=\"width: 400px; height: 173px;\"><br>\nPak Hasan menjawab, “Tentu saja boleh.”<br>\nZainal pun pergi untuk mengantarkan ketupat dan opor ayam ke tetangganya.</p>\n\n<p><strong>Sumber: </strong><br>\nhttps://klasika.kompas.id/baca/dongeng-anak-ketupat-lebaran/ dengan adaptasi</p></div>",
+      "questionHtml": "<p>Mengapa Zainal dan Fitri memegang daun kelapa pada gambar pertama?</p>\n\n<p><span style=\"color:#2980b9;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Menunjukkan mereka ingin membantu Ibu membuat ketupat."
+        },
+        {
+          "id": "B",
+          "html": "Membuktikan jika mereka akan membuat ketupat bersama."
+        },
+        {
+          "id": "C",
+          "html": "Memberi tahu Ibu kalau besok adalah hari raya Lebaran."
+        },
+        {
+          "id": "D",
+          "html": "Menunjukkan bahwa Ibu mereka baru saja pulang dari pasar."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    }
+  ]
+}

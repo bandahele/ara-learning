@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Simulasi TKA | Pusmendik Kemendikdasmen</title>
+  <meta name="description" content="Aplikasi Simulasi Tes Kemampuan Akademik (TKA) - Pusmendik Kemendikdasmen">
+  <link rel="icon" href="assets/logo/logo-kemdikbud-71x72.png" type="image/png">
+
+  <!-- Font Poppins & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
+  <!-- Bootstrap 4 Grid / Utilities -->
+  <link rel="stylesheet" href="https://pusmendik.kemendikdasmen.go.id/tka/assets/vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Custom TKA Pusmendik Style -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       HEADER UTAMA (PERSIS PUSMENDIK ANBK)
+       ======================================================================== -->
+  <header class="tka-header">
+    <div class="tka-header-inner">
+      <div class="header-left">
+        <img src="assets/logo/logo-kemdikbud-71x72.png" alt="Logo Kemdikbud">
+        <div class="header-title-box">
+          <b>PUSMENDIK</b>
+          <small>APLIKASI ANBK - SIMULASI TKA SMP 2026/2027</small>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="user-display-name">
+          <span id="header-user-name">PESERTA TKA</span>
+          <div class="user-display-sub text-white-50">Simulasi TKA Mandiri</div>
+        </div>
+        <div class="grad-icon">
+          <i class="fa fa-graduation-cap fa-flip-horizontal"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SCREEN 1: KONFIRMASI DATA PESERTA (HALAMAN AWAL)
+       ======================================================================== -->
+  <main id="screen-confirmation" class="screen-view active">
+    <div class="container-fluid px-3 px-md-5">
+      <div class="row justify-content-center">
+        <!-- Kolom Kiri: Kartu Token -->
+        <div class="col-lg-5 col-md-6 mb-4">
+          <div class="tka-card card-with-watermark h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span id="connection-status-badge" class="connection-badge">
+                <i class="fa fa-spinner fa-spin mr-1"></i> Menghubungi Google Sheets...
+              </span>
+            </div>
+
+            <div class="token-box mt-2">
+              <span class="text-secondary font-weight-bold">Token :</span>
+              <span id="token-display" class="token-code">------</span>
+              <button id="btn-refresh-token" type="button" class="btn btn-tka-primary btn-sm btn-pill" title="Perbarui token latihan">
+                <i class="fa fa-sync-alt mr-1"></i> Refresh
+              </button>
+            </div>
+            <p class="token-instruction">
+              Ketikkan kode token di atas pada kolom Token di formulir sebelah kanan untuk memulai sesi simulasi. Jika token diperbarui, kode token lama tidak berlaku lagi.
+            </p>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Formulir Konfirmasi Peserta -->
+        <div class="col-lg-7 col-md-6">
+          <div class="tka-card card-with-watermark">
+            <h2 class="form-title">Konfirmasi Data Peserta</h2>
+
+            <div id="form-error-msg" class="alert alert-danger" style="display:none; font-size: 13px; white-space: pre-line;"></div>
+
+            <form id="form-konfirmasi" autocomplete="off">
+              <!-- Username -->
+              <div class="form-group-custom">
+                <label>Username</label>
+                <input type="text" class="tka-input" value="simulasi TKA-SMP" readonly>
+              </div>
+
+              <!-- Mata Ujian & Paket (Dinamis dari Tab PAKET Google Sheets) -->
+              <div class="form-group-custom">
+                <label for="select-mata-ujian" class="text-primary font-weight-bold">
+                  Mata Ujian & Paket <small class="text-muted font-weight-normal">(Memuat dari tab PAKET)</small>
+                </label>
+                <select id="select-mata-ujian" class="form-control" style="border-radius: 4px; font-size: 14px; background: #fff;" required>
+                  <option value="">-- Menghubungkan ke Google Sheets... --</option>
+                </select>
+              </div>
+
+              <!-- Nama Peserta -->
+              <div class="form-group-custom">
+                <label for="input-nama-peserta">Nama Peserta</label>
+                <input id="input-nama-peserta" type="text" class="tka-input" placeholder="Ketikkan Nama Peserta Lengkap" required>
+              </div>
+
+              <!-- Jenis Kelamin -->
+              <div class="form-group-custom">
+                <label for="select-jenis-kelamin">Jenis Kelamin</label>
+                <select id="select-jenis-kelamin" class="form-control" style="border-radius: 4px; font-size: 14px; background: #fff;" required>
+                  <option value="L">Laki-Laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
+              </div>
+
+              <!-- Tanggal Lahir (Hari, Bulan, Tahun) -->
+              <div class="form-group-custom">
+                <label>Tanggal Lahir</label>
+                <div class="dob-wrapper">
+                  <select id="dob-day" class="dob-select" required>
+                    <option value="">Hari</option>
+                  </select>
+                  <select id="dob-month" class="dob-select" required>
+                    <option value="">Bulan</option>
+                  </select>
+                  <select id="dob-year" class="dob-select" required>
+                    <option value="">Tahun</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Token Input -->
+              <div class="form-group-custom mt-3">
+                <label for="input-token" class="text-primary font-weight-bold">Token Akses</label>
+                <input id="input-token" type="text" class="tka-input font-weight-bold" placeholder="Ketikkan token di sini" style="text-transform: uppercase; letter-spacing: 2px;" required>
+              </div>
+
+              <!-- Tombol Submit -->
+              <button id="btn-submit-konfirmasi" type="submit" class="btn btn-tka-primary btn-block btn-pill mt-4" style="font-size: 16px; padding: 10px;">
+                Mulai Ujian <i class="fa fa-arrow-right ml-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       SCREEN 2: HALAMAN PENGERJAAN SOAL (EXAM)
+       ======================================================================== -->
+  <main id="screen-exam" class="screen-view">
+    <div class="container-fluid px-3 px-md-5">
+      <!-- Exam Topbar -->
+      <div class="exam-topbar">
+        <div>
+          <span class="soal-number-indicator">Soal nomor <span id="soal-number-display">1</span></span>
+        </div>
+        <div class="topbar-controls">
+          <!-- Tombol Informasi -->
+          <button type="button" class="btn btn-tka-primary btn-sm btn-info-pill" onclick="alert('Petunjuk Soal:\n- Bacalah stimulus di kolom sebelah kiri.\n- Jawab pertanyaan di kolom sebelah kanan.\n- Gunakan tombol Daftar Soal untuk berpindah nomor.\n- Klik tombol Selesai saat sudah selesai mengerjakan.')">
+            <i class="fa fa-info-circle mr-1"></i> Informasi
+          </button>
+
+          <!-- Sisa Waktu -->
+          <div id="exam-timer-box" class="timer-box">
+            <i class="fa fa-clock text-primary"></i> Sisa Waktu : <b id="exam-timer">01:15:00</b>
+          </div>
+
+          <!-- Tombol Daftar Soal -->
+          <button type="button" class="btn btn-tka-primary btn-sm btn-info-pill" onclick="Exam.openQuestionNavModal()">
+            <span class="d-none d-sm-inline">Daftar Soal </span><i class="fa fa-th-large ml-1"></i>
+            <span id="answered-counter-badge" class="badge badge-light ml-1">0/0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Second Topbar: Font Sizing & Subject -->
+      <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+        <div class="font-size-controls">
+          <span>Ukuran font:</span>
+          <span class="font-btn" data-size="sm" onclick="Exam.setFontSize('sm')" style="font-size: 11px;">A</span>
+          <span class="font-btn active" data-size="md" onclick="Exam.setFontSize('md')" style="font-size: 14px;">A</span>
+          <span class="font-btn" data-size="lg" onclick="Exam.setFontSize('lg')" style="font-size: 17px;">A</span>
+        </div>
+        <div id="exam-subject-name" class="mata-ujian-label text-truncate" style="max-width: 60%;">
+          Memuat Ujian...
+        </div>
+      </div>
+
+      <!-- Kotak Soal Utama -->
+      <div id="soal-card-wrapper" class="soal-card-container font-md">
+        <div class="soal-split-row">
+          <!-- Kolom Stimulus (Kiri) -->
+          <div class="stimulus-col">
+            <div id="soal-stimulus-content" class="stimulus-content">
+              <!-- Diisi dinamis dari Google Sheets -->
+            </div>
+          </div>
+
+          <!-- Kolom Pertanyaan & Opsi (Kanan) -->
+          <div class="question-col">
+            <div id="soal-question-text" class="question-text font-weight-bold mb-3">
+              <!-- Teks Pertanyaan -->
+            </div>
+            <div id="soal-options-container">
+              <!-- Pilihan Jawaban SINGLE, MULTIPLE, atau MATRIX -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigasi Bawah Ujian -->
+      <div class="exam-navigation-bar">
+        <button id="btn-prev-soal" type="button" class="btn btn-danger btn-nav" onclick="Exam.prev()">
+          <i class="fa fa-chevron-circle-left"></i> <span class="d-none d-sm-inline">Soal sebelumnya</span>
+        </button>
+
+        <label class="btn btn-ragu btn-nav mb-0">
+          <input type="checkbox" id="checkbox-ragu" onchange="Exam.toggleDoubtful()">
+          <span>Ragu-ragu</span>
+        </label>
+
+        <button id="btn-next-soal" type="button" class="btn btn-tka-primary btn-nav" onclick="Exam.next()">
+          <span class="d-none d-sm-inline">Soal berikutnya</span> <i class="fa fa-chevron-circle-right"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       SCREEN 3: LAPORAN HASIL UJIAN (RESULT)
+       ======================================================================== -->
+  <main id="screen-result" class="screen-view">
+    <div class="container-fluid px-3 px-md-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+          <div class="result-card">
+            <!-- Header Reviu -->
+            <div class="text-center mb-4">
+              <div class="score-badge-circle">
+                <span id="result-score-val" class="score-number">0</span>
+                <span class="score-label">Nilai Akhir</span>
+              </div>
+              <h2 class="font-weight-bold text-dark">Reviu Hasil Simulasi TKA</h2>
+              <div class="badge badge-primary px-3 py-2" style="font-size: 14px; border-radius: 20px;">
+                <i class="fas fa-book mr-1"></i> <span id="result-subject-title">Hasil Simulasi</span>
+              </div>
+            </div>
+
+            <!-- Kartu Metrik Hasil -->
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div id="result-correct-val" class="stat-value text-success">0</div>
+                <div class="stat-title">Benar</div>
+              </div>
+              <div class="stat-box">
+                <div id="result-wrong-val" class="stat-value text-danger">0</div>
+                <div class="stat-title">Salah</div>
+              </div>
+              <div class="stat-box">
+                <div id="result-unanswered-val" class="stat-value text-secondary">0</div>
+                <div class="stat-title">Tidak Dijawab</div>
+              </div>
+              <div class="stat-box">
+                <div id="result-total-val" class="stat-value text-primary">0</div>
+                <div class="stat-title">Total Soal</div>
+              </div>
+              <div class="stat-box">
+                <div id="result-duration-text" class="stat-value text-info" style="font-size: 16px;">0 Menit</div>
+                <div class="stat-title">Durasi Pengerjaan</div>
+              </div>
+            </div>
+
+            <!-- Detail Sesi -->
+            <div class="p-3 bg-light rounded mb-4" style="font-size: 13px;">
+              <div class="row">
+                <div class="col-sm-6 mb-1">
+                  <b>Nama Peserta:</b> <span id="result-user-name">-</span>
+                </div>
+                <div class="col-sm-6 mb-1">
+                  <b>ID Percobaan (Attempt ID):</b> <code id="result-attempt-id">-</code>
+                </div>
+                <div class="col-sm-6">
+                  <b>Waktu Selesai:</b> <span id="result-date-text">-</span>
+                </div>
+                <div class="col-sm-6">
+                  <b>Status Penyimpanan:</b> <span class="badge badge-success">TERCATAT DI GOOGLE SHEETS</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tabel Lembar Jawaban & Pembahasan -->
+            <h5 class="font-weight-bold mb-3"><i class="fa fa-list-alt mr-2 text-primary"></i>Rincian Lembar Jawaban</h5>
+            <div class="review-table-wrapper">
+              <table class="review-table">
+                <thead>
+                  <tr>
+                    <th style="width: 60px;">No.</th>
+                    <th>Jawaban Anda</th>
+                    <th>Kunci & Pembahasan</th>
+                  </tr>
+                </thead>
+                <tbody id="result-review-tbody">
+                  <!-- Diisi dinamis -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 pt-3 border-top">
+              <button type="button" class="btn btn-outline-primary btn-pill mb-2" onclick="Result.repeatExam()">
+                <i class="fa fa-redo mr-2"></i> Ulangi Mata Ujian
+              </button>
+              <button type="button" class="btn btn-danger btn-pill mb-2" onclick="Result.backToHome()">
+                <i class="fa fa-home mr-2"></i> Kembali ke Halaman Awal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       MODAL: DAFTAR SOAL (NAVIGASI CEPAT)
+       ======================================================================== -->
+  <div id="question-nav-modal" class="question-nav-modal" onclick="if(event.target === this) Exam.closeQuestionNavModal()">
+    <div class="question-nav-card">
+      <div class="question-nav-header">
+        <h5 class="mb-0 font-weight-bold"><i class="fa fa-th-large mr-2"></i>Daftar Nomor Soal</h5>
+        <button type="button" class="close text-white" onclick="Exam.closeQuestionNavModal()">&times;</button>
+      </div>
+      <div class="question-nav-body">
+        <div id="question-nav-grid" class="question-grid">
+          <!-- Diisi dinamis -->
+        </div>
+
+        <!-- Legend / Keterangan Warna -->
+        <div class="nav-legend">
+          <div class="legend-item">
+            <div class="legend-box" style="background:#f8fafc;"></div>
+            <span>Belum dijawab</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background:var(--primary-color);"></div>
+            <span>Sudah dijawab</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background:var(--warning-bg);"></div>
+            <span>Ragu-ragu</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="border: 2px solid #60a5fa;"></div>
+            <span>Sedang dikerjakan</span>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-top text-right">
+          <button type="button" class="btn btn-success btn-pill btn-sm" onclick="Exam.closeQuestionNavModal(); Exam.openFinishConfirmModal();">
+            <i class="fa fa-check mr-1"></i> Selesaikan Ujian
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: KONFIRMASI SELESAIKAN UJIAN
+       ======================================================================== -->
+  <div id="finish-confirm-modal" class="tka-modal-overlay">
+    <div class="tka-dialog">
+      <div class="dialog-icon warning">
+        <i class="fa fa-question-circle"></i>
+      </div>
+      <h4 class="font-weight-bold mb-2">Konfirmasi Penyelesaian</h4>
+      <p class="text-muted mb-3" style="font-size: 14px;">
+        Apakah Anda yakin ingin mengakhiri sesi pengerjaan ujian ini?
+      </p>
+
+      <div class="bg-light p-3 rounded mb-3 text-left" style="font-size: 13px;">
+        <div class="d-flex justify-content-between mb-1">
+          <span>Sudah dijawab:</span>
+          <b id="modal-stat-answered" class="text-success">0</b>
+        </div>
+        <div class="d-flex justify-content-between mb-1">
+          <span>Belum dijawab:</span>
+          <b id="modal-stat-unanswered" class="text-danger">0</b>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Ditandai ragu-ragu:</span>
+          <b id="modal-stat-doubtful" class="text-warning">0</b>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-center">
+        <button type="button" class="btn btn-secondary btn-pill px-4 mr-2" onclick="Exam.closeFinishConfirmModal()">
+          Batal
+        </button>
+        <button type="button" class="btn btn-success btn-pill px-4" onclick="Exam.submitExam()">
+          Ya, Selesaikan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: PROSES SUBMIT / LOADING
+       ======================================================================== -->
+  <div id="submitting-dialog-modal" class="tka-modal-overlay">
+    <div class="tka-dialog">
+      <div class="dialog-icon" style="background:#e0f2fe; color:#0284c7;">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+      <h4 class="font-weight-bold mb-2">Menyimpan ke Google Sheets...</h4>
+      <p class="text-muted mb-0" style="font-size: 13px;">
+        Mohon tunggu, lembar jawaban Anda sedang dikirim ke Google Apps Script untuk dinilai dan dicatat pada database.
+      </p>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/exam.js"></script>
+  <script src="js/result.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

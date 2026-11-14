@@ -1,0 +1,559 @@
+{
+  "packageId": "MAT_SMP_P2",
+  "name": "Matematika SMP Paket 2",
+  "subject": "Matematika",
+  "level": "SMP",
+  "durationMinutes": 90,
+  "questionCount": 30,
+  "status": "AKTIF",
+  "description": "Soal Simulasi TKA Matematika SMP Paket 2 Pusmendik Kemendikdasmen",
+  "questions": [
+    {
+      "questionId": "MAT_SMP_P2_001",
+      "number": 1,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_002",
+      "number": 2,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p>Rina lebih suka berbelanja <em>online</em> karena lebih mudah dan praktis. Ia sering menggunakan <em>cashback</em> yang disediakan oleh aplikasi belanja <em>online.</em> Di era transaksi digital seperti sekarang, istilah <em>cashback</em> barangkali sudah tak asing lagi. Apa itu <em>cashback</em>? <em>Cashback </em>merupakan persentase pengembalian uang tunai atau virtual yang didapat saat pembeli memenuhi syarat tertentu. Potongan tersebut bisa diberikan secara langsung atau di kemudian hari. <em>Cashback</em> berbeda dengan diskon. Diskon diberikan dengan memberikan potongan harga di awal. Bentuk diskon pun sudah pasti berupa uang alias potongan harga. Selain menggunakan uang tunai, <em>cashback</em> biasanya diberikan dalam bentuk poin atau koin digital. Beberapa penjual juga seringkali memberikan <em>cashback</em> dalam bentuk produk hingga <em>voucher</em>. Berikut beberapa penawaran <em>cashback</em> yang ada di aplikasi belanja <em>online</em> Rina.</p>\n\n<p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/06107_677b2680740504c312dabb90c53190d8.jpg\" style=\"width: 400px; height: 571px;\"></p>\n\n<p><em>Cashback </em>25% s/d 100RB artinya uang yang dikembalikan sebanyak 25% dari total belanjaan dan tidak lebih dari Rp100.000,00.<br>\nContoh:</p>\n\n<ol><li>Total belanjaan Rp500.000,00, maka Rp500.000,00 x 25% =Rp125.000,00, karena <em>cashback</em> yang diberikan tidak lebih dari Rp100.000,00 jadi, uang yang dikembalikan hanya Rp100.000,00.</li>\n\t<li>Total belanjaan Rp300.000,00, maka Rp300.000,00 x 25% =Rp75.000,00, karena tidak melebihi batas maksimal jadi <em>cashback</em> yang diberikan Rp75.000,00.</li>\n</ol><p><em>Voucher cashback</em> yang lainnya juga demikian.</p></div>",
+      "questionHtml": "<p>Rina akan membeli hadiah untuk dua orang temannya. Hadiahnya akan dikirim ke alamat masing-masing sehingga Rina harus melakukan dua kali transaksi. Setiap satu kali transaksi, Rina dapat memilih satu <em>voucher cashback</em>. Setiap <em>voucher</em> hanya dapat digunakan satu kali. Hadiah yang dikirim harganya sama yaitu Rp50.000,00. Jika Rina menginginkan <em>cashback </em>lebih dari Rp10.000,00, <em>voucher</em> mana sajakah yang harus ia pilih?</p>\n\n<p>Klik pada setiap pilihan jawaban yang benar! Jawaban benar lebih dari satu.</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<em>voucher</em> A"
+        },
+        {
+          "id": "B",
+          "html": "<em>voucher</em> B"
+        },
+        {
+          "id": "C",
+          "html": "<em>voucher</em> C"
+        },
+        {
+          "id": "D",
+          "html": "<em>voucher</em> D"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_003",
+      "number": 3,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p>Rina lebih suka berbelanja <em>online</em> karena lebih mudah dan praktis. Ia sering menggunakan <em>cashback</em> yang disediakan oleh aplikasi belanja <em>online.</em> Di era transaksi digital seperti sekarang, istilah <em>cashback</em> barangkali sudah tak asing lagi. Apa itu <em>cashback</em>? <em>Cashback </em>merupakan persentase pengembalian uang tunai atau virtual yang didapat saat pembeli memenuhi syarat tertentu. Potongan tersebut bisa diberikan secara langsung atau di kemudian hari. <em>Cashback</em> berbeda dengan diskon. Diskon diberikan dengan memberikan potongan harga di awal. Bentuk diskon pun sudah pasti berupa uang alias potongan harga. Selain menggunakan uang tunai, <em>cashback</em> biasanya diberikan dalam bentuk poin atau koin digital. Beberapa penjual juga seringkali memberikan <em>cashback</em> dalam bentuk produk hingga <em>voucher</em>. Berikut beberapa penawaran <em>cashback</em> yang ada di aplikasi belanja <em>online</em> Rina.</p>\n\n<p style=\"text-align: center;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/95684_677b2680740504c312dabb90c53190d8.jpg\" style=\"width: 400px; height: 571px;\"></p>\n\n<p><em>Cashback </em>25% s/d 100RB artinya uang yang dikembalikan sebanyak 25% dari total belanjaan dan tidak lebih dari Rp100.000,00.<br>\nContoh:</p>\n\n<ol><li>Total belanjaan Rp500.000,00, maka Rp500.000,00 x 25% =Rp125.000,00, karena <em>cashback</em> yang diberikan tidak lebih dari Rp100.000,00 jadi, uang yang dikembalikan hanya Rp100.000,00.</li>\n\t<li>Total belanjaan Rp300.000,00, maka Rp300.000,00 x 25% =Rp75.000,00, karena tidak melebihi batas maksimal jadi <em>cashback</em> yang diberikan Rp75.000,00.</li>\n</ol><p><em>Voucher cashback</em> yang lainnya juga demikian.</p></div>",
+      "questionHtml": "<p>Rina memiliki voucher A, B, dan D yang bisa ia gunakan untuk berbelanja <em>online</em>. Tentukan benar atau salah pernyataan berikut ini berkaitan dengan nominal transaksi Rina dan <em>voucher</em> yang seharusnya ia gunakan untuk mendapatkan <em>cashback </em>terbesar! Klik pada kotak yang sesuai!</p>\n\n<p> </p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": ""
+          },
+          {
+            "id": "R2",
+            "html": ""
+          },
+          {
+            "id": "R3",
+            "html": ""
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_004",
+      "number": 4,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_005",
+      "number": 5,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_006",
+      "number": 6,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_007",
+      "number": 7,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_008",
+      "number": 8,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_009",
+      "number": 9,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_010",
+      "number": 10,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_011",
+      "number": 11,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_012",
+      "number": 12,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_013",
+      "number": 13,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_014",
+      "number": 14,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p>Suatu kompleks X memiliki kebiasan membuat pagar rumah dengan desain yang unik. Hampir seluruh warga kompleks X menyusun pagar membentuk pola barisan. Desain pagar rumah tersebut disusun menggunakan 2 jenis batu bata, yang jika dari depan batu bata tersebut terlihat berbentuk segitiga dan persegi panjang. Batu bata tersebut disusun membentuk pola seperti gambar di bawah.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/87448_5e27015a98002b5a78c7b8024a5bb5aa.jpg\" style=\"width: 500px; height: 500px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align: justify;\">Jika ingin dibuat pagar dengan 10 tingkat susunan batu bata, berapakah jumlah total batu bata (segitiga maupun persegi panjang) yang ada pada tingkat ke-10 dari pagar tersebut?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "10 batu bata"
+        },
+        {
+          "id": "B",
+          "html": "11 batu bata"
+        },
+        {
+          "id": "C",
+          "html": "20 batu bata"
+        },
+        {
+          "id": "D",
+          "html": "21 batu bata"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_015",
+      "number": 15,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p>Suatu kompleks X memiliki kebiasan membuat pagar rumah dengan desain yang unik. Hampir seluruh warga kompleks X menyusun pagar membentuk pola barisan. Desain pagar rumah tersebut disusun menggunakan 2 jenis batu bata, yang jika dari depan batu bata tersebut terlihat berbentuk segitiga dan persegi panjang. Batu bata tersebut disusun membentuk pola seperti gambar di bawah.</p>\n\n<p><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/21009_5e27015a98002b5a78c7b8024a5bb5aa.jpg\" style=\"width: 500px; height: 500px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align: justify;\">Dua pagar yang sama persis dengan masing-masing memiliki 9 tingkat akan dibangun. Tetapi hanya ada persediaan sebanyak 60 batu bata segitiga dan 80 batu bata persegi panjang. Apakah jumlah kedua jenis batu bata tersebut cukup untuk membuat kedua pagar?</p>\n\n<p style=\"text-align: justify;\"><span style=\"color:#2980b9;\"><strong>Tentukan Benar atau Salah pada setiap pernyataan berikut!</strong></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Diperlukan tambahan 15 batu-bata segitiga.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Diperlukan tambahan 28 batu-bata persegi-panjang.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Diperlukan tambahan total sebanyak 43 batu-bata baik segitiga maupun persegi-panjang.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_016",
+      "number": 16,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_017",
+      "number": 17,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_018",
+      "number": 18,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_019",
+      "number": 19,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_020",
+      "number": 20,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_021",
+      "number": 21,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_022",
+      "number": 22,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_023",
+      "number": 23,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p>Pak Dodi adalah pemasok minyak goreng curah di Pasar Maju. Minyak goreng curah adalah minyak goreng tanpa kemasan khusus dan tidak memiliki label atau merek. Terdapat dua jenis minyak goreng curah yang dijual Pak Dodi yakni jenis A dan jenis B. Masing-masing jenis minyak goreng dimasukkan dalam tangki berikut.</p>\n\n<p><span style=\"font-size:14px;\"><span lang=\"EN-US\"><span style=\"line-height:107%\"><span style=\"font-family:&quot;Lato&quot;,sans-serif\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/51499_664a579fd612e9ecc6546af9fb38c0a8.jpg\" style=\"width: 645px; height: 432px;\"></span></span></span></span></p></div>",
+      "questionHtml": "<p>Minyak jenis B pada tangki yang berisi penuh akan dikemas di botol dan di jeriken. Sebanyak 300 botol berukuran 2 liter sudah diisi minyak curah jenis B dari tangki tersebut. Sisa minyak akan dikemas ke dalam jeriken berukuran 5 liter. Bagaimana perbandingan banyak kemasan botol dan jeriken?</p>\n\n<p><span style=\"color:#2980b9;\">Pilihlah semua jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Jumlah kemasan botol lebih banyak dari pada jeriken."
+        },
+        {
+          "id": "B",
+          "html": "Total kemasan botol dan jeriken yang terisi adalah 532."
+        },
+        {
+          "id": "C",
+          "html": "Sisa minyak di tangki cukup untuk mengisi 1 kemasan botol."
+        },
+        {
+          "id": "D",
+          "html": "Banyak kemasan jeriken yang terisi minyak adalah 332."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B"
+        ]
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_024",
+      "number": 24,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p>Pak Dodi adalah pemasok minyak goreng curah di Pasar Maju. Minyak goreng curah adalah minyak goreng tanpa kemasan khusus dan tidak memiliki label atau merek. Terdapat dua jenis minyak goreng curah yang dijual Pak Dodi yakni jenis A dan jenis B. Masing-masing jenis minyak goreng dimasukkan dalam tangki berikut.</p>\n\n<p><span style=\"font-size:14px;\"><span lang=\"EN-US\"><span style=\"line-height:107%\"><span style=\"font-family:&quot;Lato&quot;,sans-serif\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/42629_664a579fd612e9ecc6546af9fb38c0a8.jpg\" style=\"width: 645px; height: 432px;\"></span></span></span></span></p></div>",
+      "questionHtml": "<p>Hari ini di toko Pak Dodi kedatangan dua pelanggan minyak curah yakni Pak Angga dan Bu Susi. Pak Angga dan Bu Susi membawa jeriken untuk wadah minyak dalam jumlah banyak. Jeriken minyak Pak Angga berukuran 25 liter, jeriken minyak milik Bu Susi berukuran 30 liter. Pak Dodi memiliki persediaan 1 tangki minyak jenis A dan 1 tangki minyak Jenis B. Pak Angga dan Bu Susi membeli seluruh minyak tersebut sehingga tidak ada lagi sisa minyak di tangki. Seluruh jeriken yang dibawa berisi penuh dan masing-masing mendapatkan kedua jenis minyak. Bagaimana kemungkinan perbandingan banyaknya jeriken Pak Angga dan Bu Susi?</p>\n\n<p><span style=\"color:#2980b9;\">Tentukan mungkin atau tidak mungkin setiap pernyataan berikut! Klik pada kolom yang sesuai.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Tidak Mungkin"
+        },
+        {
+          "id": "B",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_24_1\" type=\"radio\" value=\"2\" name=\"jawaban_24\"><label for=\"arsip_24_1\"></label></div>"
+        },
+        {
+          "id": "C",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_24_3\" type=\"radio\" value=\"2\" name=\"jawaban_24\"><label for=\"arsip_24_3\"></label></div>"
+        },
+        {
+          "id": "D",
+          "html": "<div class=\"icheck-primary d-inline\"><input id=\"arsip_24_5\" type=\"radio\" value=\"2\" name=\"jawaban_24\"><label for=\"arsip_24_5\"></label></div>"
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_025",
+      "number": 25,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_026",
+      "number": 26,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: justify;\">Tory suka sekali bermain <em>game online</em>. Dia selalu mengabaikan batasan waktu dalam bermain <em>game online</em>. Belakangan ini Tory sering merasa gelisah dan mudah marah apabila tidak diijinkan bermain. Dia juga sering merasakan sakit mata dan pusing. Dokter mengatakan bahwa Tory telah kecanduan bermain <em>game online</em>. Tory harus berusaha perlahan-lahan mengontrol waktu bermainnya. Dokter mengatakan bahwa batas waktu maksimal Tory diperbolehkan bermain adalah 7 jam dalam satu minggu.</p>\n\n<p style=\"text-align: justify;\">Selama 12 minggu, waktu bermain <em>game </em>Tory terus dipantau oleh kedua orang tuanya dan dilaporkan ke dokter.</p>\n\n<p style=\"text-align: justify;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/56086_0fc7407a07af9844b621d4053c084a78.jpg\" style=\"width: 692px; height: 350px;\"></p></div>",
+      "questionHtml": "<p>Dalam 12 minggu terakhir, Tory paling sering menghabiskan waktu untuk bermain <em>game online </em>setiap minggunya yaitu selama ... .</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "10 jam"
+        },
+        {
+          "id": "B",
+          "html": "14 jam"
+        },
+        {
+          "id": "C",
+          "html": "20 jam"
+        },
+        {
+          "id": "D",
+          "html": "22 jam"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_027",
+      "number": 27,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: justify;\">Tory suka sekali bermain <em>game online</em>. Dia selalu mengabaikan batasan waktu dalam bermain <em>game online</em>. Belakangan ini Tory sering merasa gelisah dan mudah marah apabila tidak diijinkan bermain. Dia juga sering merasakan sakit mata dan pusing. Dokter mengatakan bahwa Tory telah kecanduan bermain <em>game online</em>. Tory harus berusaha perlahan-lahan mengontrol waktu bermainnya. Dokter mengatakan bahwa batas waktu maksimal Tory diperbolehkan bermain adalah 7 jam dalam satu minggu.</p>\n\n<p style=\"text-align: justify;\">Selama 12 minggu, waktu bermain <em>game </em>Tory terus dipantau oleh kedua orang tuanya dan dilaporkan ke dokter.</p>\n\n<p style=\"text-align: justify;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/49702_0fc7407a07af9844b621d4053c084a78.jpg\" style=\"width: 692px; height: 350px;\"></p></div>",
+      "questionHtml": "<p style=\"text-align: justify;\">Dokter dan orangtua Tory memahami bahwa tidak mudah menghilangkan kecanduan bermain <em>game online</em>, namun mereka ingin terus memantau bagaimana perkembangan Tory. Dokter membuat skema sebagai berikut:</p>\n\n<p style=\"text-align: justify;\"><img alt=\"\" src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/49702_397a6f00ce34ed79b3c85fc539afd89c.jpg\" style=\"width: 650px; height: 284px;\"></p>\n\n<p>Dokter memantau dan membandingkan rata-rata jam bermain game online setiap 4 minggu dan menyebutnya sebagai fase.</p>\n\n<p>Fase pertama membandingkan rata-rata jam bermain pada 4 minggu pertama dengan rata-rata jam bermain pada 4 minggu kedua. Fase kedua membandingkan rata-rata jam bermain pada 4 minggu kedua dengan rata-rata jam bermain pada minggu ketiga. Fase akhir membandingkan rata-rata jam bermain pada 4 minggu ketiga dengan batas waktu maksimal yang disarankan.</p>\n\n<p>Hal tersebut dilakukan untuk melihat perkembangan kebiasaan Tory dalam bermain game online. Apakah yang terjadi pada Tory selama fase penyembuhan?</p>\n\n<p><span style=\"color:#2980b9;\"><strong>Pilihlah semua jawaban yang benar! Jawaban benar lebih dari satu.</strong></span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Fase pertama berkurang 5,5 jam."
+        },
+        {
+          "id": "B",
+          "html": "Fase kedua berkurang 2,25 jam."
+        },
+        {
+          "id": "C",
+          "html": "Fase akhir berkurang 5,25 jam.<p></p>\n\n<p></p>"
+        },
+        {
+          "id": "D",
+          "html": "Fase penyembuhan berkurang 8 jam."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_028",
+      "number": 28,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_029",
+      "number": 29,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    },
+    {
+      "questionId": "MAT_SMP_P2_030",
+      "number": 30,
+      "type": "SINGLE",
+      "stimulusHtml": "",
+      "questionHtml": "",
+      "options": [],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Matematika"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "packageId": "BI_SMP_P1",
+    "name": "Bahasa Indonesia SMP Paket 1",
+    "subject": "Bahasa Indonesia",
+    "level": "SMP",
+    "durationMinutes": 90,
+    "questionCount": 30,
+    "description": "Soal Simulasi TKA Bahasa Indonesia SMP Paket 1 Pusmendik Kemendikdasmen"
+  },
+  {
+    "packageId": "BI_SMP_P2",
+    "name": "Bahasa Indonesia SMP Paket 2",
+    "subject": "Bahasa Indonesia",
+    "level": "SMP",
+    "durationMinutes": 90,
+    "questionCount": 30,
+    "description": "Soal Simulasi TKA Bahasa Indonesia SMP Paket 2 Pusmendik Kemendikdasmen"
+  },
+  {
+    "packageId": "MAT_SMP_P1",
+    "name": "Matematika SMP Paket 1",
+    "subject": "Matematika",
+    "level": "SMP",
+    "durationMinutes": 90,
+    "questionCount": 30,
+    "description": "Soal Simulasi TKA Matematika SMP Paket 1 Pusmendik Kemendikdasmen"
+  },
+  {
+    "packageId": "MAT_SMP_P2",
+    "name": "Matematika SMP Paket 2",
+    "subject": "Matematika",
+    "level": "SMP",
+    "durationMinutes": 90,
+    "questionCount": 30,
+    "description": "Soal Simulasi TKA Matematika SMP Paket 2 Pusmendik Kemendikdasmen"
+  }
+]

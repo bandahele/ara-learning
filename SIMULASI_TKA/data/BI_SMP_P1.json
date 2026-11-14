@@ -1,0 +1,990 @@
+{
+  "packageId": "BI_SMP_P1",
+  "name": "Bahasa Indonesia SMP Paket 1",
+  "subject": "Bahasa Indonesia",
+  "level": "SMP",
+  "durationMinutes": 90,
+  "questionCount": 30,
+  "status": "AKTIF",
+  "description": "Soal Simulasi TKA Bahasa Indonesia SMP Paket 1 Pusmendik Kemendikdasmen",
+  "questions": [
+    {
+      "questionId": "BI_SMP_P1_001",
+      "number": 1,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: left;\"><strong>Teks Ulasan 1</strong></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_22bb150a75bdabf3dbde1484a6b157ca.png\" alt=\"\" width=\"552\" height=\"374\"></p>\n<p style=\"text-align: left;\"><strong>Teks Ulasan 2</strong></p>\n<p style=\"text-align: center;\"><strong><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_c70d939f635c3f240874a10f259e5e34.png\" alt=\"\" width=\"549\" height=\"301\"></strong></p>\n<p style=\"text-align: left;\"><strong>Daftar Istilah:<br></strong><em>Hidden gem</em>: Tempat indah yang belum banyak diketahui orang.<br><em>Bucket list</em>: Daftar hal yang ingin dilakukan.<br><em>Golden hour</em>: Waktu matahari terbit atau menjelang senja dengan cahaya keemasan.<br><em>Vibes</em>: Suasana atau perasaan suatu tempat.<br>Estetis: Indah dan enak dipandang.<strong><br></strong></p></div>",
+      "questionHtml": "<p>Kosakata yang menggambarkan keserasian suara deburan alam pada teks ulasan ke-1 ditunjukkan pada frasa ....</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "alternatif wisata"
+        },
+        {
+          "id": "B",
+          "html": "kanvas alam"
+        },
+        {
+          "id": "C",
+          "html": "panggung cahaya"
+        },
+        {
+          "id": "D",
+          "html": "harmoni alam"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_002",
+      "number": 2,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: left;\"><strong>Teks Ulasan 1</strong></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_22bb150a75bdabf3dbde1484a6b157ca.png\" alt=\"\" width=\"552\" height=\"374\"></p>\n<p style=\"text-align: left;\"><strong>Teks Ulasan 2</strong></p>\n<p style=\"text-align: center;\"><strong><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_c70d939f635c3f240874a10f259e5e34.png\" alt=\"\" width=\"549\" height=\"301\"></strong></p>\n<p style=\"text-align: left;\"><strong>Daftar Istilah:<br></strong><em>Hidden gem</em>: Tempat indah yang belum banyak diketahui orang.<br><em>Bucket list</em>: Daftar hal yang ingin dilakukan.<br><em>Golden hour</em>: Waktu matahari terbit atau menjelang senja dengan cahaya keemasan.<br><em>Vibes</em>: Suasana atau perasaan suatu tempat.<br>Estetis: Indah dan enak dipandang.</p></div>",
+      "questionHtml": "<p>Apa saja perbedaan informasi yang ada pada kedua teks tersebut?<br><span style=\"color: #0000ff;\">Pilihlah jawaban yang benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Kemudahan akses."
+        },
+        {
+          "id": "B",
+          "html": "Fasilitas yang tersedia."
+        },
+        {
+          "id": "C",
+          "html": "Tempat untuk berfoto."
+        },
+        {
+          "id": "D",
+          "html": "Keindahan saat senja."
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_003",
+      "number": 3,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: left;\"><strong>Teks Ulasan 1</strong></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_22bb150a75bdabf3dbde1484a6b157ca.png\" alt=\"\" width=\"552\" height=\"374\"></p>\n<p style=\"text-align: left;\"><strong>Teks Ulasan 2</strong></p>\n<p style=\"text-align: center;\"><strong><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/08294_c70d939f635c3f240874a10f259e5e34.png\" alt=\"\" width=\"549\" height=\"301\"></strong></p>\n<p style=\"text-align: left;\"><strong>Daftar Istilah:<br></strong><em>Hidden gem</em>: Tempat indah yang belum banyak diketahui orang.<br><em>Bucket list</em>: Daftar hal yang ingin dilakukan.<br><em>Golden hour</em>: Waktu matahari terbit atau menjelang senja dengan cahaya keemasan.<br><em>Vibes</em>: Suasana atau perasaan suatu tempat.<br>Estetis: Indah dan enak dipandang.</p></div>",
+      "questionHtml": "<p>Banu: Aku lebih suka membaca ulasan pada teks 2 rasanya lebih dekat denganku. Aku jadi ingin ke sana! Teks ulasan 2 sangat menarik!<br>Komar: Justru aku lebih suka ulasan pada teks 1 karena sangat jelas dan menarik minatku untuk mengunjungi pantai itu.<br>Mengapa penyataan Banu lebih tepat untuk menggambarkan keunggulan teks ulasan kedua yang tidak ada pada teks ulasan pertama<br><span style=\"color: #0000ff;\">Tentukan <strong>Benar </strong>atau <strong>Salah </strong>untuk setiap pernyataan berikut!</span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Gaya penyajian teks menggunakan bahasa nonformal sehingga lebih santai.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Penyajian gambar pada teks yang membuat pembaca lebih tertarik membaca</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Akhir ulasan dilengkapi kalimat ajakan kepada pembaca untuk mengunjungi pantai.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_004",
+      "number": 4,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70122_ff6ce4b947d021b0e2d3dd370335371d.png\" alt=\"\" width=\"493\" height=\"626\"></p></div>",
+      "questionHtml": "<p>Pilihan kata mana saja yang menunjukkan latar waktu pada puisi tersebut?<br><span style=\"color: #0000ff;\">Pilihlah jawaban yang benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Bukit-bukit desa"
+        },
+        {
+          "id": "B",
+          "html": "Sebelum hari bermula"
+        },
+        {
+          "id": "C",
+          "html": "Akar-akar yang melata"
+        },
+        {
+          "id": "D",
+          "html": "Berlomba dengan surya"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_005",
+      "number": 5,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70122_ff6ce4b947d021b0e2d3dd370335371d.png\" alt=\"\" width=\"493\" height=\"626\"></p></div>",
+      "questionHtml": "<p>Apa makna <em>merebut hidup di pasar-pasar kota </em>pada teks puisi tersebut?</p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "Kegigihan dan perjuangan perempuan dalam bekerja."
+        },
+        {
+          "id": "B",
+          "html": "Keuletan dan pencapaian seseorang dalam bekerja."
+        },
+        {
+          "id": "C",
+          "html": "Aktivitas dan keseharian perempuan yang bekerja di pasar."
+        },
+        {
+          "id": "D",
+          "html": "Tanggung jawab dan kewajiban perempuan pada keluarga."
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_006",
+      "number": 6,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/70122_ff6ce4b947d021b0e2d3dd370335371d.png\" alt=\"\" width=\"493\" height=\"626\"></p></div>",
+      "questionHtml": "<p>Setelah membaca puisi tersebut, tiga murid berpendapat sebagai berikut.<br>Dina: Wah, ternyata banyak perempuan hebat ya. Mereka bekerja penuh semangat!<br>Mira: Iya, mereka rela bangun pagi-pagi untuk bekerja.<br>Tika: Tapi, kasihan ya mereka pasti lelah setelah seharian bekerja.<br>Pendapat siapa yang tepat untuk menggambarkan suasana haru yang muncul setelah membaca puisi tersebut?<br><span style=\"color: #0000ff;\">Tentukan <strong>Setuju </strong>atau <strong>Tidak Setuju </strong>untuk setiap pernyataan berikut berdasarkan teks!</span></p>",
+      "options": {
+        "columns": [
+          "Setuju",
+          "Tidak Setuju"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p>Dina karena menunjukkan kekagumannya kepada para perempuan yang bekerja.</p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p>Mira karena pendapatnya juga senada dengan pendapat yang disampaikan Dina.</p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p>Tika karena pendapatnya menunjukkan rasa empati terhadap perempuan pekerja.</p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Setuju",
+          "R2": "Setuju",
+          "R3": "Tidak Setuju"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_007",
+      "number": 7,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/20328_8f3016a1dc00c1495a8ba6e800b0cdbb.png\" alt=\"\" width=\"549\" height=\"777\"></p>\n<p><span style=\"font-size: 11px;\">Sumber:&nbsp;</span><br><span style=\"font-size: 11px;\"><span style=\"color: #0000ff;\">https://kumparan.com/kumparansains/mengenal-babi-rusa-hewan-langka-yang-hanya-ada-di-sulawesi-1tkPzp5uAVY/2</span>&nbsp;</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Apa jenis umbi-umbian yang menjadi makanan babirusa?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Kilo.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Rebung.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Ulat.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Tunas globa.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_008",
+      "number": 8,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/74621_8f3016a1dc00c1495a8ba6e800b0cdbb.png\" alt=\"\" width=\"554\" height=\"784\"></p>\n<p><span style=\"font-size: 11px;\">Sumber:&nbsp;</span><br><span style=\"font-size: 11px;\"><span style=\"color: #0000ff;\">https://kumparan.com/kumparansains/mengenal-babi-rusa-hewan-langka-yang-hanya-ada-di-sulawesi-1tkPzp5uAVY/2</span>&nbsp;</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Babirusa adalah hewan unik yang ditemukan di Pulau Sulawesi. Pernyataan mana yang mendukung kalimat tersebut?<br></span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">Klik pada pilihan</span><strong> Benar</strong><span style=\"font-weight: 400;\"> atau </span><strong>Salah</strong><span style=\"font-weight: 400;\"> untuk setiap pernyataan!</span></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p><span style=\"font-weight: 400;\">Babirusa betina di Pulau Sulawesi memiliki taring seperti babirusa jantan.</span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-weight: 400;\">Babirusa hidup di hutan hujan dataran rendah di Pulau Sulawesi.</span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p><span style=\"font-weight: 400;\">Babirusa di Pulau Sulawesi memiliki suara yang sangat khas.</span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_009",
+      "number": 9,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/76985_8f3016a1dc00c1495a8ba6e800b0cdbb.png\" alt=\"\" width=\"549\" height=\"776\"></p>\n<p><span style=\"font-size: 11px;\">Sumber:&nbsp;</span><br><span style=\"font-size: 11px;\"><span style=\"color: #0000ff;\">https://kumparan.com/kumparansains/mengenal-babi-rusa-hewan-langka-yang-hanya-ada-di-sulawesi-1tkPzp5uAVY/2</span>&nbsp;</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Apa dampak yang terjadi jika habitat babirusa terus terancam?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Populasi babirusa akan berkurang akibat aktivitas manusia.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Babirusa akan pindah ke dataran tinggi yang lebih aman.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Flora yang menjadi makanan utama babirusa bisa terpengaruh.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Terjadi peningkatan konflik antara manusia dan babirusa.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "C",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_010",
+      "number": 10,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/77619_35b44012e9b07f225c5bbcf5129b18f4.png\" alt=\"\" width=\"553\" height=\"782\"></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://liberty-society.com/id/blogs/blog-1/cara-membuat-tas-dari-kain-perca<br></span><span style=\"font-size: 11px;\">https://kumparan.com/kabar-harian/mengenal-kerajinan-dari-limbah-kain-perca-dan-cara-membuatnya-1xIsfl2wgX8/4</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Benda apa saja yang digunakan sebagai alat dalam teks tersebut?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Ritsleting.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Gunting.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Jarum.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Busa tipis.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_011",
+      "number": 11,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/67730_35b44012e9b07f225c5bbcf5129b18f4.png\" alt=\"\" width=\"550\" height=\"778\"></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://liberty-society.com/id/blogs/blog-1/cara-membuat-tas-dari-kain-perca<br></span><span style=\"font-size: 11px;\">https://kumparan.com/kabar-harian/mengenal-kerajinan-dari-limbah-kain-perca-dan-cara-membuatnya-1xIsfl2wgX8/4</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Kata manakah yang menunjukkan bahwa kain perca masih bisa diolah?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Bermanfaat.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Siap digunakan.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Bernilai ekonomi.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Lebih menarik.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_012",
+      "number": 12,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/49119_35b44012e9b07f225c5bbcf5129b18f4.png\" alt=\"\" width=\"551\" height=\"779\"></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://liberty-society.com/id/blogs/blog-1/cara-membuat-tas-dari-kain-perca<br></span><span style=\"font-size: 11px;\">https://kumparan.com/kabar-harian/mengenal-kerajinan-dari-limbah-kain-perca-dan-cara-membuatnya-1xIsfl2wgX8/4</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Apa yang mungkin terjadi jika busa tidak diletakkan di dalam kain?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Tas akan menjadi lebih berat.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Tas menjadi kurang empuk.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Tas tidak bisa digunakan.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Tas akan mudah rusak.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_013",
+      "number": 13,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pelari Terakhir</strong></p>\n<p>Lomba maraton di kotaku biasanya diadakan setiap musim panas. Semua jalan raya yang dilalui para pelari akan ditutup. Hanya ambulans yang bisa melintas. Tugasku mengikuti pelari dari belakang sebagai petugas medis. Pak sopir dan aku berada di dalam mobil ambulans. Kami harus tetap berada di belakang pelari terakhir sampai garis finis.<br>Tanda memulai maraton terdengar. Para pelari terdepan mulai menjauh dari pandangan kami. Mataku tertuju pada wanita berbaju putih longgar dan celana biru.<br>\"Pak, lihatlah itu,\" kataku sambil menunjuk wanita tersebut di depan kami.<br>Kami sadar bahwa dia akan menjadi \"pelari terakhir\". Rambutnya beruban, postur tubuhnya tidak lagi tegap, dan kakinya sedikit pincang. Berjalan pun sudah tampak sulit.&nbsp;<br>Pak sopir dan aku memperhatikan wanita itu. Kami akan bergerak maju sedikit. Lalu berhenti menjaga jarak darinya. Kemudian, kami maju lagi untuk terus mengikuti langkahnya. Aku ingin menghentikannya. Namun, pada saat yang sama, aku juga berdoa agar dia terus maju.&nbsp;<br>Akhirnya, dia menjadi satu-satunya pelari yang tersisa. Air mataku mengalir karena aku merasa terharu dan kagum pada keberaniannya.<br>Sorak-sorai penonton sudah tidak terdengar lagi. Namun, seorang pria berdiri sendirian dengan bangga menunggu kedatangan pelari terakhir. Ia memegang salah satu ujung pita kertas yang terikat pada tiang. Pelan-pelan, pelari terakhir melintasi garis finis tersebut. Kedua ujung pita kertas itu berkibar di belakangnya.</p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/60137_bff06c28f8646770b1ca98bfc2d043c4.png\" alt=\"\" width=\"551\" height=\"316\"></p>\n<p>Aku tidak tahu nama wanita itu. Tetapi sejak saat itu, dia menjadi bagian dari kehidupanku. Bagi wanita itu, maraton bukanlah tentang mengalahkan orang lain atau memenangkan piala. Ini tentang menyelesaikan apa yang sudah dimulainya. Saat kesulitan hidup melanda, aku teringat kepadanya.</p>\n<p><span style=\"font-size: 11px;\">Sumber:</span><br><span style=\"font-size: 11px; color: #0000ff;\">Diterjemahkan dengan perubahan, dari Lisa Beach.&nbsp;<em>The Last Runner.&nbsp;</em>Chicken Soup for the Preteen Soul (2000).</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Seorang pria berdiri di garis finis saat pelari terakhir melintas. Apa yang dilakukan pria itu?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Berdiri menunggu kedatangan mobil ambulans.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Menyaksikan perjuangan para pelari maraton.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Mengikuti pelari terakhir dari belakang.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Memegang ujung pita kertas yang diikat ke tiang.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_014",
+      "number": 14,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pelari Terakhir</strong></p>\n<p>Lomba maraton di kotaku biasanya diadakan setiap musim panas. Semua jalan raya yang dilalui para pelari akan ditutup. Hanya ambulans yang bisa melintas. Tugasku mengikuti pelari dari belakang sebagai petugas medis. Pak sopir dan aku berada di dalam mobil ambulans. Kami harus tetap berada di belakang pelari terakhir sampai garis finis.<br>Tanda memulai maraton terdengar. Para pelari terdepan mulai menjauh dari pandangan kami. Mataku tertuju pada wanita berbaju putih longgar dan celana biru.<br>\"Pak, lihatlah itu,\" kataku sambil menunjuk wanita tersebut di depan kami.<br>Kami sadar bahwa dia akan menjadi \"pelari terakhir\". Rambutnya beruban, postur tubuhnya tidak lagi tegap, dan kakinya sedikit pincang. Berjalan pun sudah tampak sulit.&nbsp;<br>Pak sopir dan aku memperhatikan wanita itu. Kami akan bergerak maju sedikit. Lalu berhenti menjaga jarak darinya. Kemudian, kami maju lagi untuk terus mengikuti langkahnya. Aku ingin menghentikannya. Namun, pada saat yang sama, aku juga berdoa agar dia terus maju.&nbsp;<br>Akhirnya, dia menjadi satu-satunya pelari yang tersisa. Air mataku mengalir karena aku merasa terharu dan kagum pada keberaniannya.<br>Sorak-sorai penonton sudah tidak terdengar lagi. Namun, seorang pria berdiri sendirian dengan bangga menunggu kedatangan pelari terakhir. Ia memegang salah satu ujung pita kertas yang terikat pada tiang. Pelan-pelan, pelari terakhir melintasi garis finis tersebut. Kedua ujung pita kertas itu berkibar di belakangnya.</p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/99432_bff06c28f8646770b1ca98bfc2d043c4.png\" alt=\"\" width=\"550\" height=\"315\"></p>\n<p>Aku tidak tahu nama wanita itu. Tetapi sejak saat itu, dia menjadi bagian dari kehidupanku. Bagi wanita itu, maraton bukanlah tentang mengalahkan orang lain atau memenangkan piala. Ini tentang menyelesaikan apa yang sudah dimulainya. Saat kesulitan hidup melanda, aku teringat kepadanya.</p>\n<p><span style=\"font-size: 11px;\">Sumber:</span><br><span style=\"font-size: 11px; color: #0000ff;\">Diterjemahkan dengan perubahan, dari Lisa Beach.&nbsp;<em>The Last Runner.&nbsp;</em>Chicken Soup for the Preteen Soul (2000).</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Dalam cerita, ada seorang wanita tua yang ikut berlomba. Bagaimana sikap tokoh Aku setelah mengetahuinya?<br></span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">Klik pada pilihan</span><strong> Benar</strong><span style=\"font-weight: 400;\"> atau </span><strong>Salah </strong><span style=\"font-weight: 400;\">untuk setiap pernyataan berdasarkan isi teks!</span></span></p>",
+      "options": {
+        "columns": [
+          "Sikap Tokoh Aku",
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p><span style=\"font-weight: 400;\">Terharu melihat perjuangan wanita tua yang memiliki kondisi terbatas.</span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-weight: 400;\">Bangga menunggu kedatangan wanita tua melintasi garis finis.</span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p><span style=\"font-weight: 400;\">Terinspirasi oleh keteguhan wanita tua menghadapi tantangan maraton.</span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Salah",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_015",
+      "number": 15,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pelari Terakhir</strong></p>\n<p>Lomba maraton di kotaku biasanya diadakan setiap musim panas. Semua jalan raya yang dilalui para pelari akan ditutup. Hanya ambulans yang bisa melintas. Tugasku mengikuti pelari dari belakang sebagai petugas medis. Pak sopir dan aku berada di dalam mobil ambulans. Kami harus tetap berada di belakang pelari terakhir sampai garis finis.<br>Tanda memulai maraton terdengar. Para pelari terdepan mulai menjauh dari pandangan kami. Mataku tertuju pada wanita berbaju putih longgar dan celana biru.<br>\"Pak, lihatlah itu,\" kataku sambil menunjuk wanita tersebut di depan kami.<br>Kami sadar bahwa dia akan menjadi \"pelari terakhir\". Rambutnya beruban, postur tubuhnya tidak lagi tegap, dan kakinya sedikit pincang. Berjalan pun sudah tampak sulit.&nbsp;<br>Pak sopir dan aku memperhatikan wanita itu. Kami akan bergerak maju sedikit. Lalu berhenti menjaga jarak darinya. Kemudian, kami maju lagi untuk terus mengikuti langkahnya. Aku ingin menghentikannya. Namun, pada saat yang sama, aku juga berdoa agar dia terus maju.&nbsp;<br>Akhirnya, dia menjadi satu-satunya pelari yang tersisa. Air mataku mengalir karena aku merasa terharu dan kagum pada keberaniannya.<br>Sorak-sorai penonton sudah tidak terdengar lagi. Namun, seorang pria berdiri sendirian dengan bangga menunggu kedatangan pelari terakhir. Ia memegang salah satu ujung pita kertas yang terikat pada tiang. Pelan-pelan, pelari terakhir melintasi garis finis tersebut. Kedua ujung pita kertas itu berkibar di belakangnya.</p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/30466_bff06c28f8646770b1ca98bfc2d043c4.png\" alt=\"\" width=\"551\" height=\"316\"></p>\n<p>Aku tidak tahu nama wanita itu. Tetapi sejak saat itu, dia menjadi bagian dari kehidupanku. Bagi wanita itu, maraton bukanlah tentang mengalahkan orang lain atau memenangkan piala. Ini tentang menyelesaikan apa yang sudah dimulainya. Saat kesulitan hidup melanda, aku teringat kepadanya.</p>\n<p><span style=\"font-size: 11px;\">Sumber:</span><br><span style=\"font-size: 11px; color: #0000ff;\">Diterjemahkan dengan perubahan, dari Lisa Beach.&nbsp;<em>The Last Runner.&nbsp;</em>Chicken Soup for the Preteen Soul (2000).</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Mengapa penulis meletakkan gambar sebelum paragraf terakhir dalam cerita?<br></span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">Klik pada pilihan </span><strong>Benar</strong><span style=\"font-weight: 400;\"> atau </span><strong>Salah</strong><span style=\"font-weight: 400;\"> untuk setiap pernyataan berdasarkan isi teks!</span></span></p>",
+      "options": {
+        "columns": [
+          "Alasan",
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p><span style=\"font-weight: 400;\">Menunjukkan gambaran fisik wanita tua yang mengikuti lomba maraton.</span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-weight: 400;\">Membantu pembaca membayangkan momen pelari terakhir melintasi garis finis.</span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p><span style=\"font-weight: 400;\">Memperkuat pesan bahwa menyelesaikan sesuatu yang telah dimulai adalah berharga.</span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_016",
+      "number": 16,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Laporan Observasi: Kehidupan Tradisional dan Alam di Desa Baduy</strong></p>\n<p style=\"text-align: left;\">Desa Baduy terletak di Kabupaten Lebak, Banten. Desa ini memiliki komunitas adat yang lestari. Mereka hidup sederhana dan harmonis dengan alam. Tradisi ini masih dipertahankan hingga saat ini. Masyarakat Baduy terbagi menjadi dua kelompok, yaitu Baduy Dalam dan Baduy Luar. Keduanya masih memegang teguh adat istiadat dan filosofi leluhur.<br>Masyarakat Baduy Dalam, tinggal di wilayah yang lebih terpencil. Mereka tidak terpengaruh oleh teknologi modern. Kehidupan mereka diatur dengan aturan adat yang ketat. Pakaian khas yang digunakan terbuat dari bahan alami. Pola hidup mereka juga mengikuti prinsip-prinsip keberlanjutan ekosistem. Pertanian organik menjadi salah satu cara mereka menjaga kelestarian alam. Alam merupakan sumber daya utama bagi kehidupan mereka.<br>Kelompok Baduy Luar lebih terbuka terhadap pengaruh luar. Namun, mereka tetap menjaga nilai-nilai adat. Mereka rutin melaksanakan upacara adat, seperti Sedekah Bumi. Upacara ini menjadi bentuk rasa syukur atas hasil pertanian. Hal ini juga dilakukan untuk menjaga hubungan harmonis antara manusia dan alam.&nbsp;<br>Masyarakat Baduy memiliki tradisi yang kaya dan unik. Namun, kawasan ini menghadapi berbagai tantangan. Pembangunan yang pesat mulai mengancam kelestarian alam sekitar. Selain itu, eksploitasi sumber daya alam di sekitar wilayah Baduy semakin meningkat. Banyak pihak yang tertarik mengakses sumber daya alam tersebut. Hal ini berisiko merusak keseimbangan budaya dan lingkungan mereka.<br><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://kumparan.com/syalsa-raya/hidup-bersama-alam-kehidupan-tradisional-baduy-yang-berkelanjutan-21z9WYFRsow/2<br></span><span style=\"font-size: 11px;\">https://bantenlife.com/tradisi-kehidupan-suku-baduy-harmoni-dengan-alam-dan-kearifan-lokal/</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Istilah </span><em><span style=\"font-weight: 400;\">eksploitasi</span></em><span style=\"font-weight: 400;\"> dalam paragraf keempat bermakna …</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">pemanfaatan berlebihan yang dapat merusak lingkungan</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">perlindungan budaya masyarakat Baduy yang telah rusak</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">pengelolaan sumber daya alam yang mengancam lingkungan</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">penggunaan sumber daya alam secara terbatas namun berisiko</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_017",
+      "number": 17,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Laporan Observasi: Kehidupan Tradisional dan Alam di Desa Baduy</strong></p>\n<p style=\"text-align: left;\">Desa Baduy terletak di Kabupaten Lebak, Banten. Desa ini memiliki komunitas adat yang lestari. Mereka hidup sederhana dan harmonis dengan alam. Tradisi ini masih dipertahankan hingga saat ini. Masyarakat Baduy terbagi menjadi dua kelompok, yaitu Baduy Dalam dan Baduy Luar. Keduanya masih memegang teguh adat istiadat dan filosofi leluhur.<br>Masyarakat Baduy Dalam, tinggal di wilayah yang lebih terpencil. Mereka tidak terpengaruh oleh teknologi modern. Kehidupan mereka diatur dengan aturan adat yang ketat. Pakaian khas yang digunakan terbuat dari bahan alami. Pola hidup mereka juga mengikuti prinsip-prinsip keberlanjutan ekosistem. Pertanian organik menjadi salah satu cara mereka menjaga kelestarian alam. Alam merupakan sumber daya utama bagi kehidupan mereka.<br>Kelompok Baduy Luar lebih terbuka terhadap pengaruh luar. Namun, mereka tetap menjaga nilai-nilai adat. Mereka rutin melaksanakan upacara adat, seperti Sedekah Bumi. Upacara ini menjadi bentuk rasa syukur atas hasil pertanian. Hal ini juga dilakukan untuk menjaga hubungan harmonis antara manusia dan alam.&nbsp;<br>Masyarakat Baduy memiliki tradisi yang kaya dan unik. Namun, kawasan ini menghadapi berbagai tantangan. Pembangunan yang pesat mulai mengancam kelestarian alam sekitar. Selain itu, eksploitasi sumber daya alam di sekitar wilayah Baduy semakin meningkat. Banyak pihak yang tertarik mengakses sumber daya alam tersebut. Hal ini berisiko merusak keseimbangan budaya dan lingkungan mereka.<br><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://kumparan.com/syalsa-raya/hidup-bersama-alam-kehidupan-tradisional-baduy-yang-berkelanjutan-21z9WYFRsow/2<br></span><span style=\"font-size: 11px;\">https://bantenlife.com/tradisi-kehidupan-suku-baduy-harmoni-dengan-alam-dan-kearifan-lokal/</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Kerangka yang tepat berdasarkan informasi dalam teks adalah ….</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/47516_104ef226a55f1bb2fb18875ebe4f056f.png\" alt=\"\" width=\"490\" height=\"44\">"
+        },
+        {
+          "id": "B",
+          "html": "<img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/47516_04dd5ee88db62ebce1ab447c7033c968.png\" alt=\"\" width=\"492\" height=\"48\">"
+        },
+        {
+          "id": "C",
+          "html": "<img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/47516_7e7f262c20b7db96314e8300a6dd625b.png\" alt=\"\" width=\"489\" height=\"45\">"
+        },
+        {
+          "id": "D",
+          "html": "<img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/47516_9dcec97a9f3679b0a4f3cc8d135948d9.png\" alt=\"\" width=\"490\" height=\"44\">"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_018",
+      "number": 18,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Laporan Observasi: Kehidupan Tradisional dan Alam di Desa Baduy</strong></p>\n<p style=\"text-align: left;\">Desa Baduy terletak di Kabupaten Lebak, Banten. Desa ini memiliki komunitas adat yang lestari. Mereka hidup sederhana dan harmonis dengan alam. Tradisi ini masih dipertahankan hingga saat ini. Masyarakat Baduy terbagi menjadi dua kelompok, yaitu Baduy Dalam dan Baduy Luar. Keduanya masih memegang teguh adat istiadat dan filosofi leluhur.<br>Masyarakat Baduy Dalam, tinggal di wilayah yang lebih terpencil. Mereka tidak terpengaruh oleh teknologi modern. Kehidupan mereka diatur dengan aturan adat yang ketat. Pakaian khas yang digunakan terbuat dari bahan alami. Pola hidup mereka juga mengikuti prinsip-prinsip keberlanjutan ekosistem. Pertanian organik menjadi salah satu cara mereka menjaga kelestarian alam. Alam merupakan sumber daya utama bagi kehidupan mereka.<br>Kelompok Baduy Luar lebih terbuka terhadap pengaruh luar. Namun, mereka tetap menjaga nilai-nilai adat. Mereka rutin melaksanakan upacara adat, seperti Sedekah Bumi. Upacara ini menjadi bentuk rasa syukur atas hasil pertanian. Hal ini juga dilakukan untuk menjaga hubungan harmonis antara manusia dan alam.&nbsp;<br>Masyarakat Baduy memiliki tradisi yang kaya dan unik. Namun, kawasan ini menghadapi berbagai tantangan. Pembangunan yang pesat mulai mengancam kelestarian alam sekitar. Selain itu, eksploitasi sumber daya alam di sekitar wilayah Baduy semakin meningkat. Banyak pihak yang tertarik mengakses sumber daya alam tersebut. Hal ini berisiko merusak keseimbangan budaya dan lingkungan mereka.<br><span style=\"font-size: 11px;\">Sumber:<br></span><span style=\"color: #0000ff;\"><span style=\"font-size: 11px;\">https://kumparan.com/syalsa-raya/hidup-bersama-alam-kehidupan-tradisional-baduy-yang-berkelanjutan-21z9WYFRsow/2<br></span><span style=\"font-size: 11px;\">https://bantenlife.com/tradisi-kehidupan-suku-baduy-harmoni-dengan-alam-dan-kearifan-lokal/</span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Paragraf 2 dan 3 membahas pelestarian adat dan lingkungan masyarakat Baduy. Bagaimana hubungan isi kedua paragraf tersebut dengan paragraf 4?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Pembangunan pesat mengancam keberlanjutan alam dan budaya.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Penggunaan sumber daya alam yang berlebihan bisa membahayakan.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Masyarakat di wilayah Baduy berpotensi mengancam kelestarian alam.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Upaya pelestarian menghadapi tantangan dari faktor eksternal.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_019",
+      "number": 19,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Bola Bekel Dinda</strong></p>\n<p style=\"text-align: left;\">Sarah baru pulang sekolah. Ia berniat menuju ke kamar. Di ruang keluarga, terlihat Mama sedang asyik mengobrol dengan Tante Mira. Mbok Ginah datang untuk mengantarkan makanan dan minuman.<br>Mama memanggil Sarah saat melihat kedatangannya.<br>Sarah menghampiri Mama dan memberi salam kepada Tante Mira.<br>“Kak Sarah!” tiba-tiba Dinda, anak Tante Mira, memanggilnya. Gadis kelas 5 SD itu tersenyum lebar.<br>“Kak Sarah! Ayo, temani aku main bekel!” ajak Dinda.<br>“Bekel?” tanya Sarah sambil mengernyitkan dahinya.<br>“Kak Sarah sudah SMP, tapi tidak tahu bekel?” Dinda balik bertanya.<br>Dinda memperlihatkan mainan yang diletakkannya di lantai.<br>“Ini namanya bola bekel,” jelas Dinda sambil mengambil satu bola karet kecil.<br>“Nah, kalau yang ini, namanya biji bekel,” tambahnya seraya meraup enam mainan kecil berbentuk unik yang terbuat dari logam.<br>Sarah ikut memegang dan mengamati bola bekel beserta biji bekelnya.<br>“Aku sering memainkannya bersama Mama. Kata Mama daripada main&nbsp;<em>game</em>&nbsp;<em>online</em>,” cerita Dinda.<br><em>Deg!</em>&nbsp;Sarah serasa ditampar. Ucapan Dinda itu benar.<br>“Ajarin Kak Sarah cara main bekel, dong!” pinta Sarah, menutupi rasa malunya.<br>“Begini caranya, Kak!” Dinda bersemangat mengajari Sarah.<br>“Aku coba, ya!” pinta Sarah. Dia penasaran.<br>Pertama kali melontarkan bola bekel, Sarah sudah harus mengambilnya ke ruang tamu. Bola bekel itu menggelinding ke sana. Namun, Sarah jadi makin penasaran dan mencoba terus walaupun gagal berkali-kali. Dinda bertepuk tangan menyemangati Sarah.<br>“Susah juga, ya!” ujar Sarah.<br>“Nanti lama-lama juga bisa, Kak!” kata Dinda.<br>Sarah berniat mencari informasi lebih jelas tentang permainan ini. Dia akan belajar main bekel sampai bisa. Dinda saja bisa, dia juga pasti bisa.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Siapa yang sedang asyik mengobrol dengan Mama di ruang keluarga?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Dinda.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Sarah.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Tante Mira.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Mbok Ginah.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_020",
+      "number": 20,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Bola Bekel Dinda</strong></p>\n<p style=\"text-align: left;\">Sarah baru pulang sekolah. Ia berniat menuju ke kamar. Di ruang keluarga, terlihat Mama sedang asyik mengobrol dengan Tante Mira. Mbok Ginah datang untuk mengantarkan makanan dan minuman.<br>Mama memanggil Sarah saat melihat kedatangannya.<br>Sarah menghampiri Mama dan memberi salam kepada Tante Mira.<br>“Kak Sarah!” tiba-tiba Dinda, anak Tante Mira, memanggilnya. Gadis kelas 5 SD itu tersenyum lebar.<br>“Kak Sarah! Ayo, temani aku main bekel!” ajak Dinda.<br>“Bekel?” tanya Sarah sambil mengernyitkan dahinya.<br>“Kak Sarah sudah SMP, tapi tidak tahu bekel?” Dinda balik bertanya.<br>Dinda memperlihatkan mainan yang diletakkannya di lantai.<br>“Ini namanya bola bekel,” jelas Dinda sambil mengambil satu bola karet kecil.<br>“Nah, kalau yang ini, namanya biji bekel,” tambahnya seraya meraup enam mainan kecil berbentuk unik yang terbuat dari logam.<br>Sarah ikut memegang dan mengamati bola bekel beserta biji bekelnya.<br>“Aku sering memainkannya bersama Mama. Kata Mama daripada main&nbsp;<em>game</em>&nbsp;<em>online</em>,” cerita Dinda.<br><em>Deg!</em>&nbsp;Sarah serasa ditampar. Ucapan Dinda itu benar.<br>“Ajarin Kak Sarah cara main bekel, dong!” pinta Sarah, menutupi rasa malunya.<br>“Begini caranya, Kak!” Dinda bersemangat mengajari Sarah.<br>“Aku coba, ya!” pinta Sarah. Dia penasaran.<br>Pertama kali melontarkan bola bekel, Sarah sudah harus mengambilnya ke ruang tamu. Bola bekel itu menggelinding ke sana. Namun, Sarah jadi makin penasaran dan mencoba terus walaupun gagal berkali-kali. Dinda bertepuk tangan menyemangati Sarah.<br>“Susah juga, ya!” ujar Sarah.<br>“Nanti lama-lama juga bisa, Kak!” kata Dinda.<br>Sarah berniat mencari informasi lebih jelas tentang permainan ini. Dia akan belajar main bekel sampai bisa. Dinda saja bisa, dia juga pasti bisa.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Bagaimana sifat yang ditunjukkan Dinda berdasarkan cerita tersebut?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Pantang menyerah.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Percaya diri.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Suportif.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Optimis.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "B",
+          "C"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_021",
+      "number": 21,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Bola Bekel Dinda</strong></p>\n<p style=\"text-align: left;\">Sarah baru pulang sekolah. Ia berniat menuju ke kamar. Di ruang keluarga, terlihat Mama sedang asyik mengobrol dengan Tante Mira. Mbok Ginah datang untuk mengantarkan makanan dan minuman.<br>Mama memanggil Sarah saat melihat kedatangannya.<br>Sarah menghampiri Mama dan memberi salam kepada Tante Mira.<br>“Kak Sarah!” tiba-tiba Dinda, anak Tante Mira, memanggilnya. Gadis kelas 5 SD itu tersenyum lebar.<br>“Kak Sarah! Ayo, temani aku main bekel!” ajak Dinda.<br>“Bekel?” tanya Sarah sambil mengernyitkan dahinya.<br>“Kak Sarah sudah SMP, tapi tidak tahu bekel?” Dinda balik bertanya.<br>Dinda memperlihatkan mainan yang diletakkannya di lantai.<br>“Ini namanya bola bekel,” jelas Dinda sambil mengambil satu bola karet kecil.<br>“Nah, kalau yang ini, namanya biji bekel,” tambahnya seraya meraup enam mainan kecil berbentuk unik yang terbuat dari logam.<br>Sarah ikut memegang dan mengamati bola bekel beserta biji bekelnya.<br>“Aku sering memainkannya bersama Mama. Kata Mama daripada main&nbsp;<em>game</em>&nbsp;<em>online</em>,” cerita Dinda.<br><em>Deg!</em>&nbsp;Sarah serasa ditampar. Ucapan Dinda itu benar.<br>“Ajarin Kak Sarah cara main bekel, dong!” pinta Sarah, menutupi rasa malunya.<br>“Begini caranya, Kak!” Dinda bersemangat mengajari Sarah.<br>“Aku coba, ya!” pinta Sarah. Dia penasaran.<br>Pertama kali melontarkan bola bekel, Sarah sudah harus mengambilnya ke ruang tamu. Bola bekel itu menggelinding ke sana. Namun, Sarah jadi makin penasaran dan mencoba terus walaupun gagal berkali-kali. Dinda bertepuk tangan menyemangati Sarah.<br>“Susah juga, ya!” ujar Sarah.<br>“Nanti lama-lama juga bisa, Kak!” kata Dinda.<br>Sarah berniat mencari informasi lebih jelas tentang permainan ini. Dia akan belajar main bekel sampai bisa. Dinda saja bisa, dia juga pasti bisa.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Apa yang mungkin terjadi jika Dinda tidak mengajak Sarah bermain?<br></span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">Klik pada pilihan </span><strong>Benar</strong><span style=\"font-weight: 400;\"> atau </span><strong>Salah</strong><span style=\"font-weight: 400;\"> untuk setiap pernyataan berikut!</span></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p><span style=\"font-weight: 400;\">Sarah tidak akan tahu cara bermain bola bekel.</span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-weight: 400;\">Sarah tetap akan sering bermain </span><em><span style=\"font-weight: 400;\">game online</span></em><span style=\"font-weight: 400;\">.</span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p><span style=\"font-weight: 400;\">Sarah akan mencari informasi tentang bola bekel.</span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Benar",
+          "R2": "Benar",
+          "R3": "Salah"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_022",
+      "number": 22,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pidato Pagi</strong></p>\n<p>Yang terhormat Bapak dan Ibu Guru.<br>Yang saya banggakan murid-murid sekalian.</p>\n<p>Puji dan syukur kita panjatkan kepada Tuhan Yang Maha Esa.<br>Kita dapat berkumpul dalam keadaan sehat di pagi ini.</p>\n<p>Bapak Ibu guru dan murid-murid sekalian, saat ini kita hidup di era informasi.<br>Informasi mudah diakses melalui internet dan media sosial.<br>Namun, tidak semua informasi tersebut benar.<br>Sebagian informasi tersebut disebut hoaks.</p>\n<p>Hoaks adalah informasi palsu yang menyesatkan.<br>Hoaks dapat berbentuk teks, gambar, atau video.<br>Judul hoaks biasanya bersifat provokatif.<br>Tujuannya agar pembaca segera menyebarkannya.<br>Penyebaran hoaks dapat merugikan banyak orang.</p>\n<p>Sebagai kepala sekolah, saya mengingatkan kita semua perlu literasi informasi.<br>Literasi informasi berarti menilai informasi secara kritis.<br>Kita semua harus memeriksa sumber informasi.<br>Kita juga perlu membandingkan beberapa sumber terpercaya.<br>Informasi belum jelas sebaiknya tidak disebarkan.</p>\n<p>Bersikap kritis adalah tanggung jawab kita bersama.<br>Teknologi harus digunakan untuk menambah pengetahuan.</p>\n<p>Akhir kata saya sampaikan, “Mari bijak dalam bermedia sosial!”</p>\n<p>Demikian pidato ini saya sampaikan.<br>Semoga bisa menjadi perenungan untuk kita semua.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Kepada siapakah pidato tersebut ditujukan?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap pilihan jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Murid.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Guru.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Pembaca.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Kepala Sekolah.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "B"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_023",
+      "number": 23,
+      "type": "MATRIX",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pidato Pagi</strong></p>\n<p>Yang terhormat Bapak dan Ibu Guru.<br>Yang saya banggakan murid-murid sekalian.</p>\n<p>Puji dan syukur kita panjatkan kepada Tuhan Yang Maha Esa.<br>Kita dapat berkumpul dalam keadaan sehat di pagi ini.</p>\n<p>Bapak Ibu guru dan murid-murid sekalian, saat ini kita hidup di era informasi.<br>Informasi mudah diakses melalui internet dan media sosial.<br>Namun, tidak semua informasi tersebut benar.<br>Sebagian informasi tersebut disebut hoaks.</p>\n<p>Hoaks adalah informasi palsu yang menyesatkan.<br>Hoaks dapat berbentuk teks, gambar, atau video.<br>Judul hoaks biasanya bersifat provokatif.<br>Tujuannya agar pembaca segera menyebarkannya.<br>Penyebaran hoaks dapat merugikan banyak orang.</p>\n<p>Sebagai kepala sekolah, saya mengingatkan kita semua perlu literasi informasi.<br>Literasi informasi berarti menilai informasi secara kritis.<br>Kita semua harus memeriksa sumber informasi.<br>Kita juga perlu membandingkan beberapa sumber terpercaya.<br>Informasi belum jelas sebaiknya tidak disebarkan.</p>\n<p>Bersikap kritis adalah tanggung jawab kita bersama.<br>Teknologi harus digunakan untuk menambah pengetahuan.</p>\n<p>Akhir kata saya sampaikan, “Mari bijak dalam bermedia sosial!”</p>\n<p>Demikian pidato ini saya sampaikan.<br>Semoga bisa menjadi perenungan untuk kita semua.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Pesan apa yang ingin disampaikan melalui pidato tersebut?<br></span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">Klik pada pilihan </span><strong>Benar</strong><span style=\"font-weight: 400;\"> atau </span><strong>Salah</strong><span style=\"font-weight: 400;\"> untuk setiap pernyataan berdasarkan isi teks!</span></span></p>",
+      "options": {
+        "columns": [
+          "Benar",
+          "Salah"
+        ],
+        "rows": [
+          {
+            "id": "R1",
+            "html": "<p><span style=\"font-weight: 400;\">Kedisiplinan dalam menyebarkan berita dari berbagai media.</span></p>"
+          },
+          {
+            "id": "R2",
+            "html": "<p><span style=\"font-weight: 400;\">Tanggung jawab sebagai pribadi dalam bermedia sosial.</span></p>"
+          },
+          {
+            "id": "R3",
+            "html": "<p><span style=\"font-weight: 400;\">Kesadaran diri untuk memilah informasi dari dunia maya.</span></p>"
+          }
+        ]
+      },
+      "keyJson": {
+        "answers": {
+          "R1": "Salah",
+          "R2": "Benar",
+          "R3": "Benar"
+        }
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_024",
+      "number": 24,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Pidato Pagi</strong></p>\n<p>Yang terhormat Bapak dan Ibu Guru.<br>Yang saya banggakan murid-murid sekalian.</p>\n<p>Puji dan syukur kita panjatkan kepada Tuhan Yang Maha Esa.<br>Kita dapat berkumpul dalam keadaan sehat di pagi ini.</p>\n<p>Bapak Ibu guru dan murid-murid sekalian, saat ini kita hidup di era informasi.<br>Informasi mudah diakses melalui internet dan media sosial.<br>Namun, tidak semua informasi tersebut benar.<br>Sebagian informasi tersebut disebut hoaks.</p>\n<p>Hoaks adalah informasi palsu yang menyesatkan.<br>Hoaks dapat berbentuk teks, gambar, atau video.<br>Judul hoaks biasanya bersifat provokatif.<br>Tujuannya agar pembaca segera menyebarkannya.<br>Penyebaran hoaks dapat merugikan banyak orang.</p>\n<p>Sebagai kepala sekolah, saya mengingatkan kita semua perlu literasi informasi.<br>Literasi informasi berarti menilai informasi secara kritis.<br>Kita semua harus memeriksa sumber informasi.<br>Kita juga perlu membandingkan beberapa sumber terpercaya.<br>Informasi belum jelas sebaiknya tidak disebarkan.</p>\n<p>Bersikap kritis adalah tanggung jawab kita bersama.<br>Teknologi harus digunakan untuk menambah pengetahuan.</p>\n<p>Akhir kata saya sampaikan, “Mari bijak dalam bermedia sosial!”</p>\n<p>Demikian pidato ini saya sampaikan.<br>Semoga bisa menjadi perenungan untuk kita semua.</p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Judul pidato tersebut masih sangat umum. Judul mana yang lebih sesuai untuk menggantikan judul pidato tersebut?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Mengenal Hoaks di Lingkungan Sekolah.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Cara Membedakan Hoaks dalam Media Sosial.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Literasi Informasi sebagai Benteng Melawan Hoaks.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Peran Sekolah dalam Literasi Informasi kepada Murid.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_025",
+      "number": 25,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Peluang Karier di Sektor Hijau</strong></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Transisi energi tidak hanya mengubah sumber daya energi. Hal ini juga menciptakan banyak peluang karier baru. Peluang tersebut khususnya di sektor hijau atau&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Menurut International Labour Organization (ILO), akan ada 24 juta pekerjaan baru di sektor hijau pada tahun 2030. Ini terjadi karena transisi menuju energi baru dan terbarukan (EBT). Ada laporan terbaru dari International Renewable Energy Agency (IRENA) berjudul “Renewable Energy and Jobs: Annual Review 2023”. Laporan itu mencatat jumlah pekerja di sektor EBT terus meningkat setiap tahunnya.<br></span><span style=\"font-weight: 400;\">Pada tahun 2018, IRENA mencatat ada 11,1 juta pekerja di sektor EBT. Jumlah ini terus bertambah. Pada tahun 2022 mencapai 13,8 juta. Hal tersebut menunjukkan komitmen global untuk mengurangi ketergantungan pada sumber energi konvensional. Dunia beralih ke energi yang lebih ramah lingkungan.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs</span></em><span style=\"font-weight: 400;\">&nbsp;memiliki beberapa aspek yang bisa dilihat pada gambar berikut.</span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/86131_12739783282d2669efb5a1bc6ff5a307.png\" alt=\"\" width=\"552\" height=\"552\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Saat ini, banyak jenis pekerjaan yang termasuk&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Contohnya, desainer fesyen berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;energi berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;manajemen limbah, teknisi sistem energi matahari, peneliti transportasi ramah lingkungan, kreator gerakan hijau, hingga pengelola media sosial gerakan hijau. Para milenial perkotaan dapat menjajal&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">. Itu dilakukan sebagai langkah awal memulai&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs.</span></em><span style=\"font-weight: 400;\">&nbsp;Kegiatan&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">&nbsp;bisa dilakukan di mana saja, seperti di halaman, kantor, balkon, bahkan atap rumah.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs&nbsp;</span></em><span style=\"font-weight: 400;\">sudah ada di kawasan Asia Pasifik. Contohnya para penanam bakau dalam program adaptasi iklim di Vietnam dan teknisi sistem energi matahari di Cina.<br></span><span style=\"font-weight: 400;\">Tertarik berkarier di sektor hijau?</span></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; font-size: 11px;\">Sumber:<br></span><span style=\"font-weight: 400; font-size: 11px; color: #0000ff;\">https://katadata.co.id/infografik/6581171bdd19c/green-jobs-peluang-karir-masa-depan</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Contoh </span><em><span style=\"font-weight: 400;\">green jobs </span></em><span style=\"font-weight: 400;\">di kawasan Asia Pasifik yang disebutkan dalam teks adalah ….</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\"> manajemen limbah</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">desainer fesyen berkelanjutan</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">teknisi sistem energi matahari</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">peneliti transportasi ramah lingkungan</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_026",
+      "number": 26,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Peluang Karier di Sektor Hijau</strong></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Transisi energi tidak hanya mengubah sumber daya energi. Hal ini juga menciptakan banyak peluang karier baru. Peluang tersebut khususnya di sektor hijau atau&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Menurut International Labour Organization (ILO), akan ada 24 juta pekerjaan baru di sektor hijau pada tahun 2030. Ini terjadi karena transisi menuju energi baru dan terbarukan (EBT). Ada laporan terbaru dari International Renewable Energy Agency (IRENA) berjudul “Renewable Energy and Jobs: Annual Review 2023”. Laporan itu mencatat jumlah pekerja di sektor EBT terus meningkat setiap tahunnya.<br></span><span style=\"font-weight: 400;\">Pada tahun 2018, IRENA mencatat ada 11,1 juta pekerja di sektor EBT. Jumlah ini terus bertambah. Pada tahun 2022 mencapai 13,8 juta. Hal tersebut menunjukkan komitmen global untuk mengurangi ketergantungan pada sumber energi konvensional. Dunia beralih ke energi yang lebih ramah lingkungan.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs</span></em><span style=\"font-weight: 400;\">&nbsp;memiliki beberapa aspek yang bisa dilihat pada gambar berikut.</span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/87928_12739783282d2669efb5a1bc6ff5a307.png\" alt=\"\" width=\"552\" height=\"552\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Saat ini, banyak jenis pekerjaan yang termasuk&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Contohnya, desainer fesyen berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;energi berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;manajemen limbah, teknisi sistem energi matahari, peneliti transportasi ramah lingkungan, kreator gerakan hijau, hingga pengelola media sosial gerakan hijau. Para milenial perkotaan dapat menjajal&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">. Itu dilakukan sebagai langkah awal memulai&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs.</span></em><span style=\"font-weight: 400;\">&nbsp;Kegiatan&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">&nbsp;bisa dilakukan di mana saja, seperti di halaman, kantor, balkon, bahkan atap rumah.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs&nbsp;</span></em><span style=\"font-weight: 400;\">sudah ada di kawasan Asia Pasifik. Contohnya para penanam bakau dalam program adaptasi iklim di Vietnam dan teknisi sistem energi matahari di Cina.<br></span><span style=\"font-weight: 400;\">Tertarik berkarier di sektor hijau?</span></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; font-size: 11px;\">Sumber:<br></span><span style=\"font-weight: 400; font-size: 11px; color: #0000ff;\">https://katadata.co.id/infografik/6581171bdd19c/green-jobs-peluang-karir-masa-depan</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Mengapa </span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\"> cocok sebagai awal karier </span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\"> bagi milenial kota?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Meningkatkan nilai estetika perkotaan dan peluang penghasilan milenial.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Mengajarkan milenial teknik bercocok tanam yang ramah lingkungan.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Menggunakan lahan yang luas sehingga mudah dilakukan oleh milenial.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Memberi pengalaman milenial dalam manajemen limbah perkotaan.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "B"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_027",
+      "number": 27,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><strong>Peluang Karier di Sektor Hijau</strong></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Transisi energi tidak hanya mengubah sumber daya energi. Hal ini juga menciptakan banyak peluang karier baru. Peluang tersebut khususnya di sektor hijau atau&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Menurut International Labour Organization (ILO), akan ada 24 juta pekerjaan baru di sektor hijau pada tahun 2030. Ini terjadi karena transisi menuju energi baru dan terbarukan (EBT). Ada laporan terbaru dari International Renewable Energy Agency (IRENA) berjudul “Renewable Energy and Jobs: Annual Review 2023”. Laporan itu mencatat jumlah pekerja di sektor EBT terus meningkat setiap tahunnya.<br></span><span style=\"font-weight: 400;\">Pada tahun 2018, IRENA mencatat ada 11,1 juta pekerja di sektor EBT. Jumlah ini terus bertambah. Pada tahun 2022 mencapai 13,8 juta. Hal tersebut menunjukkan komitmen global untuk mengurangi ketergantungan pada sumber energi konvensional. Dunia beralih ke energi yang lebih ramah lingkungan.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs</span></em><span style=\"font-weight: 400;\">&nbsp;memiliki beberapa aspek yang bisa dilihat pada gambar berikut.</span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/66295_12739783282d2669efb5a1bc6ff5a307.png\" alt=\"\" width=\"551\" height=\"551\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400;\">Saat ini, banyak jenis pekerjaan yang termasuk&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs</span></em><span style=\"font-weight: 400;\">. Contohnya, desainer fesyen berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;energi berkelanjutan,&nbsp;</span><em><span style=\"font-weight: 400;\">start-up</span></em><span style=\"font-weight: 400;\">&nbsp;manajemen limbah, teknisi sistem energi matahari, peneliti transportasi ramah lingkungan, kreator gerakan hijau, hingga pengelola media sosial gerakan hijau. Para milenial perkotaan dapat menjajal&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">. Itu dilakukan sebagai langkah awal memulai&nbsp;</span><em><span style=\"font-weight: 400;\">green jobs.</span></em><span style=\"font-weight: 400;\">&nbsp;Kegiatan&nbsp;</span><em><span style=\"font-weight: 400;\">urban farming</span></em><span style=\"font-weight: 400;\">&nbsp;bisa dilakukan di mana saja, seperti di halaman, kantor, balkon, bahkan atap rumah.&nbsp;</span><em><span style=\"font-weight: 400;\">Green jobs&nbsp;</span></em><span style=\"font-weight: 400;\">sudah ada di kawasan Asia Pasifik. Contohnya para penanam bakau dalam program adaptasi iklim di Vietnam dan teknisi sistem energi matahari di Cina.<br></span><span style=\"font-weight: 400;\">Tertarik berkarier di sektor hijau?</span></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; font-size: 11px;\">Sumber:<br></span><span style=\"font-weight: 400; font-size: 11px; color: #0000ff;\">https://katadata.co.id/infografik/6581171bdd19c/green-jobs-peluang-karir-masa-depan</span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Apa yang membuat data dalam teks tersebut bisa dipercaya?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Mencantumkan laporan spesifik dan tahun publikasi dari lembaga resmi ternama.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Menyebutkan nama perusahaan besar yang terlibat dalam sektor energi terbarukan.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Berasal dari pengalaman pribadi penulis yang sangat berpengalaman di bidangnya.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Memuat wawancara dengan beberapa individu yang bekerja di sektor energi terbarukan.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "A"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_028",
+      "number": 28,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><span style=\"color: #000000;\"><strong>Kuliner Ayam Panggang Dorong Perekonomian Desa Sragi, Ponorogo</strong></span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/36682_72aeda14110470f9ad43d7ea93263b08.png\" alt=\"\" width=\"550\" height=\"344\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; color: #000000;\">Kabupaten Ponorogo kini memiliki destinasi kuliner yang menarik wisatawan. Berlokasi di Desa Sragi, Kecamatan Sukorejo. Kawasan Dadapan menawarkan ayam panggang bercita rasa tradisional. Suasana pedesaan yang asri juga menambah daya tarik pengunjung.&nbsp;<br></span><span style=\"font-weight: 400; color: #000000;\">Ayam panggang di kawasan ini diolah menggunakan ayam kampung pilihan. Ayam dipanggang di atas bara kayu dengan suhu terjaga. Proses pemanggangan tradisional tersebut menghasilkan aroma khas. Selain itu, juga menghasilkan tekstur daging yang lunak. Ayam kemudian disajikan dengan bumbu santan dan rempah-rempah. Bumbu terdiri dari cabai, bawang, dan kemiri. Kombinasi ini menghasilkan rasa gurih dan pedas.<br></span><span style=\"font-weight: 400; color: #000000;\">Kehadiran kuliner ini memberikan dampak positif bagi perekonomian warga Desa Sragi. Area Dadapan yang sepi kini ramai dikunjungi wisatawan. Mereka menikmati sajian dan keramahan desa, terutama pada akhir pekan. Seorang warga setempat mengatakan, “Meningkatnya jumlah pengunjung mendorong warga membuka usaha kecil untuk menambah penghasilan.”<br></span><span style=\"font-weight: 400; color: #000000;\">Banyak yang tertarik pada cita rasa ayam panggang tersebut. Mereka berasal dari luar daerah Sragi. “Daging ayamnya mudah dikunyah dan bumbunya meresap. Rasanya sangat kaya bumbu,” ujar seorang pengunjung. Sajian ini dapat dinikmati oleh berbagai kalangan. Hal tersebut menunjukkan peran kuliner tradisional dalam mendukung perekonomian desa. Selain itu, menarik minat wisatawan untuk berkunjung.</span></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px; color: #000000;\"><span style=\"font-weight: 400;\">Sumber:&nbsp;</span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">https://banjar.times.co.id/news/berita/Tvz7VcY9l/Menelusuri-Aroma-Asap-Desa-Sragi-Ayam-Panggang-Dadapan-Jadi-Magnet-Baru-Kuliner-Ponorogo</span><span style=\"font-weight: 400;\">&nbsp;dengan penyesuaian.</span></span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Istilah </span><em><span style=\"font-weight: 400;\">perekonomian</span></em><span style=\"font-weight: 400;\"> pada paragraf ketiga di dalam teks digunakan untuk ….</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">menunjukkan peluang warga menjual camilan dan minuman</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">menggambarkan suasana pedesaan yang ramai pengunjung</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">menjelaskan dampak pusat kuliner terhadap pendapatan warga</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">memperlihatkan cara memperoleh penghasilan pada akhir pekan</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "C"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_029",
+      "number": 29,
+      "type": "SINGLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><span style=\"color: #000000;\"><strong>Kuliner Ayam Panggang Dorong Perekonomian Desa Sragi, Ponorogo</strong></span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/46202_72aeda14110470f9ad43d7ea93263b08.png\" alt=\"\" width=\"554\" height=\"346\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; color: #000000;\">Kabupaten Ponorogo kini memiliki destinasi kuliner yang menarik wisatawan. Berlokasi di Desa Sragi, Kecamatan Sukorejo. Kawasan Dadapan menawarkan ayam panggang bercita rasa tradisional. Suasana pedesaan yang asri juga menambah daya tarik pengunjung.&nbsp;<br></span><span style=\"font-weight: 400; color: #000000;\">Ayam panggang di kawasan ini diolah menggunakan ayam kampung pilihan. Ayam dipanggang di atas bara kayu dengan suhu terjaga. Proses pemanggangan tradisional tersebut menghasilkan aroma khas. Selain itu, juga menghasilkan tekstur daging yang lunak. Ayam kemudian disajikan dengan bumbu santan dan rempah-rempah. Bumbu terdiri dari cabai, bawang, dan kemiri. Kombinasi ini menghasilkan rasa gurih dan pedas.<br></span><span style=\"font-weight: 400; color: #000000;\">Kehadiran kuliner ini memberikan dampak positif bagi perekonomian warga Desa Sragi. Area Dadapan yang sepi kini ramai dikunjungi wisatawan. Mereka menikmati sajian dan keramahan desa, terutama pada akhir pekan. Seorang warga setempat mengatakan, “Meningkatnya jumlah pengunjung mendorong warga membuka usaha kecil untuk menambah penghasilan.”<br></span><span style=\"font-weight: 400; color: #000000;\">Banyak yang tertarik pada cita rasa ayam panggang tersebut. Mereka berasal dari luar daerah Sragi. “Daging ayamnya mudah dikunyah dan bumbunya meresap. Rasanya sangat kaya bumbu,” ujar seorang pengunjung. Sajian ini dapat dinikmati oleh berbagai kalangan. Hal tersebut menunjukkan peran kuliner tradisional dalam mendukung perekonomian desa. Selain itu, menarik minat wisatawan untuk berkunjung.</span></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px; color: #000000;\"><span style=\"font-weight: 400;\">Sumber:&nbsp;</span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">https://banjar.times.co.id/news/berita/Tvz7VcY9l/Menelusuri-Aroma-Asap-Desa-Sragi-Ayam-Panggang-Dadapan-Jadi-Magnet-Baru-Kuliner-Ponorogo</span><span style=\"font-weight: 400;\">&nbsp;dengan penyesuaian.</span></span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Paragraf keempat menceritakan pengalaman pengunjung tentang cita rasa ayam panggang. Bagaimana paragraf kedua memperkuat pengalaman tersebut?</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Menjelaskan penggunaan santan dan ayam yang menghasilkan rasa pedas.</span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Menegaskan keunikan rasa ayam panggang yang berbeda dari daerah lain.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Menggambarkan perpaduan rasa yang lezat dan suasana yang nyaman.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Menguraikan teknik pemanggangan dan bumbu ayam kampung pilihan.</span>"
+        }
+      ],
+      "keyJson": {
+        "answer": "D"
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    },
+    {
+      "questionId": "BI_SMP_P1_030",
+      "number": 30,
+      "type": "MULTIPLE",
+      "stimulusHtml": "<div><p style=\"text-align: center;\"><span style=\"color: #000000;\"><strong>Kuliner Ayam Panggang Dorong Perekonomian Desa Sragi, Ponorogo</strong></span></p>\n<p style=\"text-align: center;\"><img src=\"https://pusmendik.kemendikdasmen.go.id/tka/cbt_images/94933_72aeda14110470f9ad43d7ea93263b08.png\" alt=\"\" width=\"550\" height=\"344\"></p>\n<p style=\"text-align: left;\"><span style=\"font-weight: 400; color: #000000;\">Kabupaten Ponorogo kini memiliki destinasi kuliner yang menarik wisatawan. Berlokasi di Desa Sragi, Kecamatan Sukorejo. Kawasan Dadapan menawarkan ayam panggang bercita rasa tradisional. Suasana pedesaan yang asri juga menambah daya tarik pengunjung.&nbsp;<br></span><span style=\"font-weight: 400; color: #000000;\">Ayam panggang di kawasan ini diolah menggunakan ayam kampung pilihan. Ayam dipanggang di atas bara kayu dengan suhu terjaga. Proses pemanggangan tradisional tersebut menghasilkan aroma khas. Selain itu, juga menghasilkan tekstur daging yang lunak. Ayam kemudian disajikan dengan bumbu santan dan rempah-rempah. Bumbu terdiri dari cabai, bawang, dan kemiri. Kombinasi ini menghasilkan rasa gurih dan pedas.<br></span><span style=\"font-weight: 400; color: #000000;\">Kehadiran kuliner ini memberikan dampak positif bagi perekonomian warga Desa Sragi. Area Dadapan yang sepi kini ramai dikunjungi wisatawan. Mereka menikmati sajian dan keramahan desa, terutama pada akhir pekan. Seorang warga setempat mengatakan, “Meningkatnya jumlah pengunjung mendorong warga membuka usaha kecil untuk menambah penghasilan.”<br></span><span style=\"font-weight: 400; color: #000000;\">Banyak yang tertarik pada cita rasa ayam panggang tersebut. Mereka berasal dari luar daerah Sragi. “Daging ayamnya mudah dikunyah dan bumbunya meresap. Rasanya sangat kaya bumbu,” ujar seorang pengunjung. Sajian ini dapat dinikmati oleh berbagai kalangan. Hal tersebut menunjukkan peran kuliner tradisional dalam mendukung perekonomian desa. Selain itu, menarik minat wisatawan untuk berkunjung.</span></p>\n<p style=\"text-align: left;\"><span style=\"font-size: 11px; color: #000000;\"><span style=\"font-weight: 400;\">Sumber:&nbsp;</span><span style=\"color: #0000ff;\"><span style=\"font-weight: 400;\">https://banjar.times.co.id/news/berita/Tvz7VcY9l/Menelusuri-Aroma-Asap-Desa-Sragi-Ayam-Panggang-Dadapan-Jadi-Magnet-Baru-Kuliner-Ponorogo</span><span style=\"font-weight: 400;\">&nbsp;dengan penyesuaian.</span></span></span></p></div>",
+      "questionHtml": "<p><span style=\"font-weight: 400;\">Setelah membaca teks tersebut, Alia berpendapat:<br></span><span style=\"font-weight: 400;\">“Wisatawan menyukai ayam panggang bukan hanya karena rasanya. Mereka juga mempertimbangkan aspek lainnya.”<br></span><span style=\"font-weight: 400;\">Alasan apa yang mendukung pendapat Alia tersebut?<br></span><span style=\"font-weight: 400; color: #0000ff;\">Klik pada setiap jawaban benar! Jawaban benar lebih dari satu.</span></p>",
+      "options": [
+        {
+          "id": "A",
+          "html": "<span style=\"font-weight: 400;\">Suasana desa yang nyaman dan alami. </span>"
+        },
+        {
+          "id": "B",
+          "html": "<span style=\"font-weight: 400;\">Penyajian makanan yang sangat cepat.</span>"
+        },
+        {
+          "id": "C",
+          "html": "<span style=\"font-weight: 400;\">Harga makanan yang relatif terjangkau.</span>"
+        },
+        {
+          "id": "D",
+          "html": "<span style=\"font-weight: 400;\">Pelayanan yang ramah dan menyenangkan.</span>"
+        }
+      ],
+      "keyJson": {
+        "answers": [
+          "A",
+          "C",
+          "D"
+        ]
+      },
+      "weight": 1,
+      "category": "Bahasa Indonesia"
+    }
+  ]
+}

@@ -1,0 +1,986 @@
+/* ==========================================================================
+   STYLE CSS - SIMULASI TKA PUSMENDIK
+   ========================================================================== */
+
+:root {
+  --primary-color: #326698;
+  --primary-hover: #27527b;
+  --secondary-color: #74b9ff;
+  --accent-cyan: #17a2b8;
+  --warning-color: #e0a800;
+  --warning-bg: #ffc107;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+  --bg-light: #f4f6f9;
+  --card-bg: #ffffff;
+  --text-dark: #2d3748;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HEADER UTAMA
+   ========================================================================== */
+.tka-header {
+  background: url("../assets/images/bg-top.png") left center / contain no-repeat var(--primary-color);
+  height: 130px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1020;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+.tka-header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-left img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-title-box b {
+  font-size: 20px;
+  letter-spacing: 1px;
+  display: block;
+  line-height: 1.2;
+}
+
+.header-title-box small {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-display-name {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+  line-height: 1.3;
+}
+
+.user-display-sub {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.grad-icon {
+  background: var(--secondary-color);
+  border-radius: 4px;
+  color: var(--primary-color);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   HALAMAN / SCREEN CONTAINERS
+   ========================================================================== */
+.screen-view {
+  display: none;
+  width: 100%;
+  padding-top: 145px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+.screen-view.active {
+  display: block;
+}
+
+/* ==========================================================================
+   HALAMAN AWAL & KONFIRMASI
+   ========================================================================== */
+.tka-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  padding: 30px 40px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card-with-watermark {
+  background-image: url("../assets/logo/logo-w.png");
+  background-size: 280px auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.token-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 18px;
+}
+
+.token-code {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--primary-color);
+  background: #edf2f7;
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e0;
+}
+
+.token-instruction {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 8px;
+}
+
+.form-group-custom {
+  margin-bottom: 14px;
+}
+
+.form-group-custom label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.tka-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #cbd5e0;
+  border-radius: 0;
+  background: transparent;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #1a202c;
+  transition: border-color 0.2s;
+}
+
+.tka-input:focus {
+  outline: none;
+  border-bottom-color: var(--primary-color);
+}
+
+.tka-input[readonly] {
+  color: #718096;
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.dob-wrapper {
+  display: flex;
+  gap: 6px;
+}
+
+.dob-select {
+  flex: 1;
+  background: #eeeeee;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 8px;
+  font-size: 13px;
+  color: #2d3748;
+}
+
+.dob-select:focus {
+  outline: 2px solid var(--primary-color);
+}
+
+.btn-pill {
+  border-radius: 25px !important;
+  font-weight: 600;
+  padding: 8px 24px;
+  transition: all 0.2s;
+}
+
+.btn-tka-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.btn-tka-primary:hover, .btn-tka-primary:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #ffffff;
+}
+
+/* Alert / status banner */
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+.connection-badge.online {
+  background: #def7ec;
+  color: #03543f;
+}
+.connection-badge.offline {
+  background: #feecdc;
+  color: #9c4221;
+}
+
+/* ==========================================================================
+   HALAMAN PENGERJAAN SOAL (EXAM)
+   ========================================================================== */
+.exam-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.soal-number-indicator {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-info-pill {
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+}
+
+.timer-box {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e0;
+  color: #2d3748;
+  border-radius: 25px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timer-box.timer-warning {
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.font-size-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.font-btn {
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  user-select: none;
+  font-weight: 700;
+  color: #4a5568;
+}
+
+.font-btn.active, .font-btn:hover {
+  background: #edf2f7;
+  color: var(--primary-color);
+}
+
+.mata-ujian-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Kotak Soal */
+.soal-card-container {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-top: 10px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.soal-split-row {
+  display: flex;
+  gap: 25px;
+}
+
+.stimulus-col {
+  flex: 1;
+  max-width: 50%;
+  padding-right: 20px;
+  max-height: 480px;
+  overflow-y: auto;
+  border-right: 2px dashed #edf2f7;
+}
+
+.question-col {
+  flex: 1;
+  max-width: 50%;
+  padding-left: 5px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.stimulus-col img, .question-col img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 6px;
+}
+
+.stimulus-content, .question-text {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.font-sm .stimulus-content, .font-sm .question-text { font-size: 12px; }
+.font-md .stimulus-content, .font-md .question-text { font-size: 14px; }
+.font-lg .stimulus-content, .font-lg .question-text { font-size: 16px; }
+
+/* ==========================================================================
+   OPSI JAWABAN (SINGLE, MULTIPLE, MATRIX)
+   ========================================================================== */
+.options-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.option-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.option-row:hover {
+  background: #f8fafc;
+}
+
+.option-radio-cell {
+  width: 34px;
+  vertical-align: middle;
+  padding: 8px 4px;
+}
+
+.option-text-cell {
+  vertical-align: middle;
+  padding: 8px 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Custom icheck-primary style */
+.icheck-primary {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icheck-primary input[type="radio"],
+.icheck-primary input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.icheck-primary label {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #a0aec0;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+  transition: all 0.15s;
+}
+
+.icheck-primary input[type="checkbox"] + label {
+  border-radius: 4px;
+}
+
+.icheck-primary input[type="radio"]:checked + label {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.icheck-primary input[type="radio"]:checked + label::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.icheck-primary input[type="checkbox"]:checked + label {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.icheck-primary input[type="checkbox"]:checked + label::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+/* MATRIX Question Style */
+.matrix-container {
+  overflow-x: auto;
+  margin-top: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matrix-table th {
+  background: #f1f5f9;
+  padding: 12px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 2px solid #cbd5e0;
+  text-align: center;
+}
+
+.matrix-table th.statement-header {
+  text-align: left;
+  min-width: 180px;
+}
+
+.matrix-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.matrix-table td.choice-cell {
+  text-align: center;
+  width: 85px;
+}
+
+/* ==========================================================================
+   NAVIGASI BAWAH UJIAN
+   ========================================================================== */
+.exam-navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.btn-nav {
+  border-radius: 30px !important;
+  font-weight: 600;
+  padding: 8px 20px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ragu {
+  background-color: var(--warning-bg);
+  border-color: var(--warning-color);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-ragu input {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   DRAWER / MODAL DAFTAR SOAL
+   ========================================================================== */
+.question-nav-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.question-nav-modal.active {
+  display: flex;
+}
+
+.question-nav-card {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.question-nav-header {
+  padding: 16px 20px;
+  background: var(--primary-color);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-nav-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 10px;
+}
+
+.q-grid-btn {
+  height: 48px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e0;
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.q-grid-btn.answered {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.q-grid-btn.doubtful {
+  background: var(--warning-bg) !important;
+  border-color: var(--warning-color) !important;
+  color: #ffffff !important;
+}
+
+.q-grid-btn.current {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+  font-weight: 800;
+}
+
+.q-grid-badge {
+  font-size: 10px;
+  opacity: 0.9;
+  line-height: 1;
+}
+
+.nav-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e0;
+}
+
+/* ==========================================================================
+   HALAMAN LAPORAN HASIL (RESULT)
+   ========================================================================== */
+.result-header-bg {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #4a7fb8 100%);
+  color: #ffffff;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.score-badge-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-cyan) 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  box-shadow: 0 10px 25px rgba(50, 102, 152, 0.3);
+}
+
+.score-number {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.stat-box {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 15px 12px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stat-title {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.review-table-wrapper {
+  margin-top: 25px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.review-table thead {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+.review-table th {
+  padding: 14px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.review-table td {
+  padding: 14px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: top;
+}
+
+.review-table td.col-num {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: #f8fafc;
+  width: 50px;
+  border-right: 2px solid var(--primary-color);
+}
+
+.answer-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.answer-chip.user {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-left: 3px solid #0284c7;
+}
+
+.answer-chip.correct {
+  background: #dcfce7;
+  color: #15803d;
+  border-left: 3px solid #22c55e;
+}
+
+.answer-chip.wrong {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-left: 3px solid #ef4444;
+}
+
+/* ==========================================================================
+   MODAL DIALOGS
+   ========================================================================== */
+.tka-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1060;
+  padding: 15px;
+}
+
+.tka-modal-overlay.active {
+  display: flex;
+}
+
+.tka-dialog {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.dialog-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 15px;
+}
+
+.dialog-icon.warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.dialog-icon.success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.dialog-icon.danger {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ==========================================================================
+   OPTIMASI KHUSUS HP (360px - 576px)
+   ========================================================================== */
+@media (max-width: 576px) {
+  .tka-header {
+    height: 85px;
+  }
+
+  .tka-header-inner {
+    padding: 0 12px;
+  }
+
+  .header-left img {
+    height: 40px;
+  }
+
+  .header-title-box b {
+    font-size: 13px;
+  }
+
+  .header-title-box small {
+    font-size: 9px;
+  }
+
+  .user-display-name {
+    font-size: 11px;
+    max-width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-display-sub {
+    font-size: 9px;
+  }
+
+  .grad-icon {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+
+  .screen-view {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  .tka-card {
+    padding: 18px 16px;
+  }
+
+  .token-box {
+    font-size: 15px;
+  }
+
+  .token-code {
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+  }
+
+  /* HP Layout: Stack Stimulus & Question */
+  .soal-split-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stimulus-col {
+    max-width: 100%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 2px dashed #edf2f7;
+    padding-bottom: 15px;
+    max-height: 350px;
+  }
+
+  .question-col {
+    max-width: 100%;
+    padding-left: 0;
+    max-height: none;
+  }
+
+  .soal-card-container {
+    padding: 14px;
+  }
+
+  .btn-nav {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
